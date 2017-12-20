@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0306EE5A1F81848B00850443 /* XcodePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0306EE591F81848B00850443 /* XcodePlugin.mm */; };
+		032D81D31B89238B005B67C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032D81D21B89238B005B67C4 /* QuartzCore.framework */; };
+		03318EDB1937BC3B00132304 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03318EDA1937BC3B00132304 /* Cocoa.framework */; };
+		0339B7C91F8A516900820150 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F332F61B891CA30014B200 /* IDEFoundation.framework */; };
+		0339B7CA1F8A516900820150 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382C7521994131400DEF003 /* DVTFoundation.framework */; };
+		0339B7CB1F8A516900820150 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382C750199412CB00DEF003 /* DVTKit.framework */; };
+		0339B7CC1F8A516900820150 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1896E1992C68500F87332 /* IDEKit.framework */; };
+		0372C85519378E9400364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85419378E9400364146 /* XcodePlugin.m */; };
+		0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382BA6C199516B500E48ED4 /* Carbon.framework */; };
+		03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */; };
+		0398642A1F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */; };
+		03D3949B1F8A40A1007B9283 /* Plugin_NavigationFixes_Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */; };
+		03DAA8851F7F0AB900617869 /* XcodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAA8841F7F0AB900617869 /* XcodePlugin.swift */; };
+		03FDB0CE1F7FFCC000B6CD73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */; };
+		435E248813A8E5A40052479A /* Plugin_NavigationFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 435E248513A8E5A40052479A /* Plugin_NavigationFixes.m */; };
+		437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437DCBC314D41E700039CB49 /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0306EE591F81848B00850443 /* XcodePlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XcodePlugin.mm; path = "../Shared Code/XcodePlugin.mm"; sourceTree = "<group>"; };
+		032D81D21B89238B005B67C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		03318EDA1937BC3B00132304 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		03329EC71937AA1A000E475B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0372C85319378E9400364146 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
+		0372C85419378E9400364146 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
+		0382BA6C199516B500E48ED4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		0382C750199412CB00DEF003 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
+		0382C7521994131400DEF003 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		039128061F8A244300994632 /* Xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
+		03916CB51F7EA0B60033DF98 /* Plugin_NavigationFixes_MoveWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_MoveWord.h; sourceTree = "<group>"; };
+		03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_MoveWord.swift; sourceTree = "<group>"; };
+		039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plugin_NavigationFixes_LocalSymbol.cpp; sourceTree = "<group>"; };
+		03A1896E1992C68500F87332 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
+		03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_PasteNoFormat.h; sourceTree = "<group>"; };
+		03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_Xcode.swift; sourceTree = "<group>"; };
+		03DAA8841F7F0AB900617869 /* XcodePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XcodePlugin.swift; path = "../Shared Code/XcodePlugin.swift"; sourceTree = "<group>"; };
+		03DAA8861F7F0D9000617869 /* Plugin_NavigationFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes.h; sourceTree = "<group>"; };
+		03E69FF11F7A6AA200D0A690 /* Plugin_NavigationFixes_ConsoleGoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_ConsoleGoto.h; sourceTree = "<group>"; };
+		03E69FF31F7A6C0300D0A690 /* Plugin_NavigationFixes_InterceptShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_InterceptShortcuts.h; sourceTree = "<group>"; };
+		03E69FF51F7A6DAB00D0A690 /* Plugin_NavigationFixes_Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_Navigation.h; sourceTree = "<group>"; };
+		03F332F61B891CA30014B200 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_NavigationFixes.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		435E248513A8E5A40052479A /* Plugin_NavigationFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin_NavigationFixes.m; sourceTree = "<group>"; tabWidth = 4; };
+		437DCBC414D41E700039CB49 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		435E246F13A8E4A20052479A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03FDB0CE1F7FFCC000B6CD73 /* CoreFoundation.framework in Frameworks */,
+				032D81D31B89238B005B67C4 /* QuartzCore.framework in Frameworks */,
+				0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */,
+				03318EDB1937BC3B00132304 /* Cocoa.framework in Frameworks */,
+				0339B7C91F8A516900820150 /* IDEFoundation.framework in Frameworks */,
+				0339B7CC1F8A516900820150 /* IDEKit.framework in Frameworks */,
+				0339B7CA1F8A516900820150 /* DVTFoundation.framework in Frameworks */,
+				0339B7CB1F8A516900820150 /* DVTKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03DAA87B1F7EE6ED00617869 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		435E246513A8E4510052479A = {
+			isa = PBXGroup;
+			children = (
+				435E248913A8E5B70052479A /* Sources */,
+				0306EE591F81848B00850443 /* XcodePlugin.mm */,
+				03DAA8841F7F0AB900617869 /* XcodePlugin.swift */,
+				437DCBC314D41E700039CB49 /* InfoPlist.strings */,
+				435E248413A8E5A40052479A /* Info.plist */,
+				032D81D21B89238B005B67C4 /* QuartzCore.framework */,
+				03F332F61B891CA30014B200 /* IDEFoundation.framework */,
+				0382BA6C199516B500E48ED4 /* Carbon.framework */,
+				0382C7521994131400DEF003 /* DVTFoundation.framework */,
+				0382C750199412CB00DEF003 /* DVTKit.framework */,
+				03A1896E1992C68500F87332 /* IDEKit.framework */,
+				03318EDA1937BC3B00132304 /* Cocoa.framework */,
+				435E247313A8E4A20052479A /* Products */,
+				03DAA87B1F7EE6ED00617869 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		435E247313A8E4A20052479A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		435E248913A8E5B70052479A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				03329EC71937AA1A000E475B /* README.md */,
+				0372C85319378E9400364146 /* XcodePlugin.h */,
+				0372C85419378E9400364146 /* XcodePlugin.m */,
+				435E248513A8E5A40052479A /* Plugin_NavigationFixes.m */,
+				039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */,
+				03E69FF11F7A6AA200D0A690 /* Plugin_NavigationFixes_ConsoleGoto.h */,
+				03E69FF51F7A6DAB00D0A690 /* Plugin_NavigationFixes_Navigation.h */,
+				03916CB51F7EA0B60033DF98 /* Plugin_NavigationFixes_MoveWord.h */,
+				03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */,
+				03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */,
+				03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */,
+				03E69FF31F7A6C0300D0A690 /* Plugin_NavigationFixes_InterceptShortcuts.h */,
+				03DAA8861F7F0D9000617869 /* Plugin_NavigationFixes.h */,
+				039128061F8A244300994632 /* Xcode.h */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		435E247113A8E4A20052479A /* Plugin_NavigationFixes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 435E247E13A8E4A20052479A /* Build configuration list for PBXNativeTarget "Plugin_NavigationFixes" */;
+			buildPhases = (
+				435E246E13A8E4A20052479A /* Sources */,
+				435E246F13A8E4A20052479A /* Frameworks */,
+				435E247013A8E4A20052479A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Plugin_NavigationFixes;
+			productName = XCode4_beginning_of_line;
+			productReference = 435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		435E246713A8E4510052479A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+			};
+			buildConfigurationList = 435E246A13A8E4510052479A /* Build configuration list for PBXProject "Plugin_NavigationFixes" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 435E246513A8E4510052479A;
+			productRefGroup = 435E247313A8E4A20052479A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				435E247113A8E4A20052479A /* Plugin_NavigationFixes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		435E247013A8E4A20052479A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		435E246E13A8E4A20052479A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435E248813A8E5A40052479A /* Plugin_NavigationFixes.m in Sources */,
+				0398642A1F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp in Sources */,
+				03D3949B1F8A40A1007B9283 /* Plugin_NavigationFixes_Xcode.swift in Sources */,
+				03DAA8851F7F0AB900617869 /* XcodePlugin.swift in Sources */,
+				0306EE5A1F81848B00850443 /* XcodePlugin.mm in Sources */,
+				03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */,
+				0372C85519378E9400364146 /* XcodePlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		437DCBC314D41E700039CB49 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				437DCBC414D41E700039CB49 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		435E246C13A8E4520052479A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					_DEBUG,
+					"$(inherited)",
+				);
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = macosx;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = Plugin_NavigationFixes.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				WARNING_CFLAGS = (
+					"-Wno-incompatible-property-type",
+					"-Wno-nullability-completeness",
+					"-Wno-property-attribute-mismatch",
+				);
+				XCODE_DOTTED_VERSION = 9.2;
+			};
+			name = Debug;
+		};
+		435E246D13A8E4520052479A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = macosx;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = Plugin_NavigationFixes.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				WARNING_CFLAGS = (
+					"-Wno-incompatible-property-type",
+					"-Wno-nullability-completeness",
+					"-Wno-property-attribute-mismatch",
+				);
+				XCODE_DOTTED_VERSION = 9.2;
+			};
+			name = Release;
+		};
+		435E247F13A8E4A20052479A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Plugin_NavigationFixes;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		435E248013A8E4A20052479A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Plugin_NavigationFixes;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		435E246A13A8E4510052479A /* Build configuration list for PBXProject "Plugin_NavigationFixes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435E246C13A8E4520052479A /* Debug */,
+				435E246D13A8E4520052479A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		435E247E13A8E4A20052479A /* Build configuration list for PBXNativeTarget "Plugin_NavigationFixes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435E247F13A8E4A20052479A /* Debug */,
+				435E248013A8E4A20052479A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 435E246713A8E4510052479A /* Project object */;
+}

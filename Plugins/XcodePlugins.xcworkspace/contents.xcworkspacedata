@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Shared Code/Xcode/Shared.h">
+   </FileRef>
+   <FileRef
+      location = "group:Plugin_NavigationFixes/Plugin_NavigationFixes.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Plugin_Malterlib/Plugin_Malterlib.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Plugin_HideDistractions/Plugin_HideDistractions.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Plugin_CustomizeAnnotations/Plugin_CustomizeAnnotations.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Plugin_P4Checkout/Plugin_P4Checkout.xcodeproj">
+   </FileRef>
+</Workspace>

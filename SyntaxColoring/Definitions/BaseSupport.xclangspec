@@ -1,0 +1,1219 @@
+(
+    {
+        Identifier = "xcode.lang.malterlib.keyword.qualifiers";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"const",
+				"volatile",
+             );
+            Type = "xcode.syntax.identifier.macro.system";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.storageclass";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"register",
+				"static",
+				"extern",
+				"mutable",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtintype";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"bool",
+				"void",
+				"bint",
+				"zbint",
+				"zbool",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtincharactertype";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"char",
+				"__wchar_t",
+				"wchar_t",
+				"ch8",
+				"ch16",
+				"ch32",
+				"uch8",
+				"uch16",
+				"uch32",
+				"zch8",
+				"zch16",
+				"zch32",
+				"zuch8",
+				"zuch16",
+				"zuch32",
+				"char16_t",
+				"char32_t",
+				"zuch32",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtinintegertype";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"int",
+				"size_t",
+				"__int16",
+				"__int32",
+				"__int64",
+				"__int8",
+				"zuint320",
+				"zuint512",
+				"zuint1024",
+				"zuint2048",
+				"zuint4096",
+				"zuint8192",
+				"zuint8",
+				"zuint16",
+				"zuint32",
+				"zuint64",
+				"zuint80",
+				"zuint128",
+				"zuint160",
+				"zuint256",
+				"zint320",
+				"zint512",
+				"zint1024",
+				"zint2048",
+				"zint4096",
+				"zint8192",
+				"zint8",
+				"zint16",
+				"zint32",
+				"zint64",
+				"zint80",
+				"zint128",
+				"zint160",
+				"zint256",
+				"uint8",
+				"uint16",
+				"uint32",
+				"uint64",
+				"uint80",
+				"uint128",
+				"uint160",
+				"uint256",
+				"uint320",
+				"uint512",
+				"uint1024",
+				"uint2048",
+				"uint4096",
+				"uint8192",
+				"int8",
+				"int16",
+				"int32",
+				"int64",
+				"int80",
+				"int128",
+				"int160",
+				"int256",
+				"int320",
+				"int512",
+				"int1024",
+				"int2048",
+				"int4096",
+				"int8192",
+				"mint",
+				"smint",
+				"umint",
+				"aint",
+				"uaint",
+				"zmint",
+				"zumint",
+				"zsmint",
+				"zamint",
+				"zuamint",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtintypemodifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"long",
+				"short",
+				"signed",
+				"unsigned",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtinvectortype";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__m128",
+				"__m64",
+				"__w64",
+				"__m128i",
+				"__m128d",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtinfloattype";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"float",
+				"double",
+				"fp8",
+				"fp16",
+				"fp32",
+				"fp64",
+				"fp80",
+				"fp128",
+				"fp256",
+				"fp512",
+				"fp1024",
+				"fp2048",
+				"fp4096",
+				"ufp8",
+				"ufp16",
+				"ufp32",
+				"ufp64",
+				"ufp80",
+				"ufp128",
+				"ufp256",
+				"ufp512",
+				"ufp1024",
+				"ufp2048",
+				"ufp4096",
+				"zfp8",
+				"zfp16",
+				"zfp32",
+				"zfp64",
+				"zfp80",
+				"zfp128",
+				"zfp256",
+				"zfp512",
+				"zfp1024",
+				"zfp2048",
+				"zfp4096",
+				"zufp8",
+				"zufp16",
+				"zufp32",
+				"zufp64",
+				"zufp80",
+				"zufp128",
+				"zufp256",
+				"zufp512",
+				"zufp1024",
+				"zufp2048",
+				"zufp4096",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.builtinconstant";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"false",
+				"true",
+				"nullptr",
+				"NULL",
+             );
+            Type = "xcode.syntax.identifier.constant";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.js.bultinconstant";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"null",
+				"undefined",
+				"Infinity",
+				"NaN",
+				"E",
+				"LN2",
+				"LN10",
+				"LOG2E",
+				"LOG10E",
+				"MAX_VALUE",
+				"MIN_VALUE",
+				"NEGATIVE_INFINITY",
+				"PI",
+				"POSITIVE_INFINITY",
+				"SQRT1_2",
+				"SQRT2",
+             );
+            Type = "xcode.syntax.identifier.constant";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.jsonconstants";
+        Syntax = {
+            Words = (
+				"_",
+				"__",
+             );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.exceptionhandling";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"try",
+				"throw",
+				"catch",
+				"__try",
+				"__except",
+				"__finally",
+				"__leave",
+				"__raise",
+				"finally",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.introspection";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__alignof",
+				"sizeof",
+				"decltype",
+				"__uuidof",
+				"typeid",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.js.introspection";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"typeof",
+				"instanceof",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.staticassert";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"static_assert",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.controlstatement";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"while",
+				"for",
+				"goto",
+				"if",
+				"do",
+				"break",
+				"case",
+				"continue",
+				"default",
+				"else",
+				"return",
+				"switch",
+				"likely",
+				"unlikely",
+				"assume",
+				"yield_cpu",
+				"constant_int64",
+				"constant_uint64",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.optimization";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__asm",
+				"__assume",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.propertymodifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__unaligned",
+				"__declspec",
+				"__based",
+				"deprecated",
+				"dllexport",
+				"dllimport",
+				"naked",
+				"noinline",
+				"noreturn",
+				"nothrow",
+				"noexcept",
+				"novtable",
+				"property",
+				"selectany",
+				"maybe_unused",
+				"thread",
+				"uuid",
+				"explicit",
+				"__forceinline",
+				"__inline",
+				"inline",
+				"__cdecl",
+				"__thiscall",
+				"__fastcall",
+				"__stdcall",
+				"calling_convention_c",
+				"cdecl",
+				"stdcall",
+				"fastcall",
+				"inline_small",
+				"inline_always",
+				"inline_never",
+				"inline_never_debug",
+				"inline_medium",
+				"inline_large",
+				"inline_extralarge",
+				"inline_always_debug",
+				"module_export",
+				"module_import",
+				"only_parameters_aliased",
+				"return_not_aliased",
+				"function_does_not_return",
+				"variable_not_aliased",
+				"constexpr",
+				"__pragma",
+				"__attribute__",
+				"__restrict__",
+				"assure_used",                
+				"align_cacheline",
+				"intrinsic",
+             );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.newdelete";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"delete",
+				"new",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.clr";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__abstract",
+				"abstract",
+				"__box",
+				"__delegate",
+				"__gc",
+				"__hook",
+				"__nogc",
+				"__pin",
+				"__property",
+				"__sealed",
+				"__try_cast",
+				"__unhook",
+				"__value",
+				"event",
+				"__identifier",
+				"friend_as",
+				"interface",
+				"interior_ptr",
+				"gcnew",
+				"generic",
+				"initonly",
+				"literal",
+				"ref",
+				"safecast",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.other";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"__event",
+				"__if_exists",
+				"__if_not_exists",
+				"__interface",
+				"__multiple_inheritance",
+				"__single_inheritance",
+				"__virtual_inheritance",
+				"__super",
+				"__noop",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.typespecification";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"union",
+				"class",
+				"enum",
+				"struct",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.namespace";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"namespace",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.typename";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"typename",
+             );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.template";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"template",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.js.function";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"function",
+				"in",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.typedef";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"typedef",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.using";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"using",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.auto";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"auto",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.js.var";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"var",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.this";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"this",
+				"self",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.operator";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"operator",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.access";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"friend",
+				"private",
+				"public",
+				"protected",
+             );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.virtual";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"final",
+				"sealed",
+				"override",
+				"virtual",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.casts";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"const_cast",
+				"dynamic_cast",
+				"reinterpret_cast",
+				"static_cast",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.ignore";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"ignore",
+             );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.malterlib.keyword.preprocessordirective";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+				"define",
+				"error",
+				"import",
+				"undef",
+				"elif",
+				"if",
+				"include",
+				"using",
+				"else",
+				"ifdef",
+				"line",
+				"endif",
+				"ifndef",
+				"pragma",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.constant";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^E[A-Z][a-zA-Z0-9_]+_[a-zA-Z0-9_]+$",
+                "(?-i)^(c_|gc_|mc_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.constant";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.constant.private";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^mcp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.constant";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.constant.template";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(t_|tp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.constant.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.constant.templatefunction";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(tf_|tfp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.constant.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.namespace";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^N[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.type";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.templatetypeparam";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(t_C|t_F|t_TC|tp_C|tp_F|tp_TC)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.type.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functiontemplatetypeparam";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(tf_C|tf_F|tf_TC|tfp_C|tfp_F|tfp_TC)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.type.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.type";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(E|C|F|IC|TC|TIC)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.member";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^m_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.comment.doc";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.member.private";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^mp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.comment.doc.keyword";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functor.local";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^f[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^fl_[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functor.param";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(_f|p_f)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functor.param.output";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(o_f|w_f|po_f|pw_f|_of|p_of)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functor.member";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^m_f[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.functor.member.private";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^mp_f[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.class.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.function";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(f_|fr_|f_r|fs_|fsr_|fs_r)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.function.private";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(fp_|fpr_|fp_r|fsp_|fspr_|fsp_r)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.function.global";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(fg_|fgr_|fg_r|fsg_|fsgr_|fsg_r)[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.function.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.macro";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^D[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.macro";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.macro.parameter";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^d_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.macro.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.function.parameter";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(_|p_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.variable";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.function.parameter.output";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(o_|w_|po_|pw_|_o|p_o)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.variable";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.member.static";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^ms_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.variable.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.member.static.private";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^msp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.variable.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.global";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^(gs_|g_|s_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.identifier.variable.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.lexer";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+        };
+    },
+    
+	{
+		Identifier = "xcode.lang.url";
+		Syntax = {
+			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			Match = (
+				"^(acap|afp|afs|cid|data|fax|feed|file|ftp|go|gopher|http|https|imap|ldap|mailserver|mid|modem|news|nntp|opaquelocktoken|pop|prospero|rdar|rtsp|service|sip|soap\\.beep|soap\\.beeps|tel|telnet|tip|tn3270|urn|vemmi|wais|xcdoc|z39\\.50r|z39\\.50s)://([a-zA-Z0-9\\-_.]+/)?[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+				"^(mailto|im):[a-zA-Z0-9\\-_]+@[a-zA-Z0-9\\-_\\.!%]+$",
+				"^radar:[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+			);
+			Type = "xcode.syntax.url";
+		};
+	},
+	{
+		Identifier = "xcode.lang.url.mail";
+		Syntax = {
+			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			Match = (
+				"^[a-zA-Z0-9\\-_\\.]+@[a-zA-Z0-9\\-_\\.!%]+$",
+			);
+			Type = "xcode.syntax.url.mail";
+		};
+	},
+	{
+		Identifier = "xcode.lang.string";
+		Syntax = {
+			Start = "\"";
+			EscapeChar = "\\";
+			End = "\"";
+			AltEnd = "\n";
+			Type = "xcode.syntax.string";
+		};
+	},
+	{
+		Identifier = "xcode.lang.character";
+		Syntax = {
+			Start = "'";
+			EscapeChar = "\\";
+			End = "'";
+			AltEnd = "\n";
+			Type = "xcode.syntax.character";
+		};
+	},
+	{
+		Identifier = "xcode.lang.string.singlequote";
+		BasedOn = "xcode.lang.string";
+		Syntax = {
+			Start = "'";
+			EscapeChar = "\\";
+			End = "'";
+			AltEnd = "\n";
+			Type = "xcode.syntax.string";
+		};
+	},
+	{
+		Identifier = "xcode.lang.completionplaceholder";
+		Syntax = {
+			Start = "<#";
+			End = "#>";
+			Type = "xcode.syntax.completionplaceholder";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment";
+		Syntax = {
+			Start = "/*";
+			End = "*/";
+			"ParseEndBeforeIncludedRules" = YES;
+			Foldable = YES;
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.singleline";
+		BasedOn = "xcode.lang.comment";
+		Syntax = {
+			Start = "//";
+			EscapeChar = "\\";
+			Until = "\n";
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.singleline.pound";
+		BasedOn = "xcode.lang.comment";
+		Syntax = {
+			Start = "#";
+			EscapeChar = "\\";
+			Until = "\n";
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.mark";
+		Syntax = {
+			StartChars = "MTF!?";
+			Match = (
+				"^MARK:[ \t]+(.*)$",
+				"^(TODO:[ \t]+.*)$",
+				"^(FIXME:[ \t]+.*)$",
+				"^(!!!:.*)$",
+				"^(\\?\\?\\?:.*)$",
+			);
+			CaptureTypes = (
+				"xcode.syntax.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.number";
+		Syntax = {
+			"SourceScannerClassName" = DVTNumberScanner;
+			StartChars = "+-0123456789.";
+			Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'";
+			Match = (
+				"^[+-]?0[bB][01]+([lL])?",
+				"^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfF])?",
+				"^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfF])?",
+				"^[+-]?([0-9]+'?[0-9]?)+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfF])?",
+				"^[+-]?([0-9]+'?[0-9]?)*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfF])?",
+			);
+			Type = "xcode.syntax.number";
+		};
+	},
+	{
+		Identifier = "xcode.lang.plainColoring";
+		Description = "Xcode Plain Coloring";
+		IncludeInMenu = YES;
+		Name = "Plain Coloring";
+		Syntax = {
+			Type = "xcode.syntax.plain";
+		};
+	},
+	{
+		Identifier = "xcode.lang.simpleColoring";
+		Description = "Xcode Simple Coloring";
+		IncludeInMenu = YES;
+		Name = "Simple Coloring";
+		Syntax = {
+			IncludeRules = (
+				"xcode.lang.comment",
+				"xcode.lang.comment.singleline",
+				"xcode.lang.comment.singleline.pound",
+				"xcode.lang.string",
+				"xcode.lang.character",
+				"xcode.lang.number",
+				"xcode.lang.simpleColoring.block",
+			);
+			Type = "xcode.syntax.plain";
+		};
+	},
+	{
+		Identifier = "xcode.lang.simpleColoring.block";
+		Syntax = {
+			Start = "{";
+			End = "}";
+			Foldable = YES;
+			Recursive = YES;
+			IncludeRules = (
+				"xcode.lang.comment",
+				"xcode.lang.comment.singleline",
+				"xcode.lang.comment.singleline.pound",
+				"xcode.lang.string",
+				"xcode.lang.character",
+				"xcode.lang.number",
+			);
+		};
+	},
+)
