@@ -153,7 +153,7 @@
                 "__is_trivially_copyable",
                 "__underlying_type",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers*/
         };
     },
@@ -221,13 +221,14 @@
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.variable",
                 "xcode.lang.cpp.identifier.default",
             );
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
@@ -241,7 +242,7 @@
                 "::",
                 ".",
              );
-            Type = "xcode.syntax.entity";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -274,7 +275,7 @@
                 "xcode.lang.cpp.block.toplevel",
                 "xcode.lang.cpp.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -570,6 +571,7 @@
             Rules = (
                 "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
                 "const?",
+                "override?",
                 "xcode.lang.cpp.throwclause?",
                 "xcode.lang.cpp.identifier?",
                 ";",
@@ -585,6 +587,7 @@
             Rules = (
                 "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
                 "const?",
+                "override?",
                 "xcode.lang.cpp.throwclause?",
                 "xcode.lang.cpp.identifier?",
                 "xcode.lang.cpp.initializerclause?",
@@ -982,7 +985,7 @@
                 "xcode.lang.cpp.parenexpr",
                 "xcode.lang.cpp.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 

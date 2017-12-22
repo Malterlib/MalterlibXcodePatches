@@ -251,6 +251,7 @@
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.variable",
                 "xcode.lang.objc.identifier.default",
             );
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
@@ -270,7 +271,7 @@
                 "->",
                 ".",
              );
-            Type = "xcode.syntax.entity";
+            Type = "xcode.syntax.plain";
         };
     },
 /****************************************************************************/

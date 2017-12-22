@@ -23,7 +23,7 @@
 				"extern",
 				"mutable",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -292,7 +292,7 @@
 				"_",
 				"__",
              );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.keyword";
         };
     },
 
@@ -312,7 +312,7 @@
 				"__raise",
 				"finally",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -328,7 +328,7 @@
 				"__uuidof",
 				"typeid",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -341,7 +341,7 @@
 				"typeof",
 				"instanceof",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -353,7 +353,7 @@
             Words = (
 				"static_assert",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -382,7 +382,7 @@
 				"constant_int64",
 				"constant_uint64",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -395,7 +395,7 @@
 				"__asm",
 				"__assume",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -456,7 +456,7 @@
 				"align_cacheline",
 				"intrinsic",
              );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.keyword";
         };
     },
 
@@ -469,7 +469,7 @@
 				"delete",
 				"new",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -504,7 +504,7 @@
 				"ref",
 				"safecast",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -524,7 +524,7 @@
 				"__super",
 				"__noop",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -539,7 +539,7 @@
 				"enum",
 				"struct",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -551,7 +551,7 @@
             Words = (
 				"namespace",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -563,7 +563,7 @@
             Words = (
 				"typename",
              );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.keyword";
         };
     },
 
@@ -575,7 +575,7 @@
             Words = (
 				"template",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -588,7 +588,7 @@
 				"function",
 				"in",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -600,7 +600,7 @@
             Words = (
 				"typedef",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -612,7 +612,7 @@
             Words = (
 				"using",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -624,7 +624,7 @@
             Words = (
 				"auto",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -636,7 +636,7 @@
             Words = (
 				"var",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -649,7 +649,7 @@
 				"this",
 				"self",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -661,7 +661,7 @@
             Words = (
 				"operator",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -676,7 +676,7 @@
 				"public",
 				"protected",
              );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.keyword";
         };
     },
 
@@ -691,7 +691,7 @@
 				"override",
 				"virtual",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -706,7 +706,7 @@
 				"reinterpret_cast",
 				"static_cast",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -718,7 +718,7 @@
             Words = (
 				"ignore",
              );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.keyword";
         };
     },
 
@@ -743,7 +743,7 @@
 				"ifndef",
 				"pragma",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -1021,6 +1021,17 @@
                 "(?-i)^(gs_|g_|s_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.variable";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+            );
+            Type = "xcode.syntax.attribute";
         };
     },
     {

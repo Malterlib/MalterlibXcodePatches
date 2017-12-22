@@ -27,7 +27,7 @@
                 "xcode.lang.c.preprocessor.warning",
                 "xcode.lang.c.preprocessor.error",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -119,6 +119,7 @@
                 "xcode.lang.malterlib.keyword.virtual",
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
+                "xcode.lang.malterlib.variable",
             );
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
@@ -143,7 +144,7 @@
                 "once",
                 "defined",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";
         };
     }, 
@@ -155,7 +156,7 @@
                 "pragma",
                 "xcode.lang.c.preprocessor.mark.therest",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -167,7 +168,7 @@
             CaptureTypes = (
                 "xcode.syntax.mark"
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -178,7 +179,7 @@
                 "define",
                 "xcode.lang.c.preprocessor.define.name",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -197,7 +198,7 @@
             Start = "warning";
             EscapeChar = "\\";
             Until = "\n";
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -206,7 +207,7 @@
             Start = "error";
             EscapeChar = "\\";
             Until = "\n";
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -819,7 +820,7 @@
                 "NULL",
                 "TRUE",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers*/
         };
     },
@@ -887,13 +888,14 @@
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.variable",
                 "xcode.lang.c.identifier.default",
             );
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
@@ -906,7 +908,7 @@
                 ".",
                 "->",
              );
-            Type = "xcode.syntax.entity";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -938,7 +940,7 @@
                 "xcode.lang.c.parenexpr",
                 "xcode.lang.c.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
     
@@ -960,7 +962,7 @@
                 "xcode.lang.c.parenexpr",
                 "xcode.lang.c.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 

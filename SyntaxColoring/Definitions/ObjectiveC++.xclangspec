@@ -220,7 +220,7 @@
                 "__is_trivially_copyable",
                 "__underlying_type",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
@@ -288,13 +288,14 @@
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.variable",
                 "xcode.lang.objcpp.identifier.default",
             );
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
@@ -330,7 +331,7 @@
                 "::",
                 ".",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 /****************************************************************************/
@@ -371,7 +372,7 @@
                 "xcode.lang.objcpp.initializer",
                 "xcode.lang.objcpp.import",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -1464,7 +1465,7 @@
                 "null_resettable",
                 "null_unspecified",
              );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
@@ -1678,7 +1679,7 @@
                 "xcode.lang.objcpp.expression.literal",
                 "xcode.lang.objcpp.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
