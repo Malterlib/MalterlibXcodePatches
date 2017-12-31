@@ -88,17 +88,17 @@
 		<string>1 0.282353 0.941176 1</string>
 		<key>xcode.syntax.comment</key>
 		<string>0.536272 0.536272 0.536272 1</string>
-		<key>xcode.syntax.comment.doc</key>
+		<key>xcode.syntax.identifier.constant</key>
 		<string>1 0.65098 0 1</string>
-		<key>xcode.syntax.comment.doc.keyword</key>
+		<key>xcode.syntax.identifier.constant.system</key>
 		<string>0.772549 0.615686 0.32549 1</string>
 		<key>xcode.syntax.identifier.class</key>
 		<string>0.721569 0.666667 1 1</string>
 		<key>xcode.syntax.identifier.class.system</key>
 		<string>0.211765 0.909804 0.803922 1</string>
-		<key>xcode.syntax.identifier.constant</key>
+		<key>xcode.syntax.comment.doc</key>
 		<string>1 0.541176 0.772549 1</string>
-		<key>xcode.syntax.identifier.constant.system</key>
+		<key>xcode.syntax.comment.doc.keyword</key>
 		<string>1 0.356863 0.678431 1</string>
 		<key>xcode.syntax.identifier.function</key>
 		<string>0.14902 1 0 1</string>
@@ -137,17 +137,17 @@
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.comment</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.comment.doc</key>
+		<key>xcode.syntax.identifier.constant</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.comment.doc.keyword</key>
+		<key>xcode.syntax.identifier.constant.system</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.class</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.class.system</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.identifier.constant</key>
+		<key>xcode.syntax.comment.doc</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.identifier.constant.system</key>
+		<key>xcode.syntax.comment.doc.keyword</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.function</key>
 		<string>Unbroken20px-Regular - 10.0</string>

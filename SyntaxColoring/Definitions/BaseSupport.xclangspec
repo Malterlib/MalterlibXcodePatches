@@ -254,7 +254,7 @@
 				"nullptr",
 				"NULL",
              );
-            Type = "xcode.syntax.identifier.constant";
+            Type = "xcode.syntax.comment.doc";
         };
     },
 
@@ -281,7 +281,7 @@
 				"SQRT1_2",
 				"SQRT2",
              );
-            Type = "xcode.syntax.identifier.constant";
+            Type = "xcode.syntax.comment.doc";
         };
     },
 
@@ -755,7 +755,7 @@
                 "(?-i)^E[A-Z][a-zA-Z0-9_]+_[a-zA-Z0-9_]+$",
                 "(?-i)^(c_|gc_|mc_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.constant";
+            Type = "xcode.syntax.comment.doc";
         };
     },
     {
@@ -766,7 +766,7 @@
             Match = (
                 "(?-i)^mcp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.constant";
+            Type = "xcode.syntax.comment.doc";
         };
     },
     {
@@ -777,7 +777,7 @@
             Match = (
                 "(?-i)^(t_|tp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.constant.system";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
     {
@@ -788,7 +788,7 @@
             Match = (
                 "(?-i)^(tf_|tfp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.constant.system";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
     {
@@ -843,7 +843,7 @@
             Match = (
                 "(?-i)^m_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.identifier.constant";
         };
     },
     {
@@ -854,7 +854,7 @@
             Match = (
                 "(?-i)^mp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc.keyword";
+            Type = "xcode.syntax.identifier.constant.system";
         };
     },
     {
