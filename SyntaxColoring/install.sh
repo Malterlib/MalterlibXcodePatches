@@ -9,14 +9,14 @@ else
 fi
 
 echo Patching Xcode definitions
-if ! cp Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/" ; then
-	sudo cp Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/"
+if ! cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/" 2> /dev/null ; then
+	sudo cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/"
 fi
 defaults write com.apple.dt.Xcode DVTTextEnableNativeParser -bool NO
 
 mkdir -p "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
 
-cp Malterlib.xccolortheme "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+cp -f Malterlib.xccolortheme "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
 defaults write com.apple.dt.xcode XCFontAndColorCurrentTheme Malterlib.xccolortheme
 
-cp UnbrokenFont/* "$HOME/Library/Fonts"
+cp -f UnbrokenFont/* "$HOME/Library/Fonts"
