@@ -48,6 +48,7 @@
 - (id)_tryWithAnotherArchitectureOnBinaryPath:(id)arg1;
 - (void)_reportDiagnosticStatistics:(id)arg1;
 - (id)_doRegularDebugWithTarget:(id)arg1 usingDebugServer:(BOOL)arg2 errTargetString:(id)arg3;
+- (const char *)UTF8StringFromPotentialString:(id)arg1;
 - (void)_createTargetConsoleAdaptorForPTY:(id)arg1;
 - (void)_reportTarget:(id)arg1 failedToLaunchError:(id)arg2;
 - (id)_doAttachWithTarget:(id)arg1 childPID:(unsigned long long *)arg2;
@@ -56,7 +57,7 @@
 - (id)parseConsoleOutputFromOriginalOutput:(id)arg1;
 - (id)parseConsoleInputFromOriginalInput:(id)arg1;
 - (void)_executeLLDBCommands:(id)arg1;
-- (void)_createDebuggerConsoleAdaptor;
+- (BOOL)_createDebuggerConsoleAdaptor:(id *)arg1;
 - (id)lldbDebugger;
 - (void)setFinishedRunning;
 - (void)_logToConsoleForUserActions:(id)arg1;

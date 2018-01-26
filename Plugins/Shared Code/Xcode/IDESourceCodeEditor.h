@@ -25,7 +25,7 @@
 #import "IDETextVisualizationHost-Protocol.h"
 #import "NSImmediateActionAnimationController-Protocol.h"
 
-@class DVTAnnotationProvider, DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDECoverageTextVisualization, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
+@class DVTAnnotationProvider, DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
 @protocol DVTCancellable, IDESourceEditorViewControllerHost, OS_dispatch_queue;
 
 @interface IDESourceCodeEditor : IDEEditor <NSTouchBarProvider, NSTouchBarDelegate, NSImmediateActionAnimationController, NSTextViewDelegate, NSMenuDelegate, DVTSourceTextViewDelegate, DVTSourceTextViewQuickEditDataSource, DVTFindBarFindable, IDESourceExpressionSource, IDETextVisualizationHost, IDEJumpToLineDestination, IDEComparisonEditorHostContext, IDETestingSelection, IDESourceControlBlameForLineEditorDataSource, IDEAnalyzerResultsHostingEditor, IDESingleFileCommandSupportingEditor>
@@ -103,7 +103,6 @@
     BOOL _nodeTypesPrefetchingStarted;
     BOOL _isUninstalling;
     IDESchemeActionCodeCoverageFile *_coverageData;
-    IDECoverageTextVisualization *_coverageTextVisualization;
     IDESourceLanguageEditorExtension *_editorExtension;
     NSPulseGestureRecognizer *_recognizeGestureInSideBarView;
     NSImmediateActionGestureRecognizer *_immediateActionRecognizer;
@@ -123,7 +122,6 @@
 @property(retain) NSImmediateActionGestureRecognizer *immediateActionRecognizer; // @synthesize immediateActionRecognizer=_immediateActionRecognizer;
 @property(retain) NSPulseGestureRecognizer *recognizeGestureInSideBarView; // @synthesize recognizeGestureInSideBarView=_recognizeGestureInSideBarView;
 @property(retain) IDESourceLanguageEditorExtension *editorExtension; // @synthesize editorExtension=_editorExtension;
-@property(retain) IDECoverageTextVisualization *coverageTextVisualization; // @synthesize coverageTextVisualization=_coverageTextVisualization;
 @property(retain, nonatomic) IDESchemeActionCodeCoverageFile *coverageData; // @synthesize coverageData=_coverageData;
 @property(retain) IDESingleFileProcessingToolbarController *singleFileProcessingToolbarController; // @synthesize singleFileProcessingToolbarController=_singleFileProcessingToolbarController;
 @property struct _NSRange lastEditedCharacterRange; // @synthesize lastEditedCharacterRange=_lastEditedCharRange;
@@ -135,7 +133,6 @@
 @property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 // - (void).cxx_destruct;
 - (void)_showCoverage:(BOOL)arg1;
-- (double)coverageGutterWidthWhenShowingCounts;
 - (struct CGRect)boundsForLineRange:(struct _NSRange)arg1;
 @property(readonly) NSView *blameForLineView;
 @property(readonly) struct _NSRange selectedLineRange;

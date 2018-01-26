@@ -10,15 +10,16 @@
 
 #include "Shared.h"
 
-@interface DVTScopeBarButton : NSButton
+@interface DVTDealloc2Main_Document : NSDocument
 {
+    int _rc;
 }
 
-+ (Class)cellClass;
-- (struct NSEdgeInsets)alignmentRectInsets;
-- (void)_dvt_scopeBarButtonCommonInit;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithCoder:(id)arg1;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

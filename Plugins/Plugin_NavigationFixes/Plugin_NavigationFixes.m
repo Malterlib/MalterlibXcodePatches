@@ -37,6 +37,7 @@ static IMP original_becomeFirstResponder_Console = nil;
 static IMP original_becomeFirstResponder_Search = nil;
 static IMP original_becomeFirstResponder_NavigatorOutlineView = nil;
 static IMP original_becomeFirstResponder_DVTFindPatternFieldEditor = nil;
+static IMP original_becomeFirstResponder_SourceEditor_SourceEditorView = nil;
 static IMP original_resignFirstResponder_DVTFindPatternFieldEditor = nil;
 static IMP original_menuItemWithKeyEquivalentMatchingEventRef = nil;
 static IMP original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = nil;
@@ -69,7 +70,7 @@ static void * NavigationFixesNSWindow_activeStructureNavigator = &NavigationFixe
 static void * NavigationFixesNSWindow_respondingPatternFieldEditor = &NavigationFixesNSWindow_respondingPatternFieldEditor;
 static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWindow_findBarOptionsCtrl;
 
-@implementation NSWindow (NavigationFixesNSWindowTabGroup)
+@implementation NSWindow (NavigationFixesNSWindow)
 
 - (IDEFindNavigatorOutlineView *)activeFindNavigatorOutlineView {
     return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeFindNavigatorOutlineView);
@@ -318,169 +319,56 @@ static void * NavigationFixesNSObjectKey_displayCycleObserver_sequence = &Naviga
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface IDEPegasusSourceEditor_SourceCodeEditorView: SourceEditor_SourceEditorView
+@interface IDESourceEditor_SourceCodeEditorView: SourceEditor_SourceEditorView
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface IDEPegasusSourceEditor_SourceCodeEditor : IDEEditor
+@interface IDESourceEditor_SourceCodeEditor : IDEEditor
 - (NSRange)selectedLineRange;
 - (NSArray *)currentSelectedDocumentLocations;
 - (void)selectDocumentLocations: (NSArray *)array;
 - (NSString *)selectedText;
-- (IDEPegasusSourceEditor_SourceCodeEditorView *)sourceEditorView;
-- (DVTAnnotationManager *) annotationManager;
+- (IDESourceEditor_SourceCodeEditorView *)sourceEditorView;
 - (void) toggleBreakpointAtCurrentLine:(id) arg1;
 @end
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface SourceEditor_TextFindPanelViewController : NSViewController
-/*
-	 findPanel
-	 replacePanel
-	 findField
-	 replaceField
-	 nextPreviousControl
-	 doneControl
-	 replaceControl
-	 panelModePopUp
-	 panelModeSeparator
-	 panelModeSeparatorHeightConstraint
-	 matchesLabel
-	 addPatternSeparator
-	 addPatternSeparatorHeightConstraint
-	 addPatternButton
-	 caseSensitiveSeparator
-	 caseSensitiveSeparatorHeightConstraint
-	 caseSensitiveButton
-	 searchPatternSeparator
-	 searchPatternSeparatorHeightConstraint
-	 searchPatternPopUp
-	 replaceIcon
-	 replaceFieldTitle
-	 replaceFieldTitleSeparator
-	 replaceFieldTitleSeparatorHeightConstraint
-	 replacePanelHeightConstraint
-	 client
-	 recentQueries
-	 colorTheme
-	 controlFont
-	 boldControlFont
-	 miniControlFont
-	 replacePanelExpandedHeight
-	 mode
- */
+@interface SourceEditor_SourceEditorTextFindPanel : NSViewController
 
- 	- (id) findPatternField;
-	- (id) replacePatternField;
-	- (id) visualEffectView;
-	- (id) findPanel;
-	- (void) setFindPanel:(id) arg1;
-	- (id) replacePanel;
-	- (void) setReplacePanel:(id) arg1;
-	- (void) setFindField:(id) arg1;
-	- (void) setReplaceField:(id) arg1;
-	- (id) nextPreviousControl;
-	- (void) setNextPreviousControl:(id) arg1;
-	- (id) doneControl;
-	- (void) setDoneControl:(id) arg1;
-	- (id) replaceControl;
-	- (void) setReplaceControl:(id) arg1;
-	- (id) panelModePopUp;
-	- (void) setPanelModePopUp:(id) arg1;
-	- (id) panelModeSeparator;
-	- (void) setPanelModeSeparator:(id) arg1;
-	- (id) panelModeSeparatorHeightConstraint;
-	- (void) setPanelModeSeparatorHeightConstraint:(id) arg1;
-	- (id) matchesLabel;
-	- (void) setMatchesLabel:(id) arg1;
-	- (id) addPatternSeparator;
-	- (void) setAddPatternSeparator:(id) arg1;
-	- (id) addPatternSeparatorHeightConstraint;
-	- (void) setAddPatternSeparatorHeightConstraint:(id) arg1;
-	- (id) addPatternButton;
-	- (void) setAddPatternButton:(id) arg1;
-	- (id) caseSensitiveSeparator;
-	- (void) setCaseSensitiveSeparator:(id) arg1;
-	- (id) caseSensitiveSeparatorHeightConstraint;
-	- (void) setCaseSensitiveSeparatorHeightConstraint:(id) arg1;
-	- (id) caseSensitiveButton;
-	- (void) setCaseSensitiveButton:(id) arg1;
-	- (id) searchPatternSeparator;
-	- (void) setSearchPatternSeparator:(id) arg1;
-	- (id) searchPatternSeparatorHeightConstraint;
-	- (void) setSearchPatternSeparatorHeightConstraint:(id) arg1;
-	- (id) searchPatternPopUp;
-	- (void) setSearchPatternPopUp:(id) arg1;
-	- (id) replaceIcon;
-	- (void) setReplaceIcon:(id) arg1;
-	- (id) replaceFieldTitle;
-	- (void) setReplaceFieldTitle:(id) arg1;
-	- (id) replaceFieldTitleSeparator;
-	- (void) setReplaceFieldTitleSeparator:(id) arg1;
-	- (id) replaceFieldTitleSeparatorHeightConstraint;
-	- (void) setReplaceFieldTitleSeparatorHeightConstraint:(id) arg1;
-	- (id) replacePanelHeightConstraint;
-	- (void) setReplacePanelHeightConstraint:(id) arg1;
-	- (id) panelModeMenuItems;
-	- (void) toggleFindReplaceMode:(id) arg1;
-	- (id) searchPatternMenuItems;
-	- (id) recentsMenuItems;
-	- (void) applyRecentQueryMenuItem:(id) arg1;
-	- (void) clearRecentQueries;
-	- (void) setNeedsContentUpdate;
-	- (void) updateDisplayForColorTheme;
-	- (void) startObservingPanelModePopUp;
-	- (void) stopObservingPanelModePopUp;
-	- (void) popUpButtonWillDisplay:(id) arg1;
-	- (void) findFieldAction:(id) arg1;
-	- (void) nextPreviousControlAction:(id) arg1;
-	- (void) doneControlAction:(id) arg1;
-	- (void) replaceAction:(id) arg1;
-	- (void) addPatternButtonAction:(id) arg1;
-	- (void) caseSensitiveButtonAction:(id) arg1;
-	- (void) searchPatternPopUpAction:(id) arg1;
-	- (void) themePanelModePopUp;
-	- (void) themeClearFindButton;
-	- (void) themeAddPatternButton;
-	- (void) themeMatchesLabel;
-	- (void) themeCaseSensitiveButton;
-	- (void) themeSearchPatternPopUp;
-	- (void) themeReplaceFieldTitle;
-	- (void) themeSeparators;
-	- (void) updateFieldInsets;
-	- (void) updatePanelModePopUp;
-	- (void) updateFindFieldWithForce: (char) arg1;
-	- (void) updateReplaceField;
-	- (void) updateCaseSentivityButtonState;
-	- (void) updateSearchPatternPopUp;
-	- (void) updateMatchesLabel;
-	- (void) updateMatchesLabelVisibility;
-	- (void) updateNextPreviousControl;
-	- (void) updateReplaceControl;
-	- (id) initWithCoder: (id) arg1;
-	- (void) dealloc;
-	- (char) control: (id) arg1 textView: (id) arg2 doCommandBySelector: (SEL) arg3;
-	- (char) acceptsFirstResponder;
-	- (char) becomeFirstResponder;
-	- (id) initWithNibName: (id) arg1 bundle: (id) arg2;
-	- (void) controlTextDidBeginEditing:(id) arg1;
-	- (void) controlTextDidChange:(id) arg1;
-	- (void) awakeFromNib;
-	- (void) viewDidLayout;
-	- (void) viewWillAppear;
-	- (void) performTextFinderAction:(id) arg1;
-	- (id) findField;
-	- (id) replaceField;
+- (id) caseSensitiveButton;
+- (void) setCaseSensitiveButton:(id) arg1;
+- (void) caseSensitiveButtonAction:(id) arg1;
+
+- (id) searchPatternPopUp;
+- (void) setSearchPatternPopUp:(id) arg1;
+- (void) searchPatternPopUpAction:(id) arg1;
+
+- (id) replaceField;
+- (id) findField;
+
+@end
+
+@interface DVTSourceEditor_DVTSourceEditorTextFindPanel : SourceEditor_SourceEditorTextFindPanel
+- (id) addPatternSeparator;
+- (void) setAddPatternSeparator:(id) arg1;
+- (id) addPatternSeparatorHeightConstraint;
+- (void) setAddPatternSeparatorHeightConstraint:(id) arg1;
+- (id) addPatternButton;
+- (void) setAddPatternButton:(id) arg1;
+- (void) addPatternButtonAction:(id) arg1;
+- (id) findPatternField;
+- (id) replacePatternField;
+- (id) initWithCoder: (id) arg1;
+- (void) controlTextDidChange:(id) arg1;
 @end
 
 @implementation Plugin_NavigationFixes
 
-static IDEPegasusSourceEditor_SourceCodeEditor *getEditor(NSWindow* _pWindow)
+static IDESourceEditor_SourceCodeEditor *getEditor(NSWindow* _pWindow)
 {
 	IDEWorkspaceTabController *pTabController = getWorkspaceTabController(_pWindow);
 	if (!pTabController)
@@ -494,8 +382,8 @@ static IDEPegasusSourceEditor_SourceCodeEditor *getEditor(NSWindow* _pWindow)
 	if (!lastActiveEditorContext)
 		return NULL;
 
-	if ([lastActiveEditorContext.editor isKindOfClass:NSClassFromString(@"IDEPegasusSourceEditor.SourceCodeEditor")])
-		return (IDEPegasusSourceEditor_SourceCodeEditor *)lastActiveEditorContext.editor;
+	if ([lastActiveEditorContext.editor isKindOfClass:NSClassFromString(@"IDESourceEditor.SourceCodeEditor")])
+		return (IDESourceEditor_SourceCodeEditor *)lastActiveEditorContext.editor;
 	return NULL;
 }
 
@@ -511,6 +399,7 @@ static void setEditorFocus(NSWindow* _pWindow)
 
 static Plugin_NavigationFixes *singleton = nil;
 
+#include "Plugin_NavigationFixes_SwiftCall.h"
 #include "Plugin_NavigationFixes_Navigation.h"
 #include "Plugin_NavigationFixes_InterceptShortcuts.h"
 #include "Plugin_NavigationFixes_ConsoleGoto.h"
@@ -527,6 +416,9 @@ static Plugin_NavigationFixes *singleton = nil;
 	original_SourceEditor_SourceEditorView_moveWordBackwardAndModifySelection = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(moveWordBackwardAndModifySelection:), (IMP)&SourceEditor_SourceEditorView_moveWordBackwardAndModifySelection);
 	original_SourceEditor_SourceEditorView_deleteWordForward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(deleteWordForward:), (IMP)&SourceEditor_SourceEditorView_deleteWordForward);
 	original_SourceEditor_SourceEditorView_deleteWordBackward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(deleteWordBackward:), (IMP)&SourceEditor_SourceEditorView_deleteWordBackward);
+	original_becomeFirstResponder_SourceEditor_SourceEditorView = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_SourceEditor_SourceEditorView);
+
+	Call_InitFunctiontPointers();
 }
 
 - (id) init {

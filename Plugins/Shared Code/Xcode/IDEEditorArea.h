@@ -24,6 +24,7 @@
     int _editorMode;
     int _versionEditorSubmode;
     DVTObservingToken *_workspaceActivityObserver;
+    DVTObservingToken *_navigationTargetedEditorContextIsValidObservingToken;
     IDEEditorContext *_lastActiveEditorContext;
     IDEDebugBar *_activeDebuggerBar;
     IDEDebugArea *_activeDebuggerArea;

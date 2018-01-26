@@ -10,12 +10,14 @@
 
 #include "Shared.h"
 
+#import "DVTDealloc2Main_ViewController.h"
+
 #import "DVTEditor-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 
 @class DVTExtension, DVTStackBacktrace, NSString, NSView, NSWindow, NSWindowController;
 
-@interface DVTViewController : NSViewController <DVTEditor, DVTInvalidation>
+@interface DVTViewController : DVTDealloc2Main_ViewController <DVTEditor, DVTInvalidation>
 {
     NSWindow *_kvoWindow;
     BOOL _isInstalled;

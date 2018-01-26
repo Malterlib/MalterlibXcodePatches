@@ -21,7 +21,7 @@ BOOL XcodePluginShouldLoad(BOOL _LoadInXcodeBuild)
 
     // Limit to this Xcode versions
     XcodePluginConfirmOrPerform(xcodeMajorVersion == 9, return NO);
-    XcodePluginConfirmOrPerform(xcodeMinorVersion == 2, return NO);
+    XcodePluginConfirmOrPerform(xcodeMinorVersion == 3, return NO);
 
     result = YES;
     
@@ -469,8 +469,8 @@ BOOL fg_IsBuiltinType(NSString *_pString)
         return true;
     if ([_pString hasPrefix: @"__NS"])
         return true;
-    if ([_pString hasPrefix: @"DVT"])
-        return true;
+    //if ([_pString hasPrefix: @"DVT"] && ![_pString hasPrefix: @"DVTSourceEditor"])
+    //    return true;
     if ([_pString hasPrefix: @"CountableRange"])
         return true;
 

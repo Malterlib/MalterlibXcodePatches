@@ -14,6 +14,7 @@
 		0339B7CA1F8A516900820150 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382C7521994131400DEF003 /* DVTFoundation.framework */; };
 		0339B7CB1F8A516900820150 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382C750199412CB00DEF003 /* DVTKit.framework */; };
 		0339B7CC1F8A516900820150 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1896E1992C68500F87332 /* IDEKit.framework */; };
+		0344DDBC206E320D0048B87B /* Plugin_NavigationFixes_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0344DDBB206E320D0048B87B /* Plugin_NavigationFixes_Navigation.swift */; };
 		0372C85519378E9400364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85419378E9400364146 /* XcodePlugin.m */; };
 		0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382BA6C199516B500E48ED4 /* Carbon.framework */; };
 		03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */; };
@@ -30,6 +31,10 @@
 		032D81D21B89238B005B67C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		03318EDA1937BC3B00132304 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		03329EC71937AA1A000E475B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0344DDBB206E320D0048B87B /* Plugin_NavigationFixes_Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_Navigation.swift; sourceTree = "<group>"; };
+		0344DDBD206E488C0048B87B /* SourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SourceEditor; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/SourceEditor.framework/Versions/A/SourceEditor; sourceTree = "<group>"; };
+		0344DDBF206E48A20048B87B /* SourceEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceEditor.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/SourceEditor.framework; sourceTree = "<group>"; };
+		0344DDC1206E51690048B87B /* Plugin_NavigationFixes_SwiftCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_SwiftCall.h; sourceTree = "<group>"; };
 		0372C85319378E9400364146 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		0372C85419378E9400364146 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		0382BA6C199516B500E48ED4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -77,6 +82,8 @@
 		03DAA87B1F7EE6ED00617869 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0344DDBF206E48A20048B87B /* SourceEditor.framework */,
+				0344DDBD206E488C0048B87B /* SourceEditor */,
 				03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
@@ -121,7 +128,9 @@
 				03E69FF11F7A6AA200D0A690 /* Plugin_NavigationFixes_ConsoleGoto.h */,
 				03E69FF51F7A6DAB00D0A690 /* Plugin_NavigationFixes_Navigation.h */,
 				03916CB51F7EA0B60033DF98 /* Plugin_NavigationFixes_MoveWord.h */,
+				0344DDC1206E51690048B87B /* Plugin_NavigationFixes_SwiftCall.h */,
 				03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */,
+				0344DDBB206E320D0048B87B /* Plugin_NavigationFixes_Navigation.swift */,
 				03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */,
 				03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */,
 				03E69FF31F7A6C0300D0A690 /* Plugin_NavigationFixes_InterceptShortcuts.h */,
@@ -157,7 +166,7 @@
 		435E246713A8E4510052479A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 435E246A13A8E4510052479A /* Build configuration list for PBXProject "Plugin_NavigationFixes" */;
 			compatibilityVersion = "Xcode 8.0";
@@ -199,6 +208,7 @@
 				03DAA8851F7F0AB900617869 /* XcodePlugin.swift in Sources */,
 				0306EE5A1F81848B00850443 /* XcodePlugin.mm in Sources */,
 				03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */,
+				0344DDBC206E320D0048B87B /* Plugin_NavigationFixes_Navigation.swift in Sources */,
 				0372C85519378E9400364146 /* XcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,11 +239,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -258,22 +270,24 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-v";
 				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_NAME = Plugin_NavigationFixes;
 				SDKROOT = macosx;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = Plugin_NavigationFixes.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				WARNING_CFLAGS = (
 					"-Wno-incompatible-property-type",
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 9.2;
+				XCODE_DOTTED_VERSION = 9.3;
 			};
 			name = Debug;
 		};
@@ -289,11 +303,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -312,20 +328,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "-v";
 				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_NAME = Plugin_NavigationFixes;
 				SDKROOT = macosx;
 				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = Plugin_NavigationFixes.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				WARNING_CFLAGS = (
 					"-Wno-incompatible-property-type",
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 9.2;
+				XCODE_DOTTED_VERSION = 9.3;
 			};
 			name = Release;
 		};
@@ -333,34 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_LOCATION = YES;
-				DEPLOYMENT_POSTPROCESSING = NO;
-				DSTROOT = "$(HOME)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/../Frameworks",
-					"$(DEVELOPER_DIR)/../SharedFrameworks",
-				);
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
-				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Plugin_NavigationFixes;
-				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
-			};
-			name = Debug;
-		};
-		435E248013A8E4A20052479A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -375,10 +366,32 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				LIBRARY_SEARCH_PATHS = (
+				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Plugin_NavigationFixes;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		435E248013A8E4A20052479A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_NavigationFixes;
 				STRIP_INSTALLED_PRODUCT = NO;

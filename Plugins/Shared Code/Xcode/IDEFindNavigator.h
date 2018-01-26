@@ -16,7 +16,7 @@
 #import "IDEFindNavigatorQueryParametersControllerDelegate-Protocol.h"
 #import "IDEFindNavigatorQueryResultsControllerDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, IDEFindNavigatorOutlineView, IDEFindNavigatorQueryParametersController, NSScrollView, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, IDEFindNavigatorOutlineView, IDEFindNavigatorQueryParametersController, NSScrollView, NSString, NSTextField, NSView;
 
 @interface IDEFindNavigator : IDENavigator <IDEFindNavigatorQueryResultsControllerDelegate, IDEFindNavigatorQueryParametersControllerDelegate, IDEFindNavigatorLayoutViewDelegate>
 {
@@ -27,6 +27,7 @@
     NSScrollView *_resultOutlineScrollView;
     DVTDelayedInvocation *_interfaceValidator;
     BOOL _didFirstLayoutAfterInstall;
+    DVTObservingToken *_themeObserver;
     BOOL _enableFilter;
     IDEFindNavigatorQueryParametersController *_queryParametersController;
     NSString *_filterPattern;

@@ -81,7 +81,7 @@
 - (void)enterQueryTerm:(id)arg1;
 - (BOOL)focusFindFieldAfterPreparingTheNavigatorForFocus;
 - (void)switchAwayFromCumbersomeQueryTypeIfNeeded;
-- (Class)preferedEasilyManuallyInitiatableQueryClass;
+- (Class)preferredEasilyManuallyInitiatableQueryClass;
 - (void)selectMatchCase:(BOOL)arg1;
 - (void)selectQueryAnchoring:(long long)arg1;
 - (void)selectQueryAction:(long long)arg1;

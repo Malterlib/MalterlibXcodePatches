@@ -1,29 +1,5 @@
 import Foundation
 
-func == (lhs: CPosition, rhs: CPosition) -> Bool {
-	return lhs.column == rhs.column && lhs.line == rhs.line
-}
-
-func < (lhs: CPosition, rhs: CPosition) -> Bool {
-	if (lhs.line < rhs.line) {
-		return true
-	}
-	else if (lhs.line > rhs.line) {
-		return false
-	}
-	return lhs.column < rhs.column
-}
-
-func > (lhs: CPosition, rhs: CPosition) -> Bool {
-	if (lhs.line > rhs.line) {
-		return true
-	}
-	else if (lhs.line < rhs.line) {
-		return false
-	}
-	return lhs.column > rhs.column
-}
-
 func binarySearchLine(_ lineData: [SourceEditor.SourceEditorLineData], characterPos: Int) -> Int {
 	var lowerBound = 0
 	var upperBound = lineData.count
@@ -54,25 +30,25 @@ let g_WhiteSpace = CharacterSet.whitespaces;
 let g_NewLine = CharacterSet.newlines;
 let g_CodeCharSet = getCodeCharSet();
 
-func positionFromCharPos(_ dataSource: SourceEditor.SourceEditorDataSource, _ charPos: Int) -> CPosition {
+func positionFromCharPos(_ dataSource: SourceEditor.SourceEditorDataSource, _ charPos: Int) -> SourceEditor.SourceEditorPosition {
 	let iLine: Int = max(binarySearchLine(dataSource.lineData, characterPos: charPos) - 1, 0);
 
 	for iSearch in iLine..<(iLine + 3) {
 		let lineContentRange = dataSource.lineData[iSearch].lineContentRange;
 		if (charPos >= lineContentRange.location) && (charPos <= (lineContentRange.location + lineContentRange.length)) {
-			return CPosition(line: Int64(iSearch), column: Int64(charPos - lineContentRange.location));
+			return SourceEditor.SourceEditorPosition(line: iSearch, col: charPos - lineContentRange.location);
 		}
 	}
 
 	abort()
 }
 
-func charPosFromPosition(_ dataSource: SourceEditor.SourceEditorDataSource, _ pos: CPosition) -> Int {
+func charPosFromPosition(_ dataSource: SourceEditor.SourceEditorDataSource, _ pos: SourceEditor.SourceEditorPosition) -> Int {
 	let lineData = dataSource.lineData[Int(pos.line)];
-	return lineData.lineContentRange.location + Int(pos.column);
+	return lineData.lineContentRange.location + Int(pos.col);
 }
 
-func getNextWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: CPosition) -> CPosition {
+func getNextWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
 	let contents = dataSource.contents;
 
 	var iCharPos = charPosFromPosition(dataSource, fromPos);
@@ -117,7 +93,7 @@ func getNextWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 	return positionFromCharPos(dataSource, iCharPos);
 }
 
-func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: CPosition) -> CPosition {
+func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
 	let contents = dataSource.contents;
 
 	var iCharPos = charPosFromPosition(dataSource, fromPos);
@@ -196,73 +172,88 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 	return positionFromCharPos(dataSource, iCharPos);
 }
 
-@objc public class XcodePluginNavigationFixes : NSObject {
+extension SourceEditor.SourceEditorView {
+	@_silgen_name("Call_SourceEditor_SourceEditorView_deleteSourceRange") public func deleteSourceRange(range: SourceEditor.SourceEditorRange, forward: Swift.Bool, useKillRing: Swift.Bool) -> ();
+	@_silgen_name("Call_SourceEditor_SourceEditorView_selectTextRange") public func selectTextRange(_: SourceEditor.SourceEditorRange?, scrollPlacement: SourceEditor.ScrollPlacement?, alwaysScroll: Swift.Bool) -> ();
+	@_silgen_name("Call_SourceEditor_SourceEditorView_clearSelectionAnchors") public func clearSelectionAnchors() -> ();
+}
 
-	class func moveWord(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, forward: Bool) {
+extension SourceEditor.SourceEditorLayoutManager {
+	@_silgen_name("Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded") public func expandRangeIfNeeded(_: SourceEditor.SourceEditorRange) -> SourceEditor.SourceEditorRange;
+}
+
+@objc public class XcodePluginNavigationFixes_MoveWord : NSObject {
+
+	class func moveWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) {
+//		XcodePluginDumpClass(SourceEditor.SourceEditorView.self);
+//		XcodePluginDumpClass(type(of: sourceView));
+//		XcodePluginSwiftReflector.dumpObjectTypes(sourceView);
+
 		if (sourceView.selection == nil) {
 			return;
 		}
 
-		var position = CPosition();
+		let selection = sourceView.selection!;
+
+		var position: SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
 
 		if (sourceView.selectionController == nil || sourceView.selectionController!.selectionAnchor == nil) {
-			position = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
+			position = selection.range.start;
 		} else {
-			let anchor = CPosition(line: Int64(sourceView.selectionController!.selectionAnchor!.start.line), column: Int64(sourceView.selectionController!.selectionAnchor!.start.col));
-			let startPosition = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
-			let endPosition = CPosition(line: Int64(sourceView.selection!.range.end.line), column: Int64(sourceView.selection!.range.end.col));
+			let anchor = sourceView.selectionController!.selectionAnchor!.start;
+			let startPosition = selection.range.start;
+			let endPosition = selection.range.end;
 
 			if (startPosition == anchor) {
 				position = endPosition
 			} else {
 				position = startPosition
 			}
-			Call_SourceEditor_SourceEditorView_clearSelectionAnchors(sourceView);
+			sourceView.clearSelectionAnchors();
 		}
 
-		var newPosition : CPosition = CPosition();
+		var newPosition : SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
 		if (forward) {
-			newPosition = getNextWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getNextWordPosition(sourceView.dataSource, fromPos: position);
 		} else {
-			newPosition = getPrevWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getPrevWordPosition(sourceView.dataSource, fromPos: position);
 		}
 
-		var range : CSourceEditorRange = CSourceEditorRange(start: newPosition, end: newPosition, dummy1: 0, dummy2: 0);
-
-		Call_SourceEditor_SourceEditorView_selectTextRange(sourceView, &range, nil, false);
+		let range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange(start: newPosition, end: newPosition);
+		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false)
 	}
 
-	class func deleteWord(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, forward: Bool) {
+	class func deleteWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) {
 		if (sourceView.selection == nil) {
 			return;
 		}
 		let selection = sourceView.selection!;
 
-		var position = CPosition();
+		var position = SourceEditor.SourceEditorPosition();
 
 		if (sourceView.selectionController == nil || sourceView.selectionController!.selectionAnchor == nil) {
-			position = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
+			position = sourceView.selection!.range.start;
 		} else {
-			let anchor = CPosition(line: Int64(sourceView.selectionController!.selectionAnchor!.start.line), column: Int64(sourceView.selectionController!.selectionAnchor!.start.col));
-			let startPosition = CPosition(line: Int64(selection.range.start.line), column: Int64(selection.range.start.col));
-			let endPosition = CPosition(line: Int64(selection.range.end.line), column: Int64(selection.range.end.col));
+			let anchor = sourceView.selectionController!.selectionAnchor!.start;
+			let startPosition = selection.range.start;
+			let endPosition = selection.range.end;
 
 			if (startPosition == anchor) {
 				position = endPosition
 			} else {
 				position = startPosition
 			}
-			Call_SourceEditor_SourceEditorView_clearSelectionAnchors(sourceView);
+			sourceView.clearSelectionAnchors();
 		}
 
-		var newPosition : CPosition = CPosition();
+		var newPosition : SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
 		if (forward) {
-			newPosition = getNextWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getNextWordPosition(sourceView.dataSource, fromPos: position);
 		} else {
-			newPosition = getPrevWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getPrevWordPosition(sourceView.dataSource, fromPos: position);
 		}
 
-		var range : CSourceEditorRangeRet = CSourceEditorRangeRet();
+		var range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange();
 
 		if (newPosition == position) {
 			return;
@@ -276,21 +267,20 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 			range.end = position
 		}
 
-		let fixedRange = Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded(sourceView.layoutManager, range);
-
-		Call_SourceEditor_SourceEditorView_deleteSourceRange(sourceView, fixedRange, false, false);
+		let fixedRange = sourceView.layoutManager.expandRangeIfNeeded(range);
+		sourceView.deleteSourceRange(range: fixedRange, forward: false, useKillRing: false);
 	}
 
-	class func moveWordAndModifySelection(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any, arg2: Selector, forward: Bool) {
+	class func moveWordAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!, arg2: Selector, forward: Bool) {
 		if (sourceView.selection == nil) {
 			return;
 		}
 
-		var position = CPosition();
+		var position = SourceEditor.SourceEditorPosition();
 		var bPositionSet = false;
 
 		if (sourceView.selectionController == nil) {
-			position = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
+			position = sourceView.selection!.range.start;
 			bPositionSet = true
 			Call_SourceEditor_SourceEditorView_moveWordForwardAndModifySelection(sourceView, arg1, arg2);
 			if (sourceView.selectionController == nil) {
@@ -298,7 +288,7 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 			}
 		}
 		if (sourceView.selectionController!.selectionAnchor == nil) {
-			position = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
+			position = sourceView.selection!.range.start;
 			bPositionSet = true
 			Call_SourceEditor_SourceEditorView_moveWordForwardAndModifySelection(sourceView, arg1, arg2);
 			if (sourceView.selectionController!.selectionAnchor == nil) {
@@ -306,13 +296,9 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 			}
 		}
 
-		if (sourceView.structuredEditingController?.dataSource == nil) {
-			return
-		}
-
-		let anchor = CPosition(line: Int64(sourceView.selectionController!.selectionAnchor!.start.line), column: Int64(sourceView.selectionController!.selectionAnchor!.start.col));
-		let startPosition = CPosition(line: Int64(sourceView.selection!.range.start.line), column: Int64(sourceView.selection!.range.start.col));
-		let endPosition = CPosition(line: Int64(sourceView.selection!.range.end.line), column: Int64(sourceView.selection!.range.end.col));
+		let anchor = sourceView.selectionController!.selectionAnchor!.start;
+		let startPosition = sourceView.selection!.range.start;
+		let endPosition = sourceView.selection!.range.end;
 
 		if (!bPositionSet) {
 			if (startPosition == anchor) {
@@ -322,14 +308,14 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 			}
 		}
 
-		var newPosition : CPosition = CPosition();
+		var newPosition : SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
 		if (forward) {
-			newPosition = getNextWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getNextWordPosition(sourceView.dataSource, fromPos: position);
 		} else {
-			newPosition = getPrevWordPosition(sourceView.structuredEditingController!.dataSource!, fromPos: position);
+			newPosition = getPrevWordPosition(sourceView.dataSource, fromPos: position);
 		}
 
-		var range : CSourceEditorRange = CSourceEditorRange();
+		var range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange();
 		if (newPosition > anchor) {
 			range.start = anchor
 			range.end = newPosition
@@ -338,31 +324,29 @@ func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, from
 			range.end = anchor
 		}
 
-		Call_SourceEditor_SourceEditorView_selectTextRange(sourceView, &range, nil, false);
+		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false)
 	}
-
-	@objc public class func moveWordForward(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any) {
+	@objc public class func moveWordForward(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!) {
 		return moveWord(sourceView, forward: true);
 	}
 
-	@objc public class func moveWordBackward(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any) {
+	@objc public class func moveWordBackward(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!) {
 		return moveWord(sourceView, forward: false);
 	}
 
-	@objc public class func moveWordBackwardAndModifySelection(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any, arg2: Selector) {
+	@objc public class func moveWordBackwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!, arg2: Selector) {
 		return moveWordAndModifySelection(sourceView, arg1: arg1, arg2: arg2, forward: false)
 	}
 
-	@objc public class func moveWordForwardAndModifySelection(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any, arg2: Selector) {
+	@objc public class func moveWordForwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!, arg2: Selector) {
 		return moveWordAndModifySelection(sourceView, arg1: arg1, arg2: arg2, forward: true)
 	}
 
-	@objc public class func deleteWordForward(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any) {
+	@objc public class func deleteWordForward(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!) {
 		return deleteWord(sourceView, forward: true);
 	}
 
-	@objc public class func deleteWordBackward(_ sourceView: IDEPegasusSourceEditor.SourceCodeEditorView, arg1 : Any) {
+	@objc public class func deleteWordBackward(_ sourceView: SourceEditor.SourceEditorView, arg1 : Any!) {
 		return deleteWord(sourceView, forward: false);
 	}
-
 }

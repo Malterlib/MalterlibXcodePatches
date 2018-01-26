@@ -71,6 +71,8 @@
 @property(retain) PBXProject *pbxProject; // @synthesize pbxProject=_project;
 @property(retain) IDEDirectoryBasedCustomDataStore *customDataStore; // @synthesize customDataStore=_customDataStore;
 // - (void).cxx_destruct;
+@property int buildSystemType;
+- (int)buildSystemTypeFromString:(id)arg1;
 - (id)absolutePathByEvaluatingBuildSettingExpressionString:(id)arg1 withBuildParameters:(id)arg2;
 - (id)stringByEvaluatingBuildSettingExpressionString:(id)arg1 withBuildParameters:(id)arg2;
 - (id)evaluatedStringListValueForBuildSetting:(id)arg1 withBuildParameters:(id)arg2;

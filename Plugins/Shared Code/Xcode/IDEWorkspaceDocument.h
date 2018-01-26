@@ -10,6 +10,8 @@
 
 #include "Shared.h"
 
+#import "DVTDealloc2Main_Document.h"
+
 #import "DVTInvalidation-Protocol.h"
 #import "DVTStateRepositoryDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
@@ -22,7 +24,7 @@
 @class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 @protocol DVTCancellable, DVTInvalidation;
 
-@interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
+@interface IDEWorkspaceDocument : DVTDealloc2Main_Document <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
     DVTStackBacktrace *_invalidationBacktrace;
     DVTStateRepository *_stateRepository;
@@ -118,6 +120,7 @@
 - (id)_tabGroupIDsBySelectedWindowControllerIdentifierForStateSaving;
 @property BOOL userWantsBreakpointsActivated;
 @property(copy) NSDictionary *stateSavingDefaultEditorStatesForURLs;
+- (void)_reallySetStatesForURLs:(id)arg1;
 @property(copy) NSArray *stateSavingRecentEditorDocumentURLs;
 - (void)showWindows;
 - (void)commitStateToDictionary:(id)arg1;
@@ -157,7 +160,6 @@
 - (void)activateTargetProcessForLaunchSession:(id)arg1;
 - (void)_delayedActivateTargetProcess:(id)arg1;
 - (BOOL)_isXcodeActiveAndTargetInActivatableState:(id)arg1;
-- (void)_setAppIcon:(id)arg1 forLaunchSession:(id)arg2;
 - (id)_appIconForRunnableLocation:(id)arg1 pid:(int)arg2;
 - (void)_updateIconForLaunchSessionForMacIfNecessary:(id)arg1 pid:(int)arg2;
 - (void)_activateTargetProcess:(id)arg1 tryCounter:(long long)arg2;
@@ -221,7 +223,6 @@
 - (void)shouldCloseWindowController:(id)arg1 delegate:(id)arg2 shouldCloseSelector:(SEL)arg3 contextInfo:(void *)arg4;
 - (BOOL)canCloseDocumentAtQuit;
 - (BOOL)_canCloseWorkspaceDocument;
-- (id)_dirtyDocuments;
 - (BOOL)_closeAfterSavingDirtyEditorDocumentsWithCancelButton:(BOOL)arg1;
 - (void)close;
 - (void)primitiveInvalidate;
@@ -231,6 +232,7 @@
 - (id)_openingPerformanceMetricIdentifier;
 - (void)dvt_shouldDeallocate;
 - (BOOL)_isLocatedByURL:(id)arg1 becauseOfAutosavedContentsFile:(char *)arg2;
+- (id)windowForSheet;
 - (id)initForURL:(id)arg1 withContentsOfURL:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
 - (id)initWithType:(id)arg1 error:(id *)arg2;
 - (id)initWithWorkspace:(id)arg1;

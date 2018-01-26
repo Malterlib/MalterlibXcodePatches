@@ -34,6 +34,8 @@
     DVTExtension *_currentExtension;
     NSVisualEffectView *_visualEffectView;
     DVTBorderedView *_borderedView;
+    DVTBorderedView *_chooserNavigatorSeparatorView;
+    DVTBorderedView *_navigatorRightBorderedView;
     IDENavigatorAreaDFRController *_touchBarSupportController;
 }
 
@@ -43,12 +45,14 @@
 + (id)navigatorsForContext:(id)arg1;
 + (id)keyPathsForValuesAffectingWorkspace;
 @property(retain) IDENavigatorAreaDFRController *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
+@property __weak DVTBorderedView *navigatorRightBorderedView; // @synthesize navigatorRightBorderedView=_navigatorRightBorderedView;
+@property __weak DVTBorderedView *chooserNavigatorSeparatorView; // @synthesize chooserNavigatorSeparatorView=_chooserNavigatorSeparatorView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSVisualEffectView *visualEffectView; // @synthesize visualEffectView=_visualEffectView;
 @property(retain, nonatomic) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;
 @property(retain) NSArrayController *extensionsController; // @synthesize extensionsController=_extensionsController;
 @property(retain) DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
-@property(readonly) IDENavigatorSearchFilterControlBar *filterControlBar; // @synthesize filterControlBar=_filterControlBar;
+@property(retain) IDENavigatorSearchFilterControlBar *filterControlBar; // @synthesize filterControlBar=_filterControlBar;
 // - (void).cxx_destruct;
 - (double)minimumContentWidth;
 - (void)commitStateToDictionary:(id)arg1;
@@ -72,6 +76,8 @@
 - (void)installFilterControlBarForNavigator:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)_imageForNavigator:(id)arg1 withName:(id)arg2;
+- (void)_setFilterControlBarVisible:(BOOL)arg1;
+- (void)_layoutViewSubviews;
 - (void)loadView;
 - (void)_rebuildNavigatorOptions;
 - (id)_playgroundExcludedNavigators;

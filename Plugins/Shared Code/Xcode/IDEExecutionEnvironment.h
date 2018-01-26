@@ -90,7 +90,7 @@
 @property(readonly) IDEActivityLogSection *latestBuildLog;
 @property(readonly, copy) NSArray *logRecords;
 - (void)_storeLogForOperation:(id)arg1;
-- (id)executeOperation:(id)arg1 withCommandName:(id)arg2 invocationRecord:(id)arg3 error:(id *)arg4;
+- (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 terminationSignpost:(CDUnknownBlockType)arg5 error:(id *)arg6;
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 error:(id *)arg5;
 - (void)_startNextQueuedBuildOperationIfNecessary;
 - (void)_addSuboperationObservationToken:(id)arg1 forExecutionTracker:(id)arg2;

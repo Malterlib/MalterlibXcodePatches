@@ -10,12 +10,14 @@
 
 #include "Shared.h"
 
+#import "DVTDealloc2Main_OutlineView.h"
+
 #import "DVTEmptyContentPlaceholderContainer-Protocol.h"
 #import "DVTProgressIndicatorProvidingView-Protocol.h"
 
 @class NSArray, NSEvent, NSFont, NSMapTable, NSString, NSTextFieldCell, NSTrackingArea;
 
-@interface DVTOutlineView : NSOutlineView <DVTProgressIndicatorProvidingView, DVTEmptyContentPlaceholderContainer>
+@interface DVTOutlineView : DVTDealloc2Main_OutlineView <DVTProgressIndicatorProvidingView, DVTEmptyContentPlaceholderContainer>
 {
     NSMapTable *_progressIndicatorsByItem;
     NSTrackingArea *_mouseHoverTrackingArea;

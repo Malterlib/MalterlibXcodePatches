@@ -15,14 +15,15 @@
 #import "DVTEditor-Protocol.h"
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
+#import "IDEAttachToProcessErrorHandler-Protocol.h"
 #import "IDEEditorAreaContainer-Protocol.h"
 #import "IDEProvisioningManagerDelegate-Protocol.h"
 #import "IDEStructureEditingWorkspaceTabContext-Protocol.h"
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 
-@class DVTMutableOrderedSet, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSString;
+@class DVTMutableOrderedSet, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSNumber, NSString;
 
-@interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, DVTStatefulObject, DVTReplacementViewDelegate, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate>
+@interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, DVTStatefulObject, DVTReplacementViewDelegate, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate, IDEAttachToProcessErrorHandler>
 {
     DVTSplitView *_designAreaSplitView;
     DVTReplacementView *_navReplacementView;
@@ -52,6 +53,7 @@
     IDEARCConversionAssistantContext *_conversionAssistantContext;
     IDEObjCModernizationAssistantContext *_objcModernizationAssistantContext;
     IDESwiftMigrationAssistantContext *_swiftMigrationAssistantContext;
+    NSNumber *_previousLibraryHeight;
     BOOL _userWantsUtilitiesVisible;
     BOOL _userWantsNavigatorVisible;
     BOOL _isAnimatingUtilities;
@@ -127,6 +129,8 @@
 - (void)_objCModernizationFoundErrorsAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)showModernObjectiveCConversionAssistant:(id)arg1;
 - (void)showARCConversionAssistant:(id)arg1;
+- (void)showAlertForNonAttachableArchitecture:(id)arg1;
+- (void)handleAttachToProcessError:(id)arg1;
 - (void)_workspaceDocument:(id)arg1 shouldClose:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)setShowDisassemblyWhenDebugging:(id)arg1;
 - (void)reloadConsole:(id)arg1;
@@ -247,10 +251,13 @@
 - (BOOL)_cleanBuildFolderWithError:(id *)arg1;
 - (void)observeBuildOperationForRestoringState:(id)arg1;
 - (void)switchNavigatorOnBuild;
+- (void)toggleLibraryVisibility:(id)arg1;
+- (void)hideLibrary:(id)arg1;
+- (void)showLibrary:(id)arg1;
+- (BOOL)_isLibraryVisible;
 - (void)hideUtilitiesArea:(id)arg1;
 - (void)showUtilitiesArea:(id)arg1;
 - (BOOL)isUtilitiesAreaVisible;
-- (void)toggleUtilitiesVisibilityAlternate:(id)arg1;
 - (void)toggleUtilitiesVisibility:(id)arg1;
 - (void)hideNavigator:(id)arg1;
 - (BOOL)isNavigatorVisible;
@@ -271,7 +278,9 @@
 - (void)changeToNavigatorWithIdentifier:(id)arg1 sender:(id)arg2;
 - (void)_splitViewDidToggleClosed;
 - (BOOL)performKeyEquivalent:(id)arg1;
-- (id)_choiceWithKeyEquivalent:(id)arg1 modifierFlags:(unsigned long long)arg2 inUtilityArea:(id)arg3;
+- (BOOL)_shouldPerformLibraryToggle:(id)arg1 modifierFlags:(unsigned long long)arg2 menuKeyBindingSet:(id)arg3;
+- (id)_choiceWithKeyEquivalent:(id)arg1 modifierFlags:(unsigned long long)arg2 menuKeyBindingSet:(id)arg3 inUtilityArea:(id)arg4;
+- (id)_menuKeyBindingSet;
 - (void)showLibraryWithChoiceFromSender:(id)arg1;
 - (void)showInspectorWithChoiceFromSender:(id)arg1;
 - (void)showInspectorCategoryWithExtensionIdentifier:(id)arg1;
@@ -363,6 +372,7 @@
 - (void)_primitiveSetAssistantEditorsLayout:(unsigned long long)arg1;
 - (void)_updateTabLabel;
 - (BOOL)setUserDefinedTabLabel:(id)arg1 error:(id *)arg2;
+- (void)_setup32bitOnlyMacTargetWarning;
 - (void)loadView;
 - (void)setSplitGroupAccessibility;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

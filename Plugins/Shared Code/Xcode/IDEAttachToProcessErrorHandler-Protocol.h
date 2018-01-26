@@ -8,17 +8,13 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
 //
 
-#include "Shared.h"
 
-@interface DVTScopeBarButton : NSButton
-{
-}
+@class DVTProcessInformation, NSError;
 
-+ (Class)cellClass;
-- (struct NSEdgeInsets)alignmentRectInsets;
-- (void)_dvt_scopeBarButtonCommonInit;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithCoder:(id)arg1;
+@protocol IDEAttachToProcessErrorHandler <NSObject>
 
+@optional
+- (void)showAlertForNonAttachableArchitecture:(DVTProcessInformation *)arg1;
+- (void)handleAttachToProcessError:(NSError *)arg1;
 @end
 

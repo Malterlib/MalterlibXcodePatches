@@ -42,7 +42,6 @@
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 // - (void).cxx_destruct;
 - (void)setActiveRunContext:(id)arg1 andRunDestination:(id)arg2;
-- (BOOL)validateActiveRunContext:(id *)arg1 error:(id *)arg2;
 - (void)blueprintsDidBulkChange:(id)arg1;
 - (void)blueprintsWillBulkChange:(id)arg1;
 - (void)blueprintsDidChange:(id)arg1;
@@ -50,7 +49,7 @@
 - (id)_preferredDestinationForRunDestination:(id)arg1 inDestinations:(id)arg2;
 - (void)_invalidateAvailableRunDestinations;
 - (void)_invalidateAvailableRunDestinationsForSchemes:(id)arg1;
-- (void)_invalidateActiveRunDestinationDueToDeviceAvailable;
+- (void)_invalidateActiveRunDestinationDueToDeviceAvailable:(id)arg1;
 - (void)_invalidateActiveRunDestination;
 - (void)shouldIgnoreDeviceChangesDidEnd:(id)arg1;
 - (void)shouldIgnoreDeviceChangesWillBegin:(id)arg1;
@@ -80,6 +79,7 @@
 - (void)_finishUpdatingRunContexts;
 - (void)_startUpdatingRunContexts;
 - (void)_ensureActiveRunContext;
+- (void)_restoreActiveRunDestinationIfPossibleForScheme:(id)arg1;
 - (void)_restoreActiveRunContextIfPossible;
 - (void)_updateMap:(id)arg1 contextForCustomDataStore:(id)arg2 specifier:(id)arg3;
 - (void)_addScheme:(id)arg1;

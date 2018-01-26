@@ -52,6 +52,7 @@
 + (id)_openRequestForEditorOpenSpecifier:(id)arg1 workspaceTabController:(id)arg2 editorContext:(id)arg3 eventBehavior:(int)arg4 takeFocus:(int)arg5 completionBlock:(CDUnknownBlockType)arg6;
 + (void)_doOpenEditorHistoryItem:(id)arg1 forEditorContext:(id)arg2 eventBehavior:(int)arg3 takeFocus:(int)arg4;
 + (void)_doOpenEditorOpenSpecifier:(id)arg1 forWorkspaceTabController:(id)arg2 editorContext:(id)arg3 target:(int)arg4 takeFocus:(int)arg5;
++ (void)_shouldNavigateAwayFromEditorContext:(id)arg1 block:(CDUnknownBlockType)arg2;
 + (void)_doOpenWithWorkspaceTabController:(id)arg1 editorContext:(id)arg2 target:(int)arg3 allowFallback:(BOOL)arg4 documentURL:(id)arg5 usingBlock:(CDUnknownBlockType)arg6;
 + (void)_doOpenIn_SeparateWindow_withWorkspaceTabController:(id)arg1 documentURL:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 + (void)_doOpenIn_NewWindow_withWorkspaceTabController:(id)arg1 documentURL:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;

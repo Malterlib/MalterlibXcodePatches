@@ -14,6 +14,7 @@
 
 #import "DVTLayoutManagerDelegate-Protocol.h"
 #import "DVTTextCompletionSupportingTextView-Protocol.h"
+#import "DVTLayoutManager.h"
 
 @class DVTLayoutManager, DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextStorage, NSCharacterSet, NSColor, NSDictionary, NSIndexSet, NSScrollView, NSString, NSUndoManager, NSWindow;
 @protocol DVTCompletingTextViewDelegate;

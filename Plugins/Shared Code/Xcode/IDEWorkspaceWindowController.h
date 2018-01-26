@@ -14,10 +14,11 @@
 #import "DVTInvalidation-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
 #import "IDEEditorAreaContainer-Protocol.h"
+#import "IDETabbedWindowController-Protocol.h"
 
 @class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, _IDEWindowFullScreenSavedDebuggerTransitionValues;
 
-@interface IDEWorkspaceWindowController : NSWindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation>
+@interface IDEWorkspaceWindowController : NSWindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation, IDETabbedWindowController>
 {
     NSTimer *_springToFrontTimer;
     int _debugSessionState;
@@ -53,10 +54,8 @@
     BOOL _enteringFullScreenMode;
     BOOL _exitingFullScreenMode;
     DVTStateToken *_stateToken;
-    BOOL _createNewTabUponLoadIfNoTabsExist;
     BOOL _shouldPerformWindowClose;
     BOOL _didRestoreFromStateSaving;
-    NSString *_uniqueIdentifier;
     NSString *_stateSavingIdentifier;
     DVTStackBacktrace *_windowDidLoadBacktrace;
     DVTWeakInterposer *_firstResponderInterposer;
@@ -82,9 +81,7 @@
 @property BOOL didRestoreFromStateSaving; // @synthesize didRestoreFromStateSaving=_didRestoreFromStateSaving;
 @property(retain) DVTStackBacktrace *windowDidLoadBacktrace; // @synthesize windowDidLoadBacktrace=_windowDidLoadBacktrace;
 @property BOOL shouldPerformWindowClose; // @synthesize shouldPerformWindowClose=_shouldPerformWindowClose;
-@property BOOL createNewTabUponLoadIfNoTabsExist; // @synthesize createNewTabUponLoadIfNoTabsExist=_createNewTabUponLoadIfNoTabsExist;
 @property(copy, nonatomic) NSString *stateSavingIdentifier; // @synthesize stateSavingIdentifier=_stateSavingIdentifier;
-@property(copy, nonatomic) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
 // - (void).cxx_destruct;
 - (void)moveFocusToEditor:(id)arg1;
 - (void)dicardEditing;
@@ -116,7 +113,6 @@
 - (struct CGSize)windowWillResize:(id)arg1 toSize:(struct CGSize)arg2;
 - (BOOL)windowShouldZoom:(id)arg1 toFrame:(struct CGRect)arg2;
 - (void)_recordRestoreFrame;
-- (void)workspaceWindowIsClosing:(id)arg1;
 - (void)_pushDefaultPrimaryEditorFrameSizes;
 - (BOOL)_isLastWindowControllerOfDocument;
 - (void)primitiveInvalidate;

@@ -30,6 +30,7 @@
     IDEEditorContext *_editorContext;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)canProvideCurrentSelectedItems;
 @property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;
 @property(retain, nonatomic) IDEFileTextSettings *fileTextSettings; // @synthesize fileTextSettings=_fileTextSettings;

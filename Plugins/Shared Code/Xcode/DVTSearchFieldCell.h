@@ -10,24 +10,21 @@
 
 #include "Shared.h"
 
-@class NSTextFieldCell, NSTextView;
+@class NSColor, NSTextFieldCell, NSTextView;
 
 @interface DVTSearchFieldCell : NSSearchFieldCell
 {
-    BOOL _showsProgress;
-    NSTextView *_fieldEditor;
     NSTextFieldCell *_numberOfMatchesCell;
     BOOL _filterField;
     unsigned long long _additionalCancelButtonInset;
     BOOL _hasText;
-    int _visualStyle;
+    BOOL _showsProgress;
+    NSTextView *_fieldEditor;
     long long _numberOfMatches;
 }
 
-+ (id)textFieldPathForFrame:(struct CGRect)arg1 usingRadius:(double)arg2;
 @property BOOL hasText; // @synthesize hasText=_hasText;
 @property long long numberOfMatches; // @synthesize numberOfMatches=_numberOfMatches;
-@property int visualStyle; // @synthesize visualStyle=_visualStyle;
 @property(retain) NSTextView *fieldEditor; // @synthesize fieldEditor=_fieldEditor;
 @property BOOL showsProgress; // @synthesize showsProgress=_showsProgress;
 // - (void).cxx_destruct;
@@ -42,7 +39,13 @@
 - (struct CGRect)_numberOfMatchesRectForBounds:(struct CGRect)arg1;
 - (BOOL)_shouldShowNumberOfMatches;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)_drawBackgroundForFlatStyleWithFrame:(struct CGRect)arg1 inView:(id)arg2 hasFocus:(BOOL)arg3;
+@property(readonly) NSColor *placeholderTextColor;
+@property(readonly) NSColor *borderColor;
+- (id)_innerShadowColorForLineWidth:(double)arg1;
+- (id)backgroundColor;
+@property(readonly) BOOL willDrawVibrantly;
+@property(readonly) BOOL isKeyOrMainWindow;
+- (void)_drawBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (double)progressIndicatorWidth;
 - (void)setAdditionalCancelButtonInset:(unsigned long long)arg1;
@@ -57,6 +60,10 @@
 - (void)setObjectValue:(id)arg1;
 - (void)_updateSearchButtonImages;
 - (struct CGRect)searchTextRectForBounds:(struct CGRect)arg1;
+- (id)_placeholderAttributedString;
+- (id)_placeholderString;
+- (id)_attributedStringForEditing;
+- (long long)interiorBackgroundStyle;
 - (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)_dvtFindBarSearchFieldCellCommonInit;
 - (id)copy;

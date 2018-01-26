@@ -25,5 +25,6 @@
 
 @optional
 @property(readonly) NSArray *sourcePackageReferences;
+@property int buildSystemType;
 @end
 

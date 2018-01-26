@@ -14,7 +14,7 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueNavigator : IDEOutlineBasedNavigator <DVTOutlineViewDelegate>
 {
@@ -31,6 +31,8 @@
     NSSet *_collapsedFilesBeforeFiltering;
     NSSet *_collapsedTypesBeforeFiltering;
     NSSet *_expandedModelObjectsBeforeFiltering;
+    NSMutableSet *_collapsedModelObjects;
+    NSSet *_collapsedModelObjectsBeforeFiltering;
     DVTTimeSlicedMainThreadWorkQueue *_autoExpandingWorkQueue;
     DVTTableCellViewMultiLineHeightEstimator *_issueHeightEstimator;
     DVTTableCellViewMultiLineHeightEstimator *_subIssueHeightEstimator;
@@ -40,6 +42,7 @@
     DVTObservingToken *_numBuildtimeIssuesObservingToken;
     DVTObservingToken *_numRuntimeIssuesObservingToken;
     DVTNotificationToken *_issueDetailLevelObservingToken;
+    DVTObservingToken *_themeObserver;
     BOOL _restoringState;
     BOOL _clearingFilter;
     BOOL _showByRuntime;
@@ -54,6 +57,7 @@
     NSMutableSet *_collapsedTypes;
     NSMutableSet *_expandedModelObjects;
     DVTScrollView *_issueNavigatorScrollView;
+    DVTBorderedView *_separatorView;
     struct _NSRange _visibleRows;
 }
 
@@ -62,6 +66,7 @@
 + (id)keyPathsForValuesAffectingNavigableIssueItems;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
+@property __weak DVTBorderedView *separatorView; // @synthesize separatorView=_separatorView;
 @property __weak DVTScrollView *issueNavigatorScrollView; // @synthesize issueNavigatorScrollView=_issueNavigatorScrollView;
 @property struct _NSRange visibleRows; // @synthesize visibleRows=_visibleRows;
 @property(copy, nonatomic) NSMutableSet *expandedModelObjects; // @synthesize expandedModelObjects=_expandedModelObjects;
@@ -137,8 +142,6 @@
 - (BOOL)_canNavigateToNavigableItem:(id)arg1;
 - (id)structureEditorOpenSpecifierForIssuesNavigable:(id)arg1 error:(id *)arg2;
 - (id)structureEditorOpenSpecifierForLogDocumentForIssue:(id)arg1 error:(id *)arg2;
-- (id)structureNavigableItemForIssuesNavigable:(id)arg1 error:(id *)arg2;
-- (id)_urlOfRepresentedObject:(id)arg1;
 - (void)scopeByRuntime:(id)arg1;
 - (void)scopeByBuildtime:(id)arg1;
 - (id)domainIdentifier;

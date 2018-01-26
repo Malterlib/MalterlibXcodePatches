@@ -34,6 +34,7 @@
     IDEWorkspaceUserSettings *_userSettings;
     IDEWorkspaceSharedSettings *_sharedSettings;
     NSMapTable *_blueprintProviderObserverMap;
+    NSMapTable *_blueprintProviderEditedObserverMap;
     NSMutableSet *_referencedBlueprints;
     BOOL _initialContainerScanComplete;
     NSMutableArray *_referencedRunnableBuildableProducts;
@@ -96,6 +97,7 @@
     BOOL _hostsOnlyPlayground;
     BOOL _isPotentiallyClosing;
     _IDEDynamicContentRootGroup *_dynamicContentRootGroup;
+    NSArray *_sourcePackageLoadingErrors;
     IDETextFragmentIndex *_textFragmentIndex;
     IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
     NSDate *_icloudDriveLastHeldDate;
@@ -118,7 +120,6 @@
 + (id)containerFileDataType;
 + (id)xmlArchiveFileName;
 + (id)rootElementName;
-+ (BOOL)_shouldLoadUISubsystems;
 + (BOOL)automaticallyNotifiesObserversOfFileRefsWithContainerLoadingIssues;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
@@ -151,6 +152,7 @@
 @property(retain) IDEIndex *index; // @synthesize index=_index;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
 @property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
+@property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) _IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
 // - (void).cxx_destruct;
@@ -217,6 +219,7 @@
 @property(readonly) NSSet *referencedContainers;
 - (void)_referencedContainersDidUpdate;
 - (void)invokeChangingValueForKey:(id)arg1 fromSet:(id)arg2 toSet:(id)arg3 block:(CDUnknownBlockType)arg4;
+- (void)_referencedBlueprintProviderDidEdit:(id)arg1;
 - (void)_referencedBlueprintsDidUpdateForProvider:(id)arg1;
 - (id)buildableProductsForProductWithModuleName:(id)arg1;
 - (id)buildableProductsForProductName:(id)arg1;
@@ -233,8 +236,8 @@
 @property(readonly) BOOL isCancelling;
 - (id)clientsNotSupportingCancellation;
 - (id)clientsRequiringCancellationPrompt;
-- (id)registerUncancellableClientWithName:(id)arg1;
-- (id)registerClientWithName:(id)arg1 promptForCancellation:(BOOL)arg2 cancellationBlock:(CDUnknownBlockType)arg3;
+- (id)registerUncancellableClientWithName:(id)arg1 terminationSignpost:(CDUnknownBlockType)arg2;
+- (id)registerClientWithName:(id)arg1 promptForCancellation:(BOOL)arg2 terminationSignpost:(CDUnknownBlockType)arg3 cancellationBlock:(CDUnknownBlockType)arg4;
 @property(readonly) IDEConcreteClientTracker *clientTracker;
 - (BOOL)_cancelOngoingBuildWithCompletionBlockIfNeeded:(CDUnknownBlockType)arg1;
 - (void)_setupBuildCompletedNotificationForExecutionEnvironment:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
@@ -252,6 +255,7 @@
 - (void)_checkIfHasFinishedLoading;
 - (void)_finishLoadingAsynchronously:(BOOL)arg1 shouldUpgradeFromSimpleFilesFocused:(BOOL)arg2;
 - (void)_setupWorkspaceArenaIfNeeded;
+- (BOOL)_shouldLoadUISubsystems;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
 @property(readonly) IDEActivityLogSection *issueLog;
 - (void)analyzeModelForIssues;

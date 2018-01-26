@@ -40,7 +40,7 @@
         unsigned int _scrollSelectionToVisibleAfterRefreshingSelection:1;
         unsigned int _resettingRootItems:1;
         unsigned int _reloadingItems:1;
-        unsigned int _didRecieveKeyDownEvent:1;
+        unsigned int _didReceiveKeyDownEvent:1;
         unsigned int _didPublishSelectedObjects:1;
         unsigned int _supportsTrackingAreasForCells:1;
         unsigned int _inSameRunloopForTrackingSelectionVisibleRect:1;

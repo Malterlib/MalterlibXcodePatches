@@ -1,4 +1,10 @@
 
+#if 0
+#define XcodePluginReloadProjectLog(...) NSLog(__VA_ARGS__)
+#else
+#define XcodePluginReloadProjectLog(...) ((void)0)
+#endif
+
 static BOOL fg_ContainerWasGenerated(IDEContainer *_pContainer)
 {
 	NSNumber *pGenerated = _pContainer.generatedContainer;
@@ -27,28 +33,63 @@ static BOOL fg_ContainerWasGenerated(IDEContainer *_pContainer)
 	return [pGenerated boolValue];
 }
 
+
 NSHashTable *g_pPendingChanges = NULL;
 
 static _Atomic(int) g_SuspendCount = 0;
 
 // + (void)suspendFilePathChangeNotifications;
-static void suspendFilePathChangeNotifications(id self_, SEL _Sel)
+static void suspendFilePathChangeNotifications(IDEContainer *_pContainer, SEL _Sel)
 {
 	++g_SuspendCount;
-	//NSLog(@"Suspended: %d\n", g_SuspendCount);
-	return ((void(*)(id, SEL))original_suspendFilePathChangeNotifications)(self_, _Sel);
+	XcodePluginReloadProjectLog(@"Suspended: %@ %d\n", _pContainer, g_SuspendCount);
+
+	return ((void(*)(id, SEL))original_suspendFilePathChangeNotifications)(_pContainer, _Sel);
 }
 
 //+ (void)resumeFilePathChangeNotifications;
-static void resumeFilePathChangeNotifications(id self_, SEL _Sel)
+static void resumeFilePathChangeNotifications(IDEContainer *_pContainer, SEL _Sel)
 {
+	if (g_SuspendCount == 0)
+	{
+		XcodePluginReloadProjectLog(@"Ignored resume: %@ %d\n", _pContainer, g_SuspendCount);
+		return;
+	}
+
 	--g_SuspendCount;
-	//NSLog(@"Resumed: %d\n", g_SuspendCount);
-	return ((void(*)(id, SEL))original_resumeFilePathChangeNotifications)(self_, _Sel);
+	XcodePluginReloadProjectLog(@"Resumed: %@ %d\n", _pContainer, g_SuspendCount);
+
+	return ((void(*)(id, SEL))original_resumeFilePathChangeNotifications)(_pContainer, _Sel);
 }
 
 NSObject<IDEContainerReloadingDelegate> *g_pOldDelegate = NULL;
 Class Xcode3Project_class = NULL;
+
+static void dispatchClose(IDEDocumentController *_pController, IDEWorkspaceDocument *_pDocument, DVTFilePath *_pFilePath)
+{
+	dispatch_after
+		(
+			dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC/10) // 100 ms
+			, dispatch_get_main_queue()
+			, ^
+			{
+				if (!_pDocument.isClosed)
+				{
+					XcodePluginReloadProjectLog(@"Delaying reopen, not closed yet");
+					dispatchClose(_pController, _pDocument, _pFilePath);
+					return;
+				}
+				while (g_SuspendCount)
+				{
+					XcodePluginReloadProjectLog(@"Fixing broken resume count");
+					[IDEContainer resumeFilePathChangeNotifications];
+				}
+				XcodePluginReloadProjectLog(@"Workspace reloading: %@ %d", _pDocument, _pDocument.isClosed);
+				[_pController openDocumentWithContentsOfURL: [_pFilePath fileURL] display: YES completionHandler: ^{}];
+			}
+		)
+	;
+}
 
 - (int)responseToExternalChangesToBackingFileForContainer:(IDEContainer *)_pContainer fileWasRemoved:(BOOL)arg2
 {
@@ -58,21 +99,51 @@ Class Xcode3Project_class = NULL;
 	IDEDocumentController *pController = (IDEDocumentController *)g_pOldDelegate;
 	if ([_pContainer isKindOfClass:[IDEWorkspace class]])
 	{
+		XcodePluginReloadProjectLog(@"Workspace: %@", _pContainer);
 		IDEWorkspace *pWorkspace = (IDEWorkspace *)_pContainer;
 
+		for (IDEContainer __weak *pContainer in [g_pPendingChanges allObjects])
+		{
+			if ([pContainer isKindOfClass:Xcode3Project_class])
+			{
+				XcodePluginReloadProjectLog(@"Remove project: %@", pContainer);
+				[g_pPendingChanges removeObject: pContainer];
+				continue;
+			}
+		}
+
 		DVTFilePath *pFilePath = [pWorkspace filePath];
-		IDEWorkspaceDocument *pDocument = (IDEWorkspaceDocument *)[pController documentForURL: [pFilePath fileURL]];
-		[pDocument close];
-		[pController openDocumentWithContentsOfURL: [pFilePath fileURL] display: YES completionHandler: ^{}];
+		dispatch_after
+			(
+				dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC/100) // 10 ms
+				, dispatch_get_main_queue()
+				, ^
+				{
+					IDEWorkspaceDocument *pDocument = (IDEWorkspaceDocument *)[pController documentForURL: [pFilePath fileURL]];
+					if (!pDocument)
+					{
+						XcodePluginReloadProjectLog(@"Workspace document not valid: %@", pFilePath);
+						return;
+					}
+
+					XcodePluginReloadProjectLog(@"Workspace closing: %@", pDocument);
+					[pDocument close];
+
+					dispatchClose(pController, pDocument, pFilePath);
+				}
+			)
+		;
 		return 1;
 	}
 	else if ([_pContainer isKindOfClass:Xcode3Project_class])
     {
+		XcodePluginReloadProjectLog(@"Project: %@", _pContainer);
         return 0;
     }
 
 	int Ret = [g_pOldDelegate responseToExternalChangesToBackingFileForContainer: _pContainer fileWasRemoved: arg2];
 
+	XcodePluginReloadProjectLog(@"Reload automatically: %@", _pContainer);
 	return Ret; // Reload automatically
 }
 
@@ -85,10 +156,14 @@ static void updateDispatch(void);
 static void updatePendingChanges()
 {
 	if (!g_pPendingChanges || g_pOldDelegate)
+	{
+		XcodePluginReloadProjectLog(@"!g_pPendingChanges || g_pOldDelegate");
 		return;
+	}
 
 	if (g_SuspendCount)
 	{
+		XcodePluginReloadProjectLog(@"Suspended %d", g_SuspendCount);
 		updateDispatch();
 		return;
 	}
@@ -107,7 +182,7 @@ static void updatePendingChanges()
 				if ([[[pWorkspace executionEnvironment] queuedBuildOperations] count])
 				{
 					pWorkspace.lastBuilding = [NSNumber numberWithDouble: CACurrentMediaTime()];
-//								NSLog(@"Building: %@ %f", pContainer, PendingInterval);
+					XcodePluginReloadProjectLog(@"Building: %@", pContainer);
 					continue;
 				}
 
@@ -119,16 +194,16 @@ static void updatePendingChanges()
 				{
 					if (PendingInterval < 0.5)
 					{
-						//NSLog(@"Delayed: %@ %f", pContainer, PendingInterval);
+						XcodePluginReloadProjectLog(@"Delayed: %@ %f", pContainer, PendingInterval);
 						continue;
 					}
 					else
 					{
-						//NSLog(@"OK: %@, %f", pContainer, PendingInterval);
+						XcodePluginReloadProjectLog(@"OK: %@, %f", pContainer, PendingInterval);
 					}
 				}
 
-				//NSLog(@"Dispatching: %@ %f", pContainer, PendingInterval);
+				XcodePluginReloadProjectLog(@"Dispatching: %@ %f", pContainer, PendingInterval);
 				[g_pPendingChanges removeObject: pContainer];
 				g_pOldDelegate = [IDEContainer reloadingDelegate];
 				[IDEContainer setReloadingDelegate:singleton];
@@ -146,6 +221,7 @@ static void updatePendingChanges()
 	if ([g_pPendingChanges count] == 0)
 	{
 		g_pPendingChanges = NULL;
+		XcodePluginReloadProjectLog(@"g_pPendingChanges = NULL");
 		return;
 	}
 	else
@@ -172,7 +248,7 @@ static void _filePathDidChangeWithPendingChangeDictionary(IDEContainer *self_, S
 {
 	if (!fg_ContainerWasGenerated(self_))
 	{
-		//NSLog(@"Not generated: %@\n", self_);
+		XcodePluginReloadProjectLog(@"Not generated: %@\n", self_);
 		((void (*)(id self_, SEL _Sel))original_filePathDidChangeWithPendingChangeDictionary)(self_, _Sel);
 		return;
 	}
@@ -186,7 +262,7 @@ static void _filePathDidChangeWithPendingChangeDictionary(IDEContainer *self_, S
 	if (![g_pPendingChanges containsObject: pContainer])
 		[g_pPendingChanges addObject: pContainer];
 
-	//NSLog(@"Changed: %@ %f\n", pContainer, CACurrentMediaTime() - g_First);
+	XcodePluginReloadProjectLog(@"Changed: %@ %f\n", pContainer, CACurrentMediaTime() - g_First);
 
 	g_LastPending = CACurrentMediaTime();
 
@@ -205,7 +281,7 @@ static BOOL _saveContainerForAction(IDEContainer *self_, SEL _Sel, int arg1, id 
 	if (!Xcode3Project_class)
 		Xcode3Project_class = NSClassFromString(@"Xcode3Project");
 
-	//NSLog(@"Prevented save: %@", self_);
+	//XcodePluginReloadProjectLog(@"Prevented save: %@", self_);
 
 	if ([self_ isKindOfClass:Xcode3Project_class])
 	{
@@ -214,4 +290,13 @@ static BOOL _saveContainerForAction(IDEContainer *self_, SEL _Sel, int arg1, id 
 	}
 
 	return TRUE;
+}
+
+
+// - (BOOL)canSaveContainer;
+static BOOL canSaveContainer(IDEContainer *self_, SEL _Sel)
+{
+	if (!fg_ContainerWasGenerated(self_))
+		return ((BOOL (*)(id self_, SEL _Sel))original_canSaveContainer)(self_, _Sel);
+	return true;
 }

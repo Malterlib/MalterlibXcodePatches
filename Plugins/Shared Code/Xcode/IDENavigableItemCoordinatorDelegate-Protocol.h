@@ -9,11 +9,15 @@
 //
 
 
-@class IDEEditorDocument, IDENavigableItem, IDENavigableItemCoordinator, NSArray;
+@class IDEEditorDocument, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSHashTable;
 
 @protocol IDENavigableItemCoordinatorDelegate <NSObject>
 
 @optional
+- (void)navigableItemCoordinator:(IDENavigableItemCoordinator *)arg1 didForgetItems:(NSHashTable *)arg2;
+- (void)navigableItemCoordinator:(IDENavigableItemCoordinator *)arg1 willForgetItems:(NSHashTable *)arg2;
+- (void)didEndTransactionScopeForNavigableItemCoordinator:(IDENavigableItemCoordinator *)arg1;
+- (void)willBeginTransactionScopeForNavigableItemCoordinator:(IDENavigableItemCoordinator *)arg1;
 - (NSArray *)navigableItem:(IDENavigableItem *)arg1 childRepresentedObjectsForArray:(NSArray *)arg2;
 - (IDEEditorDocument *)navigableItemCoordinator:(IDENavigableItemCoordinator *)arg1 editorDocumentForNavigableItem:(IDENavigableItem *)arg2;
 @end

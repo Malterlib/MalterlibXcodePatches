@@ -114,7 +114,6 @@
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
 @property(readonly, nonatomic, getter=isValidForSchemeBuildableReferences) BOOL validForSchemeBuildableReferences; // @synthesize validForSchemeBuildableReferences=_validForSchemeBuildableReferences;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
-@property(readonly) id <IDEContainerCore> containerCore; // @synthesize containerCore=_containerCore;
 @property(retain) id <IDEContainerDelegate> containerDelegate; // @synthesize containerDelegate=_containerDelegate;
 // - (void).cxx_destruct;
 - (void)customDataStore:(id)arg1 removeItemAtFilePath:(id)arg2 completionQueue:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
@@ -187,6 +186,7 @@
 - (void)_unregisterForChangesToContainerDataFilePath:(id)arg1;
 - (void)_registerForChangesToContainerDataFilePath:(id)arg1;
 - (void)_filePathDidChangeWithPendingChangeDictionary;
+@property(readonly) id <IDEContainerCore> containerCore; // @synthesize containerCore=_containerCore;
 - (void)primitiveInvalidate;
 - (void)invalidate;
 - (id)_sessionIdentifier;

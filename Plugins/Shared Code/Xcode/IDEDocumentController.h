@@ -111,8 +111,8 @@
 - (void)_dvt_closeAllDocumentsWithDelegate:(id)arg1 didCloseAllSelector:(SEL)arg2 shouldCloseAutosavingDocuments:(BOOL)arg3 contextInfo:(void *)arg4;
 - (void)_checkAndCloseAllDocumentsStartingWith:(id)arg1 shouldCloseDocuments:(BOOL)arg2 closeAllContext:(void *)arg3;
 - (void)saveAllEditorDocuments:(id)arg1;
-- (void)saveAllEditorDocumentsAsyncronouslyWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)autosaveInPlaceAllEditorDocumentsAsyncronouslyWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)saveAllEditorDocumentsAsynchronouslyWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)autosaveInPlaceAllEditorDocumentsAsynchronouslyWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)_saveEditorDocuments:(id)arg1 forOperation:(unsigned long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (BOOL)_saveEditorDocuments:(id)arg1 forOperation:(unsigned long long)arg2 error:(id *)arg3;
 - (id)editedEditorDocuments;

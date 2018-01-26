@@ -10,15 +10,19 @@
 
 #include "Shared.h"
 
-@interface DVTScopeBarButton : NSButton
+@class DVTStackBacktrace;
+
+@interface DVTDealloc2Main_ViewController : NSViewController
 {
+    int _rc;
+    DVTStackBacktrace *_clearNibBindingsBacktrace;
 }
 
-+ (Class)cellClass;
-- (struct NSEdgeInsets)alignmentRectInsets;
-- (void)_dvt_scopeBarButtonCommonInit;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithCoder:(id)arg1;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

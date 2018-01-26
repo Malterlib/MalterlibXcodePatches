@@ -10,13 +10,15 @@
 
 #include "Shared.h"
 
+#import "DVTDealloc2Main_Document.h"
+
 #import "DVTUndoManagerDelegate-Protocol.h"
 #import "IDEReadOnlyItem-Protocol.h"
 
 @class DVTDispatchLock, DVTExtension, DVTFileDataType, DVTFilePath, DVTNotificationToken, DVTStackBacktrace, NSDictionary, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL, NSUndoManager;
 @protocol DVTCancellable, DVTUndo;
 
-@interface IDEEditorDocument : NSDocument <IDEReadOnlyItem, DVTUndoManagerDelegate>
+@interface IDEEditorDocument : DVTDealloc2Main_Document <IDEReadOnlyItem, DVTUndoManagerDelegate>
 {
     DVTDispatchLock *_editorDocumentLock;
     DVTExtension *_extension;
@@ -163,6 +165,7 @@
 - (void)_editorDocumentWillClose;
 - (void)saveDocumentAs:(id)arg1;
 - (void)saveDocument:(id)arg1;
+- (void)dealloc;
 - (id)initForURL:(id)arg1 withContentsOfURL:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
 - (id)initWithContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (id)initWithType:(id)arg1 error:(id *)arg2;

@@ -164,7 +164,7 @@
 - (BOOL)_reopenDatabaseWithRemoval:(BOOL)arg1;
 - (BOOL)_createDatabaseFolder;
 - (void)_setupObservers;
-- (id)ide_callHeirarchy_callsOfSymbol:(id)arg1;
+- (id)ide_callHierarchy_callsOfSymbol:(id)arg1;
 - (id)collectTestMethodsPerTestTargets;
 - (id)allAutoImportItemsMatchingKind:(id)arg1 symbolLanguage:(id)arg2;
 - (id)allAutoImportItemsMatchingKind:(id)arg1;

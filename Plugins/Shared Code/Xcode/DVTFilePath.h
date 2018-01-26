@@ -19,6 +19,7 @@
     DVTFilePath *_parentPath;
     struct fastsimplearray *_childfsaPaths;
     DVTFileSystemVNode *_vnode;
+    DVTFileDataType *_presumedType;
     unsigned long long _numAssociates;
     unsigned long long _numObservers;
     id _associates;

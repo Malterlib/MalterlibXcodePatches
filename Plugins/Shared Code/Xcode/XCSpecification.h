@@ -50,7 +50,7 @@
 + (id)registerSpecificationProxyFromPropertyList:(id)arg1 inDomain:(id)arg2 outSpecificationOrProxy:(id *)arg3;
 + (void)registerSpecificationOrProxy:(id)arg1;
 + (void)registerSpecificationTypeBaseClass:(Class)arg1;
-+ (id)_pathExensionsToTypesRegistry;
++ (id)_pathExtensionsToTypesRegistry;
 + (id)_typesToSpecTypeBaseClassesRegistry;
 + (id)specificationRegistryForDomain:(id)arg1;
 + (void)enumerateSpecificationsInDomain:(id)arg1 includingDefault:(BOOL)arg2 usingBlock:(CDUnknownBlockType)arg3;

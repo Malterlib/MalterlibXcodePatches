@@ -34,7 +34,7 @@ static bool findFieldHasFocusInBatchNavigator(IDEFindNavigator* _pNavigator)
 		DVTFindPatternFieldEditor* pFirstResponder = (DVTFindPatternFieldEditor*)[[pField window] firstResponder];
 		if ([pFirstResponder isKindOfClass:[DVTFindPatternFieldEditor class]])
 		{
-			if ([pField _fieldEditor] == pFirstResponder)
+			if ((id)[pFirstResponder delegate] == pField)
 				return true;
 		}
 	}
@@ -42,7 +42,7 @@ static bool findFieldHasFocusInBatchNavigator(IDEFindNavigator* _pNavigator)
 }
 
 /*
-static bool findFieldHasFocusInFindBar(SourceEditor_TextFindPanelViewController *_pFindBar)
+static bool findFieldHasFocusInFindBar(SourceEditor_SourceEditorTextFindPanel *_pFindBar)
 {
 	IDEProgressSearchField *pField = [_pFindBar findField];
 	if (pField)
@@ -86,9 +86,9 @@ static bool replaceEnabled(IDEFindNavigator* _pNavigator)
 	return batchFind_getSelectedQueryAction(_pNavigator.queryParametersController) == 1;
 }
 
-static bool replaceEnabledOnFindBar(SourceEditor_TextFindPanelViewController *_pFindBar)
+static bool replaceEnabledOnFindBar(SourceEditor_SourceEditorTextFindPanel *_pFindBar)
 {
-	Ivar ivar = class_getInstanceVariable(NSClassFromString(@"SourceEditor.TextFindPanelViewController"), "mode");
+	Ivar ivar = class_getInstanceVariable(NSClassFromString(@"SourceEditor.SourceEditorTextFindPanel"), "mode");
 
 	ptrdiff_t offset = ivar_getOffset(ivar);
 	unsigned char* bytes = (unsigned char *)(__bridge void*)_pFindBar;
@@ -115,7 +115,7 @@ static bool replaceFieldHasFocusInBatchNavigator(IDEFindNavigator* _pNavigator)
 		DVTFindPatternFieldEditor* pFirstResponder = (DVTFindPatternFieldEditor*)[[pField window] firstResponder];
 		if ([pFirstResponder isKindOfClass:[DVTFindPatternFieldEditor class]])
 		{
-			if ([pField _fieldEditor] == pFirstResponder)
+			if ((id)[pFirstResponder delegate] == pField)
 				return true;
 		}
 	}
@@ -136,7 +136,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 	if (!window)
 		window = [NSApp keyWindow];
 
-	SourceEditor_TextFindPanelViewController *pFindBar = getFindBar(window.respondingPatternFieldEditor);
+	SourceEditor_SourceEditorTextFindPanel *pFindBar = getFindBar(window.respondingPatternFieldEditor);
 	IDEFindNavigatorQueryParametersController *pBatchFindController = nil;
 
 	if (!pFindBar)
@@ -173,7 +173,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 		{
 			if (!event)
 				return true;
-			IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+			IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 			[pEditor.sourceEditorView findNext: nil];
 			return true;
 		}
@@ -194,7 +194,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 			{
 				if (!event)
 					return true;
-				IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+				IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 				[pEditor.sourceEditorView replaceAndFindNext: nil];
 				return true;
 			}
@@ -217,7 +217,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 			{
 				if (!event)
 					return true;
-				IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+				IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 				[pEditor.sourceEditorView replaceAll: nil];
 				return true;
 			}
@@ -278,6 +278,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					[searchPatternPopUp selectItemWithTitle: @"Regular Expression"];
 
 				[pFindBar searchPatternPopUpAction: searchPatternPopUp];
+
+				return true;
 			}
 		}
 		else if (keyCode == kVK_ANSI_W)
@@ -310,6 +312,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					[searchPatternPopUp selectItemWithTitle: @"Matches Word"];
 
 				[pFindBar searchPatternPopUpAction: searchPatternPopUp];
+
+				return true;
 			}
 		}
 		else if (keyCode == kVK_ANSI_L)
@@ -320,6 +324,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					return true;
 				DVTScopeBarButton *showScopesButton = [pBatchFindController valueForKey:@"_showScopesButton"];
 				[showScopesButton performClick:nil];
+
+				return true;
 			}
 		}
 		else if (keyCode == kVK_ANSI_H)
@@ -337,11 +343,15 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 				if (!window)
 					break;
 
-				IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+				IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 
 				NSRange LineRange = [pEditor selectedLineRange];
 
-				DVTAnnotationManager* pAnnotationManager = [pEditor annotationManager];
+				static Ivar s_AnnotationManagerIvar = nil;
+				if (!s_AnnotationManagerIvar)
+					s_AnnotationManagerIvar = class_getInstanceVariable(NSClassFromString(@"IDESourceEditor.SourceCodeEditor"), "annotationManager");
+
+				DVTAnnotationManager* pAnnotationManager = object_getIvar(pEditor, s_AnnotationManagerIvar);
 				if (!pAnnotationManager)
 					break;
 
@@ -395,7 +405,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 				}
 				else
 				{
-					IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+					IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 					[pEditor toggleBreakpointAtCurrentLine: nil];
 					return true;
 				}
@@ -412,7 +422,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 			if (!event)
 				return true;
 
-			IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+			IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 			[pEditor.sourceEditorView findPrevious: nil];
 			return true;
 		}
@@ -432,37 +442,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 	if ((ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == 0)
 	{
 		// Alone key
-		if (keyCode == kVK_Tab)
-		{
-			if (pBatchFindController)
-			{
-				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.respondingPatternFieldEditor);
-				if (pNavigator)
-				{
-					if (findFieldHasFocusInBatchNavigator(pNavigator))
-					{
-						IDEProgressSearchField *pReplaceField = getReplaceField(pNavigator);
-						if (pReplaceField && replaceEnabled(pNavigator))
-						{
-							[window makeFirstResponder: pReplaceField];
-							return true;
-						}
-					}
-				}
-			}
-			else if (pFindBar)
-			{
-				DVTFindPatternSearchField *pFindField = [pFindBar findField];
-				if (findFieldHasFocus(pFindField) && replaceEnabledOnFindBar(pFindBar))
-				{
-					[window makeFirstResponder: [pFindBar replaceField]];
-					return true;
-				}
-				else
-					return true;
-			}
-		}
-		else if (keyCode == kVK_DownArrow)
+		if (keyCode == kVK_DownArrow)
 		{
 			if (pBatchFindController)
 			{
@@ -489,7 +469,9 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					NSMenu *pMenu = [[NSMenu alloc] init];
 					pMenu.font = [NSFont menuFontOfSize: 12.0];
 
-					for (NSMenuItem* pMenuItem in [pFindBar recentsMenuItems])
+					;
+
+					for (NSMenuItem* pMenuItem in [XcodePluginNavigationFixes_Navigation recentMenuItems: (SourceEditorTextFindPanel *)pFindBar])
 						[pMenu addItem: pMenuItem];
 
 					if (displayRecentsMenu(pMenu, pFindField, false))
@@ -509,7 +491,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 			}
 		}
 	}
-	if ((ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == NSEventModifierFlagShift)
+	if ((ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == NSEventModifierFlagShift
+		|| (ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == 0)
 	{
 		// Shift key
 		if (keyCode == kVK_Tab )
@@ -530,18 +513,31 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 							return true;
 						}
 					}
+					else if (findFieldHasFocusInBatchNavigator(pNavigator))
+					{
+						IDEProgressSearchField *pReplaceField = getReplaceField(pNavigator);
+						if (pReplaceField && replaceEnabled(pNavigator))
+						{
+							[window makeFirstResponder: pReplaceField];
+							return true;
+						}
+					}
 				}
 			}
 			else if (pFindBar)
 			{
 				DVTFindPatternSearchField *pReplaceField = [pFindBar replaceField];
+				DVTFindPatternSearchField *pFindField = [pFindBar findField];
 				if (findFieldHasFocus(pReplaceField) && replaceEnabledOnFindBar(pFindBar))
 				{
 					[window makeFirstResponder: [pFindBar findField]];
 					return true;
 				}
-				else
+				else if (findFieldHasFocus(pFindField) && replaceEnabledOnFindBar(pFindBar))
+				{
+					[window makeFirstResponder: [pFindBar replaceField]];
 					return true;
+				}
 			}
 		}
 	}
@@ -584,7 +580,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					{
 						pTabGroup.lastConsoleTextView = getConsoleTextView(nil);
 						pTabGroup.preferredNextLocation = EPreferredNextLocation_Console;
-						NSLog(@"EPreferredNextLocation_Console -- !bIsValid");
+						//NSLog(@"EPreferredNextLocation_Console -- !bIsValid");
 					}
 				}
 				if (pTabGroup.preferredNextLocation == EPreferredNextLocation_Console)
@@ -812,8 +808,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 							[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1];
 
 
-							IDEPegasusSourceEditor_SourceCodeEditor *pEditor = getEditor(window);
-							IDEPegasusSourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];
+							IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+							IDESourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];
 
 							// Workaround bug in Xcode where line is incorrect
 							[pEditorView moveForward: nil];
@@ -1073,7 +1069,7 @@ static void updateLastValidEditorTab(NSWindow* _pWindow)
 	if (!pSelectedWindow)
 		return;
 
-	if (getSourceCodeEditorView(_pWindow))
+	if (getSourceCodeEditorView(pSelectedWindow))
 		pTabGroup.lastValidEditorWindow = pSelectedWindow;
 }
 
@@ -1084,7 +1080,7 @@ static BOOL didSelectTabViewItem( NSView *self_, SEL _cmd, NSTabView *_pTabView,
 	if (pTabGroup.preferredNextLocation != EPreferredNextLocation_Console)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Undefined;
-		NSLog(@"EPreferredNextLocation_Undefined -- didSelectTabViewItem");
+		//NSLog(@"EPreferredNextLocation_Undefined -- didSelectTabViewItem");
 	}
 
 	NSWindow *window = [_pTabView window];
@@ -1099,8 +1095,9 @@ static NSView* getSourceCodeEditorView(NSWindow *_pWindow)
 {
 	if (_pWindow == nil)
 		_pWindow = [NSApp keyWindow];
-	//traceViewHierarchy([_pWindow contentView], 0);
-	return findSubViewWithClassName([_pWindow contentView], "IDEPegasusSourceEditor.SourceCodeEditorView", -1);
+	//XcodePluginDumpClass(NSClassFromString(@"IDESourceEditor.IDESourceEditorView"));
+	//XcodePluginTraceViewHierarchy([_pWindow contentView], 0);
+	return findSubViewWithClassName([_pWindow contentView], "IDESourceEditor.IDESourceEditorView", -1);
 }
 static IDEWorkspaceTabController* getWorkspaceTabController(NSWindow *_pWindow)
 {
@@ -1134,7 +1131,7 @@ static BOOL becomeFirstResponder_Console(IDEConsoleTextView* self_, SEL _cmd)
 
 	potentialView(self_.window);
 	pTabGroup.preferredNextLocation = EPreferredNextLocation_Console;
-	NSLog(@"EPreferredNextLocation_Console -- becomeFirstResponder_Console");
+	//NSLog(@"EPreferredNextLocation_Console -- becomeFirstResponder_Console");
 	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_Console)(self_, _cmd);
 }
 
@@ -1144,7 +1141,7 @@ static BOOL becomeFirstResponder_Search(NSView *self_, SEL _cmd)
 
 	potentialView(self_.window);
 	pTabGroup.preferredNextLocation = EPreferredNextLocation_Search;
-	NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_Search");
+	//NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_Search");
 	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_Search)(self_, _cmd);
 }
 
@@ -1159,17 +1156,17 @@ static BOOL becomeFirstResponder_NavigatorOutlineView(IDENavigatorOutlineView* s
 	if (window.activeFindNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Search;
-		NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_NavigatorOutlineView");
+		//NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_NavigatorOutlineView");
 	}
 	else if (window.activeIssueNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Issue;
-		NSLog(@"EPreferredNextLocation_Issue -- becomeFirstResponder_NavigatorOutlineView");
+		//NSLog(@"EPreferredNextLocation_Issue -- becomeFirstResponder_NavigatorOutlineView");
 	}
 	else if (window.activeStructureNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Structure;
-		NSLog(@"EPreferredNextLocation_Structure -- becomeFirstResponder_NavigatorOutlineView");
+		//NSLog(@"EPreferredNextLocation_Structure -- becomeFirstResponder_NavigatorOutlineView");
 	}
 	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_NavigatorOutlineView)(self_, _cmd);
 }
@@ -1181,6 +1178,14 @@ static BOOL becomeFirstResponder_DVTFindPatternFieldEditor(DVTFindPatternFieldEd
 	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_DVTFindPatternFieldEditor)(self_, _cmd);
 }
 
+static BOOL becomeFirstResponder_SourceEditor_SourceEditorView(DVTFindPatternFieldEditor* self_, SEL _cmd)
+{
+	NSWindow *window = self_.window;
+	updateLastValidEditorTab(window);
+	potentialView(window);
+	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_SourceEditor_SourceEditorView)(self_, _cmd);
+}
+
 static BOOL resignFirstResponder_DVTFindPatternFieldEditor(DVTFindPatternFieldEditor* self_, SEL _cmd)
 {
 	NSWindow *window = self_.window;
@@ -1189,12 +1194,12 @@ static BOOL resignFirstResponder_DVTFindPatternFieldEditor(DVTFindPatternFieldEd
 	return ((BOOL (*)(id, SEL))original_resignFirstResponder_DVTFindPatternFieldEditor)(self_, _cmd);
 }
 
-static SourceEditor_TextFindPanelViewController* getFindBar(DVTFindPatternFieldEditor* self_)
+static SourceEditor_SourceEditorTextFindPanel* getFindBar(DVTFindPatternFieldEditor* self_)
 {
 	NSView* pParentView = findParentViewWithClassName(self_, "DVTFindPatternFieldEditor", false);
 	if (pParentView)
 	{
-		SourceEditor_TextFindPanelViewController* pViewController = (SourceEditor_TextFindPanelViewController*)[pParentView firstAvailableResponderOfClass:NSClassFromString(@"SourceEditor.TextFindPanelViewController")];
+		SourceEditor_SourceEditorTextFindPanel* pViewController = (SourceEditor_SourceEditorTextFindPanel*)[pParentView firstAvailableResponderOfClass:NSClassFromString(@"SourceEditor.SourceEditorTextFindPanel")];
 		if (pViewController)
 			return pViewController;
 	}

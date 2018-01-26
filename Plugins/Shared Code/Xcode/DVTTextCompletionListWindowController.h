@@ -11,14 +11,15 @@
 #include "Shared.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "DVTTextCompletionTableViewScrollEventDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTScaleInWindowAnimator, DVTStackBacktrace, DVTTextCompletionWindowResizeAnimation, DVTViewController, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTableView, NSTextField, NSViewAnimation;
+@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTScaleInWindowAnimator, DVTStackBacktrace, DVTTextCompletionTableView, DVTTextCompletionWindowResizeAnimation, DVTViewController, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTextField, NSViewAnimation;
 @protocol DVTInvalidation, DVTTextCompletionListDataSource;
 
-@interface DVTTextCompletionListWindowController : NSWindowController <DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
+@interface DVTTextCompletionListWindowController : NSWindowController <DVTTextCompletionTableViewScrollEventDelegate, DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
 {
     NSTextField *_messagesField;
-    NSTableView *_completionsTableView;
+    DVTTextCompletionTableView *_completionsTableView;
     NSTableColumn *_iconColumn;
     NSTableColumn *_typeColumn;
     NSTableColumn *_titleColumn;
@@ -39,6 +40,7 @@
     BOOL _shouldIgnoreSelectionChange;
     BOOL _quickHelpOnTop;
     DVTDelayedInvocation *_delayedQuickHelpClearing;
+    BOOL _tableViewHasScrolled;
     DVTViewController<DVTInvalidation> *_infoContentViewController;
     DVTBorderedView *_contentView;
     NSTableColumn *_leftPaddingColumn;
@@ -47,6 +49,7 @@
 + (id)_nonSelectedTypeColor;
 + (id)_nonSelectedTitleColor;
 + (void)initialize;
+@property BOOL tableViewHasScrolled; // @synthesize tableViewHasScrolled=_tableViewHasScrolled;
 @property __weak NSTableColumn *leftPaddingColumn; // @synthesize leftPaddingColumn=_leftPaddingColumn;
 @property __weak DVTBorderedView *contentView; // @synthesize contentView=_contentView;
 @property(readonly) DVTViewController<DVTInvalidation> *infoContentViewController; // @synthesize infoContentViewController=_infoContentViewController;
@@ -61,6 +64,7 @@
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (long long)viewportRowCountInTableView:(id)arg1;
 - (void)_updateInfoNewSelection;
 - (BOOL)showInfoForSelectedCompletionItem;
 - (id)_selectedCompletionItem;
@@ -87,6 +91,7 @@
 - (void)_hideWindow;
 - (void)showWindowForTextFrame:(struct CGRect)arg1 explicitAnimation:(BOOL)arg2;
 - (void)primitiveInvalidate;
+- (void)completionTableView:(id)arg1 didReceiveScrollWheelEvent:(id)arg2;
 - (void)windowDidLoad;
 - (id)initWithDataSource:(id)arg1;
 - (id)window;

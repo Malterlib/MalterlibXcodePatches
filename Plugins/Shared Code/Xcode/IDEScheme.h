@@ -34,6 +34,7 @@
     IDEContainer<IDECustomDataStoring> *_customDataStoreContainer;
     DVTCustomDataSpecifier *_customDataSpecifier;
     NSArray *_availableRunDestinations;
+    BOOL _didResortToFallbackRunDestination;
     BOOL _isShown;
     unsigned long long _orderHint;
     BOOL _dataStoreClosed;
@@ -77,6 +78,7 @@
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;
 @property(nonatomic, getter=isRunDestinationInvalidationSuspended) BOOL runDestinationInvalidationSuspended; // @synthesize runDestinationInvalidationSuspended=_runDestinationInvalidationSuspended;
 @property(retain) DVTObservingToken *workspaceReferenceContainersObservingToken; // @synthesize workspaceReferenceContainersObservingToken=_workspaceReferenceContainersObservingToken;
+@property(readonly) BOOL didResortToFallbackRunDestination; // @synthesize didResortToFallbackRunDestination=_didResortToFallbackRunDestination;
 @property(readonly) BOOL schemeRunnableRunsDirectlyOnPairedProxyDevice; // @synthesize schemeRunnableRunsDirectlyOnPairedProxyDevice=_schemeRunnableRunsDirectlyOnPairedProxyDevice;
 @property BOOL wasCreatedForAppExtension; // @synthesize wasCreatedForAppExtension=_wasCreatedForAppExtension;
 @property(retain) NSError *loadError; // @synthesize loadError=_loadError;
@@ -145,6 +147,7 @@
 - (void)_invalidateAvailableRunDestinations;
 - (void)immediatelyInvalidateAvailableRunDestinations;
 @property(readonly) NSArray *availableRunDestinations;
+@property(readonly) NSArray *nonFaultingAvailableRunDestinations;
 - (BOOL)schemeRunnableRunsOnPairedProxyDevice;
 @property(readonly) BOOL schemeRunnableRequiresPairedProxyDevice;
 - (void)buildConfigurationDidChange:(id)arg1;
@@ -176,7 +179,7 @@
 @property(readonly, copy) NSString *description;
 - (id)initFromUnarchiver:(BOOL)arg1 runContextManager:(id)arg2 customDataStoreContainer:(id)arg3 customDataSpecifier:(id)arg4 isShown:(BOOL)arg5 orderHint:(unsigned long long)arg6;
 - (void)_createDefaultSchemeActions;
-- (id)buildDirectoriesForSchemeCommand:(id)arg1;
+- (id)buildDirectoriesForBuildParameters:(id)arg1;
 - (BOOL)ideIndex_containsBlueprint:(id)arg1;
 
 // Remaining properties

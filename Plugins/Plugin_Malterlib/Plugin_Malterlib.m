@@ -2,6 +2,7 @@
 #include <Carbon/Carbon.h>
 #import <objc/runtime.h>
 #include "../Shared Code/XcodePlugin.h"
+#include "../Shared Code/Xcode/IDEContainer.h"
 
 #import "Plugin_Malterlib.h"
 
@@ -20,6 +21,7 @@ static IMP original_filePathDidChangeWithPendingChangeDictionary = nil;
 static IMP original_saveContainerForAction = nil;
 static IMP original_updateOperationConcurrency = nil;
 static IMP original_changeMaximumOperationConcurrencyUsingThrottleFactor = nil;
+static IMP original_canSaveContainer = nil;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,15 +55,14 @@ static void * MalterlibIDEContainerKey_lastBuilding = &MalterlibIDEContainerKey_
 }
 
 - (NSNumber *)lastBuilding {
-    return objc_getAssociatedObject(self, MalterlibIDEContainerKey_lastBuilding);
+	return objc_getAssociatedObject(self, MalterlibIDEContainerKey_lastBuilding);
 }
 
 - (void)setLastBuilding:(NSNumber *)generated {
-    objc_setAssociatedObject(self, MalterlibIDEContainerKey_lastBuilding, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC); 
+	objc_setAssociatedObject(self, MalterlibIDEContainerKey_lastBuilding, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,6 +182,9 @@ Class g_SourceEditorViewClass = nil;
 
 	original_saveContainerForAction = XcodePluginOverrideMethodString(@"IDEContainer", @selector(_saveContainerForAction:error:), (IMP)&_saveContainerForAction);
 	XcodePluginAssertOrPerform(original_saveContainerForAction, goto failed);
+
+	original_canSaveContainer = XcodePluginOverrideMethodString(@"IDEContainer", @selector(canSaveContainer), (IMP)&canSaveContainer);
+	XcodePluginAssertOrPerform(original_canSaveContainer, goto failed);
 
 	original_filePathDidChangeWithPendingChangeDictionary = XcodePluginOverrideMethodString(@"IDEContainer", @selector(_filePathDidChangeWithPendingChangeDictionary), (IMP)&_filePathDidChangeWithPendingChangeDictionary);
 	XcodePluginAssertOrPerform(original_filePathDidChangeWithPendingChangeDictionary, goto failed);

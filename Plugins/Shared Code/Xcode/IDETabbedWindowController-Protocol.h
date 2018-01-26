@@ -9,12 +9,9 @@
 //
 
 
-@class DVTSourceControlRevision, NSWindow;
-
-@protocol IDESourceControlLogDetailDelegate <NSObject>
-- (NSWindow *)viewWindow;
-- (BOOL)detailShouldShowOpenBlameView;
-- (void)openBlameView;
-- (void)openComparisonViewForRevision:(DVTSourceControlRevision *)arg1;
+@protocol IDETabbedWindowController <NSObject>
+- (void)newTab:(id)arg1;
+- (void)newWindow:(id)arg1;
+- (void)newWindowForTab:(id)arg1;
 @end
 

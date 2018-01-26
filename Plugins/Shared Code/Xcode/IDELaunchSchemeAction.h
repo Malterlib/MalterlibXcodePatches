@@ -127,7 +127,7 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (void)_prepareForMessageTracer:(id)arg1;
 - (id)runOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
-- (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupExtraDebuggingSupport:(BOOL)arg6 optimizationProfileFilePath:(id *)arg7 extensionInfos:(id)arg8 outError:(id *)arg9;
+- (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupExtraDebuggingSupport:(BOOL)arg6 extensionInfos:(id)arg7 outError:(id *)arg8;
 - (id)_preferredBuildableForSchemeCommand:(id)arg1 buildParameters:(id)arg2;
 - (void)_restoreLaunchStyleForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1;
 - (BOOL)_overrideParametersForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1 outError:(id *)arg2;

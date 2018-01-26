@@ -26,6 +26,7 @@
 }
 
 + (void)_layoutWindow:(id)arg1;
++ (BOOL)isLayingoutWindow:(id)arg1;
 + (void)_recursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2;
 + (void)_doRecursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2 completionCallBackHandlers:(id)arg3 currentLayoutPass:(long long)arg4 needsSecondPass:(char *)arg5;
 + (void)scheduleWindowForLayout:(id)arg1;

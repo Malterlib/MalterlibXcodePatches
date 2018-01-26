@@ -43,14 +43,13 @@
     DVTNotificationToken *_editorDocumentWillCloseNotificationToken;
     DVTNotificationToken *_findStringChangedNotificationToken;
     DVTNotificationToken *_navigableItemPropertyObserver;
-    DVTNotificationToken *_navigableItemCoordinatorWillForgetItemsNotificationToken;
-    DVTNotificationToken *_navigableItemCoordinatorDidForgetItemsNotificationToken;
     DVTNotificationToken *_workspaceWillWriteNotificationToken;
     DVTObservingToken *_editorDocumentForNavBarStructureChangedObservingToken;
     DVTObservingToken *_windowMainViewControllerChangedObservingToken;
     DVTNotificationToken *_windowDidBecomeKeyObserverToken;
     DVTObservingToken *_lastActiveEditorContextChangedObservingToken;
     DVTObservingToken *_currentSelectedItemsObservingToken;
+    DVTObservingToken *_themeObservingToken;
     id <DVTCancellable> _deferredUpdateSubDocumentNavigableItemsCancellableToken;
     DVTBindingToken *_navBarNavigableItemRootChildItemsBindingToken;
     DVTBindingToken *_navBarNavigableItemBindingToken;
@@ -344,6 +343,10 @@
 - (BOOL)_editorGeniusResultsGenerationEnabled;
 - (void)_writeCurrentStateToLastUsedDictionaryIfNeeded;
 - (id)_defaultEditorStateDictionaryForDocumentExtensionIdentifier:(id)arg1 forDocumentURL:(id)arg2;
+- (void)navigableItemCoordinator:(id)arg1 didForgetItems:(id)arg2;
+- (void)navigableItemCoordinator:(id)arg1 willForgetItems:(id)arg2;
+- (void)didEndTransactionScopeForNavigableItemCoordinator:(id)arg1;
+- (void)willBeginTransactionScopeForNavigableItemCoordinator:(id)arg1;
 - (id)navigableItemCoordinator:(id)arg1 editorDocumentForNavigableItem:(id)arg2;
 - (void)_greatestDocumentAncestorWillBeForgotten;
 - (id)willPresentError:(id)arg1;
@@ -353,7 +356,7 @@
 - (void)loadView;
 - (id)view;
 - (void)_setEditorView;
-- (void)_didForgetNavigableItemsNotification:(id)arg1;
+- (void)_didForgetNavigableItems:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)_adjustSubviewBorders;
 - (void)setGreatestDocumentAncestor:(IDENavigableItem *)arg1;

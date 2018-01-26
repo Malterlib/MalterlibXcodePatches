@@ -343,6 +343,7 @@ class ExploreClass {
 			}
 		}
 
+/*
 		print("extension SourceEditor {");
 		print("\tpublic class SourceEditorViewDelegate {}");
 		print("\tpublic class TextFindPanel {}");
@@ -495,6 +496,7 @@ class ExploreClass {
 		print("\tpublic class RenameOperation {}");
 
 		print("}");
+*/
 
 		print()
 	}
