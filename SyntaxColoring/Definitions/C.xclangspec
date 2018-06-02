@@ -982,55 +982,13 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.c.attribute",
                 "xcode.lang.c.identifier",
                 "xcode.lang.number",
                 "xcode.lang.c.interestingOperators",
             );
         };
     },
-    
-    {
-        Identifier = "xcode.lang.c.attribute";
-        Syntax = {
-            Tokenizer = "xcode.lang.c.lexer.attribute";
-            Rules = (
-                "__attribute__",
-                "xcode.lang.c.parenexpr.attribute",
-            );
-            Type = "xcode.syntax.c.attribute";
-        };
-    },
-    {
-        Identifier = "xcode.lang.c.lexer.attribute";
-        Syntax = {
-            IncludeRules = (
-                "xcode.lang.comment.degenerate",
-                "xcode.lang.comment.headerdoc",
-                "xcode.lang.comment.headerdoc.star",
-                "xcode.lang.comment.headerdoc.singleline.bang",
-                "xcode.lang.comment.headerdoc.singleline.slash",
-                "xcode.lang.comment",
-                "xcode.lang.comment.singleline",
-                "xcode.lang.c.preprocessor",
-                "xcode.lang.string",
-                "xcode.lang.character",
-                "xcode.lang.completionplaceholder",
-                "xcode.lang.c.identifier",
-                "xcode.lang.number",
-                "xcode.lang.c.interestingOperators",
-            );
-        };
-    },
-    {
-        Identifier = "xcode.lang.c.parenexpr.attribute";
-        Syntax = {
-            Tokenizer = "xcode.lang.c.lexer.attribute";
-            Start = "(";
-            End = ")";
-            Recursive = YES;
-        };
-    },
+
     
 /****************************************************************************/
 // MARK: Functions
@@ -1124,7 +1082,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.c.attribute",
                 "xcode.lang.c.typedef.end",
                 "xcode.lang.c.identifier",
                 "xcode.lang.number",
@@ -1147,7 +1104,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.c.attribute",
                 "xcode.lang.c.typedef.name",
                 "xcode.lang.c.identifier",
                 "xcode.lang.number",

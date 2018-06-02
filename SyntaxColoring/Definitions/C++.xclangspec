@@ -327,7 +327,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.cpp.attribute",
                 "xcode.lang.cpp.identifier",
                 "xcode.lang.number",
                 "xcode.lang.cpp.interestingOperators",
@@ -350,7 +349,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.cpp.attribute",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.identifier",
                 "xcode.lang.number",
@@ -359,49 +357,6 @@
         };
     },
 
-    {
-        Identifier = "xcode.lang.cpp.attribute";
-        Syntax = {
-            Tokenizer = "xcode.lang.cpp.lexer.attribute";
-            Rules = (
-                "__attribute__",
-                "xcode.lang.cpp.parenexpr.attribute",
-            );
-            Type = "xcode.syntax.c.attribute";
-        };
-    },
-    {
-        Identifier = "xcode.lang.cpp.lexer.attribute";
-        Syntax = {
-            IncludeRules = (
-                "xcode.lang.comment.degenerate",
-                "xcode.lang.comment.headerdoc",
-                "xcode.lang.comment.headerdoc.star",
-                "xcode.lang.comment.headerdoc.singleline.bang",
-                "xcode.lang.comment.headerdoc.singleline.slash",
-                "xcode.lang.comment",
-                "xcode.lang.comment.singleline",
-                "xcode.lang.c.preprocessor",
-                "xcode.lang.cpp.string",
-                "xcode.lang.string",
-                "xcode.lang.character",
-                "xcode.lang.completionplaceholder",
-                "xcode.lang.cpp.identifier",
-                "xcode.lang.number",
-                "xcode.lang.cpp.interestingOperators",
-            );
-        };
-    },
-    {
-        Identifier = "xcode.lang.cpp.parenexpr.attribute";
-        Syntax = {
-            Tokenizer = "xcode.lang.cpp.lexer.attribute";
-            Start = "(";
-            End = ")";
-            Recursive = YES;
-        };
-    },
-    
     {
         Identifier = "xcode.lang.cpp.lexer.operator";
         Syntax = {
@@ -833,7 +788,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.cpp.attribute",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.typedef.end",
                 "xcode.lang.cpp.identifier",
@@ -858,7 +812,6 @@
                 "xcode.lang.string",
                 "xcode.lang.character",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.cpp.attribute",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.typedef.name",
                 "xcode.lang.cpp.identifier",
