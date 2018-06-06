@@ -14,6 +14,8 @@
 
 @optional
 - (void)breakpointLocationsAdded:(NSArray *)arg1 removed:(NSArray *)arg2;
+- (void)breakpointNameChanged:(IDEBreakpoint *)arg1;
+- (void)breakpointModificationChanged:(IDEBreakpoint *)arg1;
 - (BOOL)breakpointShouldBeActivated:(IDEBreakpoint *)arg1;
 - (void)breakpointEnablementChanged:(IDEBreakpoint *)arg1;
 @end

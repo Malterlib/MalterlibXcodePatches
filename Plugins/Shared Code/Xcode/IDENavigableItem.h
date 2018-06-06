@@ -12,11 +12,12 @@
 
 #import "DVTInvalidation-Protocol.h"
 #import "DVTTableCellViewLazyProperties-Protocol.h"
+#import "IDEPathCellItem-Protocol.h"
 
 @class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSMutableArray, NSString, NSURL, _TtC13DVTFoundation9DVTSymbol;
 @protocol IDENavigableItemDebugAreaDelegate, IDENavigableItemDebugBarDelegate;
 
-@interface IDENavigableItem : NSObject <DVTTableCellViewLazyProperties, DVTInvalidation>
+@interface IDENavigableItem : NSObject <IDEPathCellItem, DVTTableCellViewLazyProperties, DVTInvalidation>
 {
     id _observationInfo;
     IDENavigableItemCoordinator *_coordinator;
@@ -84,6 +85,8 @@
 - (unsigned long long)indexOfChildItemForIdentifier:(id)arg1;
 - (id)identifierForChildItem:(id)arg1;
 - (id)archivableRepresentation;
+- (int)_filterMatchesChildGeneration;
+- (int)_filterMatchGeneration;
 - (BOOL)_filterMatchingChildrenIsCurrentGeneration;
 - (BOOL)_filterMatchesSelfOrChildForGeneration:(int)arg1;
 - (BOOL)_filterMatchesSelfOrAncestorForGeneration:(int)arg1;
@@ -151,6 +154,9 @@
 @property(readonly, nonatomic) NSColor *textColor;
 - (id)nearestDocumentFileReferenceProvidingAncestor;
 - (id)greatestDocumentAncestor;
+@property(readonly, nonatomic) NSString *accessibilityIdentifier;
+- (BOOL)representsDocumentRoot;
+@property(readonly, nonatomic) NSURL *representedURLForExternalDrag;
 @property(readonly, nonatomic, getter=isVisible) BOOL visible;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
 @property(readonly, nonatomic) NSString *groupIdentifier;
@@ -175,6 +181,7 @@
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
 - (int)sourceControlLocalStatusFlag;
+- (id)recursiveDescription;
 @property(readonly) id <IDENavigableItemDebugAreaDelegate> debugAreaDelegate;
 @property(readonly) id <IDENavigableItemDebugBarDelegate> debugBarDelegate;
 - (id)navigableItemsForPersistentNameTree:(id)arg1;

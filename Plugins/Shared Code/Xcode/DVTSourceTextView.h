@@ -51,7 +51,6 @@
     DVTAnnotationManager *_annotationManager;
     NSHashTable *_preparedViewAnnotations;
     NSView *_staticVisualizationView;
-    int _findResultStyle;
     DVTMutableRangeArray *_typeOverCompletionRanges;
     DVTMutableRangeArray *_typeOverCompletionOpenRanges;
     NSString *_pendingTypeOverCompletion;
@@ -100,7 +99,6 @@
 + (void)initialize;
 @property id <DVTSourceTextViewQuickEditDataSource> quickEditDataSource; // @synthesize quickEditDataSource=_quickEditDataSource;
 @property BOOL postsLayoutManagerNotifications; // @synthesize postsLayoutManagerNotifications=_postsLayoutManagerNotifications;
-@property int findResultStyle; // @synthesize findResultStyle=_findResultStyle;
 @property(nonatomic) unsigned long long pageGuideColumn; // @synthesize pageGuideColumn=_pageGuideColumn;
 @property(readonly) NSArray *visualizations; // @synthesize visualizations=_visualizations;
 @property(nonatomic) struct _NSRange ghostStringRange; // @synthesize ghostStringRange=_ghostStringRange;

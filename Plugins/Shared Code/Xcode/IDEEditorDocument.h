@@ -79,7 +79,7 @@
 + (id)keyPathsForValuesAffectingIde_displayName;
 + (BOOL)documentSupportsInconsistentState;
 + (id)readableTypes;
-+ (BOOL)shouldShowUtilititesAreaAtLoadForSimpleFilesFocusedWorkspace;
++ (BOOL)shouldShowInspectorAreaAtLoadForSimpleFilesFocusedWorkspace;
 + (BOOL)shouldTrackFileSystemChanges;
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;
 + (void)initialize;

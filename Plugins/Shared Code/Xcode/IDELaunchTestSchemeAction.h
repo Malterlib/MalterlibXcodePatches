@@ -94,7 +94,8 @@
 - (BOOL)_detectSwiftnessForTheRunnableWithSelector:(SEL)arg1 expectedValue:(BOOL)arg2;
 - (id)environmentVariablesForBuildParameters:(id)arg1;
 - (void)_modifyEnvironmentForSQLLite:(id)arg1;
-- (void)_modifyEnvironmentForMallocStackLogging:(id)arg1;
+- (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
+- (id)additionalOptionArchivingEntries;
 - (id)additionalOptions;
 - (id)expandMacrosInString:(id)arg1 forBuildParameters:(id)arg2;
 - (id)createAdditionalDiagnosticsDict;

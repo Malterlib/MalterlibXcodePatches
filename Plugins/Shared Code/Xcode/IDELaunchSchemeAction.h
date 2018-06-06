@@ -23,6 +23,8 @@
     DVTObservingToken *_launchSessionObservingToken;
     NSDictionary *_cachedAppExtensionBuiltPaths;
     BOOL _debugXPCServices;
+    BOOL _enableMallocStackLoggingLiteForXPCServices;
+    BOOL _hiddenMallocStackLoggingLiteForXPCServices;
     BOOL _stopOnEveryThreadSanitizerIssue;
     BOOL _stopOnEveryUBSanitizerIssue;
     BOOL _stopOnEveryMainThreadCheckerIssue;
@@ -51,6 +53,7 @@
     NSString *_debugServiceExtension;
 }
 
++ (BOOL)shouldEnableMallocLoggingLiteByDefault:(id)arg1 device:(id)arg2;
 + (id)keyPathsForValuesAffectingLaunchDueToFetchEvent;
 + (id)keyPathsForValuesAffectingDoesNonActionWork;
 + (id)keyPathsForValuesAffectingSubtitle;
@@ -79,6 +82,8 @@
 @property BOOL stopOnEveryMainThreadCheckerIssue; // @synthesize stopOnEveryMainThreadCheckerIssue=_stopOnEveryMainThreadCheckerIssue;
 @property BOOL stopOnEveryUBSanitizerIssue; // @synthesize stopOnEveryUBSanitizerIssue=_stopOnEveryUBSanitizerIssue;
 @property BOOL stopOnEveryThreadSanitizerIssue; // @synthesize stopOnEveryThreadSanitizerIssue=_stopOnEveryThreadSanitizerIssue;
+@property BOOL hiddenMallocStackLoggingLiteForXPCServices; // @synthesize hiddenMallocStackLoggingLiteForXPCServices=_hiddenMallocStackLoggingLiteForXPCServices;
+@property BOOL enableMallocStackLoggingLiteForXPCServices; // @synthesize enableMallocStackLoggingLiteForXPCServices=_enableMallocStackLoggingLiteForXPCServices;
 @property BOOL debugXPCServices; // @synthesize debugXPCServices=_debugXPCServices;
 @property(retain) IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
 // - (void).cxx_destruct;
@@ -119,6 +124,7 @@
 - (void)setStopOnEveryMainThreadCheckerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setStopOnEveryUBSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setStopOnEveryThreadSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setEnableMallocStackLoggingLiteForXPCServicesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugXPCServicesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugDocumentVersioningFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setIgnoresPersistentStateOnLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -127,6 +133,8 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (void)_prepareForMessageTracer:(id)arg1;
 - (id)runOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
+- (void)_checkForExternalExecutableToSet;
+- (void)_tweakCommandLineArgumentsBasedOnExternalExecutable:(id)arg1;
 - (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupExtraDebuggingSupport:(BOOL)arg6 extensionInfos:(id)arg7 outError:(id *)arg8;
 - (id)_preferredBuildableForSchemeCommand:(id)arg1 buildParameters:(id)arg2;
 - (void)_restoreLaunchStyleForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1;
@@ -134,6 +142,8 @@
 - (BOOL)_isMetalRemoteDebuggingEnabledWithEnvironmentVariables:(id)arg1;
 - (BOOL)hasAppExtensionsInTargets;
 - (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
+- (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
+- (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;
@@ -141,7 +151,6 @@
 @property(readonly) NSArray *additionalDSYMFilePaths;
 @property(readonly) NSArray *additionalSourceCodeFilePaths;
 - (id)additionalOptions;
-- (id)_additionalOptionEntries;
 - (id)expandMacrosInString:(id)arg1 forBuildParameters:(id)arg2;
 - (id)_expandMacrosInString:(id)arg1;
 @property(readonly) NSString *resolvedCustomWorkingDirectory; // @synthesize resolvedCustomWorkingDirectory=_resolvedCustomWorkingDirectory;
@@ -152,6 +161,7 @@
 - (void)_updateBuildableToUseForMacroExpansion;
 - (void)updateBuildableForChangeInRunnable;
 - (void)setRunContext:(id)arg1;
+- (void)_updatesBasedOnBuildablesChanged;
 - (void)primitiveInvalidate;
 - (id)createAdditionalDiagnosticsDict;
 - (id)notificationPayloadFileReferences;

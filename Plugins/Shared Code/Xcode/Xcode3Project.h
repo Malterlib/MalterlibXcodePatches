@@ -20,7 +20,7 @@
 #import "IDEWorkspaceWrappingContainer-Protocol.h"
 #import "Xcode3SourceListItemEditing-Protocol.h"
 
-@class DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, NSArray, NSMapTable, NSMutableArray, NSString, PBXProject, PBXReference;
+@class DVTLocale, DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString, PBXProject, PBXReference;
 @protocol IDETestableProvider;
 
 @interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer>
@@ -42,6 +42,7 @@
     BOOL _pbxProjectEdited;
     BOOL _shouldLogUpgradeCheck;
     NSArray *_customUpgradeTasks;
+    NSMutableDictionary *_deferredCustomUpgradeRegistrations;
     id _activeSchemeObservation;
 }
 
@@ -49,12 +50,14 @@
 + (id)deserializedSourceListItem:(id)arg1;
 + (id)pasteboardDataType;
 + (id)keyPathsForValuesAffectingIndexables;
++ (id)keyPathsForValuesAffectingBaseLocalized;
 + (id)keyPathsForValuesAffectingSourcePackageReferences;
 + (id)keyPathsForValuesAffectingBlueprints;
 + (id)containerDataFilePathsForFilePath:(id)arg1;
 + (BOOL)_shouldTrackReadOnlyStatus;
 + (BOOL)supportsFilePersistence;
 + (id)keyPathsForValuesAffectingName;
++ (id)swiftCompilerSpecification;
 + (id)availableSwiftVersions;
 + (id)xcode3ProjectCreationErrorHandler;
 + (void)setXcode3ProjectCreationErrorHandler:(Class)arg1;
@@ -103,6 +106,10 @@
 - (BOOL)installSourcesToPath:(id)arg1;
 - (void)collectMessageTracerStatisticsIntoDictionary:(id)arg1;
 - (void)analyzeModelForIssues;
+- (void)_unregisterDeferredCustomUpgradeTask:(id)arg1 handler:(id)arg2;
+- (id)_deferredCustomUpgradeHandlerForUUID:(id)arg1;
+- (id)_deferredCustomUpgradeTaskForUUID:(id)arg1;
+- (id)_registerDeferredCustomUpgradeTask:(id)arg1 handler:(id)arg2;
 - (void)enumerateUpgradeTasksWithBlock:(CDUnknownBlockType)arg1;
 - (void)updateLastSwiftMigrationToCurrent;
 @property(readonly) BOOL lastSwiftMigrationIsCurrent;
@@ -112,15 +119,15 @@
 - (void)_runUpgradeChecksIfNecessary;
 - (BOOL)setBaseSDKPlatform:(id)arg1 forConfiguration:(id)arg2;
 - (void)enableAnalyzerLocalizabilityCheckIfNeeded;
-- (id)developmentRegion;
+@property(readonly, copy) DVTLocale *developmentRegion;
 - (void)removeLocalization:(id)arg1 deleteFiles:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)moveBaseLocalizationToLocalization:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)moveLocalizationVariantGroups:(id)arg1 toLocalization:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)copyLocalizationVariantGroups:(id)arg1 toLocalization:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)addLocalization:(id)arg1;
-- (BOOL)isBaseLocalized;
-- (id)localizations;
-- (id)variantGroups;
+@property(readonly, getter=isBaseLocalized) BOOL baseLocalized;
+@property(readonly, copy) NSArray *localizations;
+@property(readonly, copy) NSSet *variantGroups;
 - (BOOL)hasConfigurationNamed:(id)arg1;
 - (id)blueprintForPBXTarget:(id)arg1;
 - (id)blueprintForIdentifier:(id)arg1;

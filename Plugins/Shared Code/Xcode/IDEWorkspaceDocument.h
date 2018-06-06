@@ -21,7 +21,7 @@
 #import "IDETestManagerUITestingPermissionSheetDelegate-Protocol.h"
 #import "IDEWorkspaceDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 @protocol DVTCancellable, DVTInvalidation;
 
 @interface IDEWorkspaceDocument : DVTDealloc2Main_Document <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
@@ -57,7 +57,8 @@
     BOOL _applicationIsTerminating;
     BOOL _isClosing;
     BOOL _isInvalidated;
-    BOOL _didSetupUISubsystems;
+    BOOL _didSetupUISubsystemsForFullWorkspace;
+    BOOL _didSetupUISubsystemsForFullWorkspaceOrSimpleFilesFocused;
     BOOL _isCheckingCanClose;
     id _openingPerformanceMetricIdentifier;
     BOOL _didRevertWindowState;
@@ -69,6 +70,7 @@
     DVTObservingToken *_simpleFilesFocusedObservingToken;
     DVTPerformanceMetric *_closingMetric;
     id <DVTCancellable> _delayedStatisticsCollectionToken;
+    double _workspaceSessionStartTime;
     BOOL _dvt_closed;
     BOOL _createdAsUntitled;
     BOOL _didReportCanClose;
@@ -76,6 +78,7 @@
     IDEScriptingSchemeActionResult *_lastScriptingSchemeActionResult;
     IDEFindNavigatorQueryHistoryManager *_findNavigatorQueryHistoryManager;
     IDEOpenQuicklyWorkspaceContentContextProvider *_openQuicklyContentContextProvider;
+    IDELibraryWindowController *_libraryWindowController;
     IDEUITestingTCCPermissionWindowController *_TCCPermissionWindowController;
 }
 
@@ -96,6 +99,7 @@
 + (void)initialize;
 @property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
 @property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
+@property(readonly) IDELibraryWindowController *libraryWindowController; // @synthesize libraryWindowController=_libraryWindowController;
 @property(readonly) IDEOpenQuicklyWorkspaceContentContextProvider *openQuicklyContentContextProvider; // @synthesize openQuicklyContentContextProvider=_openQuicklyContentContextProvider;
 @property(readonly) IDEFindNavigatorQueryHistoryManager *findNavigatorQueryHistoryManager; // @synthesize findNavigatorQueryHistoryManager=_findNavigatorQueryHistoryManager;
 @property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
@@ -108,7 +112,7 @@
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
 // - (void).cxx_destruct;
-- (id)dvtExtraBindings;
+- (id)dvt_extraBindings;
 - (id)storedRunDestinationSelectable;
 - (id)storedRunContextName;
 - (id)activeRunDestinationInfo;
@@ -186,6 +190,8 @@
 - (BOOL)_shouldShowAutosaveButtonForWindow:(id)arg1;
 - (BOOL)_checkAutosavingPossibilityAndReturnError:(id *)arg1;
 - (BOOL)checkAutosavingSafetyAndReturnError:(id *)arg1;
+- (void)setupUISubsystemsForFullWorkspace;
+- (void)setupUISubsystemsForFullWorkspaceOrSimpleFilesFocused;
 - (void)setupUISubsystems;
 - (void)_workspace:(id)arg1 failedToResolveContainerForProjectFile:(id)arg2;
 - (void)_setupLaunchSessionsObservation;
@@ -193,6 +199,7 @@
 - (id)_firstErrorForExecutionTracker:(id)arg1;
 - (void)_reportSCMStatisticsInWorkspace:(id)arg1;
 - (void)_reportBuildPhaseStatisticsInWorkspace:(id)arg1;
+- (long long)_projectCountForWorkspace:(id)arg1;
 - (void)_reportSchemeStatisticsInWorkspace:(id)arg1 inReport:(id)arg2;
 - (void)_reportTargetFileTypes:(id)arg1;
 - (id)_makeFileExtensions;
@@ -200,6 +207,7 @@
 - (id)_allClangFileExtensions;
 - (id)_objcppFileExtensions;
 - (id)_cppFileExtensions;
+- (void)_reportWorkspaceMetricsForInternalUsersAtStage:(long long)arg1;
 - (void)_reportFileTypeTotal:(unsigned long long)arg1 forFileType:(id)arg2;
 - (void)_reportTargetCount:(unsigned long long)arg1 forTargetType:(id)arg2;
 - (void)_reportStatisticsInWorkspace:(id)arg1;

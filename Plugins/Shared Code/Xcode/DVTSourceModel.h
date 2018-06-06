@@ -19,7 +19,6 @@
     DVTCharStream *_inputStream;
     DVTSourceScanner *_scanner;
     struct _NSRange _dirtyRange;
-    long long _batchDelta;
     DVTSourceModelItem *_sourceItems;
     BOOL _isDoingBatchEdit;
     DVTSourceModelParser *_nativeParser;
@@ -27,7 +26,6 @@
 
 + (void)initialize;
 @property BOOL isDoingBatchEdit; // @synthesize isDoingBatchEdit=_isDoingBatchEdit;
-@property long long batchDelta; // @synthesize batchDelta=_batchDelta;
 @property struct _NSRange dirtyRange; // @synthesize dirtyRange=_dirtyRange;
 @property(retain) DVTSourceScanner *scanner; // @synthesize scanner=_scanner;
 @property(retain) DVTSourceModelItem *sourceItems; // @synthesize sourceItems=_sourceItems;

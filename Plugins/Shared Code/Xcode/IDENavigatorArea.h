@@ -15,17 +15,12 @@
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
 
-@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigator, IDENavigatorAreaDFRController, IDENavigatorSearchFilterControlBar, NSArrayController, NSMutableDictionary, NSString, NSTouchBar, NSVisualEffectView;
-@protocol DVTCancellable;
+@class DVTBorderedView, DVTChooserView, DVTDividerLine, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigator, IDENavigatorAreaDFRController, IDENavigatorSearchFilterControlBar, NSArrayController, NSMutableDictionary, NSString, NSTouchBar, NSVisualEffectView;
 
 @interface IDENavigatorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, DVTReplacementViewDelegate, DVTStatefulObject>
 {
     DVTChooserView *_chooserView;
     DVTObservingToken *_workspaceActivityObservingToken;
-    DVTObservingToken *_editorSelectedItemObservingToken;
-    DVTObservingToken *_currentNavigatorObservingToken;
-    DVTObservingToken *_themeObserver;
-    id <DVTCancellable> _updateFocusedEditorSelectedItemToken;
     NSMutableDictionary *_perNavigatorCache;
     BOOL _isInvalidating;
     IDENavigatorSearchFilterControlBar *_filterControlBar;
@@ -34,8 +29,7 @@
     DVTExtension *_currentExtension;
     NSVisualEffectView *_visualEffectView;
     DVTBorderedView *_borderedView;
-    DVTBorderedView *_chooserNavigatorSeparatorView;
-    DVTBorderedView *_navigatorRightBorderedView;
+    DVTDividerLine *_chooserNavigatorSeparatorView;
     IDENavigatorAreaDFRController *_touchBarSupportController;
 }
 
@@ -45,8 +39,7 @@
 + (id)navigatorsForContext:(id)arg1;
 + (id)keyPathsForValuesAffectingWorkspace;
 @property(retain) IDENavigatorAreaDFRController *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
-@property __weak DVTBorderedView *navigatorRightBorderedView; // @synthesize navigatorRightBorderedView=_navigatorRightBorderedView;
-@property __weak DVTBorderedView *chooserNavigatorSeparatorView; // @synthesize chooserNavigatorSeparatorView=_chooserNavigatorSeparatorView;
+@property __weak DVTDividerLine *chooserNavigatorSeparatorView; // @synthesize chooserNavigatorSeparatorView=_chooserNavigatorSeparatorView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSVisualEffectView *visualEffectView; // @synthesize visualEffectView=_visualEffectView;
 @property(retain, nonatomic) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;
@@ -65,7 +58,6 @@
 - (void)_clearPerNavigatorCache;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)viewWillUninstall;
-- (void)_handleCurrentNavigatorOrSelectedItemChanged;
 - (void)viewDidInstall;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;

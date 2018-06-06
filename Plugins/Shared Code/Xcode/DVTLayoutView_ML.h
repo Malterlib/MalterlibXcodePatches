@@ -10,64 +10,44 @@
 
 #include "Shared.h"
 
-@class NSCountedSet, NSMapTable, NSMutableDictionary;
+#import "DVTStructuredLayoutView-Protocol.h"
 
-@interface DVTLayoutView_ML : NSView
+@class DVTStructuredLayoutViewState;
+
+@interface DVTLayoutView_ML : NSView <DVTStructuredLayoutView>
 {
-    NSCountedSet *_frameChangeObservations;
-    NSCountedSet *_boundsChangeObservations;
     BOOL _implementsDrawRect;
-    BOOL _implementsLayoutCompletionCallback;
-    BOOL _layoutNeeded;
-    NSMutableDictionary *_invalidationTokens;
-    NSMapTable *_frameChangeStacksByView;
-    NSMapTable *_boundsChangeStacksByView;
-    BOOL _needsSecondLayoutPass;
+    DVTStructuredLayoutViewState *_dvt_layoutState;
 }
 
-+ (void)_layoutWindow:(id)arg1;
++ (void)initialize;
 + (BOOL)isLayingoutWindow:(id)arg1;
-+ (void)_recursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2;
-+ (void)_doRecursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2 completionCallBackHandlers:(id)arg3 currentLayoutPass:(long long)arg4 needsSecondPass:(char *)arg5;
-+ (void)scheduleWindowForLayout:(id)arg1;
-+ (id)alreadyLaidOutViewsForCurrentDisplayPassOfWindow:(id)arg1;
-+ (void)clearAlreadyLaidOutViewsForCurrentDisplayPassOfWindow:(id)arg1;
-@property BOOL needsSecondLayoutPass; // @synthesize needsSecondLayoutPass=_needsSecondLayoutPass;
-@property(getter=isLayoutNeeded) BOOL layoutNeeded; // @synthesize layoutNeeded=_layoutNeeded;
+@property(readonly) DVTStructuredLayoutViewState *dvt_layoutState; // @synthesize dvt_layoutState=_dvt_layoutState;
 // - (void).cxx_destruct;
 - (BOOL)wantsDefaultClipping;
-- (void)stopInvalidatingLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
-- (void)invalidateLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
-- (void)_autoLayoutViewViewFrameDidChange:(id)arg1;
-- (void)_autoLayoutViewViewBoundsDidChange:(id)arg1;
-- (void)_invalidateLayoutIfNeededAfterRegisteringRectChange:(struct CGRect)arg1 forView:(id)arg2 table:(id)arg3;
-- (void)stopInvalidatingLayoutWithBoundsChangesToView:(id)arg1;
-- (void)stopInvalidatingLayoutWithFrameChangesToViews:(id)arg1;
-- (void)stopInvalidatingLayoutWithFrameChangesToView:(id)arg1;
-- (void)invalidateLayoutWithBoundsChangesToView:(id)arg1;
-- (void)invalidateLayoutWithFrameChangesToViews:(id)arg1;
-- (void)invalidateLayoutWithFrameChangesToView:(id)arg1;
-- (void)_tearDownObservationForObservedObject:(id)arg1 notificationName:(id)arg2 observationCountTable:(id)arg3 rectChangeStackTable:(id)arg4;
-- (void)_setupObservationForObservedObject:(id)arg1 selector:(SEL)arg2 notificationName:(id)arg3 observationCountTable:(id *)arg4 rectChangeStackTable:(id *)arg5;
-- (void)setBoundsOrigin:(struct CGPoint)arg1;
-- (void)setBoundsSize:(struct CGSize)arg1;
-- (void)setFrameSize:(struct CGSize)arg1;
-- (void)didCompleteLayout;
-- (void)layoutBottomUp;
-- (void)layoutTopDown;
-- (void)layoutIfNeeded;
-- (void)didLayoutSubview:(id)arg1;
-- (void)willLayoutSubview:(id)arg1;
-- (id)subviewsOrderedForLayout;
-- (void)viewWillDraw;
-- (void)_reallyLayoutIfNeededBottomUp;
-- (void)_reallyLayoutIfNeededTopDown;
-- (void)invalidateLayout;
-- (void)viewDidMoveToWindow;
+- (void)dvt_didCompleteLayout;
+- (void)dvt_didLayoutSubview:(id)arg1;
+- (void)dvt_willLayoutSubview:(id)arg1;
+- (void)dvt_positionSubviewsAndSizeSelfAfterSubviewLayout;
+- (void)dvt_configureSubviewsBeforeSubviewLayout;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_DVTLayoutView_MLSharedInit;
 - (void)dealloc;
+- (void)stopInvalidatingLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
+- (void)invalidateLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
+- (void)stopInvalidatingLayoutWithFrameChangesToViews:(id)arg1;
+- (void)stopInvalidatingLayoutWithFrameChangesToView:(id)arg1;
+- (void)invalidateLayoutWithFrameChangesToViews:(id)arg1;
+- (void)invalidateLayoutWithFrameChangesToView:(id)arg1;
+- (void)setNeedsSecondLayoutPass:(BOOL)arg1;
+- (void)invalidateLayout;
+- (void)layoutIfNeeded;
+- (void)didLayoutSubview:(id)arg1;
+- (void)willLayoutSubview:(id)arg1;
+- (void)didCompleteLayout;
+- (void)layoutBottomUp;
+- (void)layoutTopDown;
 
 @end
 

@@ -17,6 +17,7 @@
 @interface IDEWorkspaceWindow : IDETabbedWindow <NSKeyedArchiverDelegate>
 {
     DVTObservingToken *_workspaceFinishedLoadingObservingToken;
+    BOOL _isTabOverviewVisible;
     BOOL __isOverridingEscapeInsteadOfExitingFullscreen;
 }
 
@@ -39,6 +40,7 @@
 - (void)exitFullScreenMode:(id)arg1;
 - (void)cancelOperation:(id)arg1;
 - (void)toggleTabBar:(id)arg1;
+- (void)toggleTabOverview:(id)arg1;
 - (void)renameCurrentTab:(id)arg1;
 - (void)toggleToolbarShown:(id)arg1;
 - (id)firstResponder;

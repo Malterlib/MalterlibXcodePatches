@@ -41,6 +41,7 @@
 @property(retain) id <IDEEditorDelegate> delegate; // @synthesize delegate=_delegate;
 // - (void).cxx_destruct;
 - (void)shouldNavigateAway:(CDUnknownBlockType)arg1;
+- (BOOL)shouldCloseDocumentWhenClosingEditor;
 - (BOOL)hideGeniusCategory:(id)arg1 results:(id)arg2;
 - (id)relatedMenuItemsForNavItem:(id)arg1;
 - (void)didSetupEditor;

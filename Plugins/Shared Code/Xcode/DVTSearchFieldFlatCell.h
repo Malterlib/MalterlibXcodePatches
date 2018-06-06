@@ -10,15 +10,16 @@
 
 #include "Shared.h"
 
-#import "IDEUpgradeTask.h"
-
-@interface IDECustomUpgradeTask : IDEUpgradeTask
+@interface DVTSearchFieldFlatCell : NSSearchFieldCell
 {
 }
 
-- (void)deferHandlingTask;
-@property(readonly) BOOL shouldHandleImmediately;
-- (id)handlerForTask;
++ (id)_borderColor:(id)arg1;
++ (id)_innerShadowColor:(id)arg1 forLineWidth:(double)arg2;
++ (id)_backgroundColor:(id)arg1;
++ (BOOL)_isKeyOrMainWindow:(id)arg1;
++ (void)_drawBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 
 @end
 

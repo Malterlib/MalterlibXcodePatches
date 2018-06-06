@@ -35,6 +35,7 @@
 - (id)initWithName:(NSString *)arg1 dataURL:(NSURL *)arg2;
 
 @optional
++ (NSString *)initialPreferenceSetName;
 + (NSString *)titleForManagePreferenceSets;
 @end
 

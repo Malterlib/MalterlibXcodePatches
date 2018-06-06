@@ -10,9 +10,11 @@
 
 #include "Shared.h"
 
-@class NSColor, NSTextFieldCell, NSTextView;
+#import "DVTSearchFieldFlatCell.h"
 
-@interface DVTSearchFieldCell : NSSearchFieldCell
+@class NSTextFieldCell, NSTextView;
+
+@interface DVTSearchFieldCell : DVTSearchFieldFlatCell
 {
     NSTextFieldCell *_numberOfMatchesCell;
     BOOL _filterField;
@@ -23,6 +25,7 @@
     long long _numberOfMatches;
 }
 
++ (id)_placeholderTextColor:(id)arg1;
 @property BOOL hasText; // @synthesize hasText=_hasText;
 @property long long numberOfMatches; // @synthesize numberOfMatches=_numberOfMatches;
 @property(retain) NSTextView *fieldEditor; // @synthesize fieldEditor=_fieldEditor;
@@ -39,14 +42,6 @@
 - (struct CGRect)_numberOfMatchesRectForBounds:(struct CGRect)arg1;
 - (BOOL)_shouldShowNumberOfMatches;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-@property(readonly) NSColor *placeholderTextColor;
-@property(readonly) NSColor *borderColor;
-- (id)_innerShadowColorForLineWidth:(double)arg1;
-- (id)backgroundColor;
-@property(readonly) BOOL willDrawVibrantly;
-@property(readonly) BOOL isKeyOrMainWindow;
-- (void)_drawBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (double)progressIndicatorWidth;
 - (void)setAdditionalCancelButtonInset:(unsigned long long)arg1;
 - (unsigned long long)additionalCancelButtonInset;
@@ -63,7 +58,6 @@
 - (id)_placeholderAttributedString;
 - (id)_placeholderString;
 - (id)_attributedStringForEditing;
-- (long long)interiorBackgroundStyle;
 - (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)_dvtFindBarSearchFieldCellCommonInit;
 - (id)copy;

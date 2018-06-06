@@ -40,7 +40,8 @@
 + (id)keyPathsForValuesAffectingGroupIdentifier;
 + (id)keyPathsForValuesAffectingAdditionalFilterMatchingText;
 + (id)keyPathsForValuesAffectingToolTip;
-+ (id)keyPathsForValuesAffectingAccessibleDescription;
++ (id)keyPathsForValuesAffectingAccessibilityIdentifier;
++ (id)keyPathsForValuesAffectingAccessibleImageDescription;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingName;
@@ -77,6 +78,7 @@
 - (id)groupIdentifier;
 - (id)additionalFilterMatchingText;
 - (id)toolTip;
+- (id)accessibilityIdentifier;
 - (id)accessibleImageDescription;
 - (id)image;
 - (id)subtitle;

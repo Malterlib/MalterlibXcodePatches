@@ -29,6 +29,7 @@
 + (id)keyPathsForValuesAffectingParentWindowController;
 + (id)keyPathsForValuesAffectingMainViewControllerInParentWindow;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
++ (BOOL)requiresUninstallAfterLoadView;
 + (id)viewControllerUsingDefaultNib;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;

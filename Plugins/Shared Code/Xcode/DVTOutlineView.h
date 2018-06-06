@@ -15,7 +15,7 @@
 #import "DVTEmptyContentPlaceholderContainer-Protocol.h"
 #import "DVTProgressIndicatorProvidingView-Protocol.h"
 
-@class NSArray, NSEvent, NSFont, NSMapTable, NSString, NSTextFieldCell, NSTrackingArea;
+@class NSArray, NSEvent, NSFont, NSMapTable, NSMutableSet, NSString, NSTextFieldCell, NSTrackingArea;
 
 @interface DVTOutlineView : DVTDealloc2Main_OutlineView <DVTProgressIndicatorProvidingView, DVTEmptyContentPlaceholderContainer>
 {
@@ -23,6 +23,9 @@
     NSTrackingArea *_mouseHoverTrackingArea;
     NSTextFieldCell *_dataCellForGroupRow;
     NSString *_delegateClassName;
+    NSString *_dvtTableRowViewIdentifier;
+    NSMutableSet *_dvtTableCellViewOneLineIdentifiers;
+    NSMutableSet *_dvtTableCellViewMultiLineIdentifiers;
     struct {
         unsigned int breaksCyclicSortDescriptors:1;
         unsigned int delegateRespondsToShouldMouseHover:1;
@@ -71,6 +74,7 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)_cleanupWork;
+- (void)updateLayer;
 - (void)viewWillDraw;
 - (void)willHideEmptyContentString;
 - (void)willShowEmptyContentString;
@@ -92,9 +96,13 @@
 - (void)setDelegate:(id)arg1;
 - (void)_registerNibWithName:(id)arg1 usingIdentifier:(id)arg2;
 - (void)registerDVTTableCellViewPlaceholderNibUsingIdentifier:(id)arg1;
+- (id)makeViewWithIdentifier:(id)arg1 owner:(id)arg2;
 - (void)registerDVTTableRowViewNibUsingIdentifier:(id)arg1;
+- (void)registerDVTTableRowViewUsingIdentifier:(id)arg1;
 - (void)registerDVTTableCellViewMultiLineNibUsingIdentifier:(id)arg1;
+- (void)registerDVTTableCellViewMultiLineUsingIdentifier:(id)arg1;
 - (void)registerDVTTableCellViewOneLineNibUsingIdentifier:(id)arg1;
+- (void)registerDVTTableCellViewOneLineUsingIdentifier:(id)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
@@ -103,6 +111,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(nonatomic) BOOL followsFontAndColorTheme;
 @property(readonly) Class superclass;
 
 @end

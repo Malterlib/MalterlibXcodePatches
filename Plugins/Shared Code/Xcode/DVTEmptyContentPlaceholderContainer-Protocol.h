@@ -17,6 +17,7 @@
 @property(copy, nonatomic) NSString *emptyContentString;
 
 @optional
+@property(nonatomic) BOOL followsFontAndColorTheme;
 - (void)willHideEmptyContentString;
 - (void)willShowEmptyContentString;
 @end

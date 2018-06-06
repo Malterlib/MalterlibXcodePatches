@@ -65,6 +65,7 @@
     DVTDynamicLogController *_builderTimingDataLogController;
 }
 
++ (void)outputBuildStatistics:(id)arg1 toSummary:(id)arg2;
 + (CDUnknownBlockType)buildStatisticsEmissionSummaryBlock;
 + (id)keyPathsForValuesAffectingIsExecuting;
 + (long long)defaultQualityOfServiceClass;
@@ -118,6 +119,7 @@
 - (id)_buildableForSingleFileToBuildStartingWithBuildable:(id)arg1 recursionDetectionSet:(id)arg2;
 - (void)_addOperationsForAllBuildables;
 - (void)addOperationsToQueue:(id)arg1;
+- (id)_preparationLogRecorder;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1 recursionDetectionArray:(id)arg2;
 - (void)_configureBuilder:(id)arg1;

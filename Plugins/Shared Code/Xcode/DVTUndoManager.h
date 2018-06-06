@@ -28,6 +28,7 @@
     id <DVTUndoManagerDelegate> _delegate;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(retain, nonatomic) id <DVTUndoManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) BOOL willAutomaticallyUndoNextChangeGroup; // @synthesize willAutomaticallyUndoNextChangeGroup=_willAutomaticallyUndoNextChangeGroup;
@@ -39,9 +40,11 @@
 - (void)registerUndoWithTarget:(id)arg1 selector:(SEL)arg2 object:(id)arg3;
 - (void)enableUndoRegistration;
 - (void)disableUndoRegistration;
+- (void)dealloc;
 - (void)primitiveInvalidate;
 - (void)endUndoGrouping;
 - (void)beginUndoGrouping;
+- (void)_dvt_removeAllActions;
 - (void)removeAllActions;
 - (id)_undoRegistrationBacktraces;
 - (id)_undoGroupingBacktraces;

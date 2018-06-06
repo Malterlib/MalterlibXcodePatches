@@ -40,7 +40,6 @@
     DVTSplitViewItem *_debugAreaSplitViewItem;
     double _heightToReturnToDebuggerArea;
     id _launchSessionObserver;
-    DVTObservingToken *_themeObserver;
     IDEWorkspaceTabControllerLayoutTree *_layoutTreeForNavigationHUD;
     IDEWorkspaceTabControllerLayoutTree *_oldLayoutTreeFromStateSaving;
     BOOL _needsToRefreshContexts;

@@ -54,6 +54,8 @@
     IDERefactoring *_refactoring;
     NSMapTable *_fileRefsToResolvedFilePaths;
     DVTTimeSlicedMainThreadWorkQueue *_fileReferenceForIndexingQueue;
+    NSMapTable *_identifiersToIndexablesPendingRegistration;
+    DVTTimeSlicedMainThreadWorkQueue *_indexRegistrationQueue;
     IDEDeviceInstallWorkspaceMonitor *_deviceInstallWorkspaceMonitor;
     IDEProvisioningWorkspaceMonitor *_provisioningWorkspaceMonitor;
     IDESourceControlWorkspaceMonitor *_sourceControlWorkspaceMonitor;
@@ -129,13 +131,13 @@
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
 @property(readonly, nonatomic) long long indexGenerationCounter; // @synthesize indexGenerationCounter=_indexGenerationCounter;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
-@property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
 @property(copy) NSDate *icloudDriveLastHeldDate; // @synthesize icloudDriveLastHeldDate=_icloudDriveLastHeldDate;
 @property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
 @property(retain, nonatomic) IDEWorkspaceSharedSettings *sharedSettings; // @synthesize sharedSettings=_sharedSettings;
 @property(retain, nonatomic) IDEWorkspaceUserSettings *userSettings; // @synthesize userSettings=_userSettings;
 @property(nonatomic) BOOL pendingFileReferencesAndContainers; // @synthesize pendingFileReferencesAndContainers=_pendingFileReferencesAndContainers;
 @property(retain, nonatomic) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
+@property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
 @property BOOL hostsOnlyPlayground; // @synthesize hostsOnlyPlayground=_hostsOnlyPlayground;
 @property BOOL hostsOnlyXcode3Project; // @synthesize hostsOnlyXcode3Project=_hostsOnlyXcode3Project;
 @property BOOL hostsOnlyWrappedContainer; // @synthesize hostsOnlyWrappedContainer=_hostsOnlyWrappedContainer;
@@ -194,6 +196,7 @@
 @property(readonly) NSString *name;
 @property(readonly) BOOL supportsSourcePackages;
 @property(readonly) id <IDEBuildSystemServiceProvider> buildSystemServiceProvider;
+@property(readonly) BOOL wantsModernBuildSystem;
 @property(readonly) BOOL usesModernBuildSystem;
 - (void)_invalidateBuildSystemServiceProvider;
 @property(retain, nonatomic) NSNumber *shouldUseLegacyBuildSystem; // @dynamic shouldUseLegacyBuildSystem;

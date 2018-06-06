@@ -30,7 +30,7 @@
 - (void)_adjustSubviews;
 - (void)dismissButtonAction:(id)arg1;
 @property(readonly) double preferredScopeBarHeight;
-@property int borderSides;
+@property unsigned long long borderSides;
 - (void)loadView;
 - (void)primitiveInvalidate;
 - (id)initWithContentViewController:(id)arg1;

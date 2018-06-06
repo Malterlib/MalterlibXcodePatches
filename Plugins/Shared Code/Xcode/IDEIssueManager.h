@@ -48,6 +48,9 @@
     DVTObservingToken *_activeSchemeObserver;
     DVTObservingToken *_runDestinationObserver;
     DVTObservingToken *_implicitDependenciesObserver;
+    DVTObservingToken *_referencedBlueprintsOberver;
+    DVTObservingToken *_referencedContainersObserver;
+    DVTObservingToken *_workspaceFinishedLoadingObserver;
     BOOL _liveIssuesEnabled;
     IDEWorkspace *_workspace;
     IDEIssueLogRecordsGroup *_issueLogRecordsGroup;

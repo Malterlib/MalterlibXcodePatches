@@ -92,7 +92,7 @@
 - (struct _NSRange)_inputTextRange;
 - (void)_reapplyAttributes;
 - (void)_recreateAttributes;
-- (void)_themeFontsAndColorsUpdated;
+- (void)themeFontsAndColorsUpdates;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)setCompletionStrategies:(id)arg1;
 - (void)invalidateCompletionsDataSource;

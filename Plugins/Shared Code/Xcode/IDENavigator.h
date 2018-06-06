@@ -16,12 +16,13 @@
 #import "IDEFilterControlBarTarget-Protocol.h"
 #import "IDENavigableItemCoordinatorDelegate-Protocol.h"
 
-@class DVTNotificationToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemFilter, NSMenu, NSMutableDictionary, NSString, NSView;
+@class DVTNotificationToken, DVTObservingToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemFilter, NSMenu, NSMutableDictionary, NSString, NSView;
 
 @interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEFilterControlBarTarget, DVTReplacementViewDelegate>
 {
     BOOL _usesManualNavigableItemCoordinatorManagement;
     DVTNotificationToken *_willForgetNavigableItemsNotificationToken;
+    DVTObservingToken *_editorSelectedItemObservingToken;
     BOOL _wantsCachedNavigableItemCoordinator;
     BOOL _wantsUniquingNavigableItemCoordinator;
     BOOL _filteringEnabled;
@@ -33,6 +34,7 @@
 }
 
 + (id)keyPathsForValuesAffectingFilteringEnabled;
++ (BOOL)allowsStrongSelection;
 + (id)keyPathsForValuesAffectingFilterProgress;
 + (BOOL)automaticallyNotifiesObserversOfRootNavigableItem;
 + (void)initialize;
@@ -47,7 +49,7 @@
 // - (void).cxx_destruct;
 - (void)willForgetNavigableItems:(id)arg1;
 - (void)_navigableItemCoordinatorWillForgetNavigableItems:(id)arg1;
-- (void)focusedEditorDidSelectItem:(id)arg1;
+- (void)focusedEditorDidSelectItem;
 - (id)navigableItemsForArchivedNavigableItems:(id)arg1;
 - (void)revealArchivedNavigableItems:(id)arg1;
 - (void)revealNavigableItems:(id)arg1;
@@ -67,11 +69,15 @@
 - (void)setOutputSelection:(id)arg1;
 - (void)updateBoundSelection;
 - (void)viewWillUninstall;
+@property(readonly) BOOL prefersStrongSelection;
+- (BOOL)_isNavItemDescendantOfRootNavItem:(id)arg1;
+@property(readonly) IDENavigableItem *itemToSelectBasedOnItemBeingEdited;
+- (void)_createEditorSelectedItemObserverIfNecessary;
 - (void)viewDidInstall;
 - (id)_createNavigableItemCoordinator;
 - (void)loadView;
 - (void)updateBoundContent;
-- (id)dvtExtraBindings;
+- (id)dvt_extraBindings;
 - (id)navigatorFilterContextsForFunctionBar;
 
 // Remaining properties

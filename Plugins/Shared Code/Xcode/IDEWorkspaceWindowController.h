@@ -33,7 +33,6 @@
     DVTObservingToken *_workspaceFinishedLoadingObservingToken;
     DVTObservingToken *_navigationTargetedEditorDocumentObservingToken;
     DVTObservingToken *_tabLabelObservingToken;
-    DVTObservingToken *_themeObserver;
     DVTObservingToken *_firstResponderValidObservingToken;
     DVTNotificationToken *_deallocatingFirstResponderNotificationToken;
     DVTNotificationToken *_editorDocumentIsEditedNotificationToken;
@@ -156,6 +155,7 @@
 - (void)toggleToolbarShown:(id)arg1;
 - (BOOL)wantsToolbarVisibleInFullScreen;
 @property(readonly) BOOL shouldEnableToolbarItems;
+- (id)document;
 - (void)windowDidEndSheet:(id)arg1;
 - (void)windowWillBeginSheet:(id)arg1;
 - (void)windowDidResignMain:(id)arg1;

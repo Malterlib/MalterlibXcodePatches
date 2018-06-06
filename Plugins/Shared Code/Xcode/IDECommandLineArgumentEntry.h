@@ -14,12 +14,12 @@
 
 @interface IDECommandLineArgumentEntry : NSObject
 {
-    BOOL _isEnabled;
+    BOOL _enabled;
     NSString *_argument;
 }
 
 + (id)argumentEntriesForLegacyValues:(id)arg1;
-@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_isEnabled;
+@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(copy) NSString *argument; // @synthesize argument=_argument;
 // - (void).cxx_destruct;
 - (void)setIsEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;

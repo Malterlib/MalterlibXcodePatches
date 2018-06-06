@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
+@class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunDestination, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
 @protocol IDECustomDataStoring;
 
 @interface IDEScheme : NSObject <DVTInvalidation>
@@ -33,6 +33,7 @@
     IDERunContextManager *_runContextManager;
     IDEContainer<IDECustomDataStoring> *_customDataStoreContainer;
     DVTCustomDataSpecifier *_customDataSpecifier;
+    IDERunDestination *_activeRunDestination;
     NSArray *_availableRunDestinations;
     BOOL _didResortToFallbackRunDestination;
     BOOL _isShown;
@@ -86,6 +87,7 @@
 @property(readonly) DVTCustomDataSpecifier *customDataSpecifier; // @synthesize customDataSpecifier=_customDataSpecifier;
 @property(retain, nonatomic) IDEContainer<IDECustomDataStoring> *customDataStoreContainer; // @synthesize customDataStoreContainer=_customDataStoreContainer;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
+@property(retain) IDERunDestination *activeRunDestination; // @synthesize activeRunDestination=_activeRunDestination;
 @property(nonatomic, getter=isPersisted) BOOL persisted; // @synthesize persisted=_persisted;
 @property(getter=isTransient) BOOL transient; // @synthesize transient=_transient;
 @property BOOL wasUpgraded; // @synthesize wasUpgraded=_wasUpgraded;
@@ -122,8 +124,10 @@
 - (BOOL)_executionActionsNeedCurrentArchiveVersion;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)_groupAndImposeDependenciesForOrderedOperations:(id)arg1;
-- (id)_buildOperationGroupForSchemeOperationParameters:(id)arg1 buildParameters:(id)arg2 buildLog:(id)arg3 dontActuallyRunCommands:(BOOL)arg4 restorePersistedBuildResults:(BOOL)arg5 schemeActionRecord:(id)arg6 overridingBuildables:(id)arg7 error:(id *)arg8;
+- (id)_buildOperationGroupForSchemeOperationParameters:(id)arg1 buildParameters:(id)arg2 buildLog:(id)arg3 dontActuallyRunCommands:(BOOL)arg4 restorePersistedBuildResults:(BOOL)arg5 schemeActionRecord:(id)arg6 error:(id *)arg7;
 - (id)_cleanOperationGroupForExecutionEnvironment:(id)arg1 orderedBuildables:(id)arg2 buildConfiguration:(id)arg3 buildLog:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 schemeActionRecord:(id)arg7 error:(id *)arg8;
+- (CDUnknownBlockType)postActionEnvironmentPopulatorForBuildOperation:(id)arg1;
+- (BOOL)_shouldRunPostBuildActionsForBuildResult:(long long)arg1;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
 - (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8;
 - (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
@@ -143,6 +147,7 @@
 @property(copy) NSString *name;
 - (void)_primitiveSetCustomDataStoreContainer:(id)arg1;
 - (void)_updateCustomDataStoreContainer:(id)arg1 andSpecifier:(id)arg2;
+- (void)setAvailableRunDestinations:(NSArray *)arg1;
 - (void)_actuallyInvalidateAvailableRunDestinations;
 - (void)_invalidateAvailableRunDestinations;
 - (void)immediatelyInvalidateAvailableRunDestinations;
@@ -158,7 +163,9 @@
 - (id)buildConfigurationForSchemeCommand:(id)arg1;
 - (id)buildablesIncludingDependenciesForSchemeCommand:(id)arg1;
 - (id)buildablesForSchemeCommand:(id)arg1;
+- (id)primaryBuildablesForSchemeCommand:(id)arg1;
 - (id)runnablePathForSchemeCommand:(id)arg1 destination:(id)arg2;
+- (id)_runnableSchemeActionForSchemeCommand:(id)arg1;
 - (id)schemeActionForSchemeCommand:(id)arg1;
 - (BOOL)hasRunnableForBuildableProduct:(id)arg1;
 @property(readonly, getter=isInstallable) BOOL installable;

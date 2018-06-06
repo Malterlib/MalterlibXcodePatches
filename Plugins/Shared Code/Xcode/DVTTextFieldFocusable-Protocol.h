@@ -8,17 +8,14 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
 //
 
-#include "Shared.h"
 
-#import "IDEUpgradeTask.h"
+@class NSColor;
 
-@interface IDECustomUpgradeTask : IDEUpgradeTask
-{
-}
+@protocol DVTTextFieldFocusable <NSObject>
+@property(readonly) BOOL hasActiveFilter;
+@property(readonly) BOOL hasKeyboardFocus;
 
-- (void)deferHandlingTask;
-@property(readonly) BOOL shouldHandleImmediately;
-- (id)handlerForTask;
-
+@optional
+@property(readonly) NSColor *explicitBackgroundColor;
 @end
 

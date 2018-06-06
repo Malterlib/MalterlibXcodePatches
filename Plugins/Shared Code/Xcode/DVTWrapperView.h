@@ -21,7 +21,7 @@
     struct CGSize _minContentFrameSize;
     struct CGSize _maxContentFrameSize;
     BOOL _isPadding;
-    BOOL _isReplacingSubview;
+    BOOL _allowAddSubview;
     NSMapTable *_subviewObservations;
     NSArray *_currentContentViewConstraints;
     DVTStackBacktrace *_setFrameSizeBacktrace;
@@ -56,6 +56,7 @@
 - (void)_invalidateLayoutBecauseOfSubviewFrameChange:(id)arg1;
 - (struct CGSize)dvt_minimumSize;
 @property(retain) NSView *contentView;
+- (void)dvt_insertBackgroundVisualEffectView:(id)arg1;
 - (void)replaceSubview:(id)arg1 with:(id)arg2;
 - (void)setSubviews:(id)arg1;
 - (void)addSubview:(id)arg1;

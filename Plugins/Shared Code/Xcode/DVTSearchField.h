@@ -10,9 +10,11 @@
 
 #include "Shared.h"
 
-@class DVTSearchFieldCell, NSButtonCell, NSMutableArray, NSNumber, NSProgressIndicator;
+#import "DVTTextFieldFocusable-Protocol.h"
 
-@interface DVTSearchField : NSSearchField
+@class DVTSearchFieldCell, NSButtonCell, NSColor, NSMutableArray, NSNumber, NSProgressIndicator, NSString;
+
+@interface DVTSearchField : NSSearchField <DVTTextFieldFocusable>
 {
     NSNumber *_trackingTag;
     long long _progress;
@@ -34,7 +36,7 @@
 @property BOOL isBecomingFirstResponder; // @synthesize isBecomingFirstResponder=_isBecomingFirstResponder;
 @property(copy, nonatomic) CDUnknownBlockType searchMenuBlock; // @synthesize searchMenuBlock=_searchMenuBlock;
 // - (void).cxx_destruct;
-- (BOOL)hasActiveFilter;
+@property(readonly) BOOL hasActiveFilter;
 @property(readonly) BOOL hasKeyboardFocus;
 - (BOOL)becomeFirstResponder;
 - (void)mouseDown:(id)arg1;
@@ -68,7 +70,13 @@
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)dvtExtraBindings;
+- (id)dvt_extraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) NSColor *explicitBackgroundColor;
+@property(readonly) Class superclass;
 
 @end
 

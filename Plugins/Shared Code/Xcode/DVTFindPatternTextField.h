@@ -11,11 +11,12 @@
 #include "Shared.h"
 
 #import "DVTFindPatternField-Protocol.h"
+#import "DVTTextFieldFocusable-Protocol.h"
 
-@class DVTFindPatternAttachmentCell, NSString;
+@class DVTFindPatternAttachmentCell, NSColor, NSString;
 @protocol DVTFindPatternManager;
 
-@interface DVTFindPatternTextField : NSTextField <DVTFindPatternField>
+@interface DVTFindPatternTextField : NSTextField <DVTFindPatternField, DVTTextFieldFocusable>
 {
     id <DVTFindPatternManager> findPatternManager;
     DVTFindPatternAttachmentCell *selectedAttachment;
@@ -23,6 +24,7 @@
 
 @property id <DVTFindPatternManager> findPatternManager; // @synthesize findPatternManager;
 // - (void).cxx_destruct;
+@property(readonly) BOOL hasKeyboardFocus;
 - (void)_selectedFindPattern:(id)arg1;
 - (id)menuForFindPatternAttachment:(id)arg1;
 - (id)_uniquePatterns;
@@ -32,6 +34,7 @@
 - (BOOL)hasFindPattern;
 - (id)textView:(id)arg1 shouldChangeTypingAttributes:(id)arg2 toAttributes:(id)arg3;
 - (void)textDidChange:(id)arg1;
+@property(readonly) BOOL hasActiveFilter;
 - (void)textView:(id)arg1 doubleClickedOnCell:(id)arg2 inRect:(struct CGRect)arg3 atIndex:(unsigned long long)arg4;
 - (void)textView:(id)arg1 clickedOnCell:(id)arg2 inRect:(struct CGRect)arg3 atIndex:(unsigned long long)arg4;
 - (BOOL)removeFindPattern:(id)arg1;
@@ -60,6 +63,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) NSColor *explicitBackgroundColor;
 @property(readonly) Class superclass;
 
 @end

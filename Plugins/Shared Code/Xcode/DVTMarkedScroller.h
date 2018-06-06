@@ -10,7 +10,7 @@
 
 #include "Shared.h"
 
-@class CALayer, DVTObservingToken, NSMutableArray, NSString, NSTrackingArea, _DVTMark;
+@class CALayer, DVTNotificationToken, DVTObservingToken, NSMutableArray, NSString, NSTrackingArea, _DVTMark;
 @protocol DVTMarkedScrollerDelegate;
 
 @interface DVTMarkedScroller : NSScroller <CALayerDelegate>
@@ -20,7 +20,7 @@
     NSTrackingArea *_trackingArea;
     _DVTMark *_mousedOverMark;
     CALayer *_mouseOverLayer;
-    DVTObservingToken *_themeObservingToken;
+    DVTNotificationToken *_themeObservingToken;
     DVTObservingToken *_expansionTransitionProgressObservingToken;
     DVTObservingToken *_knobAlphaObservingToken;
     id <DVTMarkedScrollerDelegate> _delegate;

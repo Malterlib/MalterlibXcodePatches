@@ -38,5 +38,8 @@
 - (void)mouseDown:(id)arg1;
 - (void)viewWillDraw;
 
+// Remaining properties
+@property(nonatomic) BOOL followsFontAndColorTheme;
+
 @end
 

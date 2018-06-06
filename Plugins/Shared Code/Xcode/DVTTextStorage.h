@@ -54,6 +54,7 @@
         unsigned int delegateRespondsToNodeTypeForItem:1;
         unsigned int delegateRespondsToSourceLanguageServiceContext:1;
         unsigned int languageServiceSupportsSourceModel:1;
+        unsigned int disabled:16;
     } _tsflags;
     _LazyInvalidationHelper *_lazyInvalidationHelper;
     DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService> *_sourceLanguageService;

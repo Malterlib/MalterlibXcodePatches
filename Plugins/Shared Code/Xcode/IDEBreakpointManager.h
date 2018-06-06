@@ -50,6 +50,8 @@
 - (void)primitiveInvalidate;
 - (void)breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
 - (BOOL)breakpointShouldBeActivated:(id)arg1;
+- (void)breakpointNameChanged:(id)arg1;
+- (void)breakpointModificationChanged:(id)arg1;
 - (void)breakpointEnablementChanged:(id)arg1;
 - (void)_notifyObserversOfActivationStateChange;
 - (void)removeBreakpointObserver:(id)arg1;

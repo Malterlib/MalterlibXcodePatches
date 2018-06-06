@@ -20,6 +20,7 @@
 
 @interface IDEViewController : DVTViewController <IDESelectionSource, DVTStatefulObject>
 {
+    BOOL _didAssertForMissingWorkspaceDocument;
     IDESelection *_outputSelection;
     DVTStateToken *_stateToken;
     id <IDEWorkspaceDocumentProvider> _workspaceDocumentProvider;
@@ -31,6 +32,7 @@
 + (id)keyPathsForValuesAffectingWorkspace;
 + (id)keyPathsForValuesAffectingWorkspaceDocument;
 @property(retain, nonatomic) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
+@property BOOL didAssertForMissingWorkspaceDocument; // @synthesize didAssertForMissingWorkspaceDocument=_didAssertForMissingWorkspaceDocument;
 @property(retain, nonatomic) id <IDEWorkspaceDocumentProvider> workspaceDocumentProvider; // @synthesize workspaceDocumentProvider=_workspaceDocumentProvider;
 @property(readonly, nonatomic) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(copy, nonatomic) IDESelection *outputSelection; // @synthesize outputSelection=_outputSelection;

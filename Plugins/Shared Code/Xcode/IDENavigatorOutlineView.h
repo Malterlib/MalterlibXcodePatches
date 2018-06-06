@@ -14,7 +14,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDENavigableItemFilter, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSSet, NSString, _IDENavigatorOutlineViewDataSource;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDENavigableItemFilter, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSString, _IDENavigatorOutlineViewDataSource;
 
 @interface IDENavigatorOutlineView : DVTOutlineView <DVTInvalidation>
 {
@@ -50,7 +50,6 @@
     BOOL _supportsVariableHeightCells;
     BOOL _tracksSelectionVisibleRect;
     IDENavigableItemFilter *_filter;
-    NSSet *_editorSelectedNavigableItems;
     long long _systemRowSizeStyle;
     DVTTimeSlicedMainThreadWorkQueue *_expandingItemsWorkQueue;
     long long _filterProgress;
@@ -66,7 +65,6 @@
 @property(retain) DVTTimeSlicedMainThreadWorkQueue *expandingItemsWorkQueue; // @synthesize expandingItemsWorkQueue=_expandingItemsWorkQueue;
 @property long long systemRowSizeStyle; // @synthesize systemRowSizeStyle=_systemRowSizeStyle;
 @property BOOL tracksSelectionVisibleRect; // @synthesize tracksSelectionVisibleRect=_tracksSelectionVisibleRect;
-@property(retain, nonatomic) NSSet *editorSelectedNavigableItems; // @synthesize editorSelectedNavigableItems=_editorSelectedNavigableItems;
 @property(nonatomic) BOOL supportsVariableHeightCells; // @synthesize supportsVariableHeightCells=_supportsVariableHeightCells;
 @property(nonatomic) SEL keyAction; // @synthesize keyAction=_keyAction;
 @property(readonly, getter=isFilteringActive) BOOL filteringActive; // @synthesize filteringActive=_filteringActive;
@@ -102,8 +100,6 @@
 - (void)_rememberEntriesToRestoreToVisibleRect;
 @property(readonly, getter=isReloadingItems) BOOL reloadingItems;
 - (BOOL)sendAction:(SEL)arg1 to:(id)arg2;
-- (void)_setSecondaryHighlight:(BOOL)arg1 forNavigableItem:(id)arg2;
-- (void)_updateSecondaryHighlightForViewBasedOutlineView:(id)arg1 newItems:(id)arg2;
 - (void)_refreshDisplayForItem:(id)arg1;
 - (void)updateBoundExpandedItems;
 - (void)updateBoundSelectedObjects;
@@ -114,7 +110,7 @@
 - (void)_refreshBoundExpandedAndSelectedItems:(id)arg1;
 - (void)refreshBoundSelectedObjects;
 - (void)refreshBoundExpandedItems;
-- (id)dvtExtraBindings;
+- (id)dvt_extraBindings;
 - (void)primitiveInvalidate;
 - (void)suspendEditingWhilePerformingBlock:(CDUnknownBlockType)arg1;
 - (id)_suspendEditing:(long long *)arg1;

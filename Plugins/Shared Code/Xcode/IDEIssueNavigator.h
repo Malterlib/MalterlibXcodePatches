@@ -14,7 +14,7 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueNavigator : IDEOutlineBasedNavigator <DVTOutlineViewDelegate>
 {
@@ -42,7 +42,6 @@
     DVTObservingToken *_numBuildtimeIssuesObservingToken;
     DVTObservingToken *_numRuntimeIssuesObservingToken;
     DVTNotificationToken *_issueDetailLevelObservingToken;
-    DVTObservingToken *_themeObserver;
     BOOL _restoringState;
     BOOL _clearingFilter;
     BOOL _showByRuntime;
@@ -57,7 +56,6 @@
     NSMutableSet *_collapsedTypes;
     NSMutableSet *_expandedModelObjects;
     DVTScrollView *_issueNavigatorScrollView;
-    DVTBorderedView *_separatorView;
     struct _NSRange _visibleRows;
 }
 
@@ -66,7 +64,6 @@
 + (id)keyPathsForValuesAffectingNavigableIssueItems;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
-@property __weak DVTBorderedView *separatorView; // @synthesize separatorView=_separatorView;
 @property __weak DVTScrollView *issueNavigatorScrollView; // @synthesize issueNavigatorScrollView=_issueNavigatorScrollView;
 @property struct _NSRange visibleRows; // @synthesize visibleRows=_visibleRows;
 @property(copy, nonatomic) NSMutableSet *expandedModelObjects; // @synthesize expandedModelObjects=_expandedModelObjects;

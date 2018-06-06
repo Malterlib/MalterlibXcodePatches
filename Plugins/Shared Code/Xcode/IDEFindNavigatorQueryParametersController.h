@@ -16,7 +16,7 @@
 #import "IDEFindNavigatorPathControlDelegate-Protocol.h"
 #import "IDEFindNavigatorScopeChooserControllerDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorDividerView, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
+@class DVTDelayedInvocation, DVTDividerLine, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
 @protocol DVTInvalidation, IDEFindNavigatorQueryParametersControllerDelegate, IDEFindNavigatorQueryParametersPresentedController;
 
 @interface IDEFindNavigatorQueryParametersController : IDEViewController <IDEFindNavigatorPathControlDelegate, IDEFindNavigatorScopeChooserControllerDelegate, DVTFindPatternManager, NSTextFieldDelegate>
@@ -33,7 +33,7 @@
     IDEFindNavigatorTwoControlLeftPriorityLayout *_textOptionsAndScopeContainer;
     NSPopUpButton *_caseMatchingChooserPopUp;
     DVTScopeBarButton *_showScopesButton;
-    IDEFindNavigatorDividerView *_dividerView;
+    DVTDividerLine *_dividerView;
     IDEBatchFindQueryTerm *_selectedQueryTerm;
     long long _selectedQueryAction;
     Class _selectedQueryClass;

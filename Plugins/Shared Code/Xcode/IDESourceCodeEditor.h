@@ -52,6 +52,9 @@
     DVTObservingToken *_workspaceObserverToken;
     DVTObservingToken *_needsDiagnosisObserverToken;
     DVTObservingToken *_diagnosticItemsObserverToken;
+    DVTObservingToken *_areLiveIssuesEnabledObserverToken;
+    DVTObservingToken *_areNavigatorLiveIssuesEnabledObserverToken;
+    DVTObservingToken *_exploreItemValidObserverToken;
     NSOperationQueue *_diagnoseRelatedFilesQueue;
     DVTOperation *_findRelatedFilesOperation;
     DVTOperation *_scheduleDiagnoticsForRelatedFilesOperation;
@@ -332,7 +335,7 @@
 - (void)removeVisualization:(id)arg1 fadeOut:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)addVisualization:(id)arg1 fadeIn:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 @property(readonly) NSArray *visualizations;
-- (id)pathCell:(id)arg1 menuItemForNavigableItem:(id)arg2 defaultMenuItem:(id)arg3;
+- (id)pathCell:(id)arg1 menuItemForItem:(id)arg2 defaultMenuItem:(id)arg3;
 - (BOOL)pathCell:(id)arg1 shouldInitiallyShowMenuSearch:(id)arg2;
 - (BOOL)pathCell:(id)arg1 shouldSeparateDisplayOfChildItemsForItem:(id)arg2;
 - (struct _NSRange)selectedRangeForFindBar:(id)arg1;

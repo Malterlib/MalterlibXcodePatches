@@ -13,7 +13,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "DVTTextCompletionTableViewScrollEventDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTScaleInWindowAnimator, DVTStackBacktrace, DVTTextCompletionTableView, DVTTextCompletionWindowResizeAnimation, DVTViewController, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTextField, NSViewAnimation;
+@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTScaleInWindowAnimator, DVTStackBacktrace, DVTTextCompletionTableView, DVTViewController, NSScrollView, NSString, NSTableColumn, NSTextField, NSViewAnimation;
 @protocol DVTInvalidation, DVTTextCompletionListDataSource;
 
 @interface DVTTextCompletionListWindowController : NSWindowController <DVTTextCompletionTableViewScrollEventDelegate, DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
@@ -28,13 +28,10 @@
     DVTBorderedView *_divider;
     id <DVTTextCompletionListDataSource> _dataSource;
     struct CGRect _referenceFrameInView;
-    DVTTextCompletionWindowResizeAnimation *_resizeAnimation;
     DVTScaleInWindowAnimator *_fadeInAnimator;
     NSViewAnimation *_fadeOutAnimation;
     DVTObservingToken *_sessionCompletionsObserver;
     DVTObservingToken *_sessionSelectionObserver;
-    NSDictionary *_selectedTitleCellAttributes;
-    NSDictionary *_selectedTypeCellAttributes;
     int _hideReason;
     BOOL _showingWindow;
     BOOL _shouldIgnoreSelectionChange;
@@ -42,23 +39,22 @@
     DVTDelayedInvocation *_delayedQuickHelpClearing;
     BOOL _tableViewHasScrolled;
     DVTViewController<DVTInvalidation> *_infoContentViewController;
+    NSString *_debugStateString;
     DVTBorderedView *_contentView;
     NSTableColumn *_leftPaddingColumn;
 }
 
-+ (id)_nonSelectedTypeColor;
-+ (id)_nonSelectedTitleColor;
 + (void)initialize;
 @property BOOL tableViewHasScrolled; // @synthesize tableViewHasScrolled=_tableViewHasScrolled;
 @property __weak NSTableColumn *leftPaddingColumn; // @synthesize leftPaddingColumn=_leftPaddingColumn;
 @property __weak DVTBorderedView *contentView; // @synthesize contentView=_contentView;
+@property(readonly) NSString *debugStateString; // @synthesize debugStateString=_debugStateString;
 @property(readonly) DVTViewController<DVTInvalidation> *infoContentViewController; // @synthesize infoContentViewController=_infoContentViewController;
 @property(nonatomic) int hideReason; // @synthesize hideReason=_hideReason;
 @property(readonly) id <DVTTextCompletionListDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(readonly) BOOL showingWindow; // @synthesize showingWindow=_showingWindow;
 @property(readonly) NSScrollView *completionsScrollView; // @synthesize completionsScrollView=_completionsScrollView;
 // - (void).cxx_destruct;
-@property(readonly) NSString *debugStateString;
 - (id)tableView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 row:(long long)arg5 mouseLocation:(struct CGPoint)arg6;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)tableViewSelectionDidChange:(id)arg1;
@@ -72,16 +68,13 @@
 - (void)_removeQuickHelpView;
 - (void)showInfoPaneForCompletionItem:(id)arg1;
 - (void)close;
-- (void)_loadColorsFromCurrentTheme;
-- (void)_themeColorsChanged:(id)arg1;
-- (id)_notRecommendedAttributes;
-- (id)_messageTextAttributes;
 - (struct CGRect)_preferredWindowFrameForTextFrame:(struct CGRect)arg1 columnsWidth:(double *)arg2 titleColumnX:(double)arg3;
 - (void)_getTitleColumnWidth:(double *)arg1 typeColumnWidth:(double *)arg2;
 - (void)_updateSelectedRow;
 - (void)_updateCurrentDisplayState;
+- (void)_updatePositionOfMessageLabelUsingWindowFrame:(struct CGRect)arg1;
+- (double)_preferredHeightForMessageLabel;
 - (void)_updateCurrentDisplayStateForQuickHelp;
-- (void)_startDelayedAnimation;
 - (void)selectedCompletionIndexChanged;
 - (void)completionListChanged;
 - (void)_doubleClickOnRow:(id)arg1;

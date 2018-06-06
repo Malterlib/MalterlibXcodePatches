@@ -62,14 +62,13 @@
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
 - (void)titleDidChangeForTableCellView:(id)arg1;
 - (struct _NSRange)initialSelectionRangeForTableCellView:(id)arg1 usingProposedRange:(struct _NSRange)arg2;
-- (void)_addStatusViewForContainerProgress:(id)arg1 navItem:(id)arg2;
-- (void)_addStatusViewForContainerIssues:(id)arg1 navItem:(id)arg2;
+- (void)_addStatusControllerForContainerProgress:(id)arg1 navItem:(id)arg2;
+- (void)_addStatusControllerForContainerIssues:(id)arg1 navItem:(id)arg2;
 - (void)_updateSCMStatusViewBindings:(id)arg1;
 - (id)_tableCellViewForDefaultNavItem:(id)arg1;
 - (void)statusItemClickedAction:(id)arg1;
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
-- (id)outlineView:(id)arg1 rowViewForItem:(id)arg2;
 - (void)_updateScmStatusTextFieldBindingsForExistingItemInOutlineView:(id)arg1;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
@@ -107,8 +106,6 @@
 - (id)_cleanNewMenuItemForIdentifier:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)openInAdjacentEditorWithShiftPlusAlternate:(id)arg1;
-- (void)openInNewWindow:(id)arg1;
-- (void)openInNewTab:(id)arg1;
 - (id)_openSpecifierForNavigableItem:(id)arg1;
 - (id)_itemFromContextualClickedRows;
 - (BOOL)_isSelectionFileReferenceNavigableItem;
@@ -159,8 +156,9 @@
 - (id)defaultDestinationGroupForTemplateInstantiationWithDestinationIndex:(long long *)arg1;
 - (BOOL)_setupTemplateContext:(id)arg1 forTemplateKind:(id)arg2 useContextualMenuSelection:(BOOL)arg3;
 - (id)_destinationGroupForSelectedItem:(id)arg1 destinationIndex:(long long *)arg2;
-- (void)focusedEditorDidSelectItem:(id)arg1;
 - (BOOL)_shouldSupressNavigationForURL:(id)arg1;
+- (BOOL)prefersStrongSelection;
+- (id)itemToSelectBasedOnItemBeingEdited;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
 - (void)_editChildItemAtIndex:(unsigned long long)arg1 ofParentItem:(id)arg2;
 - (void)_editNavigableItem:(id)arg1;

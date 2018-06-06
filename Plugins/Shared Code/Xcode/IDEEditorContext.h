@@ -97,13 +97,13 @@
     BOOL _canRemoveSplit;
     BOOL _hideWorkspaceLoadingProgressIndicator;
     BOOL _isCallingNewEditorDocumentWithClass;
-    int _borderSides;
     IDEEditorArea *_editorArea;
     id <IDEEditorContextDelegate> _delegate;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
     IDENavigableItem *_navigableItem;
     NSArray *_defaultEditorCategories;
     NSArray *_validEditorCategories;
+    unsigned long long _borderSides;
     DVTScopeBarsManager *_scopeBarsManager;
     IDENavigableItem *_navBarNavigableItem;
     IDENavigableItem *_navBarNavigableItemRoot;
@@ -152,7 +152,7 @@
 @property(nonatomic) BOOL showSiblingStepperControl; // @synthesize showSiblingStepperControl=_showSiblingStepperControl;
 @property(nonatomic) BOOL showNavBarHistoryStepperControls; // @synthesize showNavBarHistoryStepperControls=_showNavBarHistoryStepperControls;
 @property(nonatomic) BOOL showRelatedItemsControl; // @synthesize showRelatedItemsControl=_showRelatedItemsControl;
-@property(nonatomic) int borderSides; // @synthesize borderSides=_borderSides;
+@property(nonatomic) unsigned long long borderSides; // @synthesize borderSides=_borderSides;
 @property(copy) NSArray *validEditorCategories; // @synthesize validEditorCategories=_validEditorCategories;
 @property(copy) NSArray *defaultEditorCategories; // @synthesize defaultEditorCategories=_defaultEditorCategories;
 @property(retain, nonatomic) IDENavigableItem *navigableItem; // @synthesize navigableItem=_navigableItem;
@@ -262,7 +262,7 @@
 - (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
 - (void)pathCell:(id)arg1 didEndDragForComponentCell:(id)arg2;
 - (BOOL)pathCell:(id)arg1 beginDragForComponentCell:(id)arg2;
-- (id)pathCell:(id)arg1 menuItemForNavigableItem:(id)arg2 defaultMenuItem:(id)arg3;
+- (id)pathCell:(id)arg1 menuItemForItem:(id)arg2 defaultMenuItem:(id)arg3;
 - (BOOL)pathCell:(id)arg1 shouldEnableSelection:(id)arg2;
 - (id)pathCell:(id)arg1 childItemsForItem:(id)arg2;
 - (void)pathCell:(id)arg1 didUpdateMenu:(id)arg2;

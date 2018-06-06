@@ -20,6 +20,7 @@
 {
     IDEWorkspaceDocument *_workspaceDocument;
     DVTObservingToken *_breakpointsObservingToken;
+    BOOL _recordFirstClickOnlyFor38079247;
     IDEAnnotationContext *_context;
 }
 

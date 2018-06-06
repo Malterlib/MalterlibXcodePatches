@@ -16,18 +16,18 @@
 @interface DVTMacroDefinitionTable : NSObject <NSCopying, NSMutableCopying>
 {
     struct DVTMacroValueAssignmentMapTable *_mapTable;
+    CDUnknownBlockType _willSetValueBlock;
+    CDUnknownBlockType _didSetValueBlock;
+    DVTStackBacktrace *_rootBacktrace;
+    DVTMacroDefinitionTable *_originalTable;
     NSString *_label;
-    struct os_unfair_lock_s _cacheLock;
     NSDictionary *_cachedDictRep;
     NSSet *_cachedMacroNameSet;
     unsigned long long _cachedHash;
+    struct os_unfair_lock_s _cacheLock;
     BOOL _isImmutable;
     BOOL _postsChangeNotifications;
-    CDUnknownBlockType _willSetValueBlock;
-    CDUnknownBlockType _didSetValueBlock;
     BOOL _declaredMutable;
-    DVTStackBacktrace *_rootBacktrace;
-    DVTMacroDefinitionTable *_originalTable;
 }
 
 + (id)macroNameRegistry;

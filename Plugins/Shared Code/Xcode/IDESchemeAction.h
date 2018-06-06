@@ -36,6 +36,7 @@
 }
 
 + (id)commandLineArgumentsForLanguage:(id)arg1 andRegion:(id)arg2;
++ (void)updateSearchPathSettingsInEnvironment:(id)arg1 withBuildProducts:(id)arg2 runDestination:(id)arg3;
 + (id)bundleIdentifierFromBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 + (void)setupMainThreadCheckerInEnvironmentVariables:(id)arg1 dylibPath:(id)arg2;
 + (BOOL)addUBSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
@@ -70,7 +71,6 @@
 - (id)_buildProductToolchainIdentifiersForSchemeCommand:(id)arg1;
 - (id)_resolvedRunnableBuildableForToolchainDetection;
 - (BOOL)isDeprecatedOption:(id)arg1;
-- (void)updateSearchPathSettingsInEnvironment:(id)arg1 withBuildProducts:(id)arg2 runDestination:(id)arg3;
 - (void)addBuildableProductRunnable:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addPathRunnable:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addRemoteRunnable:(id)arg1 fromXMLUnarchiver:(id)arg2;
