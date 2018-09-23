@@ -36,7 +36,9 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
 - (void)layoutBottomUp;
+- (void)layoutTopDown;
 - (void)refresh;
+- (struct CDStruct_bf6d4a14)popUpButtonInset;
 - (void)synchronizePopUp:(id)arg1 forSegment:(id)arg2;
 - (struct CGSize)popUpSizeForTitle:(id)arg1;
 - (id)makePopUpButtonInsetView;

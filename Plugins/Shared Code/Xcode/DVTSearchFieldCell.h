@@ -58,6 +58,9 @@
 - (id)_placeholderAttributedString;
 - (id)_placeholderString;
 - (id)_attributedStringForEditing;
+- (id)_searchMenuButtonLayerWithMenu;
+- (id)_searchMenuButtonLayer;
+- (id)_cancelButtonLayer;
 - (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)_dvtFindBarSearchFieldCellCommonInit;
 - (id)copy;

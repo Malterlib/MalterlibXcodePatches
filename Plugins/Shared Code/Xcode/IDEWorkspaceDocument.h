@@ -78,7 +78,6 @@
     IDEScriptingSchemeActionResult *_lastScriptingSchemeActionResult;
     IDEFindNavigatorQueryHistoryManager *_findNavigatorQueryHistoryManager;
     IDEOpenQuicklyWorkspaceContentContextProvider *_openQuicklyContentContextProvider;
-    IDELibraryWindowController *_libraryWindowController;
     IDEUITestingTCCPermissionWindowController *_TCCPermissionWindowController;
 }
 
@@ -99,7 +98,6 @@
 + (void)initialize;
 @property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
 @property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
-@property(readonly) IDELibraryWindowController *libraryWindowController; // @synthesize libraryWindowController=_libraryWindowController;
 @property(readonly) IDEOpenQuicklyWorkspaceContentContextProvider *openQuicklyContentContextProvider; // @synthesize openQuicklyContentContextProvider=_openQuicklyContentContextProvider;
 @property(readonly) IDEFindNavigatorQueryHistoryManager *findNavigatorQueryHistoryManager; // @synthesize findNavigatorQueryHistoryManager=_findNavigatorQueryHistoryManager;
 @property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
@@ -164,8 +162,8 @@
 - (void)activateTargetProcessForLaunchSession:(id)arg1;
 - (void)_delayedActivateTargetProcess:(id)arg1;
 - (BOOL)_isXcodeActiveAndTargetInActivatableState:(id)arg1;
-- (id)_appIconForRunnableLocation:(id)arg1 pid:(int)arg2;
-- (void)_updateIconForLaunchSessionForMacIfNecessary:(id)arg1 pid:(int)arg2;
+- (id)_appIconForLaunchSession:(id)arg1 pid:(int)arg2;
+- (void)_updateIconForLaunchSessionIfNecessary:(id)arg1 pid:(int)arg2;
 - (void)_activateTargetProcess:(id)arg1 tryCounter:(long long)arg2;
 - (void)_setLaunchSessionToIntensiveFileIODoneStateIfNecessary:(id)arg1;
 - (void)presentedItemDidChange;
@@ -191,6 +189,7 @@
 - (BOOL)_checkAutosavingPossibilityAndReturnError:(id *)arg1;
 - (BOOL)checkAutosavingSafetyAndReturnError:(id *)arg1;
 - (void)setupUISubsystemsForFullWorkspace;
+@property(readonly) IDELibraryWindowController *libraryWindowController;
 - (void)setupUISubsystemsForFullWorkspaceOrSimpleFilesFocused;
 - (void)setupUISubsystems;
 - (void)_workspace:(id)arg1 failedToResolveContainerForProjectFile:(id)arg2;
@@ -268,6 +267,7 @@
 - (id)sdefSupport_projects;
 - (BOOL)_checkForLoading;
 - (BOOL)sdefSupport_isLoaded;
+- (id)librariesByExtensionID;
 
 // Remaining properties
 @property(readonly) BOOL canRevertWithEmptyStateDictionary;

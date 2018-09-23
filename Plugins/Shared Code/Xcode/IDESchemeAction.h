@@ -13,14 +13,15 @@
 #import "DVTInvalidation-Protocol.h"
 #import "DVTXMLUnarchiving-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTToolchain, IDEFileReference, IDERunnable, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray, NSString;
+@class DVTObservingToken, DVTStackBacktrace, DVTToolchain, IDEFileReference, IDERunnable, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray, NSString;
+@protocol DVTInvalidation;
 
 @interface IDESchemeAction : NSObject <DVTXMLUnarchiving, DVTInvalidation>
 {
     BOOL _hasAwoken;
     NSMutableArray *_prePhaseExecutionActions;
     NSMutableArray *_postPhaseExecutionActions;
-    DVTNotificationToken *_buildSettingsDidChangeNotificationObservingToken;
+    id <DVTInvalidation> _buildSettingsDidChangeNotificationObservingToken;
     DVTObservingToken *_activeRunDestinationObservingToken;
     int _internalDebuggerToolchainSelectionMode;
     int _toolchainState;
@@ -111,6 +112,7 @@
 - (BOOL)mallocStackLightAllowedForRunDestination:(id)arg1;
 - (BOOL)UBSanitizerAllowedForRunnable;
 - (BOOL)threadSanitizerAllowedForRunDestination:(id)arg1;
+- (BOOL)_runDestinationIsArm64:(id)arg1;
 - (BOOL)_runDestinationIsX86_64:(id)arg1;
 - (BOOL)mainThreadCheckerEnabledForSchemeCommand:(id)arg1 runDestination:(id)arg2;
 - (BOOL)UBSanitizerEnabledForSchemeCommand:(id)arg1 runDestination:(id)arg2;

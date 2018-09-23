@@ -15,7 +15,7 @@
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
 
-@class DVTBorderedView, DVTChooserView, DVTDividerLine, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigator, IDENavigatorAreaDFRController, IDENavigatorSearchFilterControlBar, NSArrayController, NSMutableDictionary, NSString, NSTouchBar, NSVisualEffectView;
+@class DVTBorderView, DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigator, IDENavigatorAreaDFRController, IDENavigatorSearchFilterControlBar, NSArrayController, NSMutableDictionary, NSString, NSTouchBar, NSVisualEffectView;
 
 @interface IDENavigatorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, DVTReplacementViewDelegate, DVTStatefulObject>
 {
@@ -29,7 +29,7 @@
     DVTExtension *_currentExtension;
     NSVisualEffectView *_visualEffectView;
     DVTBorderedView *_borderedView;
-    DVTDividerLine *_chooserNavigatorSeparatorView;
+    DVTBorderView *_chooserNavigatorSeparatorView;
     IDENavigatorAreaDFRController *_touchBarSupportController;
 }
 
@@ -39,7 +39,7 @@
 + (id)navigatorsForContext:(id)arg1;
 + (id)keyPathsForValuesAffectingWorkspace;
 @property(retain) IDENavigatorAreaDFRController *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
-@property __weak DVTDividerLine *chooserNavigatorSeparatorView; // @synthesize chooserNavigatorSeparatorView=_chooserNavigatorSeparatorView;
+@property __weak DVTBorderView *chooserNavigatorSeparatorView; // @synthesize chooserNavigatorSeparatorView=_chooserNavigatorSeparatorView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSVisualEffectView *visualEffectView; // @synthesize visualEffectView=_visualEffectView;
 @property(retain, nonatomic) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;

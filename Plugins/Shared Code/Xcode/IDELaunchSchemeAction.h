@@ -13,6 +13,7 @@
 #import "IDELaunchTestSchemeAction.h"
 
 @class DVTNotificationToken, DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSNumber, NSString;
+@protocol IDEAnalysisToolService;
 
 @interface IDELaunchSchemeAction : IDELaunchTestSchemeAction
 {
@@ -22,6 +23,7 @@
     NSMutableDictionary *_additionalSchemeSettings;
     DVTObservingToken *_launchSessionObservingToken;
     NSDictionary *_cachedAppExtensionBuiltPaths;
+    id <IDEAnalysisToolService> _analysisToolService;
     BOOL _debugXPCServices;
     BOOL _enableMallocStackLoggingLiteForXPCServices;
     BOOL _hiddenMallocStackLoggingLiteForXPCServices;
@@ -133,8 +135,8 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (void)_prepareForMessageTracer:(id)arg1;
 - (id)runOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
-- (void)_checkForExternalExecutableToSet;
-- (void)_tweakCommandLineArgumentsBasedOnExternalExecutable:(id)arg1;
+- (void)_checkForAnalysisToolServiceProvidedExecutableToSet;
+- (void)_tweakCommandLineArgumentsBasedOnAnalysisToolServiceProvidedExecutable:(id)arg1;
 - (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupExtraDebuggingSupport:(BOOL)arg6 extensionInfos:(id)arg7 outError:(id *)arg8;
 - (id)_preferredBuildableForSchemeCommand:(id)arg1 buildParameters:(id)arg2;
 - (void)_restoreLaunchStyleForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1;
@@ -166,6 +168,7 @@
 - (id)createAdditionalDiagnosticsDict;
 - (id)notificationPayloadFileReferences;
 - (void)_setupQueueDebuggingState;
+- (void)_setupAnalysisToolService;
 - (void)_commonInit;
 - (BOOL)internalSettings;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;

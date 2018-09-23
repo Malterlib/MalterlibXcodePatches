@@ -12,7 +12,7 @@
 
 #import "IDEViewController.h"
 
-@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, IDEEditorContext, IDEEditorDocument, IDEFileTextSettings, NSScrollView;
+@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, IDEEditorContext, IDEEditorDocument, IDEFileTextSettings, NSAppearance, NSScrollView;
 @protocol DVTTextFindable, IDEEditorDelegate;
 
 @interface IDEEditor : IDEViewController
@@ -27,12 +27,14 @@
     IDEEditorDocument *_documentForNavBarStructure;
     id <DVTTextFindable> _findableObject;
     IDEFileTextSettings *_fileTextSettings;
+    NSAppearance *_overridingLibraryAppearance;
     IDEEditorContext *_editorContext;
 }
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)canProvideCurrentSelectedItems;
 @property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;
+@property(readonly) NSAppearance *overridingLibraryAppearance; // @synthesize overridingLibraryAppearance=_overridingLibraryAppearance;
 @property(retain, nonatomic) IDEFileTextSettings *fileTextSettings; // @synthesize fileTextSettings=_fileTextSettings;
 @property(retain, nonatomic) id <DVTTextFindable> findableObject; // @synthesize findableObject=_findableObject;
 @property BOOL discardsFindResultsWhenContentChanges; // @synthesize discardsFindResultsWhenContentChanges=_discardsFindResultsWhenContentChanges;
@@ -68,6 +70,7 @@
 @property(readonly) BOOL findBarSupported;
 - (id)_getUndoManager:(BOOL)arg1;
 - (id)undoManager;
+- (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (id)_initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

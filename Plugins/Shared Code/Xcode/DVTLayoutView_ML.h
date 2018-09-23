@@ -33,7 +33,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_DVTLayoutView_MLSharedInit;
-- (void)dealloc;
 - (void)stopInvalidatingLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
 - (void)invalidateLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
 - (void)stopInvalidatingLayoutWithFrameChangesToViews:(id)arg1;

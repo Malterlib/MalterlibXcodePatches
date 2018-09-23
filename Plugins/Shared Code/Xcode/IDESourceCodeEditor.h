@@ -26,7 +26,7 @@
 #import "NSImmediateActionAnimationController-Protocol.h"
 
 @class DVTAnnotationProvider, DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
-@protocol DVTCancellable, IDESourceEditorViewControllerHost, OS_dispatch_queue;
+@protocol DVTCancellable, DVTInvalidation, IDESourceEditorViewControllerHost, OS_dispatch_queue;
 
 @interface IDESourceCodeEditor : IDEEditor <NSTouchBarProvider, NSTouchBarDelegate, NSImmediateActionAnimationController, NSTextViewDelegate, NSMenuDelegate, DVTSourceTextViewDelegate, DVTSourceTextViewQuickEditDataSource, DVTFindBarFindable, IDESourceExpressionSource, IDETextVisualizationHost, IDEJumpToLineDestination, IDEComparisonEditorHostContext, IDETestingSelection, IDESourceControlBlameForLineEditorDataSource, IDEAnalyzerResultsHostingEditor, IDESingleFileCommandSupportingEditor>
 {
@@ -62,7 +62,7 @@
     DVTNotificationToken *_coverageReportGenerationObserver;
     DVTObservingToken *_showCodeCoverageObserverToken;
     DVTObservingToken *_showCodeCoverageCountsObserverToken;
-    DVTNotificationToken *_blueprintDidChangeNotificationObservingToken;
+    id <DVTInvalidation> _blueprintDidChangeNotificationObservingToken;
     DVTNotificationToken *_textStorageDidProcessEndingObserver;
     DVTNotificationToken *_textStorageDidEndEditingObserver;
     DVTNotificationToken *_themeChangedObserver;

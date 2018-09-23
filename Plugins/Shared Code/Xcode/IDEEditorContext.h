@@ -79,6 +79,7 @@
     BOOL _isDraggingPathCell;
     BOOL _isFetchingCurrentSelectedItems;
     BOOL _shouldImmediatleyProcessCurrentSelectedItemsChange;
+    BOOL _isSettingUpNewEditor;
     unsigned long long _currentSwipeAnimationGeneration;
     CDUnknownBlockType _swipeAnimationAbortBlock;
     BOOL _disableGeniusResultUpdatesDuringSwipeAnimation;

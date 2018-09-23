@@ -12,7 +12,7 @@
 
 #import "IDEDiagnosticItemDelegate-Protocol.h"
 
-@class DVTDocumentLocation, IDEActivityLogMessage, IDEActivityLogRecord, IDEIssueProvider, NSArray, NSNumber, NSString;
+@class DVTDocumentLocation, IDEActivityLogMessage, IDEActivityLogRecord, IDEIssueProvider, NSArray, NSString;
 @protocol NSCopying;
 
 @interface IDEIssue : NSObject <IDEDiagnosticItemDelegate>
@@ -24,7 +24,6 @@
     BOOL __coalesced;
     BOOL __vended;
     NSArray *_filteredSubissues;
-    NSNumber *_lineNumber;
     IDEIssueProvider *_issueProvider;
     unsigned long long _sequenceNumber;
     NSArray *_documentLocations;
@@ -37,15 +36,17 @@
     IDEActivityLogRecord *_originatingLogRecord;
     unsigned long long _issueType;
     NSArray *_threads;
-    id <NSCopying> _coalescingGroupIdentifier;
     id _helpIDOrURL;
+    id <NSCopying> _coalescingGroupIdentifier;
+    id <NSCopying> _coalescingIdentifier;
 }
 
 + (BOOL)isIssueTypeRuntime:(unsigned long long)arg1;
 @property(getter=_isVended) BOOL _vended; // @synthesize _vended=__vended;
 @property(getter=_isCoalesced) BOOL _coalesced; // @synthesize _coalesced=__coalesced;
-@property(copy) id helpIDOrURL; // @synthesize helpIDOrURL=_helpIDOrURL;
+@property(retain, nonatomic) id <NSCopying> coalescingIdentifier; // @synthesize coalescingIdentifier=_coalescingIdentifier;
 @property(retain, nonatomic) id <NSCopying> coalescingGroupIdentifier; // @synthesize coalescingGroupIdentifier=_coalescingGroupIdentifier;
+@property(copy) id helpIDOrURL; // @synthesize helpIDOrURL=_helpIDOrURL;
 @property(copy, nonatomic) NSArray *threads; // @synthesize threads=_threads;
 @property(readonly) unsigned long long issueType; // @synthesize issueType=_issueType;
 @property BOOL wasFetchedFromCache; // @synthesize wasFetchedFromCache=_wasFetchedFromCache;
@@ -60,14 +61,12 @@
 @property(readonly) unsigned long long sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
 @property(retain, nonatomic) IDEIssueProvider *issueProvider; // @synthesize issueProvider=_issueProvider;
 @property(getter=isValid) BOOL valid; // @synthesize valid=_valid;
-@property(readonly) NSNumber *_lineNumber; // @synthesize _lineNumber;
 @property(readonly) __weak IDEIssue *parentIssue; // @synthesize parentIssue=_parentIssue;
 // - (void).cxx_destruct;
 @property(readonly, nonatomic) IDEIssue *representativeSubIssue;
 - (BOOL)isEqualDisregardingLocationTimestamps:(id)arg1;
 - (id)_firstCommonLocationFromArray:(id)arg1 andArray:(id)arg2;
 - (void)diagnosticItemWasFixed:(id)arg1;
-- (long long)compareByLineNumber:(id)arg1;
 - (long long)compare:(id)arg1;
 @property(readonly) BOOL isLiveIssue;
 @property(retain) IDEIssue *_parentIssue;

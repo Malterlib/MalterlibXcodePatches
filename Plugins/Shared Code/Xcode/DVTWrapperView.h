@@ -14,7 +14,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, NSArray, NSMapTable, NSString, NSView;
+@class DVTStackBacktrace, NSArray, NSString, NSView;
 
 @interface DVTWrapperView : DVTLayoutView_ML <DVTInvalidation>
 {
@@ -22,7 +22,6 @@
     struct CGSize _maxContentFrameSize;
     BOOL _isPadding;
     BOOL _allowAddSubview;
-    NSMapTable *_subviewObservations;
     NSArray *_currentContentViewConstraints;
     DVTStackBacktrace *_setFrameSizeBacktrace;
     NSString *_frameSizeDimentionIsNaN;

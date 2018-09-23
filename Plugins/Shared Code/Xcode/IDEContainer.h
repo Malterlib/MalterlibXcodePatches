@@ -75,6 +75,8 @@
 + (double)_defaltAutosaveDelay;
 + (BOOL)automaticallyNotifiesObserversOfContainerEdited;
 + (void)_addContainerWithPendingChanges:(id)arg1;
++ (void)resumeFilePathChangeNotificationsForWorkspace:(id)arg1;
++ (void)suspendFilePathChangeNotificationsForWorkspace:(id)arg1;
 + (void)resumeFilePathChangeNotifications;
 + (void)suspendFilePathChangeNotifications;
 + (id)_containersWithPendingFilePathChanges;

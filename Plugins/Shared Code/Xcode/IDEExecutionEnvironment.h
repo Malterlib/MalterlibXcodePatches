@@ -77,6 +77,7 @@
 @property(retain) IDEBuildOperation *currentBuildOperation; // @synthesize currentBuildOperation=_currentBuildOperation;
 // - (void).cxx_destruct;
 - (id)queuedBuildOperationsDescription;
+- (void)serializeMetrics:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_completeBuildOperation:(id)arg1 andPostLastBuildCompleted:(BOOL)arg2 andPostLastUserInitiatedBuildCompleted:(BOOL)arg3;
 - (void)_addMissingErrorForFailedBuildToRecorder:(id)arg1 buildLog:(id)arg2;

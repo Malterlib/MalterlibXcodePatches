@@ -16,7 +16,7 @@
 #import "IDEFindNavigatorPathControlDelegate-Protocol.h"
 #import "IDEFindNavigatorScopeChooserControllerDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTDividerLine, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
+@class DVTBorderView, DVTDelayedInvocation, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
 @protocol DVTInvalidation, IDEFindNavigatorQueryParametersControllerDelegate, IDEFindNavigatorQueryParametersPresentedController;
 
 @interface IDEFindNavigatorQueryParametersController : IDEViewController <IDEFindNavigatorPathControlDelegate, IDEFindNavigatorScopeChooserControllerDelegate, DVTFindPatternManager, NSTextFieldDelegate>
@@ -33,7 +33,7 @@
     IDEFindNavigatorTwoControlLeftPriorityLayout *_textOptionsAndScopeContainer;
     NSPopUpButton *_caseMatchingChooserPopUp;
     DVTScopeBarButton *_showScopesButton;
-    DVTDividerLine *_dividerView;
+    DVTBorderView *_dividerView;
     IDEBatchFindQueryTerm *_selectedQueryTerm;
     long long _selectedQueryAction;
     Class _selectedQueryClass;
@@ -97,7 +97,6 @@
 - (void)userChooseCaseMatching:(id)arg1;
 - (void)scheduleUIRefreshConditionallyInvalidatingSavedState:(BOOL)arg1 notifyOfExportedStateChange:(BOOL)arg2;
 - (void)viewDidLoad;
-- (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)pullReplaceTextFromSharedFindState;
 - (void)pullFindTextFromSharedFindState;

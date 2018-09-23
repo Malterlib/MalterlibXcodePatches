@@ -52,7 +52,6 @@
 + (id)_navigableItemsForRepresentedObject:(id)arg1;
 + (id)keyPathsForValuesAffectingConflictStateForUpdateOrMerge;
 + (id)keyPathsForValuesAffectingSourceControlCurrentRevision;
-+ (id)keyPathsForValuesAffectingSourceControlLastModifiedDate;
 + (id)keyPathsForValuesAffectingSourceControlServerStatusFlag;
 + (id)keyPathsForValuesAffectingSourceControlServerStatus;
 + (id)keyPathsForValuesAffectingSourceControlLocalStatusFlag;
@@ -107,7 +106,6 @@
 - (id)sourceControlSourceTreeName;
 - (unsigned long long)conflictStateForUpdateOrMerge;
 - (id)sourceControlCurrentRevision;
-- (id)sourceControlLastModifiedDate;
 - (id)sourceControlServerStatus;
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;

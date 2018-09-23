@@ -14,13 +14,14 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
+@class DVTBorderView, DVTNotificationToken, DVTObservingToken, DVTScopeBarView, DVTScrollView, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSButton, NSMenuItem, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueNavigator : IDEOutlineBasedNavigator <DVTOutlineViewDelegate>
 {
     DVTScopeBarView *_scopeBarView;
     NSButton *_scopeByBuildtimeButton;
     NSButton *_scopeByRuntimeButton;
+    DVTBorderView *_dividerView;
     NSMenuItem *_viewByFileMenuItem;
     NSMenuItem *_viewByTypeMenuItem;
     NSMutableSet *_collapsedGroupsForStateSaving;
@@ -82,7 +83,7 @@
 - (void)commitStateToDictionary:(id)arg1;
 - (void)configureStateSavingObservers;
 - (void)revertStateWithDictionary:(id)arg1;
-- (void)clearFilter;
+- (void)clearFilterType:(unsigned long long)arg1;
 - (void)setFilter:(id)arg1;
 - (void)_synchronizeFilteringWithOutlineView;
 - (id)filterDefinitionIdentifier;
@@ -92,7 +93,6 @@
 - (void)_configureStandardTableViewCell:(id)arg1;
 - (id)_tableCellViewForCompressedStackFrameItem:(id)arg1;
 - (id)_genericTableCellViewForDebugNavItem:(id)arg1;
-- (id)_tableCellViewForSubIssueNavItem:(id)arg1;
 - (long long)_calculateMaxNumberOfSubtitleLines;
 - (id)_tableCellViewForIssueNavItem:(id)arg1;
 - (id)_tableCellViewForIssueTypeGroupNavItem:(id)arg1;

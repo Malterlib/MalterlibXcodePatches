@@ -14,6 +14,7 @@
 #import "IDEIndexDatabaseDelegate-Protocol.h"
 
 @class DVTDispatchLock, DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEIndexDatabase, IDEIndexQPManager, IDEIndexingEngine, IDEIndexingPrebuildController, IDEWorkspace, NSDate, NSMutableDictionary, NSSet, NSString;
+@protocol DVTInvalidation;
 
 @interface IDEIndex : NSObject <IDEIndexDatabaseDelegate, DVTInvalidation>
 {
@@ -45,7 +46,7 @@
     DVTNotificationToken *_indexableFileWillBeRemovedNotificationObservingToken;
     DVTNotificationToken *_indexableDidRenameFileNotificationObservingToken;
     DVTNotificationToken *_buildablesDidChangeNotificationObservingToken;
-    DVTNotificationToken *_buildSettingsDidChangeNotificationObservingToken;
+    id <DVTInvalidation> _buildSettingsDidChangeNotificationObservingToken;
     DVTNotificationToken *_buildOperationDidStopNotificationObservingToken;
 }
 
@@ -82,7 +83,7 @@
 - (id)sdkForFile:(id)arg1;
 - (id)timestampForFile:(id)arg1;
 - (void)_buildOperationDidStop:(id)arg1;
-- (void)_buildSettingsDidChange:(id)arg1;
+- (void)_buildSettingsDidChangeForBlueprints:(id)arg1;
 - (void)_activeRunDestinationDidChange:(id)arg1;
 - (void)_activeRunContextDidChange:(id)arg1;
 - (void)_clearAllCachedBuildSettings;

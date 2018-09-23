@@ -132,7 +132,7 @@
 - (BOOL)performDragOperation:(id)arg1;
 - (unsigned long long)dragOperationForDraggingInfo:(id)arg1 type:(id)arg2;
 - (id)acceptableDragTypes;
-- (id)_addingRedablePasteboardTypesForObjectLiterals:(id)arg1;
+- (id)_addingReadablePasteboardTypesForObjectLiterals:(id)arg1;
 - (void)viewDidEndLiveResize;
 - (void)viewWillStartLiveResize;
 - (void)updateInsertionPointStateAndRestartTimer:(BOOL)arg1;

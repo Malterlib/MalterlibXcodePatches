@@ -12,6 +12,6 @@
 @class DVTModelObjectGraph;
 
 @protocol DVTModelObject <NSObject>
-@property(nonatomic, readonly) DVTModelObjectGraph *objectGraph;
+@property(readonly, nonatomic) DVTModelObjectGraph *objectGraph;
 @end
 

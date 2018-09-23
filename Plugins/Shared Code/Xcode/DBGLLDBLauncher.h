@@ -57,6 +57,7 @@
 - (id)parseConsoleOutputFromOriginalOutput:(id)arg1;
 - (id)parseConsoleInputFromOriginalInput:(id)arg1;
 - (void)_executeLLDBCommands:(id)arg1;
+- (void)_createBasicDebuggerObjects;
 - (BOOL)_createDebuggerConsoleAdaptor:(id *)arg1;
 - (id)lldbDebugger;
 - (void)setFinishedRunning;

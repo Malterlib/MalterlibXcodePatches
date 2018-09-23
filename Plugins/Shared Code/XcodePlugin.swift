@@ -105,8 +105,11 @@ class ExploreClass {
 	func typeName(_ mirror: Mirror) -> String {
 		return fg_ExtractInType(String(reflecting: mirror.subjectType));
 	}
-	func typeNameObject(_ any: Any) -> String {
-		return fg_ExtractInType(String(reflecting: type(of: any)));
+	func typeNameObject(_ any: Any?) -> String {
+		if (any == nil) {
+			return "what";
+		}
+		return fg_ExtractInType(String(reflecting: type(of: any!)));
 	}
 
 	func addValueToExplore(_ any : Any) {

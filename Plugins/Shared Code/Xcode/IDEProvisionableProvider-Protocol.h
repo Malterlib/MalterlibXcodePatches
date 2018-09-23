@@ -8,10 +8,11 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
 //
 
+#import "DVTInvalidation-Protocol.h"
 
 @class NSSet;
 
-@protocol IDEProvisionableProvider <NSObject>
+@protocol IDEProvisionableProvider <DVTInvalidation>
 @property(readonly, nonatomic) NSSet *provisionableDevices;
 @property(readonly, nonatomic) NSSet *provisionables;
 @property(readonly, nonatomic) BOOL finishedLoading;

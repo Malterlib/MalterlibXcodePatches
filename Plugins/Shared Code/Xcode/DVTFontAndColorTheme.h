@@ -132,7 +132,6 @@
 + (id)preferenceSetsFileExtension;
 + (id)defaultKeyForExcludedBuiltInPreferenceSets;
 + (id)defaultKeyForCurrentPreferenceSet;
-+ (BOOL)_isDark;
 + (id)builtInPreferenceSetsDirectoryURL;
 + (id)systemPreferenceSet;
 + (id)preferenceSetGroupingName;
@@ -145,6 +144,7 @@
 + (id)currentDarkTheme;
 + (id)currentLightTheme;
 + (id)currentTheme;
++ (id)_primitivePreferenceSetsManager;
 + (id)preferenceSetsManager;
 + (void)initialize;
 @property(nonatomic) long long fontSizeModifier; // @synthesize fontSizeModifier=_fontSizeModifier;

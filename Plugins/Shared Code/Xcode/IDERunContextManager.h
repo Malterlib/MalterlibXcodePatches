@@ -13,6 +13,7 @@
 #import "DVTInvalidation-Protocol.h"
 
 @class DVTObservingToken, DVTStackBacktrace, IDERunDestination, IDEScheme, IDEWorkspace, NSArray, NSCountedSet, NSEvent, NSMapTable, NSMutableArray, NSMutableSet, NSString;
+@protocol DVTInvalidation;
 
 @interface IDERunContextManager : NSObject <DVTInvalidation>
 {
@@ -31,8 +32,12 @@
     BOOL _suppressingAutocreation;
     DVTObservingToken *_customDataStoresObserver;
     DVTObservingToken *_availableDevicesObserver;
+    id <DVTInvalidation> _blueprintDidChangeObserver;
 }
 
++ (void)postBlueprintsDidChange:(id)arg1;
++ (id)observeAllBlueprintChangesOnQueue:(id)arg1 withTarget:(id)arg2 selector:(SEL)arg3;
++ (id)observeAllBlueprintChangesOnQueue:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 + (BOOL)automaticallyNotifiesObserversOfActiveRunDestination;
 + (BOOL)automaticallyNotifiesObserversOfActiveRunContext;
 + (void)initialize;

@@ -16,7 +16,7 @@
 #import "IDEEditorAreaContainer-Protocol.h"
 #import "IDETabbedWindowController-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, _IDEWindowFullScreenSavedDebuggerTransitionValues;
+@class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, NSValue, _IDEWindowFullScreenSavedDebuggerTransitionValues;
 
 @interface IDEWorkspaceWindowController : NSWindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation, IDETabbedWindowController>
 {
@@ -50,17 +50,20 @@
     BOOL _tabBarForcedClosed;
     BOOL _isClosing;
     BOOL _didSetActiveWorkspaceTabController;
+    BOOL _didRemoveLeakedTabControllerState;
     BOOL _enteringFullScreenMode;
     BOOL _exitingFullScreenMode;
     DVTStateToken *_stateToken;
     BOOL _shouldPerformWindowClose;
     BOOL _didRestoreFromStateSaving;
+    BOOL _tabBarWasVisibleWithSingleTab;
     NSString *_stateSavingIdentifier;
     DVTStackBacktrace *_windowDidLoadBacktrace;
     DVTWeakInterposer *_firstResponderInterposer;
     IDEWorkspaceDFRController *_standardWorkspaceTouchBarController;
     IDEWorkspaceDFRController *_systemModalWorkspaceTouchBarController;
     long long _visibleSheetsCount;
+    NSValue *_initialWindowFrameValue;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -73,6 +76,8 @@
 + (id)keyPathsForValuesAffectingShouldEnableToolbarItems;
 + (id)workspaceWindowControllers;
 + (unsigned long long)supplimental23378396AssertionBehaviorForKeyValueObservationsAtEndOfEvent;
+@property BOOL tabBarWasVisibleWithSingleTab; // @synthesize tabBarWasVisibleWithSingleTab=_tabBarWasVisibleWithSingleTab;
+@property(retain) NSValue *initialWindowFrameValue; // @synthesize initialWindowFrameValue=_initialWindowFrameValue;
 @property long long visibleSheetsCount; // @synthesize visibleSheetsCount=_visibleSheetsCount;
 @property(retain) IDEWorkspaceDFRController *systemModalWorkspaceTouchBarController; // @synthesize systemModalWorkspaceTouchBarController=_systemModalWorkspaceTouchBarController;
 @property(retain) IDEWorkspaceDFRController *standardWorkspaceTouchBarController; // @synthesize standardWorkspaceTouchBarController=_standardWorkspaceTouchBarController;

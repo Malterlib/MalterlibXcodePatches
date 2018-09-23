@@ -20,7 +20,7 @@ Resign Xcode
 The plugins will automatically be installed as a part of the build
 process. Xcode must be relaunched for the plugins to take effect.
 
-Plugins are installed into ~/Library/Application Support/Developer/<Xcode version>/Xcode/Plug-ins/.
+Plugins are installed into `~/Library/Application Support/Developer/<Xcode version>/Xcode/Plug-ins/.`
 
 [Malterlib](Plugin_Malterlib/README.md)
 

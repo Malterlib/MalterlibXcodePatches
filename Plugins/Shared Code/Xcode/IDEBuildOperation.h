@@ -15,15 +15,15 @@
 #import "IDEBuilderCallbacks-Protocol.h"
 #import "IDEExecutingOperationTrackable-Protocol.h"
 
-@class DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationConfiguration, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEProvisioningBuildOperationInfo, IDESchemeActionRecord, IDESchemeActionResult, NSArray, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
-@protocol DVTCancellationBlockCompletion;
+@class DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationConfiguration, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEProvisioningBuildOperationInfo, IDESchemeActionRecord, IDESchemeActionResult, NSArray, NSData, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@protocol DVTCancellationBlockCompletion, IDEBuildable;
 
 @interface IDEBuildOperation : DVTOperation <IDEExecutingOperationTrackable, IDEBuilderCallbacks>
 {
     IDEBuildOperationDescription *_buildOperationDescription;
     long long _purpose;
     long long _buildCommand;
-    NSArray *_buildables;
+    NSArray<IDEBuildable> *_buildables;
     IDEBuildParameters *_buildParameters;
     NSMapTable *_buildParametersForBuildable;
     BOOL _parallelizeBuildables;
@@ -60,6 +60,7 @@
     IDEBuildOperationStatus *_buildStatus;
     NSDate *_startTime;
     NSDate *_stopTime;
+    NSData *_buildMetricsData;
     IDEBuildStatisticsSection *_buildStatisticsSection;
     IDEProvisioningBuildOperationInfo *_provisioningInfo;
     DVTDynamicLogController *_builderTimingDataLogController;
@@ -79,6 +80,7 @@
 @property(readonly) BOOL buildImplicitDependencies; // @synthesize buildImplicitDependencies=_buildImplicitDependencies;
 @property(readonly) IDEProvisioningBuildOperationInfo *provisioningInfo; // @synthesize provisioningInfo=_provisioningInfo;
 @property(retain) IDEBuildStatisticsSection *buildStatisticsSection; // @synthesize buildStatisticsSection=_buildStatisticsSection;
+@property(copy, nonatomic) NSData *buildMetricsData; // @synthesize buildMetricsData=_buildMetricsData;
 @property BOOL userReportedSlowerThanExpected; // @synthesize userReportedSlowerThanExpected=_userReportedSlowerThanExpected;
 @property(copy) NSDate *stopTime; // @synthesize stopTime=_stopTime;
 @property(copy) NSDate *startTime; // @synthesize startTime=_startTime;

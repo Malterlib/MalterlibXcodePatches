@@ -35,15 +35,12 @@
 + (void)_THREAD_cacheDocumentClass:(Class)arg1 forExtension:(id)arg2;
 + (Class)_THREAD_cachedDocumentClassForExtension:(id)arg1;
 + (id)_typeForContentsOfURL:(id)arg1;
-+ (BOOL)_isValidDocumentExtensionIdentifier:(id)arg1 withEditorCategories:(id)arg2;
 + (id)editorDocumentExtensionForNavigableItem:(id)arg1 editorCategories:(id)arg2;
 + (id)editorDocumentExtensionForURLScheme:(id)arg1 fileDataType:(id)arg2 editorCategories:(id)arg3;
-+ (id)editorDocumentExtensionForFileDataType:(id)arg1 editorCategories:(id)arg2;
 + (id)_THREAD_editorDocumentExtensionForURLScheme:(id)arg1 documentType:(id)arg2 withEditorCategories:(id)arg3;
 + (id)_THREAD_bestEditorDocumentExtensionSupportingURLScheme:(id)arg1 documentType:(id)arg2 withEditorCategories:(id)arg3;
 + (BOOL)_isDocumentExtensionPreferred:(id)arg1 over:(id)arg2;
 + (BOOL)_isValidDocumentExtensionIdentifier:(id)arg1 supportingURLScheme:(id)arg2 documentType:(id)arg3 withEditorCategories:(id)arg4;
-+ (BOOL)_isValidDocumentExtensionIdentifier:(id)arg1 supportingDocumentType:(id)arg2 withEditorCategories:(id)arg3;
 + (void)_enumerateDocumentExtensionsMatchingURLScheme:(id)arg1 fileDataType:(id)arg2 withEditorCategories:(id)arg3 matchBlock:(CDUnknownBlockType)arg4;
 + (BOOL)_checkEditorDocumentExtension:(id)arg1 matchesEditorCategories:(id)arg2;
 + (BOOL)_checkEditorDocumentExtension:(id)arg1 matchesURLScheme:(id)arg2;
@@ -162,6 +159,8 @@
 - (void)asyncSaveUntitledWorkspaceDocument:(id)arg1 forProjectDocument:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (id)_openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 simpleFilesFocused:(BOOL)arg2 forSingleFile:(BOOL)arg3 editorDocumentURLOrNil:(id)arg4 error:(id *)arg5;
+- (void)beginOpenPanelWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)openDocument:(id)arg1;
 - (id)documentForURL:(id)arg1;
 - (BOOL)_anyDocumentClassUsesUbiquitousStorage;
 - (id)defaultType;

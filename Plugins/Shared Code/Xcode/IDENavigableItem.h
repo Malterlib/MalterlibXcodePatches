@@ -171,12 +171,12 @@
 @property(readonly, nonatomic) BOOL isDocumentNavigableItem;
 - (unsigned long long)_titleStyleForMissingContent;
 - (unsigned long long)_titleStyleForReferencedContentExistance;
+- (BOOL)_allowsNonFileReferenceDocumentInFileInspector;
 - (BOOL)ide_canStructureEditName;
 - (BOOL)_alwaysBypassFilter;
 - (BOOL)coordinatorFilteringShouldFilterChildItems;
 - (unsigned long long)navigableItem_conflictStateForUpdateOrMerge;
 - (id)sourceControlCurrentRevision;
-- (id)sourceControlLastModifiedDate;
 - (id)sourceControlServerStatus;
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;

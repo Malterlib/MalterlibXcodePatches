@@ -33,7 +33,6 @@
 - (id)annotationDisplayDescription;
 - (id)annotationDisplayName;
 - (void)_redisplay;
-- (id)_iconForRect:(struct CGRect)arg1;
 - (void)drawSidebarMarkerIconInRect:(struct CGRect)arg1 textView:(id)arg2;
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;
 - (void)setLandmarkProvider:(id)arg1;

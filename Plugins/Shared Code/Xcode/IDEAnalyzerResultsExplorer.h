@@ -38,6 +38,8 @@
     NSLayoutConstraint *_doneButtonHeight;
 }
 
++ (id)keyPathsForValuesAffectingCanShowPreviousStep;
++ (id)keyPathsForValuesAffectingCanShowNextStep;
 + (void)initialize;
 @property __weak NSLayoutConstraint *doneButtonHeight; // @synthesize doneButtonHeight=_doneButtonHeight;
 @property __weak NSLayoutConstraint *forwardBackButtonHeight; // @synthesize forwardBackButtonHeight=_forwardBackButtonHeight;
@@ -58,19 +60,15 @@
 - (void)didPressDismissOnScopeBar:(id)arg1;
 - (void)willBeDismissedAnimate:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_clearAnnotations;
-- (void)_updateUIElements;
 - (BOOL)shouldCloseOnEscape;
 - (void)wasAssociatedWithScopeBarController:(id)arg1;
 @property(readonly) BOOL canShowPreviousStep;
 @property(readonly) BOOL canShowNextStep;
 - (void)setCurrentStepIssue:(id)arg1;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
-- (void)primitiveInvalidate;
 - (void)loadView;
-- (void)awakeFromNib;
-- (id)initWithEditor:(id)arg1;
+- (void)primitiveInvalidate;
 - (id)initUsingDefaultNib;
+- (id)initWithEditor:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

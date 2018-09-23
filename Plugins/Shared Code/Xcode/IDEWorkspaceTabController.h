@@ -22,6 +22,7 @@
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 
 @class DVTMutableOrderedSet, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSString;
+@protocol DVTInvalidation;
 
 @interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, DVTStatefulObject, DVTReplacementViewDelegate, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate, IDEAttachToProcessErrorHandler>
 {
@@ -51,6 +52,8 @@
     IDEARCConversionAssistantContext *_conversionAssistantContext;
     IDEObjCModernizationAssistantContext *_objcModernizationAssistantContext;
     IDESwiftMigrationAssistantContext *_swiftMigrationAssistantContext;
+    id <DVTInvalidation> _libraryInstallationToken;
+    CDUnknownBlockType _openSimpleFileEditorOpenSpecifierCompletionBlock;
     BOOL _userWantsInspectorAreaVisible;
     BOOL _userWantsNavigatorVisible;
     BOOL _isAnimatingInspectorArea;
@@ -266,7 +269,7 @@
 - (void)changeToFindNavigator:(id)arg1;
 - (void)changeToTestNavigator:(id)arg1;
 - (void)_changeToIssuesNavigatorForBuildIssues;
-- (void)changeToIssuesNavigator:(id)arg1 showRuntime:(BOOL)arg2 clearFilter:(BOOL)arg3;
+- (void)changeToIssuesNavigator:(id)arg1 showRuntime:(BOOL)arg2 clearFilterType:(unsigned long long)arg3;
 - (void)changeToIssuesNavigator:(id)arg1;
 - (void)changeToLogsNavigator:(id)arg1;
 - (void)changeToSymbolsNavigator:(id)arg1;
@@ -301,7 +304,9 @@
 - (void)resetEditor:(id)arg1;
 - (void)removeAssistantEditor:(id)arg1;
 - (void)addAssistantEditor:(id)arg1;
+- (void)openMediaLibrary:(id)arg1;
 - (void)showMediaLibrary:(id)arg1;
+- (void)openPrimaryLibrary:(id)arg1;
 - (void)showPrimaryLibrary:(id)arg1;
 @property(readonly) IDEWorkspaceTabController *structureEditWorkspaceTabController;
 @property(readonly) IDEWorkspace *structureEditWorkspace;
@@ -330,6 +335,7 @@
 - (void)_interceptWillInvalidateCursorRectsForView:(id)arg1;
 - (BOOL)_interceptAddCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forView:(id)arg3 inWindow:(id)arg4;
 - (BOOL)_interceptSetCursorForMouseLocation:(struct CGPoint)arg1 inWindow:(id)arg2;
+- (void)_openSimpleFileEditorOpenSpecifier:(id)arg1 documentLocationToShowInEditor:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_pushDefaultPrimaryEditorFrameSize;
 @property BOOL showNavigator;
 @property BOOL showInspectorArea;

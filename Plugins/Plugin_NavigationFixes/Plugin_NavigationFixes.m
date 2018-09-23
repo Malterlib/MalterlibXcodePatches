@@ -23,12 +23,7 @@ typedef NSEvent* __nullable (^CNavigationHandler)(NSEvent*);
 static IMP original_IDEFindNavigatorScopeChooserController_viewDidInstall = nil;
 static IMP original_SourceEditor_SourceEditorView_pasteAndPreserveFormatting = nil;
 static IMP original_SourceEditor_SourceEditorView_paste = nil;
-static IMP original_SourceEditor_SourceEditorView_moveWordForward = nil;
-static IMP original_SourceEditor_SourceEditorView_moveWordForwardAndModifySelection = nil;
-static IMP original_SourceEditor_SourceEditorView_moveWordBackward = nil;
-static IMP original_SourceEditor_SourceEditorView_moveWordBackwardAndModifySelection = nil;
-static IMP original_SourceEditor_SourceEditorView_deleteWordForward = nil;
-static IMP original_SourceEditor_SourceEditorView_deleteWordBackward = nil;
+static IMP original_SourceEditor_SourceEditorView_doCommandBySelector = nil;
 
 
 static IMP original_didSelectTabViewItem = nil;
@@ -410,12 +405,8 @@ static Plugin_NavigationFixes *singleton = nil;
 
 	original_SourceEditor_SourceEditorView_pasteAndPreserveFormatting = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(pasteAndPreserveFormatting:), (IMP)&SourceEditor_SourceEditorView_pasteAndPreserveFormatting);
 	original_SourceEditor_SourceEditorView_paste = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(paste:), (IMP)&SourceEditor_SourceEditorView_paste);
-	original_SourceEditor_SourceEditorView_moveWordForward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(moveWordForward:), (IMP)&SourceEditor_SourceEditorView_moveWordForward);
-	original_SourceEditor_SourceEditorView_moveWordForwardAndModifySelection = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(moveWordForwardAndModifySelection:), (IMP)&SourceEditor_SourceEditorView_moveWordForwardAndModifySelection);
-	original_SourceEditor_SourceEditorView_moveWordBackward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(moveWordBackward:), (IMP)&SourceEditor_SourceEditorView_moveWordBackward);
-	original_SourceEditor_SourceEditorView_moveWordBackwardAndModifySelection = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(moveWordBackwardAndModifySelection:), (IMP)&SourceEditor_SourceEditorView_moveWordBackwardAndModifySelection);
-	original_SourceEditor_SourceEditorView_deleteWordForward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(deleteWordForward:), (IMP)&SourceEditor_SourceEditorView_deleteWordForward);
-	original_SourceEditor_SourceEditorView_deleteWordBackward = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(deleteWordBackward:), (IMP)&SourceEditor_SourceEditorView_deleteWordBackward);
+	original_SourceEditor_SourceEditorView_doCommandBySelector = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(doCommandBySelector:), (IMP)&SourceEditor_SourceEditorView_doCommandBySelector);
+
 	original_becomeFirstResponder_SourceEditor_SourceEditorView = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_SourceEditor_SourceEditorView);
 
 	Call_InitFunctiontPointers();
