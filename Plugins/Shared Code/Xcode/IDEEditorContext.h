@@ -49,7 +49,6 @@
     DVTNotificationToken *_windowDidBecomeKeyObserverToken;
     DVTObservingToken *_lastActiveEditorContextChangedObservingToken;
     DVTObservingToken *_currentSelectedItemsObservingToken;
-    DVTObservingToken *_themeObservingToken;
     id <DVTCancellable> _deferredUpdateSubDocumentNavigableItemsCancellableToken;
     DVTBindingToken *_navBarNavigableItemRootChildItemsBindingToken;
     DVTBindingToken *_navBarNavigableItemBindingToken;

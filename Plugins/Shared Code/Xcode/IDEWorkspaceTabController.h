@@ -209,8 +209,9 @@
 - (void)testActiveRunContextWithoutBuilding:(id)arg1;
 - (void)buildForTestActiveRunContext:(id)arg1;
 - (void)profileUsingActiveRunContextWithOverridingTestingSpecifiers:(id)arg1;
-- (void)testUsingActiveRunContextWithOverridingTestingSpecifiers:(id)arg1;
-- (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)testUsingActiveRunContextWithOverridingTestingSpecifiers:(id)arg1 contextString:(id)arg2;
+- (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (void)testActiveRunContextWithContextString:(id)arg1;
 - (void)testActiveRunContext:(id)arg1;
 - (void)profileActiveSchemeWithoutBuilding:(id)arg1;
 - (void)buildForProfileActiveRunContext:(id)arg1;

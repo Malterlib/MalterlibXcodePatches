@@ -8,15 +8,18 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
 //
 
-#import "IDESelectionSource-Protocol.h"
+#include "Shared.h"
 
-@class IDETest, NSSet, NSString;
+@interface DVTDealloc2Main_WindowController : NSWindowController
+{
+    int _rc;
+}
 
-@protocol IDETestingSelection <IDESelectionSource>
-- (NSSet *)selectedTestsAndTestables;
-- (IDETest *)selectedTest;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
-@optional
-- (NSString *)selectionUIContext;
 @end
 

@@ -9,7 +9,7 @@
 //
 
 @class NSArray, NSImage, NSString, NSURL;
-@protocol IDEPathCellItem;
+@protocol IDEPathCellItem, NSObject;
 
 @protocol IDEPathCellItem
 @property(nonatomic, readonly) NSString *accessibilityIdentifier;

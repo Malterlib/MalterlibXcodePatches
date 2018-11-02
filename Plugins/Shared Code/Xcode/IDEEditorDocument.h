@@ -154,7 +154,7 @@
 - (void)_tryCloseAsynchronouslyToRevert:(BOOL)arg1 promptForUnsavedChanges:(BOOL)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)_canCloseAsynchronouslyToRevert:(BOOL)arg1 promptForUnsavedChanges:(BOOL)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)performActivityWithSynchronousWaiting:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (void)performSynchronousFileAccessUsingBlock:(CDUnknownBlockType) __attribute__((noescape)) arg1;
+- (void)performSynchronousFileAccessUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_didAddToDocumentController;
 - (void)canCloseDocumentWithDelegate:(id)arg1 shouldCloseSelector:(SEL)arg2 contextInfo:(void *)arg3;
 - (void)ide_editorDocument:(id)arg1 shouldClose:(BOOL)arg2 contextInfo:(void *)arg3;
@@ -207,7 +207,7 @@
 - (void)savePresentedItemChangesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)autosaveWithImplicitCancellability:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)continueAsynchronousWorkOnMainThreadUsingBlock:(CDUnknownBlockType)arg1;
-- (void)continueActivityUsingBlock:(CDUnknownBlockType) __attribute__((noescape)) arg1;
+- (void)continueActivityUsingBlock:(CDUnknownBlockType)arg1;
 - (void)continueFileAccessUsingBlock:(CDUnknownBlockType)arg1;
 - (id)applicableInspectorCategoriesGivenSuggestion:(id)arg1;
 - (void)setSdefSupport_displayName:(id)arg1;

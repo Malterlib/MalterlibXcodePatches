@@ -67,6 +67,7 @@
 - (void)setShouldBeEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (BOOL)_booleanValueFromUTF8String:(char *)arg1;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
+- (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (void)_handleActionsChanged:(id)arg1;
 - (void)_handleDisplayNameChanged:(id)arg1;
