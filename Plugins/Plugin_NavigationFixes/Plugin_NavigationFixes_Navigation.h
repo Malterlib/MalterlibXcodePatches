@@ -804,18 +804,19 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 							IDEEditorOpenSpecifier *pSpecifier = [IDEEditorOpenSpecifier structureEditorOpenSpecifierForDocumentLocation: pIssue.primaryDocumentLocation
 																																inWorkspace: pWorkspace
 																																	  error:nil];
+							if (pSpecifier)
+							{
+								[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1];
 
-							[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1];
+								IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
+								IDESourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];
 
+								// Workaround bug in Xcode where line is incorrect
+								[pEditorView moveForward: nil];
+								[pEditorView moveBackward: nil];
 
-							IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
-							IDESourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];
-
-							// Workaround bug in Xcode where line is incorrect
-							[pEditorView moveForward: nil];
-							[pEditorView moveBackward: nil];
-
-							bHandled = true;
+								bHandled = true;
+							}
 						}
 						if (window.activeStructureNavigator && bDoNavigation)
 						{
