@@ -5,8 +5,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"const",
-				"volatile",
+                "const",
+                "volatile",
              );
             Type = "xcode.syntax.identifier.macro.system";
         };
@@ -18,10 +18,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"register",
-				"static",
-				"extern",
-				"mutable",
+                "register",
+                "static",
+                "extern",
+                "mutable",
              );
             Type = "xcode.syntax.plain";
         };
@@ -33,11 +33,11 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"bool",
-				"void",
-				"bint",
-				"zbint",
-				"zbool",
+                "bool",
+                "void",
+                "bint",
+                "zbint",
+                "zbool",
              );
             Type = "xcode.syntax.url";
         };
@@ -49,24 +49,24 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"char",
-				"__wchar_t",
-				"wchar_t",
-				"ch8",
-				"ch16",
-				"ch32",
-				"uch8",
-				"uch16",
-				"uch32",
-				"zch8",
-				"zch16",
-				"zch32",
-				"zuch8",
-				"zuch16",
-				"zuch32",
-				"char16_t",
-				"char32_t",
-				"zuch32",
+                "char",
+                "__wchar_t",
+                "wchar_t",
+                "ch8",
+                "ch16",
+                "ch32",
+                "uch8",
+                "uch16",
+                "uch32",
+                "zch8",
+                "zch16",
+                "zch32",
+                "zuch8",
+                "zuch16",
+                "zuch32",
+                "char16_t",
+                "char32_t",
+                "zuch32",
              );
             Type = "xcode.syntax.url";
         };
@@ -78,78 +78,78 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"int",
-				"size_t",
-				"__int16",
-				"__int32",
-				"__int64",
-				"__int8",
-				"zuint320",
-				"zuint512",
-				"zuint1024",
-				"zuint2048",
-				"zuint4096",
-				"zuint8192",
-				"zuint8",
-				"zuint16",
-				"zuint32",
-				"zuint64",
-				"zuint80",
-				"zuint128",
-				"zuint160",
-				"zuint256",
-				"zint320",
-				"zint512",
-				"zint1024",
-				"zint2048",
-				"zint4096",
-				"zint8192",
-				"zint8",
-				"zint16",
-				"zint32",
-				"zint64",
-				"zint80",
-				"zint128",
-				"zint160",
-				"zint256",
-				"uint8",
-				"uint16",
-				"uint32",
-				"uint64",
-				"uint80",
-				"uint128",
-				"uint160",
-				"uint256",
-				"uint320",
-				"uint512",
-				"uint1024",
-				"uint2048",
-				"uint4096",
-				"uint8192",
-				"int8",
-				"int16",
-				"int32",
-				"int64",
-				"int80",
-				"int128",
-				"int160",
-				"int256",
-				"int320",
-				"int512",
-				"int1024",
-				"int2048",
-				"int4096",
-				"int8192",
-				"mint",
-				"smint",
-				"umint",
-				"aint",
-				"uaint",
-				"zmint",
-				"zumint",
-				"zsmint",
-				"zamint",
-				"zuamint",
+                "int",
+                "size_t",
+                "__int16",
+                "__int32",
+                "__int64",
+                "__int8",
+                "zuint320",
+                "zuint512",
+                "zuint1024",
+                "zuint2048",
+                "zuint4096",
+                "zuint8192",
+                "zuint8",
+                "zuint16",
+                "zuint32",
+                "zuint64",
+                "zuint80",
+                "zuint128",
+                "zuint160",
+                "zuint256",
+                "zint320",
+                "zint512",
+                "zint1024",
+                "zint2048",
+                "zint4096",
+                "zint8192",
+                "zint8",
+                "zint16",
+                "zint32",
+                "zint64",
+                "zint80",
+                "zint128",
+                "zint160",
+                "zint256",
+                "uint8",
+                "uint16",
+                "uint32",
+                "uint64",
+                "uint80",
+                "uint128",
+                "uint160",
+                "uint256",
+                "uint320",
+                "uint512",
+                "uint1024",
+                "uint2048",
+                "uint4096",
+                "uint8192",
+                "int8",
+                "int16",
+                "int32",
+                "int64",
+                "int80",
+                "int128",
+                "int160",
+                "int256",
+                "int320",
+                "int512",
+                "int1024",
+                "int2048",
+                "int4096",
+                "int8192",
+                "mint",
+                "smint",
+                "umint",
+                "aint",
+                "uaint",
+                "zmint",
+                "zumint",
+                "zsmint",
+                "zamint",
+                "zuamint",
              );
             Type = "xcode.syntax.url";
         };
@@ -161,10 +161,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"long",
-				"short",
-				"signed",
-				"unsigned",
+                "long",
+                "short",
+                "signed",
+                "unsigned",
              );
             Type = "xcode.syntax.url";
         };
@@ -176,11 +176,11 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__m128",
-				"__m64",
-				"__w64",
-				"__m128i",
-				"__m128d",
+                "__m128",
+                "__m64",
+                "__w64",
+                "__m128i",
+                "__m128d",
              );
             Type = "xcode.syntax.url";
         };
@@ -192,52 +192,52 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"float",
-				"double",
-				"fp8",
-				"fp16",
-				"fp32",
-				"fp64",
-				"fp80",
-				"fp128",
-				"fp256",
-				"fp512",
-				"fp1024",
-				"fp2048",
-				"fp4096",
-				"ufp8",
-				"ufp16",
-				"ufp32",
-				"ufp64",
-				"ufp80",
-				"ufp128",
-				"ufp256",
-				"ufp512",
-				"ufp1024",
-				"ufp2048",
-				"ufp4096",
-				"zfp8",
-				"zfp16",
-				"zfp32",
-				"zfp64",
-				"zfp80",
-				"zfp128",
-				"zfp256",
-				"zfp512",
-				"zfp1024",
-				"zfp2048",
-				"zfp4096",
-				"zufp8",
-				"zufp16",
-				"zufp32",
-				"zufp64",
-				"zufp80",
-				"zufp128",
-				"zufp256",
-				"zufp512",
-				"zufp1024",
-				"zufp2048",
-				"zufp4096",
+                "float",
+                "double",
+                "fp8",
+                "fp16",
+                "fp32",
+                "fp64",
+                "fp80",
+                "fp128",
+                "fp256",
+                "fp512",
+                "fp1024",
+                "fp2048",
+                "fp4096",
+                "ufp8",
+                "ufp16",
+                "ufp32",
+                "ufp64",
+                "ufp80",
+                "ufp128",
+                "ufp256",
+                "ufp512",
+                "ufp1024",
+                "ufp2048",
+                "ufp4096",
+                "zfp8",
+                "zfp16",
+                "zfp32",
+                "zfp64",
+                "zfp80",
+                "zfp128",
+                "zfp256",
+                "zfp512",
+                "zfp1024",
+                "zfp2048",
+                "zfp4096",
+                "zufp8",
+                "zufp16",
+                "zufp32",
+                "zufp64",
+                "zufp80",
+                "zufp128",
+                "zufp256",
+                "zufp512",
+                "zufp1024",
+                "zufp2048",
+                "zufp4096",
              );
             Type = "xcode.syntax.url";
         };
@@ -249,10 +249,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"false",
-				"true",
-				"nullptr",
-				"NULL",
+                "false",
+                "true",
+                "nullptr",
+                "NULL",
              );
             Type = "xcode.syntax.comment.doc";
         };
@@ -264,22 +264,22 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"null",
-				"undefined",
-				"Infinity",
-				"NaN",
-				"E",
-				"LN2",
-				"LN10",
-				"LOG2E",
-				"LOG10E",
-				"MAX_VALUE",
-				"MIN_VALUE",
-				"NEGATIVE_INFINITY",
-				"PI",
-				"POSITIVE_INFINITY",
-				"SQRT1_2",
-				"SQRT2",
+                "null",
+                "undefined",
+                "Infinity",
+                "NaN",
+                "E",
+                "LN2",
+                "LN10",
+                "LOG2E",
+                "LOG10E",
+                "MAX_VALUE",
+                "MIN_VALUE",
+                "NEGATIVE_INFINITY",
+                "PI",
+                "POSITIVE_INFINITY",
+                "SQRT1_2",
+                "SQRT2",
              );
             Type = "xcode.syntax.comment.doc";
         };
@@ -289,8 +289,8 @@
         Identifier = "xcode.lang.malterlib.keyword.jsonconstants";
         Syntax = {
             Words = (
-				"_",
-				"__",
+                "_",
+                "__",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -302,15 +302,15 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"try",
-				"throw",
-				"catch",
-				"__try",
-				"__except",
-				"__finally",
-				"__leave",
-				"__raise",
-				"finally",
+                "try",
+                "throw",
+                "catch",
+                "__try",
+                "__except",
+                "__finally",
+                "__leave",
+                "__raise",
+                "finally",
              );
             Type = "xcode.syntax.plain";
         };
@@ -322,11 +322,11 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__alignof",
-				"sizeof",
-				"decltype",
-				"__uuidof",
-				"typeid",
+                "__alignof",
+                "sizeof",
+                "decltype",
+                "__uuidof",
+                "typeid",
              );
             Type = "xcode.syntax.plain";
         };
@@ -338,8 +338,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"typeof",
-				"instanceof",
+                "typeof",
+                "instanceof",
              );
             Type = "xcode.syntax.plain";
         };
@@ -351,7 +351,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"static_assert",
+                "static_assert",
              );
             Type = "xcode.syntax.plain";
         };
@@ -363,24 +363,24 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"while",
-				"for",
-				"goto",
-				"if",
-				"do",
-				"break",
-				"case",
-				"continue",
-				"default",
-				"else",
-				"return",
-				"switch",
-				"likely",
-				"unlikely",
-				"assume",
-				"yield_cpu",
-				"constant_int64",
-				"constant_uint64",
+                "while",
+                "for",
+                "goto",
+                "if",
+                "do",
+                "break",
+                "case",
+                "continue",
+                "default",
+                "else",
+                "return",
+                "switch",
+                "likely",
+                "unlikely",
+                "assume",
+                "yield_cpu",
+                "constant_int64",
+                "constant_uint64",
              );
             Type = "xcode.syntax.plain";
         };
@@ -392,8 +392,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__asm",
-				"__assume",
+                "__asm",
+                "__assume",
              );
             Type = "xcode.syntax.plain";
         };
@@ -405,56 +405,57 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__unaligned",
-				"__declspec",
-				"__based",
-				"deprecated",
-				"dllexport",
-				"dllimport",
-				"naked",
-				"noinline",
-				"noreturn",
-				"nothrow",
-				"noexcept",
-				"novtable",
-				"property",
-				"selectany",
-				"maybe_unused",
-				"thread",
-				"uuid",
-				"explicit",
-				"__forceinline",
-				"__inline",
-				"inline",
-				"__cdecl",
-				"__thiscall",
-				"__fastcall",
-				"__stdcall",
-				"calling_convention_c",
-				"cdecl",
-				"stdcall",
-				"fastcall",
-				"inline_small",
-				"inline_always",
-				"inline_never",
-				"inline_never_debug",
-				"inline_medium",
-				"inline_large",
-				"inline_extralarge",
-				"inline_always_debug",
-				"module_export",
-				"module_import",
-				"only_parameters_aliased",
-				"return_not_aliased",
-				"function_does_not_return",
-				"variable_not_aliased",
-				"constexpr",
-				"__pragma",
-				"__attribute__",
-				"__restrict__",
-				"assure_used",                
-				"align_cacheline",
-				"intrinsic",
+                "__unaligned",
+                "__declspec",
+                "__based",
+                "deprecated",
+                "dllexport",
+                "dllimport",
+                "naked",
+                "noinline",
+                "noreturn",
+                "nothrow",
+                "noexcept",
+                "novtable",
+                "property",
+                "selectany",
+                "maybe_unused",
+                "thread",
+                "uuid",
+                "explicit",
+                "__forceinline",
+                "__inline",
+                "inline",
+                "__cdecl",
+                "__thiscall",
+                "__fastcall",
+                "__stdcall",
+                "calling_convention_c",
+                "cdecl",
+                "stdcall",
+                "fastcall",
+                "inline_small",
+                "inline_always",
+                "inline_never",
+                "inline_never_debug",
+                "inline_medium",
+                "inline_large",
+                "inline_extralarge",
+                "inline_always_debug",
+                "module_export",
+                "module_import",
+                "only_parameters_aliased",
+                "malloc_like",
+                "return_not_aliased",
+                "function_does_not_return",
+                "variable_not_aliased",
+                "constexpr",
+                "__pragma",
+                "__attribute__",
+                "__restrict__",
+                "assure_used",                
+                "align_cacheline",
+                "intrinsic",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -466,8 +467,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"delete",
-				"new",
+                "delete",
+                "new",
              );
             Type = "xcode.syntax.plain";
         };
@@ -479,30 +480,30 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__abstract",
-				"abstract",
-				"__box",
-				"__delegate",
-				"__gc",
-				"__hook",
-				"__nogc",
-				"__pin",
-				"__property",
-				"__sealed",
-				"__try_cast",
-				"__unhook",
-				"__value",
-				"event",
-				"__identifier",
-				"friend_as",
-				"interface",
-				"interior_ptr",
-				"gcnew",
-				"generic",
-				"initonly",
-				"literal",
-				"ref",
-				"safecast",
+                "__abstract",
+                "abstract",
+                "__box",
+                "__delegate",
+                "__gc",
+                "__hook",
+                "__nogc",
+                "__pin",
+                "__property",
+                "__sealed",
+                "__try_cast",
+                "__unhook",
+                "__value",
+                "event",
+                "__identifier",
+                "friend_as",
+                "interface",
+                "interior_ptr",
+                "gcnew",
+                "generic",
+                "initonly",
+                "literal",
+                "ref",
+                "safecast",
              );
             Type = "xcode.syntax.plain";
         };
@@ -514,15 +515,15 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"__event",
-				"__if_exists",
-				"__if_not_exists",
-				"__interface",
-				"__multiple_inheritance",
-				"__single_inheritance",
-				"__virtual_inheritance",
-				"__super",
-				"__noop",
+                "__event",
+                "__if_exists",
+                "__if_not_exists",
+                "__interface",
+                "__multiple_inheritance",
+                "__single_inheritance",
+                "__virtual_inheritance",
+                "__super",
+                "__noop",
              );
             Type = "xcode.syntax.plain";
         };
@@ -534,10 +535,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"union",
-				"class",
-				"enum",
-				"struct",
+                "union",
+                "class",
+                "enum",
+                "struct",
              );
             Type = "xcode.syntax.plain";
         };
@@ -549,7 +550,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"namespace",
+                "namespace",
              );
             Type = "xcode.syntax.plain";
         };
@@ -561,7 +562,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"typename",
+                "typename",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -573,7 +574,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"template",
+                "template",
              );
             Type = "xcode.syntax.plain";
         };
@@ -585,8 +586,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"function",
-				"in",
+                "function",
+                "in",
              );
             Type = "xcode.syntax.plain";
         };
@@ -598,7 +599,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"typedef",
+                "typedef",
              );
             Type = "xcode.syntax.plain";
         };
@@ -610,7 +611,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"using",
+                "using",
              );
             Type = "xcode.syntax.plain";
         };
@@ -622,7 +623,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"auto",
+                "auto",
              );
             Type = "xcode.syntax.plain";
         };
@@ -634,7 +635,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"var",
+                "var",
              );
             Type = "xcode.syntax.plain";
         };
@@ -646,8 +647,8 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"this",
-				"self",
+                "this",
+                "self",
              );
             Type = "xcode.syntax.plain";
         };
@@ -659,7 +660,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"operator",
+                "operator",
              );
             Type = "xcode.syntax.plain";
         };
@@ -671,10 +672,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"friend",
-				"private",
-				"public",
-				"protected",
+                "friend",
+                "private",
+                "public",
+                "protected",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -686,10 +687,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"final",
-				"sealed",
-				"override",
-				"virtual",
+                "final",
+                "sealed",
+                "override",
+                "virtual",
              );
             Type = "xcode.syntax.plain";
         };
@@ -701,10 +702,10 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"const_cast",
-				"dynamic_cast",
-				"reinterpret_cast",
-				"static_cast",
+                "const_cast",
+                "dynamic_cast",
+                "reinterpret_cast",
+                "static_cast",
              );
             Type = "xcode.syntax.plain";
         };
@@ -716,7 +717,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"ignore",
+                "ignore",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -728,20 +729,20 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
-				"define",
-				"error",
-				"import",
-				"undef",
-				"elif",
-				"if",
-				"include",
-				"using",
-				"else",
-				"ifdef",
-				"line",
-				"endif",
-				"ifndef",
-				"pragma",
+                "define",
+                "error",
+                "import",
+                "undef",
+                "elif",
+                "if",
+                "include",
+                "using",
+                "else",
+                "ifdef",
+                "line",
+                "endif",
+                "ifndef",
+                "pragma",
              );
             Type = "xcode.syntax.plain";
         };
@@ -753,7 +754,7 @@
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
                 "(?-i)^E[A-Z][a-zA-Z0-9_]+_[a-zA-Z0-9_]+$",
-                "(?-i)^(c_|gc_|mc_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(c_|gc_|mc_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.comment.doc";
         };
@@ -764,7 +765,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^mcp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^mcp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.comment.doc";
         };
@@ -775,7 +776,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(t_|tp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(t_|tp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.comment.doc.keyword";
         };
@@ -786,7 +787,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(tf_|tfp_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(tf_|tfp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.comment.doc.keyword";
         };
@@ -799,6 +800,18 @@
             Match = (
                 "(?-i)^N[A-Z][a-zA-Z0-9_]+$",
             );
+            Type = "xcode.syntax.identifier.type";
+        };
+    },
+    {
+        Identifier = "xcode.lang.malterlib.namespace.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "std",
+                "experimental",
+             );
             Type = "xcode.syntax.identifier.type";
         };
     },
@@ -836,12 +849,30 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.type.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "coroutine_traits",
+                "coroutine_handle",
+                "suspend_always",
+                "suspend_never",
+                "promise_type",
+                "noop_coroutine_promise",
+                "noop_coroutine_handle",
+                "exception_ptr",
+             );
+            Type = "xcode.syntax.identifier.class";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.member";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^m_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^m_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.constant";
         };
@@ -852,7 +883,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^mp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^mp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.constant.system";
         };
@@ -925,6 +956,33 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.function.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "await_transform",
+                "await_ready",
+                "await_suspend",
+                "await_resume",
+                "get_return_object",
+                "return_value",
+                "return_void",
+                "yield_value",
+                "initial_suspend",
+                "final_suspend",
+                "unhandled_exception",
+                "from_promise",
+                "address",
+                "resume",
+                "destroy",
+                "done",
+                "promise",
+             );
+            Type = "xcode.syntax.identifier.function";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.function.private";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
@@ -947,6 +1005,20 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.function.global.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "rethrow_exception",
+                "uncaught_exceptions",
+                "current_exception",
+                "make_exception_ptr",
+             );
+            Type = "xcode.syntax.identifier.function.system";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.macro";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
@@ -958,12 +1030,27 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.macro.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "constant_int64",
+                "constant_uint64",
+                "str_utf8",
+                "str_utf16",
+                "str_utf32",
+             );
+            Type = "xcode.syntax.identifier.macro";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.macro.parameter";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^d_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^d_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.macro.system";
         };
@@ -974,7 +1061,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(_|p_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(_|p_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable";
         };
@@ -985,7 +1072,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(o_|w_|po_|pw_|_o|p_o)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(o_|w_|po_|pw_|_o|p_o)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable";
         };
@@ -996,7 +1083,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^ms_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^ms_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1007,7 +1094,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^msp_[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^msp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1018,7 +1105,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(gs_|g_|s_)[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(gs_|g_|s_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1029,7 +1116,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^[bcfinpt]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.attribute";
         };
@@ -1042,189 +1129,189 @@
         };
     },
     
-	{
-		Identifier = "xcode.lang.url";
-		Syntax = {
-			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
-			Match = (
-				"^(acap|afp|afs|cid|data|fax|feed|file|ftp|go|gopher|http|https|imap|ldap|mailserver|mid|modem|news|nntp|opaquelocktoken|pop|prospero|rdar|rtsp|service|sip|soap\\.beep|soap\\.beeps|tel|telnet|tip|tn3270|urn|vemmi|wais|xcdoc|z39\\.50r|z39\\.50s)://([a-zA-Z0-9\\-_.]+/)?[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
-				"^(mailto|im):[a-zA-Z0-9\\-_]+@[a-zA-Z0-9\\-_\\.!%]+$",
-				"^radar:[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
-			);
-			Type = "xcode.syntax.url";
-		};
-	},
-	{
-		Identifier = "xcode.lang.url.mail";
-		Syntax = {
-			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
-			Match = (
-				"^[a-zA-Z0-9\\-_\\.]+@[a-zA-Z0-9\\-_\\.!%]+$",
-			);
-			Type = "xcode.syntax.url.mail";
-		};
-	},
-	{
-		Identifier = "xcode.lang.string";
-		Syntax = {
-			Start = "\"";
-			EscapeChar = "\\";
-			End = "\"";
-			AltEnd = "\n";
-			Type = "xcode.syntax.string";
-		};
-	},
-	{
-		Identifier = "xcode.lang.character";
-		Syntax = {
-			Start = "'";
-			EscapeChar = "\\";
-			End = "'";
-			AltEnd = "\n";
-			Type = "xcode.syntax.character";
-		};
-	},
-	{
-		Identifier = "xcode.lang.string.singlequote";
-		BasedOn = "xcode.lang.string";
-		Syntax = {
-			Start = "'";
-			EscapeChar = "\\";
-			End = "'";
-			AltEnd = "\n";
-			Type = "xcode.syntax.string";
-		};
-	},
-	{
-		Identifier = "xcode.lang.completionplaceholder";
-		Syntax = {
-			Start = "<#";
-			End = "#>";
-			Type = "xcode.syntax.completionplaceholder";
-		};
-	},
-	{
-		Identifier = "xcode.lang.comment";
-		Syntax = {
-			Start = "/*";
-			End = "*/";
-			"ParseEndBeforeIncludedRules" = YES;
-			Foldable = YES;
-			IncludeRules = (
-				"xcode.lang.url",
-				"xcode.lang.url.mail",
-				"xcode.lang.comment.mark",
-			);
-			Type = "xcode.syntax.comment";
-		};
-	},
-	{
-		Identifier = "xcode.lang.comment.singleline";
-		BasedOn = "xcode.lang.comment";
-		Syntax = {
-			Start = "//";
-			EscapeChar = "\\";
-			Until = "\n";
-			IncludeRules = (
-				"xcode.lang.url",
-				"xcode.lang.url.mail",
-				"xcode.lang.comment.mark",
-			);
-			Type = "xcode.syntax.comment";
-		};
-	},
-	{
-		Identifier = "xcode.lang.comment.singleline.pound";
-		BasedOn = "xcode.lang.comment";
-		Syntax = {
-			Start = "#";
-			EscapeChar = "\\";
-			Until = "\n";
-			IncludeRules = (
-				"xcode.lang.url",
-				"xcode.lang.url.mail",
-				"xcode.lang.comment.mark",
-			);
-			Type = "xcode.syntax.comment";
-		};
-	},
-	{
-		Identifier = "xcode.lang.comment.mark";
-		Syntax = {
-			StartChars = "MTF!?";
-			Match = (
-				"^MARK:[ \t]+(.*)$",
-				"^(TODO:[ \t]+.*)$",
-				"^(FIXME:[ \t]+.*)$",
-				"^(!!!:.*)$",
-				"^(\\?\\?\\?:.*)$",
-			);
-			CaptureTypes = (
-				"xcode.syntax.mark",
-			);
-			Type = "xcode.syntax.comment";
-		};
-	},
-	{
-		Identifier = "xcode.lang.number";
-		Syntax = {
-			"SourceScannerClassName" = DVTNumberScanner;
-			StartChars = "+-0123456789.";
-			Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'";
-			Match = (
-				"^[+-]?0[bB][01]+([lL])?",
-				"^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfF])?",
-				"^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfF])?",
-				"^[+-]?([0-9]+'?[0-9]?)+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfF])?",
-				"^[+-]?([0-9]+'?[0-9]?)*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfF])?",
-			);
-			Type = "xcode.syntax.number";
-		};
-	},
-	{
-		Identifier = "xcode.lang.plainColoring";
-		Description = "Xcode Plain Coloring";
-		IncludeInMenu = YES;
-		Name = "Plain Coloring";
-		Syntax = {
-			Type = "xcode.syntax.plain";
-		};
-	},
-	{
-		Identifier = "xcode.lang.simpleColoring";
-		Description = "Xcode Simple Coloring";
-		IncludeInMenu = YES;
-		Name = "Simple Coloring";
-		Syntax = {
-			IncludeRules = (
-				"xcode.lang.comment",
-				"xcode.lang.comment.singleline",
-				"xcode.lang.comment.singleline.pound",
-				"xcode.lang.string",
-				"xcode.lang.character",
-				"xcode.lang.number",
-				"xcode.lang.simpleColoring.block",
-			);
-			Type = "xcode.syntax.plain";
-		};
-	},
-	{
-		Identifier = "xcode.lang.simpleColoring.block";
-		Syntax = {
-			Start = "{";
-			End = "}";
-			Foldable = YES;
-			Recursive = YES;
-			IncludeRules = (
-				"xcode.lang.comment",
-				"xcode.lang.comment.singleline",
-				"xcode.lang.comment.singleline.pound",
-				"xcode.lang.string",
-				"xcode.lang.character",
-				"xcode.lang.number",
-			);
-		};
-	},
+    {
+        Identifier = "xcode.lang.url";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+            Match = (
+                "^(acap|afp|afs|cid|data|fax|feed|file|ftp|go|gopher|http|https|imap|ldap|mailserver|mid|modem|news|nntp|opaquelocktoken|pop|prospero|rdar|rtsp|service|sip|soap\\.beep|soap\\.beeps|tel|telnet|tip|tn3270|urn|vemmi|wais|xcdoc|z39\\.50r|z39\\.50s)://([a-zA-Z0-9\\-_.]+/)?[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+                "^(mailto|im):[a-zA-Z0-9\\-_]+@[a-zA-Z0-9\\-_\\.!%]+$",
+                "^radar:[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+            );
+            Type = "xcode.syntax.url";
+        };
+    },
+    {
+        Identifier = "xcode.lang.url.mail";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+            Match = (
+                "^[a-zA-Z0-9\\-_\\.]+@[a-zA-Z0-9\\-_\\.!%]+$",
+            );
+            Type = "xcode.syntax.url.mail";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string";
+        Syntax = {
+            Start = "\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.character";
+        Syntax = {
+            Start = "'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.singlequote";
+        BasedOn = "xcode.lang.string";
+        Syntax = {
+            Start = "'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.completionplaceholder";
+        Syntax = {
+            Start = "<#";
+            End = "#>";
+            Type = "xcode.syntax.completionplaceholder";
+        };
+    },
+    {
+        Identifier = "xcode.lang.comment";
+        Syntax = {
+            Start = "/*";
+            End = "*/";
+            "ParseEndBeforeIncludedRules" = YES;
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail",
+                "xcode.lang.comment.mark",
+            );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.comment.singleline";
+        BasedOn = "xcode.lang.comment";
+        Syntax = {
+            Start = "//";
+            EscapeChar = "\\";
+            Until = "\n";
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail",
+                "xcode.lang.comment.mark",
+            );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.comment.singleline.pound";
+        BasedOn = "xcode.lang.comment";
+        Syntax = {
+            Start = "#";
+            EscapeChar = "\\";
+            Until = "\n";
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail",
+                "xcode.lang.comment.mark",
+            );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.comment.mark";
+        Syntax = {
+            StartChars = "MTF!?";
+            Match = (
+                "^MARK:[ \t]+(.*)$",
+                "^(TODO:[ \t]+.*)$",
+                "^(FIXME:[ \t]+.*)$",
+                "^(!!!:.*)$",
+                "^(\\?\\?\\?:.*)$",
+            );
+            CaptureTypes = (
+                "xcode.syntax.mark",
+            );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.number";
+        Syntax = {
+            "SourceScannerClassName" = DVTNumberScanner;
+            StartChars = "+-0123456789.";
+            Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'";
+            Match = (
+                "^[+-]?0[bB][01]+([lL])?",
+                "^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfF])?",
+                "^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfF])?",
+                "^[+-]?([0-9]+'?[0-9]?)+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfF])?",
+                "^[+-]?([0-9]+'?[0-9]?)*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfF])?",
+            );
+            Type = "xcode.syntax.number";
+        };
+    },
+    {
+        Identifier = "xcode.lang.plainColoring";
+        Description = "Xcode Plain Coloring";
+        IncludeInMenu = YES;
+        Name = "Plain Coloring";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.simpleColoring";
+        Description = "Xcode Simple Coloring";
+        IncludeInMenu = YES;
+        Name = "Simple Coloring";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.simpleColoring.block",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.simpleColoring.block";
+        Syntax = {
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+            );
+        };
+    },
 )
