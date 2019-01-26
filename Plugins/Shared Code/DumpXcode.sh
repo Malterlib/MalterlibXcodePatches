@@ -44,8 +44,8 @@ for Executable in $XcodeExecutables; do
 
 #	echo $Executable 1>&2
 	#class-dump --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk "$Executable"
-	echo -e "\033[32m/Source/class-dump/build/Release/class-dump -H -F --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -o $CurrentPath/XcodeDump $Executable \033[0m" 1>&2
-	/Source/class-dump/build/Release/class-dump -H -F --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -o $CurrentPath/XcodeDump "$Executable" || true
+	echo -e "\033[32m/Source/class-dump/build/Release/class-dump -H -F --sdk-mac "" -o $CurrentPath/XcodeDump $Executable \033[0m" 1>&2
+	/Source/class-dump/build/Release/class-dump -H -F --sdk-mac "" -o $CurrentPath/XcodeDump "$Executable" || true
 	#class-dump -H -I --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -o $CurrentPath/XcodeDump "$Executable"
 	#class-dump -H -I -r --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -o $CurrentPath/XcodeDump "$Executable"
 done

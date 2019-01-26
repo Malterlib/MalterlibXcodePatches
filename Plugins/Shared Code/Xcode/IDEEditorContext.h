@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -13,18 +13,18 @@
 #import "IDEViewController.h"
 
 #import "DVTFindBarHostable-Protocol.h"
+#import "DVTPathCellDelegate-Protocol.h"
 #import "DVTScopeBarHost-Protocol.h"
 #import "DVTStateRepositoryDelegate-Protocol.h"
 #import "IDEEditorContextProtocol-Protocol.h"
 #import "IDEEditorDelegate-Protocol.h"
 #import "IDEEditorSplittingControllerDelegate-Protocol.h"
 #import "IDENavigableItemCoordinatorDelegate-Protocol.h"
-#import "IDEPathCellDelegate-Protocol.h"
 
 @class CALayer, DVTBindingToken, DVTBorderedView, DVTFileDataType, DVTFindBar, DVTGradientImagePopUpButton, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorArea, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorIssueMenuController, IDEEditorMultipleContext, IDEEditorNavigableItemCoalescingState, IDEEditorReadOnlyIndicatorController, IDEEditorSplittingController, IDEEditorStepperView, IDENavBar, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSScrollView, NSString, NSURL, NSView, _IDEGeniusResultsContext;
 @protocol DVTCancellable, IDEEditorContextDelegate;
 
-@interface IDEEditorContext : IDEViewController <NSMenuDelegate, IDEEditorContextProtocol, IDEEditorSplittingControllerDelegate, DVTFindBarHostable, NSPathControlDelegate, IDEPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, NSAnimationDelegate>
+@interface IDEEditorContext : IDEViewController <NSMenuDelegate, IDEEditorContextProtocol, IDEEditorSplittingControllerDelegate, DVTFindBarHostable, NSPathControlDelegate, DVTPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, NSAnimationDelegate>
 {
     NSView *_editorAndNavBarView;
     IDENavBar *_navBar;

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -17,7 +17,7 @@
 #import "IDETestingSelection-Protocol.h"
 
 @class DVTObservingToken, IDESelection, IDEWorkspaceTabController, NSDictionary, NSMenu, NSMutableSet, NSSet, NSString, NSTableColumn;
-@protocol IDEStructureEditingDropTarget;
+@protocol IDEStructureEditingDropTarget, IDETestCollection;
 
 @interface IDEStructureNavigator : IDEOutlineBasedNavigator <NSOutlineViewDelegate, DVTTableCellViewTitleEditingDelegate, IDETemplateSupportingNavigator, IDETestingSelection, NSMenuDelegate>
 {
@@ -50,8 +50,7 @@
 @property(nonatomic) BOOL recentDocumentFilteringEnabled; // @synthesize recentDocumentFilteringEnabled=_recentDocumentFilteringEnabled;
 @property(copy, nonatomic) NSString *fileNamePatternString; // @synthesize fileNamePatternString=_fileNamePatternString;
 // - (void).cxx_destruct;
-- (id)selectedTestsAndTestables;
-- (id)selectedTest;
+@property(readonly) id <IDETestCollection> selectedTests;
 - (void)_handleEnterAction;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (BOOL)_isNavigableItem:(id)arg1 childOfNavigableItems:(id)arg2;
@@ -194,6 +193,7 @@
 @property(copy) NSSet *expandedItems; // @dynamic expandedItems;
 @property(readonly, copy) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
 @property(readonly, copy) IDESelection *outputSelection;
+@property(readonly) NSString *selectionUIContext;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic) IDEWorkspaceTabController *workspaceTabController;
 

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -38,6 +38,7 @@
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
 - (void)refresh;
+- (struct CDStruct_bf6d4a14)popUpButtonInset;
 - (void)synchronizePopUp:(id)arg1 forSegment:(id)arg2;
 - (struct CGSize)popUpSizeForTitle:(id)arg1;
 - (id)makePopUpButtonInsetView;

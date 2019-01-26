@@ -195,7 +195,7 @@ extension SourceEditor.SourceEditorLayoutManager {
 		//XcodePluginDumpClass(SourceEditor.SourceEditorView.self);
 		//XcodePluginDumpClass(type(of: sourceView));
 		//XcodePluginSwiftReflector.dumpObjectTypes(sourceView);
-/*		let instance : SourceEditor.SourceEditorSelection? = SourceEditor.SourceEditorSelection();
+		/*let instance : SourceEditor.SourceEditorSelection? = SourceEditor.SourceEditorSelection();
 		let size = MemoryLayout.size(ofValue: instance)
 		print("size \(size)");
 		let size2 = MemoryLayout.size(ofValue: instance!)

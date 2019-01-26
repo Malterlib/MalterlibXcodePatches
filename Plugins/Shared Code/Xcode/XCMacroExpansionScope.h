@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -20,6 +20,8 @@
     XCSDKPackage *_cachedSdk;
 }
 
++ (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3;
++ (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 conditionParameterFallbackValues:(id)arg6 expansionOptions:(unsigned long long)arg7;
 + (id)stringForDefinitionLevel:(long long)arg1;
 + (BOOL)isUserDefinedDefinitionLevel:(unsigned long long)arg1;
 + (long long)numberOfDefinitionLevels;

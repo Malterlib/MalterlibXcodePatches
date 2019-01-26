@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -33,6 +33,7 @@
 + (int)_eventBehaviorForEventType:(unsigned long long)arg1;
 + (void)_openNavigationHUDSelection:(id)arg1 forWorkspaceDocument:(id)arg2 documentURL:(id)arg3 usingBlock:(CDUnknownBlockType)arg4;
 + (void)_openNavigationHUDSelection:(id)arg1 forWorkspaceDocument:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
++ (void)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 eventBehavior:(int)arg3 takeFocus:(int)arg4;
 + (void)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 takeFocus:(int)arg3;
 + (id)openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3;
 + (void)_openEditorOpenSpecifierInOptionalEditor:(id)arg1 forWorkspaceTabController:(id)arg2;

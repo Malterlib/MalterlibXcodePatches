@@ -5,12 +5,13 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
 
 #import "DVTTextAnnotation.h"
+#import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
 @class NSImage, NSString;
 @protocol DVTMessageBubbleAnnotationDelegate;
@@ -39,6 +40,7 @@
 @property(nonatomic, getter=isMiniaturized) BOOL miniaturized; // @synthesize miniaturized=_miniaturized;
 // - (void).cxx_destruct;
 - (id)annotationDisplayDescription;
+@property(retain) id <DVTMessageBubbleAnnotationDelegate> delegate;
 - (void)fontAndColorThemeChanged:(id)arg1;
 - (void)invalidateDisplayAndLayoutIfNeeded:(BOOL)arg1;
 - (void)setNeedsInvalidate;

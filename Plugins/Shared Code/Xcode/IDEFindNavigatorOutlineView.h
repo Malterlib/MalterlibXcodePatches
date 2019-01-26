@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -18,6 +18,7 @@
 
 @interface IDEFindNavigatorOutlineView : IDEAbstractFindNavigatorOutlineView <DVTEmptyContentPlaceholderContainer>
 {
+    BOOL _hasContent;
     BOOL _processingMouseEvent;
     int _emptyContentStringStyle;
     NSString *_emptyContentString;
@@ -26,17 +27,27 @@
 }
 
 @property(readonly) BOOL processingMouseEvent; // @synthesize processingMouseEvent=_processingMouseEvent;
+@property(nonatomic) BOOL hasContent; // @synthesize hasContent=_hasContent;
 @property(copy, nonatomic) NSFont *emptyContentFont; // @synthesize emptyContentFont=_emptyContentFont;
 @property(nonatomic) int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentSubtitle; // @synthesize emptyContentSubtitle=_emptyContentSubtitle;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
 // - (void).cxx_destruct;
+- (void)unhideRowsAtIndexes:(id)arg1 withAnimation:(unsigned long long)arg2;
+- (void)hideRowsAtIndexes:(id)arg1 withAnimation:(unsigned long long)arg2;
+- (void)moveItemAtIndex:(long long)arg1 inParent:(id)arg2 toIndex:(long long)arg3 inParent:(id)arg4;
+- (void)removeItemsAtIndexes:(id)arg1 inParent:(id)arg2 withAnimation:(unsigned long long)arg3;
+- (void)insertItemsAtIndexes:(id)arg1 inParent:(id)arg2 withAnimation:(unsigned long long)arg3;
+- (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
+- (void)noteNumberOfRowsChanged;
+- (void)reloadData;
+- (void)_synchronizeHasContentPropertyWithRowCount;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)contextMenu_copy:(id)arg1;
 - (void)copy:(id)arg1;
 - (BOOL)dataSourceSupportsWritingToPasteboard;
 - (void)mouseDown:(id)arg1;
-- (void)viewWillDraw;
+- (void)layout;
 
 // Remaining properties
 @property(nonatomic) BOOL followsFontAndColorTheme;

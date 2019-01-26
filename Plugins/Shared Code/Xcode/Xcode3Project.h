@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -119,7 +119,7 @@
 - (void)_runUpgradeChecksIfNecessary;
 - (BOOL)setBaseSDKPlatform:(id)arg1 forConfiguration:(id)arg2;
 - (void)enableAnalyzerLocalizabilityCheckIfNeeded;
-@property(readonly, copy) DVTLocale *developmentRegion;
+@property(copy) DVTLocale *developmentRegion;
 - (void)removeLocalization:(id)arg1 deleteFiles:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)moveBaseLocalizationToLocalization:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)moveLocalizationVariantGroups:(id)arg1 toLocalization:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;

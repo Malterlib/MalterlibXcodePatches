@@ -5,17 +5,11 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
+#import "DVTFilterControlBarTarget-Protocol.h"
 
-@class NSMenu, NSString, NSView;
-
-@protocol IDEFilterControlBarTarget <NSObject>
-@property(readonly, nonatomic) NSView *view;
-- (NSString *)filterButtonAccessibilityDescription;
-- (NSString *)filterButtonToolTip;
-- (NSMenu *)filterButtonMenu;
-- (NSString *)filterDefinitionIdentifier;
+@protocol IDEFilterControlBarTarget <NSObject, DVTFilterControlBarTarget>
 @end
 

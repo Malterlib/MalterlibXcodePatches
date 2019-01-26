@@ -5,23 +5,18 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDEIndexDatabase, IDEIndexImportSession, NSArray, NSDictionary;
+@class IDEBoltIndexDatabase, IDEBoltIndexImportSession;
 
 @protocol IDEIndexDatabaseDelegate
 
 @optional
-- (void)database:(IDEIndexDatabase *)arg1 reportAutoQueryProgress:(double)arg2;
-- (void)clearPCHFailuresForDatabase:(IDEIndexDatabase *)arg1;
-- (void)database:(IDEIndexDatabase *)arg1 didForgetFiles:(NSArray *)arg2;
-- (NSDictionary *)databaseProvidersAndVersions:(IDEIndexDatabase *)arg1;
-- (void)databaseDidReportError:(IDEIndexDatabase *)arg1;
-- (void)database:(IDEIndexDatabase *)arg1 didEndImportSession:(IDEIndexImportSession *)arg2;
-- (void)databaseDidSave:(IDEIndexDatabase *)arg1;
-- (void)databaseDidIndexHotFile:(IDEIndexDatabase *)arg1;
-- (void)databaseDidLoad:(IDEIndexDatabase *)arg1;
-- (void)databaseDidOpen:(IDEIndexDatabase *)arg1;
+- (void)database:(IDEBoltIndexDatabase *)arg1 didEndImportSession:(IDEBoltIndexImportSession *)arg2;
+- (void)databaseDidChangeMainFiles:(IDEBoltIndexDatabase *)arg1;
+- (void)databaseDidIndexHotFile:(IDEBoltIndexDatabase *)arg1;
+- (void)databaseDidLoad:(IDEBoltIndexDatabase *)arg1;
+- (void)databaseDidOpen:(IDEBoltIndexDatabase *)arg1;
 @end
 

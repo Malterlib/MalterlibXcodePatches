@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -60,7 +60,7 @@
     IDESchemeOrderedWorkspaceNotificationManager *_orderedWorkspaceNotificationManager;
 }
 
-+ (id)_buildParametersForPurpose:(long long)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 collectBuildTimeStatistics:(BOOL)arg8;
++ (id)_buildParametersForPurpose:(long long)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 collectBuildTimeStatistics:(BOOL)arg8 collectTimelineMetrics:(BOOL)arg9;
 + (BOOL)automaticallyNotifiesObserversOfOrderHint;
 + (BOOL)automaticallyNotifiesObserversOfIsShown;
 + (id)keyPathsForValuesAffectingDisambiguatedName;
@@ -129,7 +129,7 @@
 - (CDUnknownBlockType)postActionEnvironmentPopulatorForBuildOperation:(id)arg1;
 - (BOOL)_shouldRunPostBuildActionsForBuildResult:(long long)arg1;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
-- (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8 collectBuildTimeStatistics:(BOOL)arg9;
+- (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8 collectBuildTimeStatistics:(BOOL)arg9 collectTimelineMetrics:(BOOL)arg10;
 - (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
 - (id)startedOperationForSchemeOperationParameters:(id)arg1 deviceAvailableChecker:(CDUnknownBlockType)arg2 error:(id *)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)schemeOperationForSchemeOperationParameters:(id)arg1 buildLog:(id)arg2 overridingProperties:(id)arg3 overridingBuildConfiguration:(id)arg4 dontActuallyRunCommands:(BOOL)arg5 restorePersistedBuildResults:(BOOL)arg6 error:(id *)arg7 completionBlock:(CDUnknownBlockType)arg8;

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -62,7 +62,7 @@
 @property(nonatomic) BOOL codeCoverageEnabled; // @synthesize codeCoverageEnabled=_codeCoverageEnabled;
 @property(copy) NSString *selectedLauncherIdentifier; // @synthesize selectedLauncherIdentifier=_selectedLauncherIdentifier;
 // - (void).cxx_destruct;
-- (id)resolvedCodeCoverageBuildables;
+- (id)coverageBuildableInfosForBuildParameters:(id)arg1;
 - (void)removeCodeCoverageTarget:(id)arg1;
 - (void)addCodeCoverageTarget:(id)arg1;
 @property(readonly, nonatomic) NSArray *codeCoverageTargets;

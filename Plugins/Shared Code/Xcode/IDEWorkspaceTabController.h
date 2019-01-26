@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -21,7 +21,7 @@
 #import "IDEStructureEditingWorkspaceTabContext-Protocol.h"
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 
-@class DVTMutableOrderedSet, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSString;
+@class DVTMutableOrderedSet, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDEInspectorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSString;
 @protocol DVTInvalidation;
 
 @interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, DVTStatefulObject, DVTReplacementViewDelegate, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate, IDEAttachToProcessErrorHandler>
@@ -238,7 +238,7 @@
 - (id)currentDebuggingAdditionUIControllers;
 - (id)debugSessionController;
 - (BOOL)_contentSizeCanBeZeroSize;
-- (void)_performContextTask:(long long)arg1 command:(id)arg2 commandName:(id)arg3 buildCommand:(long long)arg4 filePath:(id)arg5 invocationRecord:(id)arg6 useLegacyCompletionBehavior:(BOOL)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (void)_performContextTask:(long long)arg1 command:(id)arg2 commandName:(id)arg3 buildCommand:(long long)arg4 runDestination:(id)arg5 filePath:(id)arg6 invocationRecord:(id)arg7 useLegacyCompletionBehavior:(BOOL)arg8 completionBlock:(CDUnknownBlockType)arg9;
 - (void)_checkNeedToStopExistingExecutionForScheme:(id)arg1 runDestination:(id)arg2 task:(long long)arg3 command:(id)arg4 trackersToStop:(id)arg5 needToStopCurrentBuild:(char *)arg6 needToStopCurrentTest:(char *)arg7 needToStopCurrentExecution:(char *)arg8;
 - (void)_performBlock:(CDUnknownBlockType)arg1 unlessBuildIsActiveWithScheme:(id)arg2 forSchemeOperationParameters:(id)arg3 useLegacyCompletionBehavior:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)_performTaskOnScheme:(id)arg1 forSchemeOperationParameters:(id)arg2 useLegacyCompletionBehavior:(BOOL)arg3 invokedViaScripting:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
@@ -282,7 +282,7 @@
 - (void)showInspectorWithChoiceFromSender:(id)arg1;
 - (void)showInspectorCategoryWithExtensionIdentifier:(id)arg1;
 - (void)showInspectorWithChoice:(id)arg1;
-- (id)inspectorArea;
+@property(readonly) IDEInspectorArea *inspectorArea;
 - (void)filterInNavigator:(id)arg1;
 - (void)changeToAssistantLayout_BH:(id)arg1;
 - (void)changeToAssistantLayout_BV:(id)arg1;
@@ -348,11 +348,11 @@
 - (id)debuggingAdditionUIControllerMatchingID:(id)arg1 forLaunchSession:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (id)_createDebuggingAdditionUIControllersForDebuggingAddition:(id)arg1;
 - (void)_createDebuggingAdditionUIControllersForLaunchSession:(id)arg1;
-- (void)_navigateToPossiblyNonExistentURL:(id)arg1 withStackFrame:(id)arg2 withEventType:(unsigned long long)arg3 inOptionalEditor:(BOOL)arg4;
-- (void)_navigateEditorToDisassemblyForStackFrame:(id)arg1 inOptionalEditor:(BOOL)arg2;
-- (void)_navigateToURL:(id)arg1 withStackFrame:(id)arg2 withEventType:(unsigned long long)arg3 inOptionalEditor:(BOOL)arg4;
-- (void)_navigateEditorToStackFramesSourceFile:(id)arg1 inOptionalEditor:(BOOL)arg2;
-- (void)_showEditorForStackFrame:(id)arg1 inOptionalEdtor:(BOOL)arg2;
+- (void)_navigateToPossiblyNonExistentURL:(id)arg1 withStackFrame:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)_navigateEditorToDisassemblyForStackFrame:(id)arg1;
+- (void)_navigateToURL:(id)arg1 withStackFrame:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)_navigateEditorToStackFramesSourceFile:(id)arg1;
+- (void)_showEditorForStackFrame:(id)arg1;
 - (void)showOptionalEditorForStackFrame:(id)arg1;
 - (void)showEditorForStackFrame:(id)arg1;
 - (BOOL)_showDisassemblyWhenDebugging;

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -35,6 +35,7 @@
 + (void)_THREAD_cacheDocumentClass:(Class)arg1 forExtension:(id)arg2;
 + (Class)_THREAD_cachedDocumentClassForExtension:(id)arg1;
 + (id)_typeForContentsOfURL:(id)arg1;
++ (id)editorDocumentExtensionForDocumentURL:(id)arg1 fileDataType:(id)arg2 editorCategories:(id)arg3;
 + (id)editorDocumentExtensionForNavigableItem:(id)arg1 editorCategories:(id)arg2;
 + (id)editorDocumentExtensionForURLScheme:(id)arg1 fileDataType:(id)arg2 editorCategories:(id)arg3;
 + (id)_THREAD_editorDocumentExtensionForURLScheme:(id)arg1 documentType:(id)arg2 withEditorCategories:(id)arg3;
@@ -61,6 +62,7 @@
 + (id)editorDocumentForFilePath:(id)arg1;
 + (id)editorDocumentForURL:(id)arg1;
 + (id)retainedEditorDocumentForNavigableItem:(id)arg1 forUseWithWorkspaceDocument:(id)arg2 error:(id *)arg3;
++ (id)retainedEditorDocumentForDocumentURL:(id)arg1 documentType:(id)arg2 forUseWithWorkspaceDocument:(id)arg3 error:(id *)arg4;
 + (id)retainedEditorDocumentForDocumentLocation:(id)arg1 forUseWithWorkspaceDocument:(id)arg2 error:(id *)arg3;
 + (id)_retainedEditorDocumentForURL:(id)arg1 type:(id)arg2 error:(id *)arg3;
 + (id)_newEditorDocumentWithClass:(Class)arg1 forURL:(id)arg2 withContentsOfURL:(id)arg3 ofType:(id)arg4 extension:(id)arg5 error:(id *)arg6;

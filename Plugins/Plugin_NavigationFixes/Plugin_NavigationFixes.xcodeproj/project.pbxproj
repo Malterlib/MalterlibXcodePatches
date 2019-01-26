@@ -180,6 +180,7 @@
 			knownRegions = (
 				en,
 				Base,
+				English,
 			);
 			mainGroup = 435E246513A8E4510052479A;
 			productRefGroup = 435E247313A8E4A20052479A /* Products */;
@@ -292,7 +293,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 10.1;
+				XCODE_DOTTED_VERSION = 10.2;
 			};
 			name = Debug;
 		};
@@ -348,7 +349,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 10.1;
+				XCODE_DOTTED_VERSION = 10.2;
 			};
 			name = Release;
 		};

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -60,10 +60,10 @@
     IDEBuildOperationStatus *_buildStatus;
     NSDate *_startTime;
     NSDate *_stopTime;
-    NSData *_buildMetricsData;
     IDEBuildStatisticsSection *_buildStatisticsSection;
     IDEProvisioningBuildOperationInfo *_provisioningInfo;
     DVTDynamicLogController *_builderTimingDataLogController;
+    NSData *_buildMetricsData;
 }
 
 + (void)outputBuildStatistics:(id)arg1 toSummary:(id)arg2;
@@ -72,6 +72,7 @@
 + (long long)defaultQualityOfServiceClass;
 + (void)setDefaultBuildStatisticsSectionParent:(id)arg1;
 + (void)initialize;
+@property(copy, nonatomic) NSData *buildMetricsData; // @synthesize buildMetricsData=_buildMetricsData;
 @property(readonly) IDEBuildOperationQueueSet *buildTaskQueueSet; // @synthesize buildTaskQueueSet=_buildTaskQueueSet;
 @property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
 @property unsigned int assertionID; // @synthesize assertionID=_assertionID;
@@ -80,7 +81,6 @@
 @property(readonly) BOOL buildImplicitDependencies; // @synthesize buildImplicitDependencies=_buildImplicitDependencies;
 @property(readonly) IDEProvisioningBuildOperationInfo *provisioningInfo; // @synthesize provisioningInfo=_provisioningInfo;
 @property(retain) IDEBuildStatisticsSection *buildStatisticsSection; // @synthesize buildStatisticsSection=_buildStatisticsSection;
-@property(copy, nonatomic) NSData *buildMetricsData; // @synthesize buildMetricsData=_buildMetricsData;
 @property BOOL userReportedSlowerThanExpected; // @synthesize userReportedSlowerThanExpected=_userReportedSlowerThanExpected;
 @property(copy) NSDate *stopTime; // @synthesize stopTime=_stopTime;
 @property(copy) NSDate *startTime; // @synthesize startTime=_startTime;

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -35,6 +35,7 @@
         unsigned int reserved:2;
     } _dvtOVFlags;
     unsigned long long _gridLineStyleBeforeEmptyContentStringShown;
+    BOOL _hasContent;
     BOOL _wantsMouseEnteredExitedAndMovedEvents;
     int _emptyContentStringStyle;
     NSString *_emptyContentString;
@@ -48,6 +49,7 @@
 @property BOOL wantsMouseEnteredExitedAndMovedEvents; // @synthesize wantsMouseEnteredExitedAndMovedEvents=_wantsMouseEnteredExitedAndMovedEvents;
 @property long long rowUnderHoveredMouse; // @synthesize rowUnderHoveredMouse=_rowUnderHoveredMouse;
 @property(retain) NSEvent *event; // @synthesize event=_event;
+@property(nonatomic) BOOL hasContent; // @synthesize hasContent=_hasContent;
 @property(copy, nonatomic) NSFont *emptyContentFont; // @synthesize emptyContentFont=_emptyContentFont;
 @property(nonatomic) int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentSubtitle; // @synthesize emptyContentSubtitle=_emptyContentSubtitle;
@@ -74,10 +76,19 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)_cleanupWork;
-- (void)updateLayer;
 - (void)viewWillDraw;
+- (void)layout;
 - (void)willHideEmptyContentString;
 - (void)willShowEmptyContentString;
+- (void)unhideRowsAtIndexes:(id)arg1 withAnimation:(unsigned long long)arg2;
+- (void)hideRowsAtIndexes:(id)arg1 withAnimation:(unsigned long long)arg2;
+- (void)moveItemAtIndex:(long long)arg1 inParent:(id)arg2 toIndex:(long long)arg3 inParent:(id)arg4;
+- (void)removeItemsAtIndexes:(id)arg1 inParent:(id)arg2 withAnimation:(unsigned long long)arg3;
+- (void)insertItemsAtIndexes:(id)arg1 inParent:(id)arg2 withAnimation:(unsigned long long)arg3;
+- (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
+- (void)noteNumberOfRowsChanged;
+- (void)reloadData;
+- (void)_synchronizeHasContentPropertyWithRowCount;
 - (BOOL)_shouldRemoveProgressIndicator:(id)arg1 forItem:(id)arg2 andVisibleRect:(struct CGRect)arg3;
 - (id)preparedCellAtColumn:(long long)arg1 row:(long long)arg2;
 - (Class)groupRowCellClassForDataCell:(id)arg1;

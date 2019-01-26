@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -67,6 +67,7 @@
 + (BOOL)isOnlyUsedForUserInteraction;
 + (BOOL)supportsMultipleInstancesPerFilePath;
 + (BOOL)automaticallyNotifiesObserversOfFilePath;
++ (id)keyPathsForValuesAffectingWorkspaceParentRelativePath;
 + (BOOL)automaticallyNotifiesObserversOfActivity;
 + (id)containerDataFilePathsForFilePath:(id)arg1;
 + (BOOL)supportsFilePersistence;
@@ -212,7 +213,8 @@
 - (void)_removePendingFileReference:(id)arg1;
 - (void)_addPendingFileReference:(id)arg1;
 - (id)_containerInstanceDescription;
-- (id)ide_snapshotGroupName;
+- (BOOL)openQuickly_shouldIncludeAsResult;
+- (BOOL)openQuickly_shouldIncludeDescendants;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -51,7 +51,6 @@
 + (unsigned long long)_countOfNavigableItemsForRepresentedObject:(id)arg1;
 + (id)_navigableItemsForRepresentedObject:(id)arg1;
 + (id)keyPathsForValuesAffectingConflictStateForUpdateOrMerge;
-+ (id)keyPathsForValuesAffectingSourceControlCurrentRevision;
 + (id)keyPathsForValuesAffectingSourceControlServerStatusFlag;
 + (id)keyPathsForValuesAffectingSourceControlServerStatus;
 + (id)keyPathsForValuesAffectingSourceControlLocalStatusFlag;
@@ -105,11 +104,10 @@
 - (id)initWithRepresentedObject:(id)arg1;
 - (id)sourceControlSourceTreeName;
 - (unsigned long long)conflictStateForUpdateOrMerge;
-- (id)sourceControlCurrentRevision;
 - (id)sourceControlServerStatus;
-- (int)sourceControlServerStatusFlag;
+- (unsigned long long)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
-- (int)sourceControlLocalStatusFlag;
+- (unsigned long long)sourceControlLocalStatusFlag;
 - (long long)progressValue;
 
 // Remaining properties

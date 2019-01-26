@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -37,6 +37,7 @@
     BOOL _debugDocumentVersioning;
     BOOL _enableGPUValidationMode;
     BOOL _queueDebuggingEnabled;
+    BOOL _memoryGraphOnResourceException;
     int _launchStyle;
     int _enableGPUFrameCaptureMode;
     int _internalIOSLaunchStyle;
@@ -63,6 +64,7 @@
 @property(copy) NSString *debugServiceExtension; // @synthesize debugServiceExtension=_debugServiceExtension;
 @property(copy) NSString *debugServiceExtensionContentsString; // @synthesize debugServiceExtensionContentsString=_debugServiceExtensionContentsString;
 @property long long consoleMode; // @synthesize consoleMode=_consoleMode;
+@property BOOL memoryGraphOnResourceException; // @synthesize memoryGraphOnResourceException=_memoryGraphOnResourceException;
 @property BOOL queueDebuggingEnabled; // @synthesize queueDebuggingEnabled=_queueDebuggingEnabled;
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
 @property int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
@@ -110,6 +112,7 @@
 - (void)setUseCustomWorkingDirectoryFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 @property(readonly) BOOL shouldAllowGPUOptions;
 - (void)setConsoleModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setMemoryGraphOnResourceExceptionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setQueueDebuggingEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setLaunchAutomaticallySubstyleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setInternalIOSLaunchStyleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;

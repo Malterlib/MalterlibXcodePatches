@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -50,6 +50,8 @@
 @property(nonatomic) struct CGSize maximumContentViewFrameSize; // @synthesize maximumContentViewFrameSize=_maxContentFrameSize;
 @property(nonatomic) struct CGSize minimumContentViewFrameSize; // @synthesize minimumContentViewFrameSize=_minContentFrameSize;
 // - (void).cxx_destruct;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 - (void)willRemoveSubview:(id)arg1;
 - (void)didAddSubview:(id)arg1;
 - (void)_invalidateLayoutBecauseOfSubviewFrameChange:(id)arg1;
@@ -72,8 +74,6 @@
 - (void)invalidate;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)awakeFromNib;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsIgnored;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

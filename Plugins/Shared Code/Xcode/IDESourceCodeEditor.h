@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -23,9 +23,10 @@
 #import "IDESourceExpressionSource-Protocol.h"
 #import "IDETestingSelection-Protocol.h"
 #import "IDETextVisualizationHost-Protocol.h"
+#import "NSImmediateActionAnimationController-Protocol.h"
 
-@class DVTAnnotationProvider, DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
-@protocol DVTCancellable, DVTInvalidation, IDESourceEditorViewControllerHost, OS_dispatch_queue;
+@class DVTAnnotationProvider, DVTDispatchLock, DVTEmptyContentPlaceholder, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
+@protocol DVTCancellable, DVTInvalidation, IDESourceEditorViewControllerHost, IDETestCollection, OS_dispatch_queue;
 
 @interface IDESourceCodeEditor : IDEEditor <NSTouchBarProvider, NSTouchBarDelegate, NSImmediateActionAnimationController, NSTextViewDelegate, NSMenuDelegate, DVTSourceTextViewDelegate, DVTSourceTextViewQuickEditDataSource, DVTFindBarFindable, IDESourceExpressionSource, IDETextVisualizationHost, IDEJumpToLineDestination, IDEComparisonEditorHostContext, IDETestingSelection, IDESourceControlBlameForLineEditorDataSource, IDEAnalyzerResultsHostingEditor, IDESingleFileCommandSupportingEditor>
 {
@@ -75,7 +76,7 @@
     BOOL _hidingAnalyzerExplorer;
     IDENoteAnnotationExplorer *_noteAnnotationExplorer;
     IDESingleFileProcessingToolbarController *_singleFileProcessingToolbarController;
-    NSView *_emptyView;
+    DVTEmptyContentPlaceholder *_emptyView;
     NSView *_contentGenerationBackgroundView;
     NSProgressIndicator *_contentGenerationProgressIndicator;
     NSTimer *_contentGenerationProgressTimer;
@@ -214,9 +215,8 @@
 @property(readonly) DVTSourceExpression *contextMenuExpression;
 - (BOOL)_expression:(id)arg1 representsTheSameLocationAsExpression:(id)arg2;
 - (id)_expressionAtCharacterIndex:(unsigned long long)arg1;
-- (id)selectedTestsAndTestables;
-- (id)selectedTest;
-- (id)_testFromModelItem:(id)arg1 fromTests:(id)arg2;
+@property(readonly) id <IDETestCollection> selectedTests;
+- (id)_testLocationFromModelItem:(id)arg1 fromTestLocations:(id)arg2;
 - (void)specialPaste:(id)arg1;
 - (id)_specialPasteContext;
 - (void)_changeSourceCodeLanguageAction:(id)arg1;
@@ -410,6 +410,7 @@
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, copy) IDESelection *outputSelection;
 @property(readonly) DVTSDK *sdk;
+@property(readonly) NSString *selectionUIContext;
 @property(readonly) Class superclass;
 @property(readonly) NSTouchBar *touchBar;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

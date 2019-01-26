@@ -5,19 +5,19 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "DVTPathCellItem-Protocol.h"
 #import "DVTTableCellViewLazyProperties-Protocol.h"
-#import "IDEPathCellItem-Protocol.h"
 
 @class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSMutableArray, NSString, NSURL, _TtC13DVTFoundation9DVTSymbol;
 @protocol IDENavigableItemDebugAreaDelegate, IDENavigableItemDebugBarDelegate;
 
-@interface IDENavigableItem : NSObject <IDEPathCellItem, DVTTableCellViewLazyProperties, DVTInvalidation>
+@interface IDENavigableItem : NSObject <DVTPathCellItem, DVTTableCellViewLazyProperties, DVTInvalidation>
 {
     id _observationInfo;
     IDENavigableItemCoordinator *_coordinator;
@@ -39,6 +39,7 @@
     NSArray *_arrangedChildItems;
 }
 
++ (id)_navigableItemForNavigationFromNavigableItem:(id)arg1 workspace:(id)arg2;
 + (Class)_navigableItemClassForModelObject:(id)arg1;
 + (id)_navigableItemExtensionForModelObjectClass:(Class)arg1 andConformanceString:(id)arg2;
 + (Class)_registerInfoForClass:(Class)arg1 conformance:(id)arg2 withExtension:(id)arg3;
@@ -176,11 +177,10 @@
 - (BOOL)_alwaysBypassFilter;
 - (BOOL)coordinatorFilteringShouldFilterChildItems;
 - (unsigned long long)navigableItem_conflictStateForUpdateOrMerge;
-- (id)sourceControlCurrentRevision;
 - (id)sourceControlServerStatus;
-- (int)sourceControlServerStatusFlag;
+- (unsigned long long)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
-- (int)sourceControlLocalStatusFlag;
+- (unsigned long long)sourceControlLocalStatusFlag;
 - (id)recursiveDescription;
 @property(readonly) id <IDENavigableItemDebugAreaDelegate> debugAreaDelegate;
 @property(readonly) id <IDENavigableItemDebugBarDelegate> debugBarDelegate;

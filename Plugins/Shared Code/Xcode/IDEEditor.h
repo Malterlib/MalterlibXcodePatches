@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -71,6 +71,7 @@
 - (id)_getUndoManager:(BOOL)arg1;
 - (id)undoManager;
 - (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
+- (int)editorMode;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (id)_initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

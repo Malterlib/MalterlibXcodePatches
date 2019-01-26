@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -47,13 +47,7 @@
     IDEContainerQuery *_indexableSourceQuery;
     DVTObservingToken *_indexableSourceQueryObservingToken;
     NSMapTable *_observedIndexableSourcesToObservingTokensTable;
-    IDEContainerQuery *_indexableFileQuery;
-    DVTObservingToken *_indexableFileQueryObservingToken;
-    id _indexableFileUpdateNotificationToken;
     IDEIndex *_index;
-    IDERefactoring *_refactoring;
-    NSMapTable *_fileRefsToResolvedFilePaths;
-    DVTTimeSlicedMainThreadWorkQueue *_fileReferenceForIndexingQueue;
     NSMapTable *_identifiersToIndexablesPendingRegistration;
     DVTTimeSlicedMainThreadWorkQueue *_indexRegistrationQueue;
     IDEDeviceInstallWorkspaceMonitor *_deviceInstallWorkspaceMonitor;
@@ -100,10 +94,11 @@
     BOOL _isPotentiallyClosing;
     _IDEDynamicContentRootGroup *_dynamicContentRootGroup;
     NSArray *_sourcePackageLoadingErrors;
+    IDEActivityLogSection *_sourcePackageResolutionIssueLog;
     IDETextFragmentIndex *_textFragmentIndex;
+    IDERefactoring *_refactoring;
     IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
     NSDate *_icloudDriveLastHeldDate;
-    long long _indexGenerationCounter;
     id <IDEActiveRunContextStoring> _activeRunContextStore;
 }
 
@@ -129,7 +124,6 @@
 + (id)globalScopeStore;
 + (id)createGlobalScopeStore;
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
-@property(readonly, nonatomic) long long indexGenerationCounter; // @synthesize indexGenerationCounter=_indexGenerationCounter;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
 @property(copy) NSDate *icloudDriveLastHeldDate; // @synthesize icloudDriveLastHeldDate=_icloudDriveLastHeldDate;
 @property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
@@ -154,6 +148,7 @@
 @property(retain) IDEIndex *index; // @synthesize index=_index;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
 @property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
+@property(copy) IDEActivityLogSection *sourcePackageResolutionIssueLog; // @synthesize sourcePackageResolutionIssueLog=_sourcePackageResolutionIssueLog;
 @property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) _IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
@@ -164,19 +159,16 @@
 - (id)buildableProductsForBaseName:(id)arg1;
 - (void)_handleIndexablesChange:(id)arg1;
 - (void)didCreateIndex:(id)arg1;
-- (void)initializeIndexAndRefactoring:(id)arg1;
+- (void)initializeIndexAndRefactoring;
 - (void)_scheduleWorkspaceUpgradeTasksController:(id)arg1;
 - (void)_setupWorkspaceUpgradeTasksController;
 - (void)_setupSourceControlWorkspaceMonitorIfNeeded;
 - (void)_initializeSourceControlWorkspaceMonitor;
 - (void)_setupProvisioningWorkspaceMonitor;
 - (void)_setupDeviceInstallWorkspaceMonitor;
-- (id)tearDownIndexAndRefactoring;
+- (void)tearDownIndexAndRefactoring;
 - (void)_restartIndexingAndRefactoring;
 - (void)_scheduleIndexingAndRefactoringRestart;
-- (void)_handleIndexableFilesChange:(id)arg1;
-- (void)_updateIndexableFiles:(id)arg1;
-- (id)_fileRefsToResolvedFilePaths;
 - (void)_handleIndexableSourcesChange:(id)arg1;
 - (void)primitiveInvalidate;
 @property(readonly) IDEContainer<IDECustomDataStoring> *representingCustomDataStore;
@@ -250,6 +242,7 @@
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (BOOL)_configureWrappedWorkspaceWithError:(id *)arg1;
 - (id)_wrappingContainerPath;
+- (BOOL)isWrappedContainerKindOfClass:(Class)arg1;
 - (id)_wrappedPlaygroundContainer;
 - (void)_setWrappedContainerPath:(id)arg1;
 - (id)initWithFilePath:(id)arg1 extension:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;

@@ -5,23 +5,23 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
 
 #import "IDEBatchFindAbstractResult.h"
 
-@class IDEIndexSymbol;
+@protocol IDEIndexSymbol;
 
 @interface IDEBatchFindCallHierarchyResult : IDEBatchFindAbstractResult
 {
     BOOL _recursive;
-    IDEIndexSymbol *_symbol;
+    id <IDEIndexSymbol> _symbol;
 }
 
 @property(readonly, getter=isRecursive) BOOL recursive; // @synthesize recursive=_recursive;
-@property(readonly) IDEIndexSymbol *symbol; // @synthesize symbol=_symbol;
+@property(readonly) id <IDEIndexSymbol> symbol; // @synthesize symbol=_symbol;
 // - (void).cxx_destruct;
 - (BOOL)textRepresentationForPasteboardIsFileName;
 - (id)textRepresentationForPasteboard;

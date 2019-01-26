@@ -5,16 +5,16 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDESchemeBuildableReference, NSArray;
+@class IDEBuildParameters, IDESchemeBuildableReference, NSArray;
 
 @protocol IDECodeCoverageTargetProviding
 @property(readonly, nonatomic) NSArray *codeCoverageTargets;
 @property(nonatomic) BOOL onlyGenerateCoverageForSpecifiedTargets;
 @property(nonatomic) BOOL codeCoverageEnabled;
-- (NSArray *)resolvedCodeCoverageBuildables;
+- (NSArray *)coverageBuildableInfosForBuildParameters:(IDEBuildParameters *)arg1;
 - (void)removeCodeCoverageTarget:(IDESchemeBuildableReference *)arg1;
 - (void)addCodeCoverageTarget:(IDESchemeBuildableReference *)arg1;
 @end

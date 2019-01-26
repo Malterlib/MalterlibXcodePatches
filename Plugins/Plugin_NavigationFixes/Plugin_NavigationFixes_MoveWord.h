@@ -48,7 +48,7 @@ __attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorVie
 
 struct COptionalData
 {
-	size_t data[23];
+	size_t data[25];
 };
 
 struct COptionalDataSourceFull

@@ -466,13 +466,12 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 				DVTFindPatternSearchField *pFindField = [pFindBar findField];
 				if (pFindField && findFieldHasFocus(pFindField))
 				{
-					NSMenu *pMenu = [[NSMenu alloc] init];
+					[XcodePluginNavigationFixes_Navigation updatePanelModePopup: (SourceEditorTextFindPanel *)pFindBar];
+
+					NSPopUpButton *popupButton = (__bridge NSPopUpButton *)*((void **)((size_t)pFindBar + g_SourceEditor_SourceEditorTextFindPanel_panelModePopUp));
+
+					NSMenu *pMenu = [popupButton menu];
 					pMenu.font = [NSFont menuFontOfSize: 12.0];
-
-					;
-
-					for (NSMenuItem* pMenuItem in [XcodePluginNavigationFixes_Navigation recentMenuItems: (SourceEditorTextFindPanel *)pFindBar])
-						[pMenu addItem: pMenuItem];
 
 					if (displayRecentsMenu(pMenu, pFindField, false))
 						return true;

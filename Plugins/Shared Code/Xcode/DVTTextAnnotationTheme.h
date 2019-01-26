@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -42,7 +42,6 @@
 + (id)greenTextAnnotationBaseHighlightColor;
 + (id)redTextAnnotationBaseHighlightColor;
 + (BOOL)hasDarkBackground;
-+ (double)diffTextAnnotationAlphaAdjustmentForDarkTheme:(BOOL)arg1;
 @property(retain, nonatomic) DVTTextAnnotationTheme *darkVariant; // @synthesize darkVariant=_darkVariant;
 @property(retain) NSColor *highlightedRangeBorderColor; // @synthesize highlightedRangeBorderColor=_highlightedRangeBorderColor;
 @property(readonly) NSColor *textColor; // @synthesize textColor=_textColor;

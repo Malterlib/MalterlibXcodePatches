@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -58,6 +58,7 @@
 + (id)keyPathsForValuesAffectingNavigationTargetedEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
++ (BOOL)automaticallyNotifiesObserversOfEditorMode;
 + (int)defaultVersionEditorSubmode;
 + (int)defaultEditorMode;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;

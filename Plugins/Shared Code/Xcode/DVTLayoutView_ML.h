@@ -5,16 +5,18 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
+
+#import "DVTDealloc2Main_View.h"
 
 #import "DVTStructuredLayoutView-Protocol.h"
 
 @class DVTStructuredLayoutViewState;
 
-@interface DVTLayoutView_ML : NSView <DVTStructuredLayoutView>
+@interface DVTLayoutView_ML : DVTDealloc2Main_View <DVTStructuredLayoutView>
 {
     BOOL _implementsDrawRect;
     DVTStructuredLayoutViewState *_dvt_layoutState;

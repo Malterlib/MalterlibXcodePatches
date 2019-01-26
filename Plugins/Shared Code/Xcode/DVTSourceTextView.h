@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -19,7 +19,7 @@
 #import "DVTSourceEditorViewProtocol-Protocol.h"
 #import "DVTSourceTextScrollViewDelegate-Protocol.h"
 
-@class DVTAnnotationManager, DVTMutableRangeArray, DVTObservingToken, DVTSourceCodeLanguage, DVTTextAnnotationIndicatorAnimation, DVTTextDocumentLocation, DVTTextPageGuideVisualization, NSAnimation, NSArray, NSColor, NSHashTable, NSMutableArray, NSMutableIndexSet, NSString, NSTimer, NSView, NSWindow;
+@class DVTAnnotationManager, DVTMutableRangeArray, DVTObservingToken, DVTSourceCodeLanguage, DVTTextAnnotationIndicatorAnimation, DVTTextDocumentLocation, DVTTextPageGuideVisualization, NSAnimation, NSArray, NSColor, NSHashTable, NSMapTable, NSMutableArray, NSMutableIndexSet, NSString, NSTimer, NSView, NSWindow;
 @protocol DVTCancellable, DVTSourceTextViewDelegate, DVTSourceTextViewQuickEditDataSource;
 
 @interface DVTSourceTextView : DVTCompletingTextView <DVTSourceCodeComparisonTextView, DVTSourceEditorViewProtocol, NSAnimationDelegate, NSLayoutManagerDelegate, DVTSourceTextScrollViewDelegate, DVTColorLiteralQuickEditViewControllerDelegate, DVTFileLiteralQuickEditViewControllerDelegate, DVTImageLiteralQuickEditViewControllerDelegate>
@@ -87,6 +87,7 @@
     BOOL _suppressRecentColorTracking;
     NSColor *_recentlySelectedColorToTrack;
     struct _NSRange _recentlySelectedColorLiteralRange;
+    NSMapTable *_accessibilityProxiesByRange;
     id <DVTSourceTextViewQuickEditDataSource> _quickEditDataSource;
 }
 
@@ -193,6 +194,9 @@
 - (struct _NSRange)_accessibilityRelativeRangeForCharacterRange:(struct _NSRange)arg1 inLine:(struct _NSRange)arg2;
 - (id)_accessibilityCodeStyleAttributedStringForRange:(struct _NSRange)arg1 attributedString:(id)arg2;
 - (id)accessibilityAXAttributedStringForCharacterRange:(struct _NSRange)arg1 parent:(id)arg2;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)accessibilityChildren;
+- (id)_accessibilityProxyForSelectedRange:(struct _NSRange)arg1;
 - (BOOL)scrollRectToVisible:(struct CGRect)arg1;
 - (void)scrollPoint:(struct CGPoint)arg1;
 - (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2 replacementRange:(struct _NSRange)arg3;
@@ -392,10 +396,6 @@
 - (id)menuForEvent:(id)arg1;
 - (BOOL)shouldIndentPastedText:(id)arg1;
 - (void)indentUserChangeBy:(long long)arg1;
-- (id)accessibilityHitTest:(struct CGPoint)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityProxyForSelectedRange:(struct _NSRange)arg1;
-- (id)_accessibilityProxiesByRange;
 @property(readonly) double defaultLineHeight;
 @property(readonly) unsigned long long numberOfLines;
 - (void)ensureLayoutForCharacterRange:(struct _NSRange)arg1;

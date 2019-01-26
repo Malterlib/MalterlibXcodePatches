@@ -5,18 +5,20 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #import "IDESelectionSource-Protocol.h"
 
 @class IDETest, NSSet, NSString;
+@protocol IDETestCollection;
 
 @protocol IDETestingSelection <IDESelectionSource>
-- (NSSet *)selectedTestsAndTestables;
-- (IDETest *)selectedTest;
 
 @optional
-- (NSString *)selectionUIContext;
+@property(readonly) NSString *selectionUIContext;
+@property(readonly) id <IDETestCollection> selectedTests;
+- (NSSet *)selectedTestsAndTestables;
+- (IDETest *)selectedTest;
 @end
 

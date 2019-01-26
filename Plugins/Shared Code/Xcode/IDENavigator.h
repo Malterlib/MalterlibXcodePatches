@@ -5,20 +5,20 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
 
 #import "IDEViewController.h"
 
+#import "DVTFilterControlBarTarget-Protocol.h"
 #import "DVTReplacementViewDelegate-Protocol.h"
-#import "IDEFilterControlBarTarget-Protocol.h"
 #import "IDENavigableItemCoordinatorDelegate-Protocol.h"
 
 @class DVTNotificationToken, DVTObservingToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemFilter, NSMenu, NSMutableDictionary, NSString, NSView;
 
-@interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEFilterControlBarTarget, DVTReplacementViewDelegate>
+@interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, DVTFilterControlBarTarget, DVTReplacementViewDelegate>
 {
     BOOL _usesManualNavigableItemCoordinatorManagement;
     DVTNotificationToken *_willForgetNavigableItemsNotificationToken;

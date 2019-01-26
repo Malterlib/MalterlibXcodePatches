@@ -278,7 +278,7 @@
 					"-t",
 				);
 				SDKROOT = macosx;
-				XCODE_DOTTED_VERSION = 10.1;
+				XCODE_DOTTED_VERSION = 10.2;
 			};
 			name = Debug;
 		};
@@ -321,7 +321,7 @@
 					"-t",
 				);
 				SDKROOT = macosx;
-				XCODE_DOTTED_VERSION = 10.1;
+				XCODE_DOTTED_VERSION = 10.2;
 			};
 			name = Release;
 		};

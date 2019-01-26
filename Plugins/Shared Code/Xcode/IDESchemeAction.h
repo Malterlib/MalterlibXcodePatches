@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -46,6 +46,7 @@
 + (BOOL)_addSanitizer:(unsigned long long)arg1 environmentVariables:(id)arg2 buildParameters:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testingSpecifier:(id)arg7 error:(id *)arg8;
 + (id)keyPathsForValuesAffectingRunnable;
 + (BOOL)shouldAllowCustomPhaseActions;
++ (BOOL)runDestinationSupportsSwiftDevelopmentRuntime:(id)arg1 outError:(id *)arg2;
 + (void)forceUBSanitizerEnabledTo:(BOOL)arg1;
 + (_Bool)schemeActionIsSupportedForDevice:(id)arg1 schemeCommand:(id)arg2 outError:(id *)arg3;
 + (void)forceThreadSanitizerEnabledTo:(BOOL)arg1;

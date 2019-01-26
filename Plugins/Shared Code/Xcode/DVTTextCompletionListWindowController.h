@@ -5,10 +5,12 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
+
+#import "DVTDealloc2Main_WindowController.h"
 
 #import "DVTInvalidation-Protocol.h"
 #import "DVTTextCompletionTableViewScrollEventDelegate-Protocol.h"
@@ -16,7 +18,7 @@
 @class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTScaleInWindowAnimator, DVTStackBacktrace, DVTTextCompletionTableView, DVTViewController, NSScrollView, NSString, NSTableColumn, NSTextField, NSViewAnimation;
 @protocol DVTInvalidation, DVTTextCompletionListDataSource;
 
-@interface DVTTextCompletionListWindowController : NSWindowController <DVTTextCompletionTableViewScrollEventDelegate, DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
+@interface DVTTextCompletionListWindowController : DVTDealloc2Main_WindowController <DVTTextCompletionTableViewScrollEventDelegate, DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
 {
     NSTextField *_messagesField;
     DVTTextCompletionTableView *_completionsTableView;

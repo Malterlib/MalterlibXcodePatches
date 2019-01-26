@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -51,6 +51,7 @@
     int _annotationStackPolicy;
     DVTTextAnnotationAccessibilityProxyItem *_accessibilityProxy;
     id <DVTTextAnnotationDisplayDelegate> _displayDelegate;
+    NSImage *_sidebarMarkerImageBorderMask;
     NSString *_toolTip;
     id <DVTSourceLandmarkItemContainer, DVTLineRangeCharacterRangeConverter> _landmarkProvider;
     unsigned long long _scrollbarMarkerType;
@@ -70,6 +71,7 @@
 @property(nonatomic) double sidebarMarkerOpacity; // @synthesize sidebarMarkerOpacity=_sidebarMarkerOpacity;
 @property(nonatomic) double sidebarMarkerHorizontalOffset; // @synthesize sidebarMarkerHorizontalOffset=_sidebarMarkerHorizontalOffset;
 @property double sidebarMarkerVerticalPadding; // @synthesize sidebarMarkerVerticalPadding=_sidebarMarkerVerticalPadding;
+@property(retain, nonatomic) NSImage *sidebarMarkerImageBorderMask; // @synthesize sidebarMarkerImageBorderMask=_sidebarMarkerImageBorderMask;
 @property(retain, nonatomic) NSImage *sidebarMarkerImage; // @synthesize sidebarMarkerImage=_sidebarMarkerImage;
 @property __weak id <DVTTextAnnotationDisplayDelegate> displayDelegate; // @synthesize displayDelegate=_displayDelegate;
 @property(retain) id <DVTTextAnnotationDelegate> delegate; // @synthesize delegate=_delegate;

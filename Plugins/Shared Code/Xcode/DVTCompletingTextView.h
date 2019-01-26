@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -52,6 +52,7 @@
 @property unsigned long long modifierFlagsAtLastSingleMouseDown; // @synthesize modifierFlagsAtLastSingleMouseDown=_modifierFlagsAtLastSingleMouseDown;
 @property double accessoryAnnotationWidth; // @synthesize accessoryAnnotationWidth=_accessoryAnnotationWidth;
 // - (void).cxx_destruct;
+- (id)accessibilityChildren;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2 replacementRange:(struct _NSRange)arg3;
 - (void)becomeMainWindow;
@@ -170,7 +171,6 @@
 - (BOOL)removeMenusNotInWhiteList:(id)arg1 fromMenu:(id)arg2 removeSeparators:(BOOL)arg3;
 - (id)cell;
 - (id)selectedCell;
-- (id)accessibilityAttributeValue:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

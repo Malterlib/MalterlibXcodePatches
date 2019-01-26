@@ -5,33 +5,27 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 @class NSArray, NSImage, NSString, NSURL;
-@protocol IDEPathCellItem, NSObject;
+@protocol NSObject><IDEPathCellItem;
 
 @protocol IDEPathCellItem
-@property(nonatomic, readonly) NSString *accessibilityIdentifier;
-@property(nonatomic, readonly) NSURL *representedURLForExternalDrag;
-@property(nonatomic, readonly) NSURL *representedURL;
-@property(nonatomic, readonly) NSString *groupIdentifier;
-- (BOOL)isEnabled;
-- (BOOL)isVisible;
-- (BOOL)isValid;
+@property(readonly, nonatomic) NSString *accessibilityIdentifier;
+@property(readonly, nonatomic) NSURL *representedURLForExternalDrag;
+@property(readonly, nonatomic) NSURL *representedURL;
+@property(readonly, nonatomic) NSString *groupIdentifier;
+@property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
+@property(readonly, nonatomic, getter=isVisible) BOOL visible;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
+@property(readonly, nonatomic, getter=isLeaf) BOOL leaf;
+@property(readonly, nonatomic) NSArray *childItems;
+@property(readonly, nonatomic) id <NSObject><IDEPathCellItem> parentItem;
+@property(readonly, nonatomic) id representedObject;
+@property(readonly, nonatomic) NSString *toolTip;
+@property(readonly, nonatomic) NSImage *image;
+@property(readonly, nonatomic) NSString *name;
 - (BOOL)representsDocumentRoot;
-- (BOOL)isLeaf;
-@property(nonatomic, readonly) NSArray *childItems;
-@property(nonatomic, readonly) id <IDEPathCellItem, NSObject> parentItem;
-@property(nonatomic, readonly) id representedObject;
-@property(nonatomic, readonly) NSString *toolTip;
-@property(nonatomic, readonly) NSImage *image;
-@property(nonatomic, readonly) NSString *name;
-
-// Remaining properties
-@property(nonatomic, readonly) BOOL enabled;
-@property(nonatomic, readonly) BOOL leaf;
-@property(nonatomic, readonly) BOOL valid;
-@property(nonatomic, readonly) BOOL visible;
 @end
 

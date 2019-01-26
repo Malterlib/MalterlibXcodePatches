@@ -5,7 +5,7 @@
 //
 
 //
-// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk.sdk
+// SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
 #include "Shared.h"
@@ -59,6 +59,8 @@
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (id)filterItem:(id)arg1 filter:(id)arg2 ancestorPassedFilter:(BOOL)arg3 descendantPassedFilter:(char *)arg4;
 - (id)generateWorkspaceItem;
+- (id)generateDynamicContentItem;
+- (void)exploreWorkspaceLocationScopeCandidates:(id)arg1 startingAt:(long long)arg2 visitedContainers:(id)arg3 root:(long long)arg4;
 - (void)initiateItemExplorationQueue:(id)arg1;
 - (id)generateSavedScopesItem;
 - (id)generateRootItem;
