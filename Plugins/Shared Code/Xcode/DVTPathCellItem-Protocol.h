@@ -28,5 +28,8 @@
 @property(readonly, nonatomic) NSImage *image;
 @property(readonly, nonatomic) NSString *name;
 - (BOOL)representsDocumentRoot;
+
+@optional
+@property(readonly, nonatomic) BOOL mergeDecendants;
 @end
 

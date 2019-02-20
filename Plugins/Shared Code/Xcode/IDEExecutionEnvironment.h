@@ -27,6 +27,7 @@
     long long _lastBuildResult;
     unsigned long long _disableSubmissionOfBuildOperationsCount;
     NSString *_disableBuildSubmissionsReason;
+    unsigned long long _queueBuildOperationsCount;
     NSMutableArray *_launchSessions;
     NSMapTable *_launchSessionStateObservationTokens;
     NSMapTable *_launchSessionRunnablePIDObservationTokens;
@@ -100,6 +101,8 @@
 - (void)_addSuboperationObservationToken:(id)arg1 forExecutionTracker:(id)arg2;
 - (void)_startOperationForTracker:(id)arg1 commandName:(id)arg2 operationIncludesBuild:(BOOL)arg3;
 - (void)_handleRunOperation:(id)arg1 addExecutionTrackerToDisplayList:(char *)arg2;
+- (void)stopQueuingBuildOperations;
+- (void)startQueuingBuildOperations;
 @property(readonly) BOOL canSubmitBuildOperations;
 - (void)enableSubmissionOfBuildOperationsWithReason:(id)arg1;
 - (void)disableSubmissionOfBuildOperationsWithReason:(id)arg1;

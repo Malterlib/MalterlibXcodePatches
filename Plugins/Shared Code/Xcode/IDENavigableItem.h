@@ -33,6 +33,8 @@
         unsigned int _isBeingForgotten:1;
         unsigned int _isBeingForgottenInNICInvalidation:1;
         unsigned int _representedObjectConformsToInvalidation:1;
+        unsigned int _isMajorGroupOrDecendentOfMajorGroup:1;
+        unsigned int _isMajorGroupOrDecendentOfMajorGroupSet:1;
     } _ideniFlags;
     id _representedObject;
     IDENavigableItem *_parentItem;
@@ -73,6 +75,7 @@
 @property(readonly, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(readonly, nonatomic) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_coordinator;
 // - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL _isMajorGroupOrDecendentOfMajorGroup;
 - (id)_navigableItemForExternalDrag;
 - (id)_navigableItemForNavigationInWorkspace:(id)arg1;
 - (id)contextualValueForProperty:(id)arg1;
@@ -155,6 +158,7 @@
 @property(readonly, nonatomic) NSColor *textColor;
 - (id)nearestDocumentFileReferenceProvidingAncestor;
 - (id)greatestDocumentAncestor;
+@property(readonly, nonatomic) BOOL mergeDecendants;
 @property(readonly, nonatomic) NSString *accessibilityIdentifier;
 - (BOOL)representsDocumentRoot;
 @property(readonly, nonatomic) NSURL *representedURLForExternalDrag;

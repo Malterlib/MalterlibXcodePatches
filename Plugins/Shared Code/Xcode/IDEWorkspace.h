@@ -16,7 +16,7 @@
 #import "IDEIssueLogDataSource-Protocol.h"
 #import "IDEProvisionableProvider-Protocol.h"
 
-@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _IDEDynamicContentRootGroup, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
+@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
 @protocol IDEActiveRunContextStoring, IDEBuildSystemServiceProvider, IDECustomDataStoring, IDEWorkspaceDelegate;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDEClientTracking, IDEIssueLogDataSource, IDEProvisionableProvider>
@@ -90,9 +90,10 @@
     BOOL _wasLoadedForUIContext;
     BOOL _hostsOnlyWrappedContainer;
     BOOL _hostsOnlyXcode3Project;
+    BOOL _hostsOnlyPackages;
     BOOL _hostsOnlyPlayground;
     BOOL _isPotentiallyClosing;
-    _IDEDynamicContentRootGroup *_dynamicContentRootGroup;
+    IDEDynamicContentRootGroup *_dynamicContentRootGroup;
     NSArray *_sourcePackageLoadingErrors;
     IDEActivityLogSection *_sourcePackageResolutionIssueLog;
     IDETextFragmentIndex *_textFragmentIndex;
@@ -133,6 +134,7 @@
 @property(retain, nonatomic) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
 @property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
 @property BOOL hostsOnlyPlayground; // @synthesize hostsOnlyPlayground=_hostsOnlyPlayground;
+@property BOOL hostsOnlyPackages; // @synthesize hostsOnlyPackages=_hostsOnlyPackages;
 @property BOOL hostsOnlyXcode3Project; // @synthesize hostsOnlyXcode3Project=_hostsOnlyXcode3Project;
 @property BOOL hostsOnlyWrappedContainer; // @synthesize hostsOnlyWrappedContainer=_hostsOnlyWrappedContainer;
 @property(readonly) DVTFilePath *wrappedContainerPath; // @synthesize wrappedContainerPath=_wrappedContainerPath;
@@ -151,7 +153,7 @@
 @property(copy) IDEActivityLogSection *sourcePackageResolutionIssueLog; // @synthesize sourcePackageResolutionIssueLog=_sourcePackageResolutionIssueLog;
 @property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
-@property(retain) _IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
+@property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
 // - (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *provisionableDevices;
 @property(readonly, nonatomic) NSSet *provisionables;
@@ -242,6 +244,7 @@
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (BOOL)_configureWrappedWorkspaceWithError:(id *)arg1;
 - (id)_wrappingContainerPath;
+- (BOOL)wrappedContainerConformsToProtocol:(id)arg1;
 - (BOOL)isWrappedContainerKindOfClass:(Class)arg1;
 - (id)_wrappedPlaygroundContainer;
 - (void)_setWrappedContainerPath:(id)arg1;
@@ -278,6 +281,9 @@
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
 @property(retain) NSArray *namedBatchFindScopes;
 - (id)localScopeStore;
+- (void)endSourcePackagePreflightResolution:(id)arg1;
+- (id)beginSourcePackagePreflightResolutionWithReference:(id)arg1 delegate:(id)arg2 error:(out id *)arg3;
+- (id)latestSourcePackageVersionFromTags:(id)arg1;
 - (id)ideModelObjectTypeIdentifier;
 - (id)ideIndex_configurationNameForIndexingBlueprint:(id)arg1 scheme:(id)arg2;
 - (id)ideIndex_runDestinationForIndexingWithScheme:(id)arg1;

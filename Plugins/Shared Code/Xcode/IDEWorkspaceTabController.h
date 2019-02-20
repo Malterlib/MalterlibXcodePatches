@@ -296,11 +296,11 @@
 - (void)changeToVersionEditorLogView:(id)arg1;
 - (void)changeToVersionEditorBlameView:(id)arg1;
 - (void)changeToVersionEditorComparisonView:(id)arg1;
-- (void)_changeToVersionEditorSubmode:(int)arg1;
+- (void)_changeToVersionEditorSubmode:(int)arg1 client:(unsigned long long)arg2;
 - (void)changeToVersionEditor:(id)arg1;
 - (void)changeToGeniusEditor:(id)arg1;
 - (void)changeToStandardEditor:(id)arg1;
-- (void)_changeToEditorMode:(int)arg1;
+- (void)_changeToEditorMode:(int)arg1 client:(unsigned long long)arg2;
 - (void)cancelCurrentExecution:(id)arg1;
 - (void)resetEditor:(id)arg1;
 - (void)removeAssistantEditor:(id)arg1;

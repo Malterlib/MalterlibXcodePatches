@@ -11,7 +11,6 @@
 #include "Shared.h"
 
 #import "DVTTextAnnotation.h"
-#import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
 @class NSImage, NSString;
 @protocol DVTMessageBubbleAnnotationDelegate;

@@ -13,13 +13,15 @@
 #import "IDEOutlineBasedNavigator.h"
 
 #import "DVTTableCellViewTitleEditingDelegate-Protocol.h"
+#import "IDENavigableItemCoordinatorDelegate-Protocol.h"
+#import "IDENavigatorOutlineViewDelegate-Protocol.h"
 #import "IDETemplateSupportingNavigator-Protocol.h"
 #import "IDETestingSelection-Protocol.h"
 
-@class DVTObservingToken, IDESelection, IDEWorkspaceTabController, NSDictionary, NSMenu, NSMutableSet, NSSet, NSString, NSTableColumn;
+@class DVTObservingToken, DVTTimeSlicedMainThreadWorkQueue, IDESelection, IDEWorkspaceTabController, NSDictionary, NSMenu, NSMutableSet, NSSet, NSString, NSTableColumn, NSTextField, NSWindow;
 @protocol IDEStructureEditingDropTarget, IDETestCollection;
 
-@interface IDEStructureNavigator : IDEOutlineBasedNavigator <NSOutlineViewDelegate, DVTTableCellViewTitleEditingDelegate, IDETemplateSupportingNavigator, IDETestingSelection, NSMenuDelegate>
+@interface IDEStructureNavigator : IDEOutlineBasedNavigator <IDENavigatorOutlineViewDelegate, DVTTableCellViewTitleEditingDelegate, IDENavigableItemCoordinatorDelegate, IDETemplateSupportingNavigator, IDETestingSelection, NSMenuDelegate>
 {
     NSTableColumn *_mainTableColumn;
     NSSet *_expandedItems;
@@ -29,6 +31,7 @@
     BOOL _clearingFilter;
     BOOL _scmStatusFilteringEnabled;
     BOOL _scmStatusFilteringAllowed;
+    BOOL _dynamicContentGroupWasCollapsedByUser;
     NSDictionary *_previouslyRestoredStateDictionary;
     NSMutableSet *_observingAndBindingTokens;
     DVTObservingToken *_recentEditorDocumentURLsObservingToken;
@@ -36,6 +39,11 @@
     DVTObservingToken *_scmEnabledToken;
     NSMenu *_contextualMenu;
     NSMenu *_filterButtonMenu;
+    NSDictionary *_expandedNameTreeDuringTransaction;
+    NSDictionary *_selectedNameTreeDuringTransaction;
+    NSWindow *_newLibraryPackageSheetWindow;
+    NSTextField *_newLibraryPackageNameTextField;
+    DVTTimeSlicedMainThreadWorkQueue *_timeslicedWorkQueue;
     BOOL _recentDocumentFilteringEnabled;
     NSString *_fileNamePatternString;
 }
@@ -66,11 +74,19 @@
 - (void)_updateSCMStatusViewBindings:(id)arg1;
 - (id)_tableCellViewForDefaultNavItem:(id)arg1;
 - (void)statusItemClickedAction:(id)arg1;
-- (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
+- (BOOL)outlineView:(id)arg1 isGroupItem:(id)arg2;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (void)_updateScmStatusTextFieldBindingsForExistingItemInOutlineView:(id)arg1;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
+- (void)outlineViewItemWillExpand:(id)arg1;
+- (void)outlineViewItemWillCollapse:(id)arg1;
+- (BOOL)outlineView:(id)arg1 shouldInitiallyExpandItem:(id)arg2;
+- (BOOL)_isItemDynamicContentRootGroup:(id)arg1;
+- (void)didEndTransactionScopeForNavigableItemCoordinator:(id)arg1;
+- (void)willBeginTransactionScopeForNavigableItemCoordinator:(id)arg1;
+- (BOOL)navigableItemCoordinator:(id)arg1 shouldFilterDecendentsOfItem:(id)arg2;
+@property(readonly) BOOL usesSystemGroupHeaderStyle;
 @property(copy) NSString *visibleRectString;
 - (id)_selectedItemsAsNameTree;
 - (void)_setSelectedItemsFromNameTree:(id)arg1;
@@ -117,7 +133,7 @@
 - (void)newDocument:(id)arg1;
 - (void)_newTemplateWithTemplateKind:(id)arg1 template:(id)arg2 useContextualMenuSelection:(BOOL)arg3;
 - (id)_titleForNewGroupFolderOrPageMenuItemAlternate:(BOOL)arg1 useContextualMenuSelection:(BOOL)arg2 forFilterMenu:(BOOL)arg3;
-- (id)_folderOfOrContainingReference:(id)arg1;
+- (id)_folderOfOrContainingReference:(id)arg1 navItem:(id *)arg2;
 - (id)_playgroundForNavItem:(id)arg1 playgroundItem:(id *)arg2;
 - (id)_titleForAddFilesMenuItemUsingContextualMenuSelection:(BOOL)arg1;
 - (id)_titleForNewFileMenuItemUsingContextualMenuSelection:(BOOL)arg1 isMainMenu:(BOOL)arg2;
@@ -130,6 +146,8 @@
 - (void)newPlaygroundPage:(id)arg1;
 - (void)contextMenu_newPlaygroundChapter:(id)arg1;
 - (void)newPlaygroundChapter:(id)arg1;
+- (void)contextMenu_newLibraryPackage:(id)arg1;
+- (void)newLibraryPackage:(id)arg1;
 - (void)contextMenu_addFiles:(id)arg1;
 - (void)addFiles:(id)arg1;
 - (void)contextMenu_sortFilesByType:(id)arg1;
@@ -159,8 +177,10 @@
 - (BOOL)prefersStrongSelection;
 - (id)itemToSelectBasedOnItemBeingEdited;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
-- (void)_editChildItemAtIndex:(unsigned long long)arg1 ofParentItem:(id)arg2;
 - (void)_editNavigableItem:(id)arg1;
+- (void)_editNavigableItemLater:(id)arg1;
+- (void)_editChildItemAtIndex:(unsigned long long)arg1 ofParentItem:(id)arg2;
+- (void)_editChildItemNamed:(id)arg1 ofParentItemNameTree:(id)arg2;
 - (void)_expandNavigableItem:(id)arg1;
 - (void)_expandOutlineViewItem:(id)arg1;
 - (BOOL)_askToRemoveFileURLs:(id)arg1 shouldRemoveReferences:(BOOL)arg2 willPerformRemoveBlock:(CDUnknownBlockType)arg3 didPerformRemoveBlock:(CDUnknownBlockType)arg4;
@@ -173,10 +193,12 @@
 - (BOOL)_testOrGroupSelected:(BOOL)arg1 forceFolder:(id)arg2 useContextualMenuSelection:(BOOL)arg3;
 - (BOOL)_testOrAddNewGroup:(BOOL)arg1 forceFolder:(id)arg2 useContextualMenuSelection:(BOOL)arg3;
 - (BOOL)_testOrAddNewFolder:(BOOL)arg1 useContextualMenuSelection:(BOOL)arg2;
+- (void)dismissNewLibraryPackageSheetAction:(id)arg1;
+- (BOOL)_testOrAddNewLibraryPackage:(BOOL)arg1 useContextualMenuSelection:(BOOL)arg2;
 - (BOOL)_testOrAddNewPlaygroundPage:(BOOL)arg1 useContextualMenuSelection:(BOOL)arg2;
 - (BOOL)_performUsingContextualMenuSelection:(BOOL)arg1 op:(CDUnknownBlockType)arg2;
 - (id)_outlineViewItemForNavigableItem:(id)arg1;
-- (id)_selectedOutlineViewItemUsingContextualSelection:(BOOL)arg1 useFirstIndex:(BOOL)arg2;
+- (id)_selectedOutlineViewItemUsingContextualSelection:(BOOL)arg1 useFirstIndex:(BOOL)arg2 selectionWasExplicitlyRejected:(char *)arg3;
 - (id)_navigableItemForOutlineViewItem:(id)arg1 representedObject:(id *)arg2;
 - (void)willForgetNavigableItems:(id)arg1;
 - (void)viewWillUninstall;

@@ -19,6 +19,7 @@
 - (void)didEndTransactionScopeForNavigableItemCoordinator:(IDENavigableItemCoordinator *)arg1;
 - (void)willBeginTransactionScopeForNavigableItemCoordinator:(IDENavigableItemCoordinator *)arg1;
 - (NSArray *)navigableItem:(IDENavigableItem *)arg1 childRepresentedObjectsForArray:(NSArray *)arg2;
+- (BOOL)navigableItemCoordinator:(IDENavigableItemCoordinator *)arg1 shouldFilterDecendentsOfItem:(IDENavigableItem *)arg2;
 - (IDEEditorDocument *)navigableItemCoordinator:(IDENavigableItemCoordinator *)arg1 editorDocumentForNavigableItem:(IDENavigableItem *)arg2;
 @end
 

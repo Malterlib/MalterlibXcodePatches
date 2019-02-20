@@ -805,7 +805,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 																																	  error:nil];
 							if (pSpecifier)
 							{
-								[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1];
+								[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1 client:0];
 
 								IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
 								IDESourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];

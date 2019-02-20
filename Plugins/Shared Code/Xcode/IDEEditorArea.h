@@ -14,7 +14,7 @@
 
 #import "IDEDebuggerBarEditorInfoProvider-Protocol.h"
 
-@class DVTBorderedView, DVTLayoutView_ML, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugBar, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDENavigableItemArchivableRepresentation, IDEWorkspaceTabControllerLayoutTree, NSMutableDictionary, NSString, NSTouchBar, NSView;
+@class DVTBorderedView, DVTLayoutView_ML, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugBar, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDENavigableItemArchivableRepresentation, IDEWorkspaceTabControllerLayoutTree, NSMutableDictionary, NSNumber, NSString, NSTouchBar, NSView;
 @protocol DVTCancellable;
 
 @interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEDebuggerBarEditorInfoProvider>
@@ -42,6 +42,7 @@
     id _launchSessionObserver;
     IDEWorkspaceTabControllerLayoutTree *_layoutTreeForNavigationHUD;
     IDEWorkspaceTabControllerLayoutTree *_oldLayoutTreeFromStateSaving;
+    NSNumber *_lastChangedEditorModeTimeIntervalNumber;
     BOOL _needsToRefreshContexts;
     BOOL _didRestoreState;
     BOOL _userWantsEditorVisible;
@@ -58,13 +59,13 @@
 + (id)keyPathsForValuesAffectingNavigationTargetedEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
++ (BOOL)automaticallyNotifiesObserversOfVersionEditorSubmode;
 + (BOOL)automaticallyNotifiesObserversOfEditorMode;
 + (int)defaultVersionEditorSubmode;
 + (int)defaultEditorMode;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
 @property(retain) IDEEditorContext *navigationTargetedEditorContext; // @synthesize navigationTargetedEditorContext=_navigationTargetedEditorContext;
-@property(nonatomic) int versionEditorSubmode; // @synthesize versionEditorSubmode=_versionEditorSubmode;
-@property(nonatomic) int editorMode; // @synthesize editorMode=_editorMode;
+@property(readonly, nonatomic) int editorMode; // @synthesize editorMode=_editorMode;
 @property(retain) IDEDebugArea *activeDebuggerArea; // @synthesize activeDebuggerArea=_activeDebuggerArea;
 @property(retain) IDEDebugBar *activeDebuggerBar; // @synthesize activeDebuggerBar=_activeDebuggerBar;
 @property(retain, nonatomic) IDEEditorContext *lastActiveEditorContext; // @synthesize lastActiveEditorContext=_lastActiveEditorContext;
@@ -125,7 +126,12 @@
 - (void)installNewDefaultDebugAreaWithExtensionID:(id)arg1;
 - (void)_installDefaultDebugAreaAndRevertDebugAreaState:(BOOL)arg1;
 - (void)installDefaultDebugArea;
-- (void)_setEditorMode:(int)arg1;
+- (void)setVersionEditorSubmode:(int)arg1 client:(unsigned long long)arg2;
+@property(readonly, nonatomic) int versionEditorSubmode; // @synthesize versionEditorSubmode=_versionEditorSubmode;
+- (void)setEditorMode:(int)arg1 client:(unsigned long long)arg2;
+- (void)setEditorMode:(int )arg1;
+- (void)_setEditorMode:(int)arg1 client:(unsigned long long)arg2;
+- (void)_reportChangedFromOldEditorMode:(int)arg1 oldComparisonEditorSubmode:(int)arg2 newEditorMode:(int)arg3 newComparisonEditorSubmode:(int)arg4 client:(unsigned long long)arg5;
 - (void)editorContextWasRemoved:(id)arg1;
 - (void)editorContextDidBecomeLastActiveEditor:(id)arg1;
 - (void)viewWillUninstall;

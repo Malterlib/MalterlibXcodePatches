@@ -44,6 +44,8 @@
         unsigned int _didPublishSelectedObjects:1;
         unsigned int _supportsTrackingAreasForCells:1;
         unsigned int _inSameRunloopForTrackingSelectionVisibleRect:1;
+        unsigned int _usesSystemGroupHeaderStyle:1;
+        unsigned int _delegateRespondsToShouldInitiallyExpandItem:1;
         unsigned int _invalidating:1;
     } _idenovFlags;
     BOOL _filteringActive;

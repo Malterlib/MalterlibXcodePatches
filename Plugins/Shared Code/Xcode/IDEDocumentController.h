@@ -154,6 +154,8 @@
 - (id)makeDocumentWithContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (void)_openWorkspaceDocumentForWorkspace:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)_addPath:(id)arg1 toChildrenOfWorkspace:(id)arg2;
+- (id)_frontmostWorkspaceWindowPassingTest:(CDUnknownBlockType)arg1;
+- (id)_frontmostWorkspaceWindow;
 - (id)_frontmostWorkspaceWindowForWorkspaces:(id)arg1;
 - (BOOL)_isWorkspaceWindow:(id)arg1 forWorkspaces:(id)arg2;
 - (id)typeForContentsOfURL:(id)arg1 error:(id *)arg2;

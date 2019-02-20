@@ -135,7 +135,7 @@ static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool
 						[_pTextView scrollRangeToVisible:NewRange];
 
 						pLastSelectedTabitem = NULL;
-						[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1];
+						[IDEEditorCoordinator _doOpenEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController editorContext:nil target:0 takeFocus:1 client:0];
 						setEditorFocus(pWindow);
 						return true;
 					}
