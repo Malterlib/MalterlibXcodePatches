@@ -49,6 +49,7 @@
 // - (void).cxx_destruct;
 - (double)minimumContentWidth;
 - (void)commitStateToDictionary:(id)arg1;
+@property(readonly) BOOL canRevertWithEmptyStateDictionary;
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)_setCurrentExtensionIdentifier:(id)arg1;
 - (id)_currentExtensionIdentifier;
@@ -91,7 +92,6 @@
 - (id)findNavigator_switchToNavigatorWithIdentifier:(id)arg1 andAssertClass:(Class)arg2;
 
 // Remaining properties
-@property(readonly) BOOL canRevertWithEmptyStateDictionary;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(retain) DVTStateToken *stateToken; // @dynamic stateToken;

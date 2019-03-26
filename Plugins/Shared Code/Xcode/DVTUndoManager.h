@@ -10,6 +10,8 @@
 
 #include "Shared.h"
 
+#import "NSUndoManager.h"
+
 #import "DVTUndo-Protocol.h"
 
 @class DVTStackBacktrace, NSMutableArray, NSString;

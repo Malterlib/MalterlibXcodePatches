@@ -23,6 +23,7 @@
 #import "IDESourceExpressionSource-Protocol.h"
 #import "IDETestingSelection-Protocol.h"
 #import "IDETextVisualizationHost-Protocol.h"
+#import "NSImmediateActionAnimationController-Protocol.h"
 
 @class DVTAnnotationProvider, DVTDispatchLock, DVTEmptyContentPlaceholder, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDEEditorDocument, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceLanguageEditorExtension, IDEViewController, IDEWorkspaceTabController, NSArray, NSColor, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject, NSOperationQueue, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTouchBar, NSTrackingArea, NSView;
 @protocol DVTCancellable, DVTInvalidation, IDESourceEditorViewControllerHost, IDETestCollection, OS_dispatch_queue;
