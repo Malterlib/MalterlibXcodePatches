@@ -23,43 +23,43 @@ static int runCommand(NSString *commandToRun, NSString **pStdOut, double timeout
 	NSTask *task;
 	task = [[NSTask alloc] init];
 	[task setLaunchPath: @"/bin/sh"];
-	
+
 	NSArray *arguments = [NSArray arrayWithObjects:
 							@"-c" ,
 							[NSString stringWithFormat:@"%@", commandToRun],
 							nil];
 	[task setArguments: arguments];
-	
+
 	NSDictionary *pCurEnv = [[NSProcessInfo processInfo] environment];
 	NSMutableDictionary *pEnv = [[NSMutableDictionary alloc] init];
 	if (pCurEnv)
 	{
 		[pEnv setDictionary: pCurEnv];
 	}
-	
+
 	NSString *CurrentPath = [pEnv objectForKey:@"PATH"];
-	
+
 	if (!CurrentPath)
-		CurrentPath = @"/opt/local/bin";
+		CurrentPath = @"/usr/local/bin:/opt/local/bin";
 	else
-		CurrentPath = [@"/opt/local/bin:" stringByAppendingString:CurrentPath];
-	
+		CurrentPath = [@"/usr/local/bin:/opt/local/bin:" stringByAppendingString:CurrentPath];
+
 	[pEnv setObject:CurrentPath forKey:@"PATH"];
-	
+
 	[task setEnvironment: pEnv];
-	
+
 	NSPipe *pipe;
 	pipe = [NSPipe pipe];
 	[task setStandardOutput: pipe];
 	[task setStandardError: pipe];
-	
+
 	NSFileHandle *file;
 	file = [pipe fileHandleForReading];
-	
+
 	[task launch];
-	
+
 	*pStdOut = [[NSString alloc] init];
-	
+
 	if (timeout > 0.0)
 	{
 		dispatch_after
@@ -81,12 +81,12 @@ static int runCommand(NSString *commandToRun, NSString **pStdOut, double timeout
 	data = [file readDataToEndOfFile];
 
 	*pStdOut = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-	
+
 	[task waitUntilExit];
-	
+
 	if ([task terminationReason] == NSTaskTerminationReasonExit)
 		return [task terminationStatus];
-	else 
+	else
 		return 55;
 }
 
@@ -95,13 +95,13 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 	IDEEditorDocument *pEditor = (IDEEditorDocument *)self_;
 	if (![pEditor isKindOfClass:g_EditorDocumentClass])
 		pEditor = nil;
-	
+
 	if (pEditor)
 	{
 		int ReadOnlyStatus = [pEditor readOnlyStatus];
 
 		//XcodePluginLog(@"_unlockIfNeededCompletionBlock %d", ReadOnlyStatus);
-		
+
 		NSURL *pURL = [pEditor fileURL];
 		if (ReadOnlyStatus != 0 && pURL && [pURL isFileURL])
 		{
@@ -114,7 +114,7 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 			{
 				NSString *pResults = @"No results";
 				int Result = runCommand([NSString stringWithFormat:@"p4 -d \"%@\" set", pDirectory], &pResults, timeout);
-				
+
 				if (Result)
 				{
 					NSAlert* msgBox = [[NSAlert alloc] init];
@@ -122,9 +122,9 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 					[msgBox addButtonWithTitle: @"OK"];
 					[msgBox addButtonWithTitle: @"Unlock with Xcode"];
 					NSInteger Button = [msgBox runModal];
-					
+
 					NSLog(@"Button: %d", (int)Button);
-					
+
 					if (Button == NSAlertSecondButtonReturn)
 						return ((void (*)(id, SEL, id))original__unlockIfNeededCompletionBlock)(self_, _cmd, completion);
 					else
@@ -141,22 +141,22 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 						return;
 					}
 				}
-				
+
 				if ([pResults rangeOfString:@"(config 'noconfig')"].location != NSNotFound)
 				{
 					// Not inside a perforce config directory
 					return ((void (*)(id, SEL, id))original__unlockIfNeededCompletionBlock)(self_, _cmd, completion);
 				}
-				
+
 			}
 
 			NSString *CheckoutCommand = [NSString stringWithFormat:@"p4 -d \"%@\" open \"%@\"", pDirectory, pPath];
-			
+
 			NSString *pResults = @"No results";
 
 			int exitCode = runCommand(CheckoutCommand, &pResults, timeout);
-			
-			BOOL bSuccess 
+
+			BOOL bSuccess
 				= [pResults rangeOfString:@"- opened for edit"].location != NSNotFound
 				|| [pResults rangeOfString:@"- currently opened for edit"].location != NSNotFound
 			;
@@ -166,12 +166,12 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 			{
 				if (exitCode == 255 && [pResults compare:@""] == NSOrderedSame)
 					pResults = @"Timed out waiting for perforce command to finish";
-				
+
 				[msgBox setMessageText: [NSString stringWithFormat:@"Failed to open file for edit:\n\n%@", pResults]];
 				[msgBox addButtonWithTitle: @"OK"];
 				[msgBox addButtonWithTitle: @"Unlock with Xcode"];
 				NSInteger Button = [msgBox runModal];
-				
+
 				if (Button == NSAlertSecondButtonReturn)
 					return ((void (*)(id, SEL, id))original__unlockIfNeededCompletionBlock)(self_, _cmd, completion);
 			}
@@ -188,11 +188,11 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 					}
 				 )
 			;
-			
+
 			return;
 		}
 	}
-	
+
 	return ((void (*)(id, SEL, id))original__unlockIfNeededCompletionBlock)(self_, _cmd, completion);
 }
 
@@ -206,7 +206,7 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 
 	original__unlockIfNeededCompletionBlock = XcodePluginOverrideMethodString(@"IDEEditorDocument", @selector(_unlockIfNeededCompletionBlock:), (IMP)&_unlockIfNeededCompletionBlock);
 	XcodePluginAssertOrPerform(original__unlockIfNeededCompletionBlock, goto failed);
-		
+
 	XcodePluginPostflight();
 }
 @end
