@@ -5,7 +5,7 @@ import Swift
 import Cocoa
 import ObjectiveC
 
-func unwrapOptional<T>(_ any: T) -> Any
+func unwrapOptional(_ any: Any) -> Any
 {
 	let mirrored = Mirror(reflecting:any)
 	if (isValidOptional(any)) {
@@ -14,7 +14,7 @@ func unwrapOptional<T>(_ any: T) -> Any
     return any
 }
 
-func isImplicitlyUnwrappedOptional<T>(_ any: T) -> Bool
+func isImplicitlyUnwrappedOptional(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if (mirrored.description.starts(with: "Mirror for ImplicitlyUnwrappedOptional<")) {
@@ -23,16 +23,16 @@ func isImplicitlyUnwrappedOptional<T>(_ any: T) -> Bool
     return false
 }
 
-func isOptional<T>(_ any: T) -> Bool
+func isOptional(_ any: Any) -> Bool
 {
-	let mirrored = Mirror(reflecting:any)
-	if (mirrored.description.starts(with: "Mirror for Optional<") || mirrored.description.starts(with: "Mirror for ImplicitlyUnwrappedOptional<")) {
+	let typeName = fg_ExtractInType(String(reflecting: type(of: any)));
+	if (typeName != nil && typeName!.starts(with: "Optional<")) {
 		return true;
 	}
     return false
 }
 
-func isValidOptional<T>(_ any: T) -> Bool
+func isValidOptional(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if (isOptional(any) && mirrored.children.first != nil) {
@@ -41,7 +41,7 @@ func isValidOptional<T>(_ any: T) -> Bool
     return false
 }
 
-func isSet<T>(_ any: T) -> Bool
+func isSet(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if (mirrored.description.starts(with: "Mirror for Set<")) {
@@ -50,7 +50,7 @@ func isSet<T>(_ any: T) -> Bool
     return false
 }
 
-func isCollection<T>(_ any: T) -> Bool
+func isCollection(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if
@@ -63,7 +63,7 @@ func isCollection<T>(_ any: T) -> Bool
     return false
 }
 
-func isArray<T>(_ any: T) -> Bool
+func isArray(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if
@@ -77,7 +77,7 @@ func isArray<T>(_ any: T) -> Bool
     return false
 }
 
-func isTuple<T>(_ any: T) -> Bool
+func isTuple(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if (mirrored.description.starts(with: "Mirror for Tuple<")) {
@@ -86,7 +86,7 @@ func isTuple<T>(_ any: T) -> Bool
     return false
 }
 
-func isDictionary<T>(_ any: T) -> Bool
+func isDictionary(_ any: Any) -> Bool
 {
 	let mirrored = Mirror(reflecting:any)
 	if (mirrored.description.starts(with: "Mirror for Dictionary<")) {
@@ -279,6 +279,10 @@ class ExploreClass {
 				print("\t}")
 			}
 			for child in mirror.children {
+				if (child.label == "languageService") {
+					continue;
+				}
+
 				let type = typeNameObject(child.value);
 				let varName = fg_FixVariableName(child.label ?? "----Unknown---");
 				if type == "Bool" {
@@ -296,13 +300,15 @@ class ExploreClass {
 						|| type == "UInt64"
 				{
 					print("    var \(varName!): \(type) = 0;");
-				} else if (!isOptional(child.value)) {
+				} else if (!type.starts(with: "Optional<")) {
 					print("    var \(varName!): \(type) = \(type)();");
 				} else {
 					print("    var \(varName!): \(type) = nil;");
 				}
 
-				addValueToExplore(child.value);
+				if (varName != "findReplaceWith") {
+					addValueToExplore(child.value);
+				}
 			}
 		}
 

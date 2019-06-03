@@ -6,9 +6,49 @@
 /****************************************************************************/
 
     {
-        Identifier = "xcode.lang.string.objc";
+        Identifier = "xcode.lang.objc.string";
         Syntax = {
             Start = "@\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.string.wide";
+        Syntax = {
+            Start = "@L\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.string.utf8";
+        Syntax = {
+            Start = "@u8\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.string.ucs2";
+        Syntax = {
+            Start = "@u\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.string.ucs4";
+        Syntax = {
+            Start = "@U\"";
             EscapeChar = "\\";
             End = "\"";
             AltEnd = "\n";
@@ -18,7 +58,7 @@
 
 
 /****************************************************************************/
-// MARK: Objective-C keywords
+// MARK: - Objective-C keywords
 /****************************************************************************/
 
     {
@@ -26,14 +66,15 @@
         Syntax = {
             StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            CheckPreprocessorKnownMacros = YES;
             Words = (
                 // Keywords from C
                 "__alignof",
                 "__alignof__",
                 "__asm",
                 "__asm__",
-                "__attribute",
                 "__attribute__",
+                "__auto_type",
                 "__block",
                 "__builtin_choose_expr",
                 "__builtin_offsetof",
@@ -60,7 +101,6 @@
                 "__thread",
                 "__typeof",
                 "__typeof__",
-                "__unused",
                 "__volatile",
                 "__volatile__",
                 "__FUNCTION__",
@@ -116,6 +156,13 @@
                 "FALSE",
                 "NULL",
                 "TRUE",
+                "_Alignas",
+                "_Alignof",
+                "_Atomic",
+                "_Generic",
+                "_Noreturn",
+                "_Static_assert",
+                "_Thread_local",
 
                 // Keywords from Objective-C
                 "_cmd",
@@ -165,6 +212,7 @@
                 "IBInspectable",
                 "IBOutlet",
                 "IBOutletCollection",
+                "IBSegueAction",
                 "IB_DESIGNABLE",
                 "IMP",
                 "nonnull",
@@ -269,6 +317,19 @@
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
+    {
+        Identifier = "xcode.lang.objc.enumMacros";
+        Syntax = {
+            Words = (
+                "NS_ENUM",
+                "NS_OPTIONS",
+                "CF_ENUM",
+                "CF_OPTIONS",
+            );
+            Type = "xcode.syntax.identifier";
+        };
+    },
+
 
     {
         Identifier = "xcode.lang.objc.interestingOperators";
@@ -282,7 +343,7 @@
         };
     },
 /****************************************************************************/
-// MARK: Objective-C Top-Level
+// MARK: - Objective-C Top-Level
 /****************************************************************************/
 
     {
@@ -316,7 +377,7 @@
                 "xcode.lang.objc.initializer",
                 "xcode.lang.objc.import",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -346,7 +407,7 @@
                 "xcode.lang.objc.typedef",
                 "xcode.lang.objc.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -363,7 +424,7 @@
     },
 
 /****************************************************************************/
-// MARK: Lexers
+// MARK: - Lexers
 /****************************************************************************/
 
     // The following rule returns tokens to the other rules
@@ -379,15 +440,29 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.objc.identifier",
+                "xcode.lang.objc.enumMacros",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.array.literal.start",
                 "xcode.lang.objc.dictionary.literal.start",
                 "xcode.lang.objc.expression.literal.start",
-                "xcode.lang.number",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -404,18 +479,32 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.objc.identifier",
+                "xcode.lang.objc.enumMacros",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.array.literal.start",
                 "xcode.lang.objc.array.literal.end",
                 "xcode.lang.objc.dictionary.literal.start",
                 "xcode.lang.objc.dictionary.literal.end",
                 "xcode.lang.objc.expression.literal.start",
                 "xcode.lang.objc.expression.literal.end",
-                "xcode.lang.number",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -432,23 +521,60 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.interface.declarator",
                 "xcode.lang.objc.implementation.declarator",
                 "xcode.lang.objc.protocol.declarator",
                 "xcode.lang.objc.property.declarator",
-                "xcode.lang.objc.identifier",
+                "xcode.lang.objc.enumMacros",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.array.literal.start",
                 "xcode.lang.objc.dictionary.literal.start",
                 "xcode.lang.objc.expression.literal.start",
-                "xcode.lang.number",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
     },
+    {
+        // adds C++14 support for single quote separators
+        Identifier = "xcode.lang.objc.number";
+        BasedOn = "xcode.lang.number";
+        Syntax = {
+            StartChars = "@";
+            Chars = "0123456789'+-.abcdeflpuABCDEFLNOPSUY";
+            Match = (
+                "^@YES",
+                "^@NO",
+                "^@[+-]?0[bB][01']+([lLuU])*",
+                "^@[+-]?0[xX][0-9a-fA-F']+((\\.[0-9a-fA-F']*)?([pP][+-]?[0-9']+)?)?([lLfFuU])*",
+                "^@[+-]?0[xX][0-9a-fA-F']*\\.[0-9a-fA-F']+([pP][+-]?[0-9']+)?([lLfFuU])*",
+                "^@[+-]?[0-9']+((\\.[0-9']*)?([eE][+-]?[0-9']+)?)?([lLfFuU])*",
+                "^@[+-]?[0-9']*\\.[0-9']+([eE][+-]?[0-9']+)?([lLfFuU])*",
+            );
+            Type = "xcode.syntax.number";
+        };
+    },
+
+/****************************************************************************/
+// MARK: - Interfaces/Implementations
+/****************************************************************************/
 
     {
         Identifier = "xcode.lang.objc.implementation.declarator";
@@ -505,7 +631,7 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -529,7 +655,7 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -606,10 +732,6 @@
         };
     },
 
-
-/****************************************************************************/
-// MARK: Interfaces/Implementations
-/****************************************************************************/
 
     {
         Identifier = "xcode.lang.objc.protocol";
@@ -696,7 +818,22 @@
     },
 
 /****************************************************************************/
-// MARK: Methods
+// MARK: - Attributes or preprocessor macros we want to ignore
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.expression.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "__attribute__|xcode.lang.generated.preprocessor.function.ignore",
+                "xcode.lang.objc.parenexpr",
+            );
+        };
+    },
+
+/****************************************************************************/
+// MARK: - Methods
 /****************************************************************************/
 
     {
@@ -728,7 +865,7 @@
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = ( "xcode.lang.objc.identifier", );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.other";
         };
     },
 
@@ -739,20 +876,12 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.method.declarator",
-                "xcode.lang.objc.declaration.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";",
             );
             Type = "xcode.syntax.declaration.method";
-        };
-    },
-    {
-        Identifier = "xcode.lang.objc.declaration.attribute";
-        Syntax = {
-            Tokenizer = "xcode.lang.objc.lexer";
-            Rules = (
-                "xcode.lang.objc.identifier",
-                "xcode.lang.objc.parenexpr?",
-            );
         };
     },
     {
@@ -761,6 +890,9 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.method.declarator",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";?",
                 "xcode.lang.objc.block",
             );
@@ -786,7 +918,9 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.classmethod.declarator",
-                "xcode.lang.objc.declaration.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";",
             );
             Type = "xcode.syntax.declaration.method";
@@ -798,6 +932,9 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.classmethod.declarator",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";?",
                 "xcode.lang.objc.block",
             );
@@ -824,21 +961,23 @@
             Rules = (
                 "xcode.lang.objc.method.colon",
                 "xcode.lang.objc.parenexpr?",
-                "xcode.lang.objc.attributes?",
-                "xcode.lang.objc.identifier",
+                "xcode.lang.objc.parameter.name.local",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.objc.method.declarator.moreargs*",
                 "xcode.lang.objc.method.declarator.varargs?",
             );
         };
     },
     {
-        Identifier = "xcode.lang.objc.attributes";
+        Identifier = "xcode.lang.objc.parameter.name.local";
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
-                "__attribute__|__attribute|__unused",
-                "xcode.lang.objc.parenexpr?",
+                "xcode.lang.objc.identifier"
             );
+            Type = "xcode.syntax.name.parameter.local";
         };
     },
     {
@@ -849,8 +988,10 @@
                 "xcode.lang.objc.partialname?",
                 "xcode.lang.objc.method.colon",
                 "xcode.lang.objc.parenexpr?",
-                "xcode.lang.objc.attributes?",
-                "xcode.lang.objc.identifier",
+                "xcode.lang.objc.parameter.name.local",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
             );
         };
     },
@@ -866,7 +1007,7 @@
     },
 
 /****************************************************************************/
-// MARK: Functions
+// MARK: - Functions
 /****************************************************************************/
 
     {
@@ -875,9 +1016,12 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.function.declarator",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.objc.block",
             );
-            Type = "xcode.syntax.definition.c.function";
+            Type = "xcode.syntax.definition.function";
         };
     },
     {
@@ -886,10 +1030,12 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.function.declarator",
-                "xcode.lang.objc.declaration.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.objc.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";"
             );
-            Type = "xcode.syntax.declaration.c.function";
+            Type = "xcode.syntax.declaration.function";
         };
     },
     {
@@ -898,7 +1044,19 @@
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
                 "xcode.lang.objc.function.name",
-                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.function.declarator.parameters",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.declarator.parameters";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.function.parameter.start",
+                "xcode.lang.objc.function.parameter.more*",
+                ")",
             );
         };
     },
@@ -909,13 +1067,56 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.other";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.parameter.start";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Start = "(";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.objc.function.parameter.function",
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.bracketexpr",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.parameter.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Start = ",";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.objc.function.parameter.function",
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.bracketexpr",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.parameter.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.objc.identifier",
+                ")",
+            );
+            Type = "xcode.syntax.name.parameter.function";
         };
     },
 
 
 /****************************************************************************/
-// MARK: Properties
+// MARK: - Properties
 /****************************************************************************/
 
     {
@@ -930,13 +1131,26 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.property.end",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -953,13 +1167,26 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.property.name",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -1040,7 +1267,7 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.other";
         };
     },
     {
@@ -1073,13 +1300,26 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.string.objc",
+                "xcode.lang.objc.string",
+                "xcode.lang.objc.string.wide",
+                "xcode.lang.objc.string.utf8",
+                "xcode.lang.objc.string.ucs2",
+                "xcode.lang.objc.string.ucs4",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.property.options.identifier",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -1133,7 +1373,7 @@
     },
     
 /****************************************************************************/
-// MARK: Typedefs
+// MARK: - Typedefs
 /****************************************************************************/
 
     {
@@ -1149,11 +1389,20 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.typedef.end",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -1171,13 +1420,20 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objc.typedef.name",
+                "xcode.lang.objc.number",
                 "xcode.lang.objc.identifier",
-                "xcode.lang.number",
-                "xcode.lang.objc.typedef.function.caret",
-                "xcode.lang.objc.typedef.function.start",
+                "xcode.lang.c.number",
                 "xcode.lang.objc.interestingOperators",
             );
         };
@@ -1263,7 +1519,7 @@
 
 
 /****************************************************************************/
-// MARK: Blocks
+// MARK: - Blocks
 /****************************************************************************/
 
     {
@@ -1322,8 +1578,6 @@
             Rules = (
                 "enum",
                 "xcode.lang.objc.enum.name?",
-                ":?",
-                "xcode.lang.objc.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1336,7 +1590,7 @@
                 "xcode.lang.objc.nsenum.declarator",
                 "xcode.lang.objc.block",
             );
-            Type = "xcode.syntax.name.tree";
+            Type = "xcode.syntax.declaration.enum";
         };
     },
     {
@@ -1344,12 +1598,22 @@
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = (
-                "NS_ENUM",
+                "NS_ENUM|NS_OPTIONS|CF_ENUM|CF_OPTIONS",
                 "(",
                 "xcode.lang.objc.identifier",
+                "xcode.lang.objc.enum.optionalname?",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.enum.optionalname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
                 ",",
                 "xcode.lang.objc.enum.name",
-                ")",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1382,8 +1646,6 @@
             Rules = (
                 "struct",
                 "xcode.lang.objc.struct.name?",
-                ":?",
-                "xcode.lang.objc.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1416,8 +1678,6 @@
             Rules = (
                 "union",
                 "xcode.lang.objc.union.name?",
-                ":?",
-                "xcode.lang.objc.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1432,16 +1692,11 @@
             Type = "xcode.syntax.name.partial";
         };
     },
-    {
-        Identifier = "xcode.lang.objc.typeidentifier";
-        Syntax = {
-            Tokenizer = "xcode.lang.objc.lexer";
-            Rules = (
-                "xcode.lang.objc.identifier|int|char|float|double|short|long|unsigned|signed",
-            );
-        };
-    },
     
+/****************************************************************************/
+// MARK: - Expressions
+/****************************************************************************/
+
     {
         Identifier = "xcode.lang.objc.parenexpr";
         BasedOn = "xcode.lang.c.parenexpr";

@@ -6,11 +6,26 @@ public class SourceEditor {
 	public class SourceEditorLayoutManager {
 	}
 
-	class SourceEditorLineData {
+	struct SourceEditorLayoutManagerIdentifier: Hashable {
+		var identifier: ObjectIdentifier;
+	}
+
+	struct LayoutContext<T> {
+		init() {
+		}
+		var values: Dictionary<SourceEditor.SourceEditorLayoutManagerIdentifier, T>! = nil;
+	}
+
+	public class SourceEditorLineData {
 		var lineContentRange: _NSRange = _NSRange();
 		var lineTerminatorLength: Int = 0;
 		var placeholders: Array<(_NSRange, Any)> = Array<(_NSRange, Any)>();
 		var hidden: Bool = false;
+		var layer: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		var auxViews: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		var accessoryView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		var substitutionView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		var accessibilityElement: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
 	}
 
 	public class SourceEditorDataSource {
@@ -44,47 +59,10 @@ public class SourceEditor {
 			self = .Case_0
 		}
 	}
-	struct SourceEditorPosition {
+
+	public struct SourceEditorPosition {
 		var line: Int = 0;
 		var col: Int = 0;
-
-		static func == (lhs: SourceEditorPosition, rhs: SourceEditorPosition) -> Bool {
-			return
-				lhs.line == rhs.line &&
-					lhs.col == rhs.col
-			;
-		}
-
-		static func < (lhs: SourceEditor.SourceEditorPosition, rhs: SourceEditor.SourceEditorPosition) -> Bool {
-			if (lhs.line < rhs.line) {
-				return true
-			}
-			else if (lhs.line > rhs.line) {
-				return false
-			}
-			return lhs.col < rhs.col
-		}
-
-		static func > (lhs: SourceEditor.SourceEditorPosition, rhs: SourceEditor.SourceEditorPosition) -> Bool {
-			if (lhs.line > rhs.line) {
-				return true
-			}
-			else if (lhs.line < rhs.line) {
-				return false
-			}
-			return lhs.col > rhs.col
-		}
-	}
-	public struct SourceEditorRange {
-		var start: SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
-		var end: SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
-
-		static func == (lhs: SourceEditorRange, rhs: SourceEditorRange) -> Bool {
-			return
-				lhs.start == rhs.start &&
-					lhs.end == rhs.end
-			;
-		}
 	}
 
 	public struct SourceEditorVerticalAnchor {
@@ -95,9 +73,9 @@ public class SourceEditor {
 	}
 
 	public struct SourceEditorSingleSelection {
-		var range: SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange();
-		var markedRange: SourceEditor.SourceEditorRange! = nil;
-		var selectionAnchor: SourceEditor.SourceEditorRange! = nil;
+		var range: Range<SourceEditor.SourceEditorPosition> = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (SourceEditor.SourceEditorPosition(), SourceEditor.SourceEditorPosition()));
+		var markedRange: Range<SourceEditor.SourceEditorPosition>! = nil;
+		var selectionAnchor: Range<SourceEditor.SourceEditorPosition>! = nil;
 		var verticalAnchor: SourceEditor.SourceEditorVerticalAnchor! = nil;
 	}
 
@@ -110,3 +88,23 @@ public class SourceEditor {
 	public class SourceEditorView: NSView {
 	}
 }
+
+extension SourceEditor.SourceEditorPosition: Comparable {
+	public static func == (lhs: SourceEditor.SourceEditorPosition, rhs: SourceEditor.SourceEditorPosition) -> Bool {
+		return
+			lhs.line == rhs.line &&
+				lhs.col == rhs.col
+		;
+	}
+
+	public static func < (lhs: SourceEditor.SourceEditorPosition, rhs: SourceEditor.SourceEditorPosition) -> Bool {
+		if (lhs.line < rhs.line) {
+			return true
+		}
+		else if (lhs.line > rhs.line) {
+			return false
+		}
+		return lhs.col < rhs.col
+	}
+}
+

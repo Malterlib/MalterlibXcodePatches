@@ -10,6 +10,7 @@
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            CheckPreprocessorKnownMacros = YES;
             Words = (
                 // Keywords from C
                 "__alignof__",
@@ -93,6 +94,7 @@
                 "dynamic_cast",
                 "explicit",
                 "export",
+                "final",
                 "friend",
                 "mutable",
                 "namespace",
@@ -255,7 +257,7 @@
     },
 
 /****************************************************************************/
-// MARK: C++ Syntax Coloring
+// MARK: - C++ Syntax Coloring
 /****************************************************************************/
 
     {
@@ -280,41 +282,12 @@
                 "xcode.lang.cpp.nsenumblock",
                 "xcode.lang.cpp.structblock",
                 "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.namespace",
+                "xcode.lang.cpp.externblock",
                 "xcode.lang.cpp.block.toplevel",
                 "xcode.lang.cpp.initializer",
             );
             Type = "xcode.syntax.plain";
-        };
-    },
-
-    {
-        Identifier = "xcode.lang.cpp.lexer.string";
-        Syntax = {
-            IncludeRules = (
-                "xcode.lang.string",
-                "xcode.lang.cpp.stringsuffix",
-            );
-        };
-    },
-
-    {
-        Identifier = "xcode.lang.cpp.string";
-        Syntax = {
-            Tokenizer = "xcode.lang.cpp.lexer.string";
-            Rules = (
-                "xcode.lang.string",
-                "xcode.lang.cpp.stringsuffix",
-            );
-            Type = "xcode.syntax.preprocessor";
-        };
-    },
-
-    {
-        Identifier = "xcode.lang.cpp.stringsuffix";
-        Syntax = {
-            Match = (
-                "^_[A-Za-z_]*",
-            );
         };
     },
 
@@ -331,12 +304,20 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.cpp.string",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
+                "xcode.lang.cpp.string.raw",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.cpp.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.cpp.interestingOperators",
             );
         };
@@ -353,15 +334,33 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.cpp.string",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
+                "xcode.lang.cpp.string.raw",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.cpp.interestingOperators",
             );
+        };
+    },
+
+    {
+        // not good enough, but the native lexer does it right
+        Identifier = "xcode.lang.cpp.string.raw";
+        Syntax = {
+            Start = "R\"(";
+            End = ")\"";
+            Type = "xcode.syntax.string";
         };
     },
 
@@ -382,9 +381,11 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
                 "::",                               // need at least one qualifier or this rule shouldn't match at all
+                "xcode.lang.cpp.function.name.tilde?",
                 "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
                 "xcode.lang.cpp.identifier.qualified.more*",
             );
+            Type = "xcode.syntax.declaration.other";
         };
     },
     
@@ -394,11 +395,30 @@
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
             Rules = (
                 "::",
-                "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.function.name",
             );
         };
     },
     
+    /****************************************************************************/
+    // MARK: - Attributes or preprocessor macros we want to ignore
+    /****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.cpp.expression.attribute.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "__attribute__|xcode.lang.generated.preprocessor.function.ignore",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    
+    /****************************************************************************/
+    // MARK: - Functions/Methods
+    /****************************************************************************/
+
     {
         Identifier = "xcode.lang.cpp.function.declaration";
         Syntax = {
@@ -407,14 +427,19 @@
                 "xcode.lang.cpp.function.declarator",
                 "const?",
                 "override?",
+                "final?",
+                "override?",
+                "xcode.lang.cpp.noexceptclause?",
                 "xcode.lang.cpp.throwclause?",
-                "xcode.lang.cpp.identifier?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.returnclause?",
                 ";",
             );
             Type = "xcode.syntax.declaration.function";
         };
     },
-    
     {
         Identifier = "xcode.lang.cpp.function.definition";
         Syntax = {
@@ -423,9 +448,15 @@
                 "xcode.lang.cpp.function.declarator",
                 "const?",
                 "override?",
+                "final?",
+                "override?",
+                "xcode.lang.cpp.noexceptclause?",
                 "xcode.lang.cpp.throwclause?",
-                "xcode.lang.cpp.identifier?",
-                "xcode.lang.cpp.block",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.returnclause?",
+                "xcode.lang.cpp.block.function",
             );
             Type = "xcode.syntax.definition.function";
         };
@@ -436,9 +467,42 @@
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
             Rules = (
-                "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.function.name",
                 "xcode.lang.cpp.templateclause?",
-                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.function.declarator.parameters",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.function.declarator.parameters";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.parameter.start",
+                "xcode.lang.cpp.function.parameter.more*",
+                ")",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.function.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.name.tilde?",
+                "xcode.lang.cpp.identifier|xcode.lang.cpp.operatorclause",
+            );
+            Type = "xcode.syntax.declaration.other";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.function.name.tilde";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "~",
             );
             Type = "xcode.syntax.name.partial";
         };
@@ -465,14 +529,66 @@
     },
 
     {
+        Identifier = "xcode.lang.cpp.function.parameter.start";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = "(";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.cpp.function.parameter.function",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.templateclause",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.function.parameter.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = ",";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.cpp.function.parameter.function",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.templateclause",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.function.parameter.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.cpp.identifier",
+                ")",
+            );
+            Type = "xcode.syntax.name.parameter.function";
+        };
+    },
+
+    /****************************************************************************/
+    // MARK: - Classes
+    /****************************************************************************/
+
+    {
         Identifier = "xcode.lang.cpp.class";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
             Rules = (
                 "xcode.lang.cpp.class.declarator",
+                "final?",
+                "xcode.lang.cpp.basetype?",
                 "xcode.lang.cpp.block.class",
             );
-            Type = "xcode.syntax.definition.cpp.class";
+            Type = "xcode.syntax.definition.class";
         };
     },
     {
@@ -481,8 +597,10 @@
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
             Rules = (
                 "class",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.class.name",
-                "xcode.lang.cpp.class.declarator.superclass?",
             );
         };
     },
@@ -494,35 +612,20 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     
     {
-        Identifier = "xcode.lang.cpp.class.declarator.superclass";
+        Identifier = "xcode.lang.cpp.basetype";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer";
-            Rules = (
-                ":",
-                "public?",
-                "private?",
-                "protected?",
-                "xcode.lang.cpp.identifier+",
-                "xcode.lang.cpp.classnames.list*",
-            );
-        };
-    },
-    
-    {
-        Identifier = "xcode.lang.cpp.class.classnames.list";
-        Syntax = {
-            Tokenizer = "xcode.lang.cpp.lexer";
-            Rules = (
-                ",",
-                "public?",
-                "private?",
-                "protected?",
-                "xcode.lang.cpp.identifier+",
+            Start = ":";
+            Until = "{";
+            AltUntil = ";";     // just as a backstop to avoid sucking up too much
+            IncludeRules = (
+                "xcode.lang.cpp.templateclause",
+                "xcode.lang.cpp.parenexpr",
             );
         };
     },
@@ -535,8 +638,14 @@
                 "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
                 "const?",
                 "override?",
+                "final?",
+                "override?",
+                "xcode.lang.cpp.noexceptclause?",
                 "xcode.lang.cpp.throwclause?",
-                "xcode.lang.cpp.identifier?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.returnclause?",
                 ";",
             );
             Type = "xcode.syntax.declaration.method";
@@ -551,10 +660,16 @@
                 "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
                 "const?",
                 "override?",
+                "final?",
+                "override?",
+                "xcode.lang.cpp.noexceptclause?",
                 "xcode.lang.cpp.throwclause?",
-                "xcode.lang.cpp.identifier?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.initializerclause?",
-                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.returnclause?",
+                "xcode.lang.cpp.block.function",
             );
             Type = "xcode.syntax.definition.method";
         };
@@ -567,10 +682,14 @@
             Rules = (
                 "xcode.lang.cpp.method.declarator",
                 "const?",
+                "xcode.lang.cpp.noexceptclause?",
                 "xcode.lang.cpp.throwclause?",
-                "xcode.lang.cpp.identifier?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.initializerclause?",
-                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.returnclause?",
+                "xcode.lang.cpp.block.function",
             );
             Type = "xcode.syntax.definition.method";
         };
@@ -583,9 +702,9 @@
             Rules = (
                 "xcode.lang.cpp.identifier.qualified",
                 "xcode.lang.cpp.templateclause?",
-                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.function.declarator.parameters",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.name.tree";
         };
     },
     
@@ -596,6 +715,16 @@
             Rules = (
                 "throw",
                 "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.noexceptclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "noexcept",
+                "xcode.lang.cpp.parenexpr?",
             );
         };
     },
@@ -619,7 +748,6 @@
             End = ">";
             Recursive = YES;
             IncludeRules = (
-                "xcode.lang.cpp.block",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
             );
@@ -633,17 +761,39 @@
             Start = ":";
             Until = "{";
             IncludeRules = (
+                "xcode.lang.cpp.templateclause",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
             );
         };
     },
+
+    {
+        Identifier = "xcode.lang.cpp.returnclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "->";
+            Until = "{";
+            AltUntil = ";";
+            IncludeRules = (
+                "xcode.lang.cpp.templateclause",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+
+    /****************************************************************************/
+    // MARK: - Enums/Structs/Unions
+    /****************************************************************************/
+
     {
         Identifier = "xcode.lang.cpp.enumblock";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer";
             Rules = (
                 "xcode.lang.cpp.enum.declarator",
+                "xcode.lang.cpp.basetype?",
                 "xcode.lang.cpp.block",
             );
             Type = "xcode.syntax.declaration.enum";
@@ -655,9 +805,11 @@
             Tokenizer = "xcode.lang.cpp.lexer";
             Rules = (
                 "enum",
+                "class|struct?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.enum.name?",
-                ":?",
-                "xcode.lang.cpp.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -681,9 +833,19 @@
                 "NS_ENUM",
                 "(",
                 "xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.enum.optionalname?",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.enum.optionalname";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
                 ",",
                 "xcode.lang.cpp.enum.name",
-                ")",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -695,7 +857,7 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -704,7 +866,9 @@
             Tokenizer = "xcode.lang.cpp.lexer";
             Rules = (
                 "xcode.lang.cpp.struct.declarator",
-                "xcode.lang.cpp.typeblock",
+                "final?",
+                "xcode.lang.cpp.basetype?",
+                "xcode.lang.cpp.block.class",
             );
             Type = "xcode.syntax.declaration.struct";
         };
@@ -715,9 +879,10 @@
             Tokenizer = "xcode.lang.cpp.lexer";
             Rules = (
                 "struct",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.struct.name?",
-                ":?",
-                "xcode.lang.cpp.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -729,7 +894,7 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -749,9 +914,10 @@
             Tokenizer = "xcode.lang.cpp.lexer";
             Rules = (
                 "union",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.cpp.union.name?",
-                ":?",
-                "xcode.lang.cpp.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -763,7 +929,7 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -777,7 +943,7 @@
     },
 
 /****************************************************************************/
-// MARK: Typedefs
+// MARK: - Typedefs
 /****************************************************************************/
 
     {
@@ -792,14 +958,22 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.cpp.string",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
+                "xcode.lang.cpp.string.raw",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.typedef.end",
                 "xcode.lang.cpp.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.cpp.interestingOperators",
             );
         };
@@ -816,14 +990,22 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
-                "xcode.lang.cpp.string",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
+                "xcode.lang.cpp.string.raw",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.cpp.operatorclause",
                 "xcode.lang.cpp.typedef.name",
                 "xcode.lang.cpp.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.cpp.interestingOperators",
             );
         };
@@ -885,7 +1067,7 @@
     
 
 /****************************************************************************/
-// MARK: C++ Blocks
+// MARK: - C++ Blocks
 /****************************************************************************/
 
     {
@@ -942,11 +1124,45 @@
                 "xcode.lang.cpp.nsenumblock",
                 "xcode.lang.cpp.structblock",
                 "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.namespace",
+                "xcode.lang.cpp.externblock",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
                 "xcode.lang.cpp.initializer",
             );
             Type = "xcode.syntax.plain";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.namespace";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Foldable = YES;
+            Rules = (
+                "namespace",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.identifier?",
+                "xcode.lang.completionplaceholder?",
+                "xcode.lang.cpp.block.toplevel",
+            );
+            Type = "xcode.syntax.topLevelBlock";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.externblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Foldable = YES;
+            Rules = (
+                "extern",
+                "xcode.lang.string",
+                "xcode.lang.cpp.block.toplevel",
+            );
+            Type = "xcode.syntax.topLevelBlock";
         };
     },
 
@@ -961,6 +1177,29 @@
             IncludeRules = (
                 "xcode.lang.cpp.method.declaration.classscope",
                 "xcode.lang.cpp.method.definition.classscope",
+                "xcode.lang.cpp.class",
+                "xcode.lang.cpp.typedef",
+                "xcode.lang.cpp.enumblock",
+                "xcode.lang.cpp.nsenumblock",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.initializer",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.block.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.class",
                 "xcode.lang.cpp.typedef",
                 "xcode.lang.cpp.enumblock",
                 "xcode.lang.cpp.nsenumblock",
@@ -971,6 +1210,7 @@
             );
         };
     },
+
     {
         Identifier = "xcode.lang.cpp.parenexpr";
         BasedOn = "xcode.lang.c.parenexpr";

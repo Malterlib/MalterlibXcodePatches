@@ -453,7 +453,7 @@
                 "__pragma",
                 "__attribute__",
                 "__restrict__",
-                "assure_used",                
+                "assure_used",
                 "align_cacheline",
                 "intrinsic",
              );
@@ -823,7 +823,7 @@
             Match = (
                 "(?-i)^(t_C|t_F|t_TC|tp_C|tp_F|tp_TC)[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.type.system";
+            Type = "xcode.syntax.mark";
         };
     },
     {
@@ -1128,16 +1128,16 @@
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
         };
     },
-    
+    // Mark: URLs
     {
         Identifier = "xcode.lang.url";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			CaseSensitive = NO;
             Match = (
-                "^(acap|afp|afs|cid|data|fax|feed|file|ftp|go|gopher|http|https|imap|ldap|mailserver|mid|modem|news|nntp|opaquelocktoken|pop|prospero|rdar|rtsp|service|sip|soap\\.beep|soap\\.beeps|tel|telnet|tip|tn3270|urn|vemmi|wais|xcdoc|z39\\.50r|z39\\.50s)://([a-zA-Z0-9\\-_.]+/)?[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
-                "^(mailto|im):[a-zA-Z0-9\\-_]+@[a-zA-Z0-9\\-_\\.!%]+$",
-                "^radar:[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+				"^(acap|adir|afp|afs|callto|cap|cid|cvs|data|doi|facetime|fax|feed|file|ftp|git|go|gopher|gtalk|https|http|imap|info|jabber|jdbc|ldaps|ldap|mailserver|message|mid|modem|news|nntp|odbc|opaquelocktoken|pop|prospero|rdar|rtsp|rsync|service|sftp|sips|sip|skype|snews|snmp|soap\\.beep|soap\\.beeps|ssh|svn|tag|telnet|tel|tip|tn3270|urn|vemmi|vnc|wais|webcal|xcdoc|z39\\.50r|z39\\.50s)://([\\p{Letter}\\p{Number}\\-_.]+/)?[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
+				"^(mailto|im):[\\p{Letter}\\p{Number}\\-_]+@[\\p{Letter}\\p{Number}\\-_\\.!%]+",
+				"^radar:[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
             );
             Type = "xcode.syntax.url";
         };
@@ -1146,13 +1146,15 @@
         Identifier = "xcode.lang.url.mail";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			CaseSensitive = NO;
             Match = (
-                "^[a-zA-Z0-9\\-_\\.]+@[a-zA-Z0-9\\-_\\.!%]+$",
+				"^[\\p{Letter}\\p{Number}\\-_\\.]+@[\\p{Letter}\\p{Number}\\-_\\.!%]+",
             );
             Type = "xcode.syntax.url.mail";
         };
     },
+
+    // Mark: - String literals
     {
         Identifier = "xcode.lang.string";
         Syntax = {
@@ -1164,13 +1166,52 @@
         };
     },
     {
-        Identifier = "xcode.lang.character";
+        Identifier = "xcode.lang.string.multiline";
         Syntax = {
-            Start = "'";
+            Start = "\"";
             EscapeChar = "\\";
-            End = "'";
+            End = "\"";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.wide";
+        Syntax = {
+            Start = "L\"";
+            EscapeChar = "\\";
+            End = "\"";
             AltEnd = "\n";
-            Type = "xcode.syntax.character";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.utf8";
+        Syntax = {
+            Start = "u8\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.ucs2";
+        Syntax = {
+            Start = "u\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.ucs4";
+        Syntax = {
+            Start = "U\"";
+            EscapeChar = "\\";
+            End = "\"";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
         };
     },
     {
@@ -1185,6 +1226,70 @@
         };
     },
     {
+        Identifier = "xcode.lang.string.backquote";
+        BasedOn = "xcode.lang.string";
+        Syntax = {
+            Start = "`";
+            EscapeChar = "\\";
+            End = "`";
+            AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+
+    // Mark: - Character literals
+    {
+        Identifier = "xcode.lang.character";
+        Syntax = {
+            Start = "'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+    {
+        Identifier = "xcode.lang.character.wide";
+        Syntax = {
+            Start = "L'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+    {
+        Identifier = "xcode.lang.character.utf8";
+        Syntax = {
+            Start = "u8'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+    {
+        Identifier = "xcode.lang.character.ucs2";
+        Syntax = {
+            Start = "u'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+    {
+        Identifier = "xcode.lang.character.ucs4";
+        Syntax = {
+            Start = "U'";
+            EscapeChar = "\\";
+            End = "'";
+            AltEnd = "\n";
+            Type = "xcode.syntax.character";
+        };
+    },
+
+    {
         Identifier = "xcode.lang.completionplaceholder";
         Syntax = {
             Start = "<#";
@@ -1192,12 +1297,14 @@
             Type = "xcode.syntax.completionplaceholder";
         };
     },
+
+    // Mark: - Comments
     {
         Identifier = "xcode.lang.comment";
         Syntax = {
             Start = "/*";
             End = "*/";
-            "ParseEndBeforeIncludedRules" = YES;
+			ParseEndBeforeIncludedRules = YES;
             Foldable = YES;
             IncludeRules = (
                 "xcode.lang.url",
@@ -1208,6 +1315,21 @@
         };
     },
     {
+		Identifier = "xcode.lang.comment.recursive";
+		Syntax = {
+			Start = "/*";
+			End = "*/";
+			Foldable = YES;
+            Recursive = YES;
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
         Identifier = "xcode.lang.comment.singleline";
         BasedOn = "xcode.lang.comment";
         Syntax = {
@@ -1240,6 +1362,7 @@
     {
         Identifier = "xcode.lang.comment.mark";
         Syntax = {
+            CaseSensitive = NO;
             StartChars = "MTF!?";
             Match = (
                 "^MARK:[ \t]+(.*)$",
@@ -1257,19 +1380,62 @@
     {
         Identifier = "xcode.lang.number";
         Syntax = {
-            "SourceScannerClassName" = DVTNumberScanner;
+			SourceScannerClassName = NumberScanner;
             StartChars = "+-0123456789.";
-            Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'";
+			Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             Match = (
-                "^[+-]?0[bB][01]+([lL])?",
-                "^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfF])?",
-                "^[+-]?0[xX]([0-9a-fA-F]+'?[0-9a-fA-F]?)*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfF])?",
-                "^[+-]?([0-9]+'?[0-9]?)+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfF])?",
-                "^[+-]?([0-9]+'?[0-9]?)*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfF])?",
+				"^[+-]?0[bB][01]+([lLuU])*",
+				"^[+-]?0[xX][0-9a-fA-F]+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfFuU])*",
+				"^[+-]?0[xX][0-9a-fA-F]*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfFuU])*",
+				"^[+-]?[0-9]+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfFuU])*",
+				"^[+-]?[0-9]*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfFuU])*",
             );
             Type = "xcode.syntax.number";
         };
     },
+
+    // Mark: - Indentation and specially generate tokens
+    //   Used by Python, YAML and Doc comment parsing.
+    {
+        Identifier = "xcode.lang.generated.indent";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {   // if "Indent = n" is specified, then we generate this token when indentation is greater than or equal to n. (Otherwise we generate the plain indent token.)
+        Identifier = "xcode.lang.generated.fullindent";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.generated.dedent";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.generated.emptyline";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+    // Mark: - Preprocessor macros we want to ignore
+    {
+        Identifier = "xcode.lang.generated.preprocessor.ignore";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.generated.preprocessor.function.ignore";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+    // Mark: - Plain (no) coloring
     {
         Identifier = "xcode.lang.plainColoring";
         Description = "Xcode Plain Coloring";
@@ -1279,6 +1445,8 @@
             Type = "xcode.syntax.plain";
         };
     },
+
+    // Mark: - Simple coloring
     {
         Identifier = "xcode.lang.simpleColoring";
         Description = "Xcode Simple Coloring";

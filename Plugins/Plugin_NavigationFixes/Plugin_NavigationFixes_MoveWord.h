@@ -15,19 +15,37 @@ __attribute((noinline)) static void SourceEditor_SourceEditorView_doCommandBySel
 {
 	//NSLog(@"%@", NSStringFromSelector(arg1));
 	if (_Selector == @selector(moveWordRight:))
-		[XcodePluginNavigationFixes_MoveWord moveWordForward: _pSourceEditorView];
+	{
+		if ([XcodePluginNavigationFixes_MoveWord moveWordForward: _pSourceEditorView])
+			return;
+	}
 	else if (_Selector == @selector(moveWordLeft:))
-		[XcodePluginNavigationFixes_MoveWord moveWordBackward: _pSourceEditorView];
+	{
+		if ([XcodePluginNavigationFixes_MoveWord moveWordBackward: _pSourceEditorView])
+			return;
+	}
 	else if (_Selector == @selector(moveWordRightAndModifySelection:))
-		[XcodePluginNavigationFixes_MoveWord moveWordForwardAndModifySelection: _pSourceEditorView];
+	{
+		if ([XcodePluginNavigationFixes_MoveWord moveWordForwardAndModifySelection: _pSourceEditorView])
+			return;
+	}
 	else if (_Selector == @selector(moveWordLeftAndModifySelection:))
-		[XcodePluginNavigationFixes_MoveWord moveWordBackwardAndModifySelection: _pSourceEditorView];
+	{
+		if ([XcodePluginNavigationFixes_MoveWord moveWordBackwardAndModifySelection: _pSourceEditorView])
+			return;
+	}
 	else if (_Selector == @selector(deleteWordForward:))
-		[XcodePluginNavigationFixes_MoveWord deleteWordForward: _pSourceEditorView];
+	{
+		if ([XcodePluginNavigationFixes_MoveWord deleteWordForward: _pSourceEditorView])
+			return;
+	}
 	else if (_Selector == @selector(deleteWordBackward:))
-		[XcodePluginNavigationFixes_MoveWord deleteWordBackward: _pSourceEditorView];
-	else
-		return ((void (*)(id, SEL, SEL))original_SourceEditor_SourceEditorView_doCommandBySelector)(_pSourceEditorView, _cmd, _Selector);
+	{
+		if ([XcodePluginNavigationFixes_MoveWord deleteWordBackward: _pSourceEditorView])
+			return;
+	}
+
+	return ((void (*)(id, SEL, SEL))original_SourceEditor_SourceEditorView_doCommandBySelector)(_pSourceEditorView, _cmd, _Selector);
 }
 
 __attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorView_getDataSource(id __attribute__((swift_context)) _pSourceEditorView)
@@ -46,22 +64,7 @@ __attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorVie
 	return object_getIvar(_pSourceEditorView, s_Ivar);
 }
 
-struct COptionalData
-{
-	size_t data[25];
-};
-
-struct COptionalDataSourceFull
-{
-	size_t data[26];
-};
-
-struct COptionalDataFull
-{
-	size_t data[26];
-};
-
-__attribute((swiftcall)) __attribute((noinline)) void SourceEditor_SourceEditorView_getSelection(id __attribute__((swift_context)) _pSourceEditorView, struct COptionalDataSourceFull *_pData)
+__attribute((swiftcall)) __attribute((noinline)) void *SourceEditor_SourceEditorView_getSelectionPointer(id __attribute__((swift_context)) _pSourceEditorView)
 {
 	static Ivar s_Ivar = nil;
 	if (!s_Ivar)
@@ -69,18 +72,6 @@ __attribute((swiftcall)) __attribute((noinline)) void SourceEditor_SourceEditorV
 
 	ptrdiff_t offset = ivar_getOffset(s_Ivar);
 	unsigned char* bytes = (unsigned char *)(__bridge void*)_pSourceEditorView;
-	struct COptionalDataFull *pSourceData = (struct COptionalDataFull *)(bytes+offset);
-	*((struct COptionalData *)_pData) = *((struct COptionalData *)pSourceData);
-}
-
-__attribute((swiftcall)) __attribute((noinline)) void SourceEditor_SourceEditorView_setSelection(id __attribute__((swift_context)) _pSourceEditorView, struct COptionalData *_pData)
-{
-	static Ivar s_Ivar = nil;
-	if (!s_Ivar)
-		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "selection");
-
-	ptrdiff_t offset = ivar_getOffset(s_Ivar);
-	unsigned char* bytes = (unsigned char *)(__bridge void*)_pSourceEditorView;
-	*((struct COptionalData *)(bytes+offset)) = *_pData;
+	return bytes+offset;
 }
 

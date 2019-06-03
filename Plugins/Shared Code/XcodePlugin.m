@@ -20,8 +20,8 @@ BOOL XcodePluginShouldLoad(BOOL _LoadInXcodeBuild)
     NSInteger xcodeMinorVersion = [[versionComponents objectAtIndex: 1] integerValue];
 
     // Limit to this Xcode versions
-    XcodePluginConfirmOrPerform(xcodeMajorVersion == 10, return NO);
-    XcodePluginConfirmOrPerform(xcodeMinorVersion == 2, return NO);
+    XcodePluginConfirmOrPerform(xcodeMajorVersion == 11, return NO);
+    XcodePluginConfirmOrPerform(xcodeMinorVersion == 0, return NO);
 
     result = YES;
     

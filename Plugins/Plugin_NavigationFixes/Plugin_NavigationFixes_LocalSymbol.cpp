@@ -38,7 +38,6 @@ std::map<std::string, CModuleCache> g_ModuleCache;
 static CModuleCache &fg_GetModuleCache(char const *_pImageName)
 {
 	auto &Module = g_ModuleCache[_pImageName];
-
 	if (Module.m_bCreated)
 		return Module;
 

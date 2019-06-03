@@ -9,8 +9,14 @@ else
 fi
 
 echo Patching Xcode definitions
+
 if ! cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/" 2> /dev/null ; then
 	sudo cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/"
+fi
+
+
+if ! cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageSpecifications/" 2> /dev/null ; then
+	sudo cp -f Definitions/* "$XcodeLocation/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageSpecifications/"
 fi
 defaults write com.apple.dt.Xcode DVTTextEnableNativeParser -bool NO
 

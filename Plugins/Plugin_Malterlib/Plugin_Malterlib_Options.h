@@ -43,9 +43,9 @@ NSWindow* m_MainWindow = nil;
 	{
 		NSButton* button = sender;
 		if ([[button title] compare:@"Disable DYLD_LIBRARY_PATH and DYLD_FRAMEWORK_PATH in debugger"] == NSOrderedSame)
-			g_bDisableDyldLibraries = [button state] == NSOnState;
+			g_bDisableDyldLibraries = [button state] == NSControlStateValueOn;
 		else if ([[button title] compare:@"Disable DYLD_INSERT_LIBRARIES in debugger"] == NSOrderedSame)
-			g_bDisableDyldInsertLibraries = [button state] == NSOnState;
+			g_bDisableDyldInsertLibraries = [button state] == NSControlStateValueOn;
 	}
 }
 
@@ -72,20 +72,20 @@ NSWindow* m_MainWindow = nil;
 	disableLibrariesButton.autoresizingMask = NSViewWidthSizable;
 	disableLibrariesButton.title = @"Disable DYLD_LIBRARY_PATH and DYLD_FRAMEWORK_PATH in debugger";
 	if (g_bDisableDyldLibraries)
-		[disableLibrariesButton setState: NSOnState];
+		[disableLibrariesButton setState: NSControlStateValueOn];
 	[disableLibrariesButton setTarget:self];
 	[disableLibrariesButton setAction: @selector(optionChanged:)];
-	[disableLibrariesButton setButtonType: NSSwitchButton];
+	[disableLibrariesButton setButtonType: NSButtonTypeSwitch];
 	[[window contentView] addSubview:disableLibrariesButton];
 
 	NSButton* disableInsertLibrariesButton = [[NSButton alloc] initWithFrame:NSMakeRect(10, 45, Width - 20, 25)];
 	disableInsertLibrariesButton.autoresizingMask = NSViewWidthSizable;
 	disableInsertLibrariesButton.title = @"Disable DYLD_INSERT_LIBRARIES in debugger";
 	if (g_bDisableDyldInsertLibraries)
-		[disableInsertLibrariesButton setState: NSOnState];
+		[disableInsertLibrariesButton setState: NSControlStateValueOn];
 	[disableInsertLibrariesButton setTarget:self];
 	[disableInsertLibrariesButton setAction: @selector(optionChanged:)];
-	[disableInsertLibrariesButton setButtonType: NSSwitchButton];
+	[disableInsertLibrariesButton setButtonType: NSButtonTypeSwitch];
 	[[window contentView] addSubview:disableInsertLibrariesButton];
 
 	NSButton* closeButton = [[NSButton alloc] initWithFrame:NSMakeRect(10, 10, 80, 25)];
@@ -93,8 +93,8 @@ NSWindow* m_MainWindow = nil;
 	closeButton.title = @"Close";
 	[closeButton setTarget:self];
 	[closeButton setAction: @selector(closeOptions:)];
-	[closeButton setButtonType: NSPushOnPushOffButton];
-	[closeButton setBezelStyle: NSRoundedBezelStyle];
+	[closeButton setButtonType: NSButtonTypePushOnPushOff];
+	[closeButton setBezelStyle: NSBezelStyleRounded];
 	[[window contentView] addSubview:closeButton];
 
 #pragma clang diagnostic push

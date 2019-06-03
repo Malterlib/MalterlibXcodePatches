@@ -173,25 +173,22 @@ let g_CodeCharSet = getCodeCharSet();
 }
 
 extension SourceEditor.SourceEditorView {
-	@_silgen_name("Call_SourceEditor_SourceEditorView_deleteSourceRange") public func deleteSourceRange(range: SourceEditor.SourceEditorRange, forward: Swift.Bool, useKillRing: Swift.Bool) -> ();
-	@_silgen_name("Call_SourceEditor_SourceEditorView_selectTextRange") public func selectTextRange(_: SourceEditor.SourceEditorRange?, scrollPlacement: SourceEditor.ScrollPlacement?, alwaysScroll: Swift.Bool) -> ();
-	//@_silgen_name("Call_SourceEditor_SourceEditorView_setSelection") public func setSelection(_: SourceEditor.SourceEditorSelection?, scrollPlacement: SourceEditor.ScrollPlacement?, alwaysScroll: Swift.Bool) -> ();
+	@_silgen_name("Call_SourceEditor_SourceEditorView_deleteSourceRange") public func deleteSourceRange(range: Swift.Range<SourceEditor.SourceEditorPosition>, forward: Swift.Bool, useKillRing: Swift.Bool) -> ();
+	@_silgen_name("Call_SourceEditor_SourceEditorView_selectTextRange") public func selectTextRange(_: Range<SourceEditor.SourceEditorPosition>?, scrollPlacement: SourceEditor.ScrollPlacement?, alwaysScroll: Swift.Bool) -> ();
 	@_silgen_name("Call_SourceEditor_SourceEditorView_clearSelectionAnchors") public func clearSelectionAnchors() -> ();
 
 	@_silgen_name("SourceEditor_SourceEditorView_getDataSource") public func getDataSource() -> Unmanaged<SourceEditor.SourceEditorDataSource>;
 	@_silgen_name("SourceEditor_SourceEditorView_getLayoutManager") public func getLayoutManager() -> Unmanaged<SourceEditor.SourceEditorLayoutManager>;
-	@_silgen_name("SourceEditor_SourceEditorView_getSelection") public func getSelection(_: inout SourceEditor.SourceEditorSelection?) -> ();
-//	@_silgen_name("SourceEditor_SourceEditorView_getSelection") public func getSelection(_: inout SourceEditor.SourceEditorSelection) -> ();
-	@_silgen_name("SourceEditor_SourceEditorView_setSelection") public func setSelection(_: inout SourceEditor.SourceEditorSelection) -> ();
+	@_silgen_name("SourceEditor_SourceEditorView_getSelectionPointer") public func getSelectionPointer() -> UnsafeMutableRawPointer;
 }
 
 extension SourceEditor.SourceEditorLayoutManager {
-	@_silgen_name("Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded") public func expandRangeIfNeeded(_: SourceEditor.SourceEditorRange) -> SourceEditor.SourceEditorRange;
+	@_silgen_name("Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded") public func expandRangeIfNeeded(_: Range<SourceEditor.SourceEditorPosition>) -> Range<SourceEditor.SourceEditorPosition>;
 }
 
 @objc public class XcodePluginNavigationFixes_MoveWord : NSObject {
 
-	class func moveWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) {
+	class func moveWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
 		//XcodePluginDumpClass(SourceEditor.SourceEditorView.self);
 		//XcodePluginDumpClass(type(of: sourceView));
 		//XcodePluginSwiftReflector.dumpObjectTypes(sourceView);
@@ -202,23 +199,25 @@ extension SourceEditor.SourceEditorLayoutManager {
 		print("size2 \(size2)");*/
 
 		let dataSource = sourceView.getDataSource();
-		//var selection = SourceEditor.SourceEditorSelection();
-		var selection: SourceEditor.SourceEditorSelection? = SourceEditor.SourceEditorSelection();
-		sourceView.getSelection(&selection);
-		//let selection = sourceView.getSelection();
 
-		if (selection == nil) {
-			return;
+		let selectionAddress = sourceView.getSelectionPointer();
+		let selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
+
+		if (selection == nil || selection!.secondarySelections.count > 0) {
+			return false;
 		}
 
 		var position: SourceEditor.SourceEditorPosition = SourceEditor.SourceEditorPosition();
 
 		if (selection!.primarySelection.selectionAnchor == nil) {
-			position = selection!.primarySelection.range.start;
+			position = selection!.primarySelection.range.lowerBound;
+			if (selection!.secondarySelections.count > 0) {
+				sourceView.clearSelectionAnchors();
+			}
 		} else {
-			let anchor = selection!.primarySelection.selectionAnchor!.start;
-			let startPosition = selection!.primarySelection.range.start;
-			let endPosition = selection!.primarySelection.range.end;
+			let anchor = selection!.primarySelection.selectionAnchor!.lowerBound;
+			let startPosition = selection!.primarySelection.range.lowerBound;
+			let endPosition = selection!.primarySelection.range.upperBound;
 
 			if (startPosition == anchor) {
 				position = endPosition
@@ -235,28 +234,34 @@ extension SourceEditor.SourceEditorLayoutManager {
 			newPosition = getPrevWordPosition(dataSource, fromPos: position);
 		}
 
-		let range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange(start: newPosition, end: newPosition);
+		let range : Range<SourceEditor.SourceEditorPosition> = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: newPosition));
 		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false)
+
+		return true;
 	}
 
-	class func deleteWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) {
+	class func deleteWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
 
 		let dataSource = sourceView.getDataSource();
-		var selection: SourceEditor.SourceEditorSelection? = SourceEditor.SourceEditorSelection();
-		sourceView.getSelection(&selection);
 
-		if (selection == nil) {
-			return;
+		let selectionAddress = sourceView.getSelectionPointer();
+		let selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
+
+		if (selection == nil || selection!.secondarySelections.count > 0) {
+			return false;
 		}
 
 		var position = SourceEditor.SourceEditorPosition();
 
 		if (selection!.primarySelection.selectionAnchor == nil) {
-			position = selection!.primarySelection.range.start;
+			position = selection!.primarySelection.range.lowerBound;
+			if (selection!.secondarySelections.count > 0) {
+				sourceView.clearSelectionAnchors();
+			}
 		} else {
-			let anchor = selection!.primarySelection.selectionAnchor!.start;
-			let startPosition = selection!.primarySelection.range.start;
-			let endPosition = selection!.primarySelection.range.end;
+			let anchor = selection!.primarySelection.selectionAnchor!.lowerBound;
+			let startPosition = selection!.primarySelection.range.lowerBound;
+			let endPosition = selection!.primarySelection.range.upperBound;
 
 			if (startPosition == anchor) {
 				position = endPosition
@@ -273,52 +278,55 @@ extension SourceEditor.SourceEditorLayoutManager {
 			newPosition = getPrevWordPosition(dataSource, fromPos: position);
 		}
 
-		var range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange();
+		var range : Range<SourceEditor.SourceEditorPosition>;
 
 		if (newPosition == position) {
-			return;
+			return true;
 		}
 
 		if (newPosition > position) {
-			range.start = position
-			range.end = newPosition
+			range = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: position, upper: newPosition));
 		} else {
-			range.start = newPosition
-			range.end = position
+			range = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: position));
 		}
 
 		let layoutManager = sourceView.getLayoutManager();
 
 		let fixedRange = layoutManager.takeUnretainedValue().expandRangeIfNeeded(range);
 		sourceView.deleteSourceRange(range: fixedRange, forward: false, useKillRing: false);
+		return true;
 	}
 
-	class func moveWordAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) {
+	class func moveWordAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
 		let dataSource = sourceView.getDataSource();
-		var selection: SourceEditor.SourceEditorSelection? = SourceEditor.SourceEditorSelection();
-		sourceView.getSelection(&selection);
+		let selectionAddress = sourceView.getSelectionPointer();
+		var selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
 
-		if (selection == nil) {
-			return;
+		if (selection == nil || selection!.secondarySelections.count > 0) {
+			return false;
 		}
 
 		var position = SourceEditor.SourceEditorPosition();
 		var bPositionSet = false;
 
+		if (selection!.secondarySelections.count > 0) {
+			sourceView.clearSelectionAnchors();
+		}
+
 		if (selection!.primarySelection.selectionAnchor == nil) {
-			position = selection!.primarySelection.range.start;
+			position = selection!.primarySelection.range.upperBound;
 			bPositionSet = true
 			Call_SourceEditor_SourceEditorView_moveWordForwardAndModifySelection(sourceView);
-			sourceView.getSelection(&selection);
+			selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
 			if (selection!.primarySelection.selectionAnchor == nil) {
 				print("STILL no selection anchor");
-				return
+				return false;
 			}
 		}
 
-		let anchor = selection!.primarySelection.selectionAnchor!.start;
-		let startPosition = selection!.primarySelection.range.start;
-		let endPosition = selection!.primarySelection.range.end;
+		let anchor = selection!.primarySelection.selectionAnchor!.upperBound;
+		let startPosition = selection!.primarySelection.range.upperBound;
+		let endPosition = selection!.primarySelection.range.lowerBound;
 
 		if (!bPositionSet) {
 			if (startPosition == anchor) {
@@ -335,41 +343,40 @@ extension SourceEditor.SourceEditorLayoutManager {
 			newPosition = getPrevWordPosition(dataSource, fromPos: position);
 		}
 
-		var range : SourceEditor.SourceEditorRange = SourceEditor.SourceEditorRange();
+		var range : Range<SourceEditor.SourceEditorPosition>;
 		if (newPosition > anchor) {
-			range.start = anchor
-			range.end = newPosition
+			range = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: anchor, upper: newPosition));
 		} else {
-			range.start = newPosition
-			range.end = anchor
+			range = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: anchor));
 		}
 
 		selection!.primarySelection.range = range;
 
 		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false);
-		sourceView.setSelection(&(selection!));
+		selectionAddress.bindMemory(to: Optional<SourceEditor.SourceEditorSelection>.self, capacity: 1).pointee = selection;
+		return true;
 	}
-	@objc public class func moveWordForward(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func moveWordForward(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return moveWord(sourceView, forward: true);
 	}
 
-	@objc public class func moveWordBackward(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func moveWordBackward(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return moveWord(sourceView, forward: false);
 	}
 
-	@objc public class func moveWordBackwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func moveWordBackwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return moveWordAndModifySelection(sourceView, forward: false)
 	}
 
-	@objc public class func moveWordForwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func moveWordForwardAndModifySelection(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return moveWordAndModifySelection(sourceView, forward: true)
 	}
 
-	@objc public class func deleteWordForward(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func deleteWordForward(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return deleteWord(sourceView, forward: true);
 	}
 
-	@objc public class func deleteWordBackward(_ sourceView: SourceEditor.SourceEditorView) {
+	@objc public class func deleteWordBackward(_ sourceView: SourceEditor.SourceEditorView) -> Bool {
 		return deleteWord(sourceView, forward: false);
 	}
 }

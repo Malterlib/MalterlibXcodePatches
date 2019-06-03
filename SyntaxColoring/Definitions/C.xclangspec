@@ -43,7 +43,11 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.string",
                 "xcode.lang.character",
-                "xcode.lang.number",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
+                "xcode.lang.c.number",
                 "xcode.lang.c.preprocessor.identifier",
             );
         };
@@ -57,6 +61,7 @@
             Type = "xcode.syntax.string";
         };
     },
+
     {
         Identifier = "xcode.lang.c.preprocessor.identifier";
         Syntax = {
@@ -131,6 +136,7 @@
             Words = (
                 "assert",
                 "define",
+                "defined",
                 "elif",
                 "else",
                 "endif",
@@ -146,13 +152,12 @@
                 "unassert",
                 "undef",
                 "warning",
-                "once",
-                "defined",
              );
             Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";
         };
     }, 
+ 
     {
         Identifier = "xcode.lang.c.preprocessor.mark";
         Syntax = {
@@ -227,9 +232,17 @@
                 "xcode.lang.comment",
                 "xcode.lang.comment.singleline",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.c.preprocessor.systemIncludeString",
                 "xcode.lang.character",
-                "xcode.lang.number",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
+                "xcode.lang.c.number",
                 "xcode.lang.c.preprocessor.identifier",
             );
         };
@@ -281,7 +294,7 @@
 
 
 /****************************************************************************/
-// MARK: HeaderDoc
+// MARK: - HeaderDoc/Doxygen
 /****************************************************************************/
 
     {
@@ -302,7 +315,6 @@
             End = "*/";
             Foldable = YES;
             IncludeRules = (
-                "xcode.lang.comment.headerdoc.keywords",
                 "xcode.lang.url",
                 "xcode.lang.url.mail",
                 "xcode.lang.comment.mark"
@@ -319,7 +331,6 @@
             End = "*/";
             Foldable = YES;
             IncludeRules = (
-                "xcode.lang.comment.headerdoc.keywords",
                 "xcode.lang.url",
                 "xcode.lang.url.mail",
                 "xcode.lang.comment.mark"
@@ -335,7 +346,6 @@
             Start = "//!";
             Until = "\n";
             IncludeRules = (
-                "xcode.lang.comment.headerdoc.keywords",
                 "xcode.lang.url",
                 "xcode.lang.url.mail",
                 "xcode.lang.comment.mark"
@@ -351,7 +361,6 @@
             Start = "///";
             Until = "\n";
             IncludeRules = (
-                "xcode.lang.comment.headerdoc.keywords",
                 "xcode.lang.url",
                 "xcode.lang.url.mail",
                 "xcode.lang.comment.mark"
@@ -360,375 +369,9 @@
         };
     },
 
-    {
-        Identifier = "xcode.lang.comment.headerdoc.keywords";
-        Syntax = {
-            StartChars = "@\\";
-            Chars = "abcdefghijklmnopqrstuvwxyz";
-            Words =  (
-                "@CFBundleIdentifier",
-                "@a",
-                "@abstract",
-                "@addindex",
-                "@addtogroup",
-                "@anchor",
-                "@arg",
-                "@attention",
-                "@author",
-                "@availability",
-                "@availabilitymacro",
-                "@b",
-                "@brief",
-                "@bug",
-                "@c",
-                "@callback",
-                "@callergraph",
-                "@callgraph",
-                "@category",
-                "@charset",
-                "@class",
-                "@classdesign",
-                "@coclass",
-                "@code",
-                "@compilerflag",
-                "@cond",
-                "@const",
-                "@constant",
-                "@copybrief",
-                "@copydetails",
-                "@copydoc",
-                "@copyright",
-                "@date",
-                "@def",
-                "@defgroup",
-                "@define",
-                "@defined",
-                "@dependency",
-                "@deprecated",
-                "@details",
-                "@dir",
-                "@discussion",
-                "@dontinclude",
-                "@dot",
-                "@dotfile",
-                "@e",
-                "@else",
-                "@elseif",
-                "@em",
-                "@encoding",
-                "@endcode",
-                "@endcond",
-                "@enddot",
-                "@endhtmlonly",
-                "@endif",
-                "@endlatexonly",
-                "@endlink",
-                "@endmanonly",
-                "@endmsc",
-                "@endverbatim",
-                "@endxmlonly",
-                "@enum",
-                "@example",
-                "@exception",
-                "@extends",
-                "@field",
-                "@file",
-                "@flag",
-                "@fn",
-                "@framework",
-                "@function",
-                "@functiongroup",
-                "@header",
-                "@headerfile",
-                "@helper",
-                "@helperclass",
-                "@helps",
-                "@hideinitializer",
-                "@htmlinclude",
-                "@htmlonly",
-                "@if",
-                "@ifnot",
-                "@ignore",
-                "@ignorefuncmacro",
-                "@image",
-                "@implements",
-                "@include",
-                "@includelineno",
-                "@indexgroup",
-                "@ingroup",
-                "@instancesize",
-                "@interface",
-                "@internal",
-                "@invariant",
-                "@latexonly",
-                "@li",
-                "@line",
-                "@link",
-                "@mainpage",
-                "@manonly",
-                "@memberof",
-                "@meta",
-                "@method",
-                "@msc",
-                "@n",
-                "@name",
-                "@namespace",
-                "@noParse",
-                "@nosubgrouping",
-                "@note",
-                "@overload",
-                "@ownership",
-                "@p",
-                "@package",
-                "@page",
-                "@par",
-                "@paragraph",
-                "@param",
-                "@parseOnly",
-                "@performance",
-                "@post",
-                "@pre",
-                "@preprocinfo",
-                "@private",
-                "@privatesection",
-                "@property",
-                "@protected",
-                "@protectedsection",
-                "@protocol",
-                "@public",
-                "@publicsection",
-                "@ref",
-                "@related",
-                "@relates",
-                "@relatesalso",
-                "@remarks",
-                "@result",
-                "@return",
-                "@retval",
-                "@sa",
-                "@section",
-                "@security",
-                "@see",
-                "@seealso",
-                "@showinitializer",
-                "@since",
-                "@skip",
-                "@skipline",
-                "@struct",
-                "@subpage",
-                "@subsection",
-                "@subsubsection",
-                "@superclass",
-                "@templatefield",
-                "@test",
-                "@textblock",
-                "@thread",
-                "@throw",
-                "@throws",
-                "@todo",
-                "@tparam",
-                "@typedef",
-                "@union",
-                "@until",
-                "@updated",
-                "@var",
-                "@verbatim",
-                "@verbinclude",
-                "@version",
-                "@warning",
-                "@weakgroup",
-                "@xmlonly",
-                "@xrefitem",
-                "\\CFBundleIdentifier",
-                "\\a",
-                "\\abstract",
-                "\\addindex",
-                "\\addtogroup",
-                "\\anchor",
-                "\\arg",
-                "\\attention",
-                "\\author",
-                "\\availability",
-                "\\availabilitymacro",
-                "\\b",
-                "\\brief",
-                "\\bug",
-                "\\c",
-                "\\callback",
-                "\\callergraph",
-                "\\callgraph",
-                "\\category",
-                "\\charset",
-                "\\class",
-                "\\classdesign",
-                "\\coclass",
-                "\\code",
-                "\\compilerflag",
-                "\\cond",
-                "\\const",
-                "\\constant",
-                "\\copybrief",
-                "\\copydetails",
-                "\\copydoc",
-                "\\copyright",
-                "\\date",
-                "\\def",
-                "\\defgroup",
-                "\\dependency",
-                "\\deprecated",
-                "\\details",
-                "\\dir",
-                "\\discussion",
-                "\\dontinclude",
-                "\\dot",
-                "\\dotfile",
-                "\\e",
-                "\\else",
-                "\\elseif",
-                "\\em",
-                "\\encoding",
-                "\\endcode",
-                "\\endcond",
-                "\\enddot",
-                "\\endhtmlonly",
-                "\\endif",
-                "\\endlatexonly",
-                "\\endlink",
-                "\\endmanonly",
-                "\\endmsc",
-                "\\endverbatim",
-                "\\endxmlonly",
-                "\\enum",
-                "\\example",
-                "\\exception",
-                "\\extends",
-                "\\f$",
-                "\\f[",
-                "\\f]",
-                "\\field",
-                "\\file",
-                "\\flag",
-                "\\fn",
-                "\\framework",
-                "\\f{",
-                "\\f}",
-                "\\headerfile",
-                "\\helper",
-                "\\helperclass",
-                "\\helps",
-                "\\hideinitializer",
-                "\\htmlinclude",
-                "\\htmlonly",
-                "\\if",
-                "\\ifnot",
-                "\\ignore",
-                "\\ignorefuncmacro",
-                "\\image",
-                "\\implements",
-                "\\include",
-                "\\includelineno",
-                "\\indexgroup",
-                "\\ingroup",
-                "\\instancesize",
-                "\\interface",
-                "\\internal",
-                "\\invariant",
-                "\\latexonly",
-                "\\li",
-                "\\line",
-                "\\link",
-                "\\mainpage",
-                "\\manonly",
-                "\\memberof",
-                "\\meta",
-                "\\msc",
-                "\\n",
-                "\\name",
-                "\\namespace",
-                "\\noParse",
-                "\\nosubgrouping",
-                "\\note",
-                "\\overload",
-                "\\ownership",
-                "\\p",
-                "\\package",
-                "\\page",
-                "\\par",
-                "\\paragraph",
-                "\\param",
-                "\\parseOnly",
-                "\\performance",
-                "\\post",
-                "\\pre",
-                "\\preprocinfo",
-                "\\private",
-                "\\privatesection",
-                "\\property",
-                "\\protected",
-                "\\protectedsection",
-                "\\protocol",
-                "\\public",
-                "\\publicsection",
-                "\\ref",
-                "\\related",
-                "\\relates",
-                "\\relatesalso",
-                "\\remarks",
-                "\\result",
-                "\\return",
-                "\\retval",
-                "\\sa",
-                "\\section",
-                "\\security",
-                "\\see",
-                "\\seealso",
-                "\\showinitializer",
-                "\\since",
-                "\\skip",
-                "\\skipline",
-                "\\struct",
-                "\\subpage",
-                "\\subsection",
-                "\\subsubsection",
-                "\\superclass",
-                "\\templatefield",
-                "\\test",
-                "\\textblock",
-                "\\throw",
-                "\\throws",
-                "\\todo",
-                "\\tparam",
-                "\\typedef",
-                "\\union",
-                "\\until",
-                "\\updated",
-                "\\var",
-                "\\verbatim",
-                "\\verbinclude",
-                "\\version",
-                "\\warning",
-                "\\weakgroup",
-                "\\xmlonly",
-                "\\xrefitem",
-                "\\$",
-                "\\@",
-                "\\\\",
-                "\\&",
-                "\\∼",
-                "\\<",
-                "\\>",
-                "\\#",
-                "\\%",
-                "@{",
-                "@}",
-            );
-            Type = "xcode.syntax.comment.doc.keyword";
-        };
-    },
-
 
 /****************************************************************************/
-// MARK: C keywords
+// MARK: - C keywords
 /****************************************************************************/
 
     {
@@ -736,13 +379,14 @@
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            CheckPreprocessorKnownMacros = YES;
             Words = (
                 "__alignof",
                 "__alignof__",
                 "__asm",
                 "__asm__",
-                "__attribute",
                 "__attribute__",
+                "__auto_type",
                 "__block",
                 "__builtin_choose_expr",
                 "__builtin_offsetof",
@@ -824,12 +468,18 @@
                 "FALSE",
                 "NULL",
                 "TRUE",
+                "_Alignas",
+                "_Alignof",
+                "_Atomic",
+                "_Generic",
+                "_Noreturn",
+                "_Static_assert",
+                "_Thread_local",
              );
             Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers*/
         };
     },
-
     {
         Identifier = "xcode.lang.c.identifier";
         Syntax = {
@@ -909,7 +559,6 @@
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
         };
     },
-
     {
         Identifier = "xcode.lang.c.interestingOperators";
         Syntax = {
@@ -921,10 +570,28 @@
             Type = "xcode.syntax.plain";
         };
     },
+    {
+        // adds C++14 support for single quote separators
+        Identifier = "xcode.lang.c.number";
+        BasedOn = "xcode.lang.number";
+        Syntax = {
+            SourceScannerClassName = NumberScanner;
+            StartChars = "+-0123456789.";
+            Chars = "0123456789'+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Match = (
+                "^[+-]?0[bB][01']+([lLuU])*",
+                "^[+-]?0[xX][0-9a-fA-F']+((\\.[0-9a-fA-F']*)?([pP][+-]?[0-9']+)?)?([lLfFuU])*",
+                "^[+-]?0[xX][0-9a-fA-F']*\\.[0-9a-fA-F']+([pP][+-]?[0-9']+)?([lLfFuU])*",
+                "^[+-]?[0-9']+((\\.[0-9']*)?([eE][+-]?[0-9']+)?)?([lLfFuU])*",
+                "^[+-]?[0-9']*\\.[0-9']+([eE][+-]?[0-9']+)?([lLfFuU])*",
+            );
+            Type = "xcode.syntax.number";
+        };
+    },
 
 
 /****************************************************************************/
-// MARK: C Syntax Coloring
+// MARK: - C Syntax Coloring
 /****************************************************************************/
 
     {
@@ -990,18 +657,40 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.c.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.c.interestingOperators",
             );
         };
     },
 
+    /****************************************************************************/
+    // MARK: - Attributes or preprocessor macros we want to ignore
+    /****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.c.expression.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Rules = (
+                "__attribute__|xcode.lang.generated.preprocessor.function.ignore",
+                "xcode.lang.c.parenexpr",
+            );
+        };
+    },
     
 /****************************************************************************/
-// MARK: Functions
+// MARK: - Functions
 /****************************************************************************/
 
     {
@@ -1010,10 +699,12 @@
             Tokenizer = "xcode.lang.c.lexer";
             Rules = (
                 "xcode.lang.c.function.declarator",
-                "xcode.lang.c.identifier?",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.c.expression.attribute*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 ";"
             );
-            Type = "xcode.syntax.declaration.c.function";
+            Type = "xcode.syntax.declaration.function";
         };
     },
     {
@@ -1022,9 +713,11 @@
             Tokenizer = "xcode.lang.c.lexer";
             Rules = (
                 "xcode.lang.c.function.declarator",
+                "xcode.lang.generated.preprocessor.ignore*",
+//                "xcode.lang.c.expression.attribute*", // Disabled for now since the native parser can't parse the paren expression inside here.
                 "xcode.lang.c.block",
             );
-            Type = "xcode.syntax.definition.c.function";
+            Type = "xcode.syntax.definition.function";
         };
     },
     {
@@ -1037,7 +730,7 @@
                 "xcode.lang.c.knrargs+",
                 "xcode.lang.c.block",
             );
-            Type = "xcode.syntax.definition.c.function";
+            Type = "xcode.syntax.definition.function";
         };
     },
     {
@@ -1058,7 +751,19 @@
             Tokenizer = "xcode.lang.c.lexer";
             Rules = (
                 "xcode.lang.c.function.name",
-                "xcode.lang.c.parenexpr",
+                "xcode.lang.c.function.declarator.parameters",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.function.declarator.parameters";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Rules = (
+                "xcode.lang.c.function.parameter.start",
+                "xcode.lang.c.function.parameter.more*",
+                ")",
             );
         };
     },
@@ -1069,12 +774,55 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.other";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.function.parameter.start";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Start = "(";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.c.function.parameter.function",
+                "xcode.lang.c.parenexpr",
+                "xcode.lang.c.bracketexpr",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.function.parameter.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Start = ",";
+            Until = ")";
+            AltUntil = ",";
+            IncludeRules = (
+                //"xcode.lang.c.function.parameter.function",
+                "xcode.lang.c.parenexpr",
+                "xcode.lang.c.bracketexpr",
+            );
+            Type = "xcode.syntax.name.parameter";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.function.parameter.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.c.identifier",
+                ")",
+            );
+            Type = "xcode.syntax.name.parameter.function";
         };
     },
     
 /****************************************************************************/
-// MARK: Typedefs
+// MARK: - Typedefs
 /****************************************************************************/
 
     {
@@ -1090,11 +838,19 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.c.typedef.end",
                 "xcode.lang.c.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.c.interestingOperators",
             );
         };
@@ -1112,11 +868,19 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
                 "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.c.typedef.name",
                 "xcode.lang.c.identifier",
-                "xcode.lang.number",
+                "xcode.lang.c.number",
                 "xcode.lang.c.interestingOperators",
             );
         };
@@ -1177,7 +941,7 @@
     },
     
 /****************************************************************************/
-// MARK: Blocks and such
+// MARK: - Blocks and such
 /****************************************************************************/
 
     {
@@ -1228,8 +992,6 @@
             Rules = (
                 "enum",
                 "xcode.lang.c.enum.name?",
-                ":?",
-                "xcode.lang.c.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1253,9 +1015,19 @@
                 "NS_ENUM",
                 "(",
                 "xcode.lang.c.identifier",
+                "xcode.lang.c.enum.optionalname?",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.enum.optionalname";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer";
+            Rules = (
                 ",",
                 "xcode.lang.c.enum.name",
-                ")",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1267,7 +1039,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -1288,8 +1060,6 @@
             Rules = (
                 "struct",
                 "xcode.lang.c.struct.name?",
-                ":?",
-                "xcode.lang.c.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1301,7 +1071,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -1322,8 +1092,6 @@
             Rules = (
                 "union",
                 "xcode.lang.c.union.name?",
-                ":?",
-                "xcode.lang.c.typeidentifier*",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -1335,17 +1103,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.name.partial";
-        };
-    },
-
-    {
-        Identifier = "xcode.lang.c.typeidentifier";
-        Syntax = {
-            Tokenizer = "xcode.lang.c.lexer";
-            Rules = (
-                "xcode.lang.c.identifier|int|char|float|double|short|long|unsigned|signed",
-            );
+            Type = "xcode.syntax.declaration.type";
         };
     },
     
