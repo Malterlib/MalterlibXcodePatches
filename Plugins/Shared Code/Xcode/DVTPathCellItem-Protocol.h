@@ -10,7 +10,7 @@
 
 
 @class NSArray, NSImage, NSString, NSURL;
-@protocol DVTPathCellItem;
+@protocol NSObject, DVTPathCellItem;
 
 @protocol DVTPathCellItem <NSObject>
 @property(readonly, nonatomic) NSString *accessibilityIdentifier;

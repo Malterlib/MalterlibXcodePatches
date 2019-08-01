@@ -291,7 +291,7 @@
 - (void)_changeMaximumRecentFilesLimit:(id)arg1;
 - (id)_recentEditorDocumentsCapacityPreferenceMenuItem;
 - (void)_navigateToRelatedNavigableItem:(id)arg1;
-- (void)setNavigableItemSiblingsSelectionIndexes:(NSIndexSet *)arg1;
+- (void)setNavigableItemSiblingsSelectionIndexes:(NSIndexSet *)navigableItemSiblingsSelectionIndexes;
 - (void)_importNavigableItem:(id)arg1;
 - (BOOL)_notifyDelegateAndOpenEditorHistoryItem:(id)arg1 previousHistoryItemOrNil:(id)arg2 alwaysReplaceExistingNavigableItem:(BOOL)arg3 skipSubDocumentNavigationUnlessEditorIsReplaced:(BOOL)arg4;
 - (BOOL)_notifyDelegateAndOpenEditorHistoryItem:(id)arg1 updateHistory:(BOOL)arg2 skipSubDocumentNavigationUnlessEditorIsReplaced:(BOOL)arg3;
@@ -323,7 +323,7 @@
 - (void)_setEmptyRootNavigableItem;
 - (void)_clearWorkspaceloadingObservation;
 - (void)_primitiveSetNavBarRootNavigableItem:(id)arg1 selectedNavigableItem:(id)arg2;
-- (void)setNavBarNavigableItem:(IDENavigableItem *)arg1;
+- (void)setNavBarNavigableItem:(IDENavigableItem *)navBarNavigableItem;
 - (id)currentHistoryItemWithImageOfCurrentEditor;
 - (id)currentHistoryItem;
 - (id)_currentSelectedDocumentLocations;

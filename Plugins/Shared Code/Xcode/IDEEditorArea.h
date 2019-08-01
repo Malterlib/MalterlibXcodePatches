@@ -129,7 +129,7 @@
 - (void)setVersionEditorSubmode:(int)arg1 client:(unsigned long long)arg2;
 @property(readonly, nonatomic) int versionEditorSubmode; // @synthesize versionEditorSubmode=_versionEditorSubmode;
 - (void)setEditorMode:(int)arg1 client:(unsigned long long)arg2;
-- (void)setEditorMode:(int)arg1;
+- (void)setEditorMode:(int )arg1;
 - (void)_setEditorMode:(int)arg1 client:(unsigned long long)arg2;
 - (void)_reportChangedFromOldEditorMode:(int)arg1 oldComparisonEditorSubmode:(int)arg2 newEditorMode:(int)arg3 newComparisonEditorSubmode:(int)arg4 client:(unsigned long long)arg5;
 - (void)editorContextWasRemoved:(id)arg1;
