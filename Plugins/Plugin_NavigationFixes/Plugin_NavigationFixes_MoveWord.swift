@@ -21,8 +21,8 @@ func binarySearchLine(_ lineData: [SourceEditor.SourceEditorLineData], character
 func getCodeCharSet() -> CharacterSet {
 	let AlphaNumericSpace = CharacterSet.alphanumerics;
 	var CodeCharSet = CharacterSet();
-	CodeCharSet.formUnion(AlphaNumericSpace)
-	CodeCharSet.insert(charactersIn: "_")
+	CodeCharSet.formUnion(AlphaNumericSpace);
+	CodeCharSet.insert(charactersIn: "_");
 	return CodeCharSet;
 }
 
@@ -58,8 +58,30 @@ let g_CodeCharSet = getCodeCharSet();
 	// Move to end of word
 	if (iCharPos < nCharacters)
 	{
-		let StartChar = Unicode.Scalar(contents.character(at: iCharPos))!
-		if (g_CodeCharSet.contains(StartChar))
+		var StartChar = Unicode.Scalar(contents.character(at: iCharPos))!
+		if (g_NewLine.contains(StartChar))
+		{
+			if (StartChar == "\r")
+			{
+				iCharPos += 1;
+				StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
+				if (StartChar == "\n")
+				{
+					iCharPos += 1;
+				}
+			}
+			else if (StartChar == "\n")
+			{
+				iCharPos += 1;
+			}
+
+			if (iCharPos > nCharacters) {
+				iCharPos = nCharacters;
+			}
+
+			return positionFromCharPos(dataSource, iCharPos);
+		}
+		else if (g_CodeCharSet.contains(StartChar))
 		{
 			while (iCharPos < nCharacters)
 			{
@@ -97,7 +119,6 @@ let g_CodeCharSet = getCodeCharSet();
 	let contents = dataSource.takeUnretainedValue().contents;
 
 	var iCharPos = charPosFromPosition(dataSource, fromPos);
-
 	let nCharacters = contents.length;
 
 	if (iCharPos > 0) {
@@ -106,45 +127,51 @@ let g_CodeCharSet = getCodeCharSet();
 
 	var StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
 
+	var wasNewLine = false;
 	if (g_NewLine.contains(StartChar))
 	{
+		wasNewLine = true;
 		if (iCharPos > 0)
 		{
 			if (StartChar == "\n")
 			{
-				iCharPos -= 1;
-				StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
-				if (StartChar == "\r")
+				if (Unicode.Scalar(contents.character(at: iCharPos - 1))! == "\r")
 				{
 					iCharPos -= 1;
 					StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
 				}
 			}
-			else if (StartChar == "\r")
+		}
+	}
+
+	if (wasNewLine)
+	{
+		if (iCharPos < 0) {
+			iCharPos = 0;
+		}
+		return positionFromCharPos(dataSource, iCharPos);
+	}
+
+	if (g_WhiteSpace.contains(StartChar))
+	{
+		while (iCharPos > 0)
+		{
+			StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
+
+			if (!g_WhiteSpace.contains(StartChar))
 			{
-				iCharPos -= 1;
-				StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
+				if (g_NewLine.contains(StartChar))
+				{
+					iCharPos += 1;
+					return positionFromCharPos(dataSource, iCharPos);
+				}
+				break;
 			}
+			iCharPos -= 1;
 		}
 	}
 
-	while (iCharPos > 0)
-	{
-		StartChar = Unicode.Scalar(contents.character(at: iCharPos))!;
-
-		if (!g_WhiteSpace.contains(StartChar)) {
-			break;
-		}
-		iCharPos -= 1;
-	}
-
-	if (g_NewLine.contains(StartChar))
-	{
-		if (iCharPos < nCharacters) {
-			iCharPos += 1;
-		}
-	}
-	else
+	if (!g_NewLine.contains(StartChar))
 	{
 		// Move to beginning of word
 		if (g_CodeCharSet.contains(StartChar))
