@@ -6,11 +6,77 @@
 /****************************************************************************/
 
     {
-        Identifier = "xcode.lang.cpp.identifier.default";
+        Identifier = "xcode.lang.cpp.identifier";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             CheckPreprocessorKnownMacros = YES;
+            IncludeRules = (
+                "xcode.lang.malterlib.keyword.builtinconstant",
+                "xcode.lang.malterlib.constant",
+                "xcode.lang.malterlib.constant.private",
+                "xcode.lang.malterlib.namespace",
+                "xcode.lang.malterlib.namespace.explicit",
+                "xcode.lang.malterlib.templatetypeparam",
+                "xcode.lang.malterlib.functiontemplatetypeparam",
+                "xcode.lang.malterlib.constant.template",
+                "xcode.lang.malterlib.constant.templatefunction",
+                "xcode.lang.malterlib.type",
+                "xcode.lang.malterlib.type.explicit",
+                "xcode.lang.malterlib.functor.param",
+                "xcode.lang.malterlib.functor.param.output",
+                "xcode.lang.malterlib.functor.member",
+                "xcode.lang.malterlib.functor.member.private",
+                "xcode.lang.malterlib.member",
+                "xcode.lang.malterlib.member.private",
+                "xcode.lang.malterlib.function",
+                "xcode.lang.malterlib.function.explicit",
+                "xcode.lang.malterlib.function.private",
+                "xcode.lang.malterlib.function.global",
+                "xcode.lang.malterlib.function.global.explicit",
+                "xcode.lang.malterlib.macro",
+                "xcode.lang.malterlib.macro.explicit",
+                "xcode.lang.malterlib.macro.parameter",
+                "xcode.lang.malterlib.function.parameter",
+                "xcode.lang.malterlib.function.parameter.output",
+                "xcode.lang.malterlib.member.static",
+                "xcode.lang.malterlib.member.static.private",
+                "xcode.lang.malterlib.global",
+                "xcode.lang.malterlib.functor.local",
+                "xcode.lang.malterlib.keyword.qualifiers",
+                "xcode.lang.malterlib.keyword.storageclass",
+                "xcode.lang.malterlib.keyword.builtintype",
+                "xcode.lang.malterlib.keyword.builtincharactertype",
+                "xcode.lang.malterlib.keyword.builtinintegertype",
+                "xcode.lang.malterlib.keyword.builtintypemodifier",
+                "xcode.lang.malterlib.keyword.builtinvectortype",
+                "xcode.lang.malterlib.keyword.builtinfloattype",
+                "xcode.lang.malterlib.keyword.exceptionhandling",
+                "xcode.lang.malterlib.keyword.introspection",
+                "xcode.lang.malterlib.keyword.staticassert",
+                "xcode.lang.malterlib.keyword.controlstatement",
+                "xcode.lang.malterlib.keyword.optimization",
+                "xcode.lang.malterlib.keyword.propertymodifier",
+                "xcode.lang.malterlib.keyword.newdelete",
+                "xcode.lang.malterlib.keyword.clr",
+                "xcode.lang.malterlib.keyword.other",
+                "xcode.lang.malterlib.keyword.typespecification",
+                "xcode.lang.malterlib.keyword.namespace",
+                "xcode.lang.malterlib.keyword.typename",
+                "xcode.lang.malterlib.keyword.template",
+                "xcode.lang.malterlib.keyword.typedef",
+                "xcode.lang.malterlib.keyword.using",
+                "xcode.lang.malterlib.keyword.auto",
+                "xcode.lang.malterlib.keyword.js.var",
+                "xcode.lang.malterlib.keyword.this",
+                "xcode.lang.malterlib.keyword.operator",
+                "xcode.lang.malterlib.keyword.access",
+                "xcode.lang.malterlib.keyword.virtual",
+                "xcode.lang.malterlib.keyword.casts",
+                "xcode.lang.malterlib.keyword.ignore",
+                "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.variable",
+            );
             Words = (
                 // Keywords from C
                 "__alignof__",
@@ -79,7 +145,7 @@
                 "FALSE",
                 "NULL",
                 "TRUE",
-                
+
                 // Keywords from C++
                 "__private_extern__",
                 "and",
@@ -162,87 +228,6 @@
             AltType = "xcode.syntax.identifier";    // non-keywords are identifiers*/
         };
     },
-
-    {
-        Identifier = "xcode.lang.cpp.identifier";
-        Syntax = {
-            Tokenizer = "xcode.lang.malterlib.lexer";
-            IncludeRules = (
-                "xcode.lang.malterlib.keyword.builtinconstant",
-                "xcode.lang.malterlib.constant",
-                "xcode.lang.malterlib.constant.private",
-                "xcode.lang.malterlib.namespace",
-                "xcode.lang.malterlib.namespace.explicit",
-                "xcode.lang.malterlib.templatetypeparam",
-                "xcode.lang.malterlib.functiontemplatetypeparam",
-                "xcode.lang.malterlib.constant.template",
-                "xcode.lang.malterlib.constant.templatefunction",
-                "xcode.lang.malterlib.type",
-                "xcode.lang.malterlib.type.explicit",
-                "xcode.lang.malterlib.functor.param",
-                "xcode.lang.malterlib.functor.param.output",
-                "xcode.lang.malterlib.functor.member",
-                "xcode.lang.malterlib.functor.member.private",
-                "xcode.lang.malterlib.member",
-                "xcode.lang.malterlib.member.private",
-                "xcode.lang.malterlib.function",
-                "xcode.lang.malterlib.function.explicit",
-                "xcode.lang.malterlib.function.private",
-                "xcode.lang.malterlib.function.global",
-                "xcode.lang.malterlib.function.global.explicit",
-                "xcode.lang.malterlib.macro",
-                "xcode.lang.malterlib.macro.explicit",
-                "xcode.lang.malterlib.macro.parameter",
-                "xcode.lang.malterlib.function.parameter",
-                "xcode.lang.malterlib.function.parameter.output",
-                "xcode.lang.malterlib.member.static",
-                "xcode.lang.malterlib.member.static.private",
-                "xcode.lang.malterlib.global",
-                "xcode.lang.malterlib.functor.local",
-                "xcode.lang.malterlib.keyword.qualifiers",
-                "xcode.lang.malterlib.keyword.storageclass",
-                "xcode.lang.malterlib.keyword.builtintype",
-                "xcode.lang.malterlib.keyword.builtincharactertype",
-                "xcode.lang.malterlib.keyword.builtinintegertype",
-                "xcode.lang.malterlib.keyword.builtintypemodifier",
-                "xcode.lang.malterlib.keyword.builtinvectortype",
-                "xcode.lang.malterlib.keyword.builtinfloattype",
-                "xcode.lang.malterlib.keyword.exceptionhandling",
-                "xcode.lang.malterlib.keyword.introspection",
-                "xcode.lang.malterlib.keyword.staticassert",
-                "xcode.lang.malterlib.keyword.controlstatement",
-                "xcode.lang.malterlib.keyword.optimization",
-                "xcode.lang.malterlib.keyword.propertymodifier",
-                "xcode.lang.malterlib.keyword.newdelete",
-                "xcode.lang.malterlib.keyword.clr",
-                "xcode.lang.malterlib.keyword.other",
-                "xcode.lang.malterlib.keyword.typespecification",
-                "xcode.lang.malterlib.keyword.namespace",
-                "xcode.lang.malterlib.keyword.typename",
-                "xcode.lang.malterlib.keyword.template",
-                "xcode.lang.malterlib.keyword.typedef",
-                "xcode.lang.malterlib.keyword.using",
-                "xcode.lang.malterlib.keyword.auto",
-                "xcode.lang.malterlib.keyword.js.var",
-                "xcode.lang.malterlib.keyword.this",
-                "xcode.lang.malterlib.keyword.operator",
-                "xcode.lang.malterlib.keyword.access",
-                "xcode.lang.malterlib.keyword.virtual",
-                "xcode.lang.malterlib.keyword.casts",
-                "xcode.lang.malterlib.keyword.ignore",
-                "xcode.lang.malterlib.keyword.preprocessordirective",
-                "xcode.lang.malterlib.variable",
-                "xcode.lang.cpp.identifier.default",
-            );
-            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-            Words = (
-             );
-            Type = "xcode.syntax.plain";
-            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
-        };
-    },
-    
     {
         Identifier = "xcode.lang.cpp.interestingOperators";
         Syntax = {
@@ -373,7 +358,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.identifier.qualified";
         Syntax = {
@@ -388,7 +373,7 @@
             Type = "xcode.syntax.declaration.other";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.identifier.qualified.more";
         Syntax = {
@@ -399,7 +384,7 @@
             );
         };
     },
-    
+
     /****************************************************************************/
     // MARK: - Attributes or preprocessor macros we want to ignore
     /****************************************************************************/
@@ -414,7 +399,7 @@
             );
         };
     },
-    
+
     /****************************************************************************/
     // MARK: - Functions/Methods
     /****************************************************************************/
@@ -461,7 +446,7 @@
             Type = "xcode.syntax.definition.function";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.function.declarator";
         Syntax = {
@@ -507,7 +492,7 @@
             Type = "xcode.syntax.name.partial";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.operatorclause";
         Syntax = {
@@ -604,7 +589,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.class.name";
         Syntax = {
@@ -615,7 +600,7 @@
             Type = "xcode.syntax.declaration.type";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.basetype";
         Syntax = {
@@ -629,7 +614,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.method.declaration.classscope";
         Syntax = {
@@ -651,7 +636,7 @@
             Type = "xcode.syntax.declaration.method";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.method.definition.classscope";
         Syntax = {
@@ -674,7 +659,7 @@
             Type = "xcode.syntax.definition.method";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.method.definition";
         Syntax = {
@@ -694,7 +679,7 @@
             Type = "xcode.syntax.definition.method";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.method.declarator";
         Syntax = {
@@ -707,7 +692,7 @@
             Type = "xcode.syntax.name.tree";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.throwclause";
         Syntax = {
@@ -728,7 +713,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.templatedefinition";
         Syntax = {
@@ -739,7 +724,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.templateclause";
         Syntax = {
@@ -1064,7 +1049,7 @@
             Type = "xcode.syntax.name.tree";
         };
     },
-    
+
 
 /****************************************************************************/
 // MARK: - C++ Blocks
@@ -1238,7 +1223,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.cpp.initializer";
         Syntax = {

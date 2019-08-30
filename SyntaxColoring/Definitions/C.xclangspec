@@ -11,10 +11,10 @@
             Start = "#";
             EscapeChar = "\\";
             End = "\n";
-            
+
             // only recognize the '#' if it's the first non-whitespace on a line
             StartAtBOL = YES;
-            
+
             // multi-line comments extend the preprocessor statement across lines too
             Tokenizer = "xcode.lang.c.preprocessor.lexer";
             IncludeRules = (
@@ -65,7 +65,8 @@
     {
         Identifier = "xcode.lang.c.preprocessor.identifier";
         Syntax = {
-            Tokenizer = "xcode.lang.malterlib.lexer";
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             IncludeRules = (
                 "xcode.lang.malterlib.keyword.builtinconstant",
                 "xcode.lang.malterlib.constant",
@@ -131,8 +132,6 @@
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.variable",
             );
-            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Words = (
                 "assert",
                 "define",
@@ -156,8 +155,8 @@
             Type = "xcode.syntax.plain";
             AltType = "xcode.syntax.identifier";
         };
-    }, 
- 
+    },
+
     {
         Identifier = "xcode.lang.c.preprocessor.mark";
         Syntax = {
@@ -620,7 +619,7 @@
             Type = "xcode.syntax.plain";
         };
     },
-    
+
     // toplevel blocks like namespaces and extern "C"
     {
         Identifier = "xcode.lang.c.block.toplevel";
@@ -688,7 +687,7 @@
             );
         };
     },
-    
+
 /****************************************************************************/
 // MARK: - Functions
 /****************************************************************************/
@@ -820,7 +819,7 @@
             Type = "xcode.syntax.name.parameter.function";
         };
     },
-    
+
 /****************************************************************************/
 // MARK: - Typedefs
 /****************************************************************************/
@@ -939,7 +938,7 @@
             Type = "xcode.syntax.name.tree";
         };
     },
-    
+
 /****************************************************************************/
 // MARK: - Blocks and such
 /****************************************************************************/
@@ -1106,7 +1105,7 @@
             Type = "xcode.syntax.declaration.type";
         };
     },
-    
+
     {
         Identifier = "xcode.lang.c.parenexpr";
         Syntax = {
@@ -1120,7 +1119,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.c.bracketexpr";
         Syntax = {
@@ -1133,7 +1132,7 @@
             );
         };
     },
-    
+
     {
         Identifier = "xcode.lang.c.initializer";
         Syntax = {
