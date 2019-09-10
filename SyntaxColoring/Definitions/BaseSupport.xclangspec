@@ -39,7 +39,7 @@
                 "zbint",
                 "zbool",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -68,7 +68,7 @@
                 "char32_t",
                 "zuch32",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -151,7 +151,7 @@
                 "zamint",
                 "zuamint",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -166,7 +166,7 @@
                 "signed",
                 "unsigned",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -182,7 +182,7 @@
                 "__m128i",
                 "__m128d",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -239,7 +239,7 @@
                 "zufp2048",
                 "zufp4096",
              );
-            Type = "xcode.syntax.url";
+            Type = "xcode.syntax.comment.doc.keyword";
         };
     },
 
@@ -254,7 +254,7 @@
                 "nullptr",
                 "NULL",
              );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.url";
         };
     },
 
@@ -281,7 +281,7 @@
                 "SQRT1_2",
                 "SQRT2",
              );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.url";
         };
     },
 
@@ -756,7 +756,7 @@
                 "(?-i)^E[A-Z][a-zA-Z0-9_]+_[a-zA-Z0-9_]+$",
                 "(?-i)^(c_|gc_|mc_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.url";
         };
     },
     {
@@ -767,7 +767,7 @@
             Match = (
                 "(?-i)^mcp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.url";
         };
     },
     {
@@ -778,7 +778,7 @@
             Match = (
                 "(?-i)^(t_|tp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc.keyword";
+            Type = "xcode.syntax.comment.doc";
         };
     },
     {
@@ -789,7 +789,7 @@
             Match = (
                 "(?-i)^(tf_|tfp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc.keyword";
+            Type = "xcode.syntax.comment.doc";
         };
     },
     {
