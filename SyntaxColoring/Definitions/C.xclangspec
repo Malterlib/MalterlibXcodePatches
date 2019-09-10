@@ -574,7 +574,6 @@
         Identifier = "xcode.lang.c.number";
         BasedOn = "xcode.lang.number";
         Syntax = {
-            SourceScannerClassName = NumberScanner;
             StartChars = "+-0123456789.";
             Chars = "0123456789'+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             Match = (
