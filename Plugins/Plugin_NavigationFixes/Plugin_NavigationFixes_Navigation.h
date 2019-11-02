@@ -1097,7 +1097,7 @@ static NSView* getSourceCodeEditorView(NSWindow *_pWindow)
 		_pWindow = [NSApp keyWindow];
 	//XcodePluginDumpClass(NSClassFromString(@"IDESourceEditor.IDESourceEditorView"));
 	//XcodePluginTraceViewHierarchy([_pWindow contentView], 0);
-	return findSubViewWithClassName([_pWindow contentView], "IDESourceEditor.IDESourceEditorView", -1);
+	return findSubViewWithClassName([_pWindow contentView], "IDESourceEditor.SourceCodeEditorContainerView_ControlledBy_IDESourceEditor.SourceCodeEditor", -1);
 }
 static IDEWorkspaceTabController* getWorkspaceTabController(NSWindow *_pWindow)
 {
