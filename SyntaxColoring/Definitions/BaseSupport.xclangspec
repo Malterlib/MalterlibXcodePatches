@@ -1111,12 +1111,25 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.variable.explicit";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^CMake[a-zA-Z0-9_]+$",
+
+            );
+            Type = "xcode.syntax.attribute";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.variable";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
                 "(?-i)^[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+
             );
             Type = "xcode.syntax.attribute";
         };
@@ -1162,6 +1175,47 @@
             EscapeChar = "\\";
             End = "\"";
             AltEnd = "\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.eval.expression";
+        Syntax = {
+            CaseSensitive = YES;
+            Tokenizer = "xcode.lang.c.lexer";
+            Start = "@(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.c.parenexpr",
+                "xcode.lang.c.bracketexpr",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.eval.expression.escape";
+        Syntax = {
+            Start = "@@";
+            Rules = (
+                "@@",
+            );
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.eval";
+        Syntax = {
+            Start = "`";
+            End = "`";
+            EscapeChar = "\\";
+            AltEnd = "\n";
+            Recursive = YES;
+            ParseEndBeforeIncludedRules = YES;
+            IncludeRules = (
+                "xcode.lang.string.eval.expression.escape",
+                "xcode.lang.string.eval.expression",
+            );
             Type = "xcode.syntax.string";
         };
     },

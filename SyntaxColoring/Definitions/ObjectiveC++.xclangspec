@@ -13,6 +13,7 @@
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             CheckPreprocessorKnownMacros = YES;
             IncludeRules = (
+                "xcode.lang.malterlib.variable.explicit",
                 "xcode.lang.malterlib.keyword.builtinconstant",
                 "xcode.lang.malterlib.constant",
                 "xcode.lang.malterlib.constant.private",

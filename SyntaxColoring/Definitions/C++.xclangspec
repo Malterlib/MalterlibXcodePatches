@@ -12,6 +12,7 @@
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             CheckPreprocessorKnownMacros = YES;
             IncludeRules = (
+                "xcode.lang.malterlib.variable.explicit",
                 "xcode.lang.malterlib.keyword.builtinconstant",
                 "xcode.lang.malterlib.constant",
                 "xcode.lang.malterlib.constant.private",
@@ -290,6 +291,7 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.eval",
                 "xcode.lang.string.wide",
                 "xcode.lang.string.utf8",
                 "xcode.lang.string.ucs2",
@@ -320,6 +322,7 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.eval",
                 "xcode.lang.string.wide",
                 "xcode.lang.string.utf8",
                 "xcode.lang.string.ucs2",
@@ -944,6 +947,7 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.eval",
                 "xcode.lang.string.wide",
                 "xcode.lang.string.utf8",
                 "xcode.lang.string.ucs2",
@@ -976,6 +980,7 @@
                 "xcode.lang.comment.singleline",
                 "xcode.lang.c.preprocessor",
                 "xcode.lang.string",
+                "xcode.lang.string.eval",
                 "xcode.lang.string.wide",
                 "xcode.lang.string.utf8",
                 "xcode.lang.string.ucs2",
