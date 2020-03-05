@@ -63,7 +63,7 @@
 #import "../Shared Code/Xcode/IDERunContextManager.h"
 #import "../Shared Code/Xcode/IDEScheme.h"
 #import "../Shared Code/Xcode/IDELaunchSchemeAction.h"
-#import "../Shared Code/Xcode/IDECommandLineArgumentEntry.h"
+#import "../Shared Code/Xcode/_TtC13IDEFoundation27IDECommandLineArgumentEntry.h"
 #import "../Shared Code/Xcode/IDEBreakpoint.h"
 #import "../Shared Code/Xcode/IDEBreakpointManager.h"
 #import "../Shared Code/Xcode/IDEStructureNavigator.h"

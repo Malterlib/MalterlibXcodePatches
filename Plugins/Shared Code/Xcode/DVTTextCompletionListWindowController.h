@@ -48,6 +48,7 @@
 }
 
 + (void)initialize;
+// - (void).cxx_destruct;
 @property BOOL userResizedWindow; // @synthesize userResizedWindow=_userResizedWindow;
 @property BOOL tableViewHasScrolled; // @synthesize tableViewHasScrolled=_tableViewHasScrolled;
 @property(readonly) NSString *debugStateString; // @synthesize debugStateString=_debugStateString;
@@ -56,7 +57,6 @@
 @property(readonly) id <DVTTextCompletionListDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(readonly) BOOL showingWindow; // @synthesize showingWindow=_showingWindow;
 @property(readonly) NSScrollView *completionsScrollView; // @synthesize completionsScrollView=_completionsScrollView;
-// - (void).cxx_destruct;
 - (id)tableView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 row:(long long)arg5 mouseLocation:(struct CGPoint)arg6;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)tableViewSelectionDidChange:(id)arg1;

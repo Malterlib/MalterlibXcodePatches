@@ -123,6 +123,7 @@
     long long _fontSizeModifier;
 }
 
++ (long long)scrollerKnobStyleForBackgroundColor:(id)arg1;
 + (id)_defaultSourceCodeFont;
 + (id)keyPathsForValuesAffectingConsoleTextSecondarySelectionColor;
 + (id)keyPathsForValuesAffectingSourceTextSecondarySelectionColor;
@@ -148,6 +149,7 @@
 + (id)_primitivePreferenceSetManager;
 + (id)preferenceSetsManager;
 + (void)initialize;
+// - (void).cxx_destruct;
 @property(nonatomic) long long fontSizeModifier; // @synthesize fontSizeModifier=_fontSizeModifier;
 @property(readonly) BOOL loadedData; // @synthesize loadedData=_loadedData;
 @property(readonly) NSPointerArray *syntaxFontsByNodeType; // @synthesize syntaxFontsByNodeType=_syntaxFontsByNodeType;
@@ -158,7 +160,7 @@
 @property(readonly, getter=isBuiltIn) BOOL builtIn; // @synthesize builtIn=_builtIn;
 @property(retain) NSImage *image; // @synthesize image=_image;
 @property(copy) NSString *name; // @synthesize name=_name;
-// - (void).cxx_destruct;
+@property(readonly) long long scrollerKnobStyle;
 - (BOOL)hasLightBackground;
 - (double)additionalLineHeightForBaseLineHeight:(double)arg1;
 - (void)setCursor:(int)arg1;

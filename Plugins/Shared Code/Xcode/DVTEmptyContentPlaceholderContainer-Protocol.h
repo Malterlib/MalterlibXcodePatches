@@ -19,6 +19,7 @@
 
 @optional
 @property(nonatomic) BOOL followsFontAndColorTheme;
+@property(copy, nonatomic) NSString *emptyContentButtonTitle;
 - (void)willHideEmptyContentString;
 - (void)willShowEmptyContentString;
 @end

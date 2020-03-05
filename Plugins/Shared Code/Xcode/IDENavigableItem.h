@@ -13,11 +13,12 @@
 #import "DVTInvalidation-Protocol.h"
 #import "DVTPathCellItem-Protocol.h"
 #import "DVTTableCellViewLazyProperties-Protocol.h"
+#import "IDEStructureEditingItem-Protocol.h"
 
 @class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, DVTSymbol, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSMutableArray, NSString, NSURL;
 @protocol IDENavigableItemDebugAreaDelegate, IDENavigableItemDebugBarDelegate;
 
-@interface IDENavigableItem : NSObject <DVTPathCellItem, DVTTableCellViewLazyProperties, DVTInvalidation>
+@interface IDENavigableItem : NSObject <DVTPathCellItem, IDEStructureEditingItem, DVTTableCellViewLazyProperties, DVTInvalidation>
 {
     id _observationInfo;
     IDENavigableItemCoordinator *_coordinator;
@@ -70,11 +71,11 @@
 + (id)nameOfRepresentedObject:(id)arg1;
 + (id)keyPathsForValuesAffecting_titleStyleForReferencedContentExistance;
 + (id)keyPathsForValuesAffectingIde_canStructureEditName;
+// - (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *arrangedChildItems; // @synthesize arrangedChildItems=_arrangedChildItems;
 @property(readonly, nonatomic) IDENavigableItem *parentItem; // @synthesize parentItem=_parentItem;
 @property(readonly, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(readonly, nonatomic) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_coordinator;
-// - (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL _isMajorGroupOrDecendentOfMajorGroup;
 - (id)_navigableItemForExternalDrag;
 - (id)_navigableItemForNavigationInWorkspace:(id)arg1;
@@ -119,6 +120,7 @@
 - (unsigned long long)countOfChildNavigableItems;
 - (void)getChildNavigableItems:(id *)arg1 range:(struct _NSRange)arg2;
 - (id)_childRepresentedObjects;
+- (BOOL)_shouldPerformInvalidatableParentChildCoherencyChecks;
 - (id)childNavigableItemsAtIndexes:(id)arg1;
 - (id)objectInChildNavigableItemsAtIndex:(unsigned long long)arg1;
 - (id)childRepresentedObjects;
@@ -178,6 +180,9 @@
 - (unsigned long long)_titleStyleForReferencedContentExistance;
 - (BOOL)_allowsNonFileReferenceDocumentInFileInspector;
 - (BOOL)ide_canStructureEditName;
+- (id)representedContainerItem;
+- (unsigned long long)indexUnderParent;
+- (id)parentStructureEditingItem;
 - (BOOL)_alwaysBypassFilter;
 - (BOOL)coordinatorFilteringShouldFilterChildItems;
 - (unsigned long long)navigableItem_conflictStateForUpdateOrMerge;

@@ -13,11 +13,12 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEBreakpointDelegate-Protocol.h"
 
-@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSString;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSString;
 
 @interface IDEBreakpointManager : NSObject <IDEBreakpointDelegate, DVTInvalidation>
 {
     DVTObservingToken *_workspaceReferencedContainersToken;
+    DVTObservingToken *_currentDebugSessionObserverToken;
     DVTObservingToken *_currentDebugSessionStateObserverToken;
     NSMapTable *_bucketsToObserverTokens;
     NSMutableArray *_userProjectBuckets;
@@ -27,6 +28,7 @@
     NSMapTable *_sharedToUserBuckets;
     NSMutableArray *_allBucketsWithBreakpoints;
     NSMutableArray *_breakpoints;
+    DVTTimeSlicedMainThreadWorkQueue *_breakpointIdentifierChangedQueue;
     DVTDispatchLock *_registrationLock;
     unsigned long long _registrationNumber;
     NSMutableArray *_breakpointsToBeInvalidated;
@@ -41,6 +43,7 @@
 
 + (BOOL)_isBreakpointAtLocation:(id)arg1 location:(id)arg2;
 + (void)initialize;
+// - (void).cxx_destruct;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(nonatomic) BOOL breakpointsActivated; // @synthesize breakpointsActivated=_breakpointsActivated;
 @property(readonly) NSArray *allBucketsWithBreakpoints; // @synthesize allBucketsWithBreakpoints=_allBucketsWithBreakpoints;
@@ -48,7 +51,6 @@
 @property(readonly) IDEBreakpointBucket *userGlobalBucket; // @synthesize userGlobalBucket=_userGlobalBucket;
 @property(readonly) IDEBreakpointBucket *userWorkspaceBucket; // @synthesize userWorkspaceBucket=_userWorkspaceBucket;
 @property(retain, nonatomic) IDEBreakpointBucket *defaultBucket; // @synthesize defaultBucket=_defaultBucket;
-// - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
 - (BOOL)breakpointShouldBeActivated:(id)arg1;
@@ -69,6 +71,7 @@
 - (id)fileBreakpointAtDocumentLocation:(id)arg1;
 - (void)registerDoingWorkOnBreakpoint:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)removeWatchpoint:(id)arg1;
+- (void)removeBreakpoints:(id)arg1;
 - (void)removeBreakpoint:(id)arg1;
 - (BOOL)_managesBucket:(id)arg1;
 - (void)_addBreakpoint:(id)arg1 toBucket:(id)arg2;

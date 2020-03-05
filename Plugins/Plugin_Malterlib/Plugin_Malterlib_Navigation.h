@@ -45,7 +45,8 @@
 				if ([pCustomWorkingDir compare:@"[MulitLaunchSchemes]"] != NSOrderedSame)
 					break; // Magic enable for multil launch
 
-				for (IDECommandLineArgumentEntry* pCommandLineArg in [pLaunchAction commandLineArgumentEntries])
+
+				for (_TtC13IDEFoundation27IDECommandLineArgumentEntry* pCommandLineArg in [pLaunchAction commandLineArgumentEntries])
 				{
 					if (!pCommandLineArg.isEnabled)
 						continue;

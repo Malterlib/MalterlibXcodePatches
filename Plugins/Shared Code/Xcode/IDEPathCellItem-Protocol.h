@@ -9,7 +9,7 @@
 //
 
 @class NSArray, NSImage, NSString, NSURL;
-@protocol NSObject, IDEPathCellItem;
+@protocol NSObject><IDEPathCellItem;
 
 @protocol IDEPathCellItem
 @property(readonly, nonatomic) NSString *accessibilityIdentifier;
@@ -21,7 +21,7 @@
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 @property(readonly, nonatomic, getter=isLeaf) BOOL leaf;
 @property(readonly, nonatomic) NSArray *childItems;
-@property(readonly, nonatomic) id <NSObject, IDEPathCellItem> parentItem;
+@property(readonly, nonatomic) id <NSObject><IDEPathCellItem> parentItem;
 @property(readonly, nonatomic) id representedObject;
 @property(readonly, nonatomic) NSString *toolTip;
 @property(readonly, nonatomic) NSImage *image;

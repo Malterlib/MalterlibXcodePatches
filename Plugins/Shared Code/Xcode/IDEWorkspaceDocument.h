@@ -96,6 +96,7 @@
 + (BOOL)autosavesInPlace;
 + (BOOL)preservesVersions;
 + (void)initialize;
+// - (void).cxx_destruct;
 @property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
 @property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
 @property(readonly) IDEOpenQuicklyWorkspaceContentContextProvider *openQuicklyContentContextProvider; // @synthesize openQuicklyContentContextProvider=_openQuicklyContentContextProvider;
@@ -109,7 +110,6 @@
 @property(retain) NSMutableDictionary *tabStateContextForTabNameMap; // @synthesize tabStateContextForTabNameMap=_tabStateContextForTabNameMap;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
-// - (void).cxx_destruct;
 - (id)dvt_extraBindings;
 - (id)storedRunDestinationSelectable;
 - (id)storedRunContextName;

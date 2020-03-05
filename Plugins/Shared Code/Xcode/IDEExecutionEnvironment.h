@@ -61,6 +61,7 @@
 + (BOOL)automaticallyNotifiesObserversForCurrentExecutionTracker;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
+// - (void).cxx_destruct;
 @property(retain) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property(retain) NSMapTable *operationGroupSuboperationObserversByExecutionTracker; // @synthesize operationGroupSuboperationObserversByExecutionTracker=_operationGroupSuboperationObserversByExecutionTracker;
 @property(retain) id <IDEPreBuildSavingDelegate> preBuildSavingDelegate; // @synthesize preBuildSavingDelegate=_preBuildSavingDelegate;
@@ -77,7 +78,6 @@
 @property(readonly) long long buildState; // @synthesize buildState=_buildState;
 @property(readonly) NSArray *queuedBuildOperationInfos; // @synthesize queuedBuildOperationInfos=_queuedBuildOperationInfos;
 @property(retain) IDEBuildOperation *currentBuildOperation; // @synthesize currentBuildOperation=_currentBuildOperation;
-// - (void).cxx_destruct;
 - (id)queuedBuildOperationsDescription;
 - (void)serializeMetrics:(id)arg1;
 - (void)_setLocalizedResultStringForBuildLog:(id)arg1 usingBuildOperationProvider:(id)arg2 buildAction:(id)arg3;
@@ -87,6 +87,7 @@
 - (void)_handleLaunchSession:(id)arg1 stateChange:(id)arg2;
 - (void)_handleLaunchSessionExpired:(id)arg1;
 - (void)_handleLaunchSessionStarted:(id)arg1;
+- (void)_removeSameLaunchSessionsFor:(id)arg1;
 - (void)_setStatusDisplayNameForLaunchSession:(id)arg1;
 - (void)_setStatusDisplayNamesForExecutionTracker;
 - (void)_noteLaunchSessionTargetOutputStateChanged:(id)arg1;

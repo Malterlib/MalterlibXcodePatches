@@ -36,7 +36,9 @@
     unsigned int _debugProcessAsUID;
     NSString *_selectedDebuggerIdentifier;
     NSString *_selectedLauncherIdentifier;
+    NSString *_resolvedCustomLLDBInitFile;
     NSString *_selectedMallocStackLoggingType;
+    NSString *_customLLDBInitFile;
     NSDictionary *_additionalOptionEntriesDict;
     NSString *_language;
     NSString *_region;
@@ -53,6 +55,7 @@
 + (id)keyPathsForValuesAffectingDebugProcessAsUID;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
+// - (void).cxx_destruct;
 @property(retain) NSMutableArray *mutableCodeCoverageTargets; // @synthesize mutableCodeCoverageTargets=_mutableCodeCoverageTargets;
 @property(copy) NSString *debugAsWhichUser; // @synthesize debugAsWhichUser=_debugAsWhichUser;
 @property(copy) NSString *selectedMallocStackLoggingTypeTooltip; // @synthesize selectedMallocStackLoggingTypeTooltip=_selectedMallocStackLoggingTypeTooltip;
@@ -66,15 +69,14 @@
 @property BOOL enableASanStackUseAfterReturn; // @synthesize enableASanStackUseAfterReturn=_enableASanStackUseAfterReturn;
 @property BOOL enableAddressSanitizer; // @synthesize enableAddressSanitizer=_enableAddressSanitizer;
 @property(readonly) NSDictionary *additionalOptionEntriesDict; // @synthesize additionalOptionEntriesDict=_additionalOptionEntriesDict;
+@property(copy, nonatomic) NSString *customLLDBInitFile; // @synthesize customLLDBInitFile=_customLLDBInitFile;
 @property(nonatomic) unsigned int debugProcessAsUID; // @synthesize debugProcessAsUID=_debugProcessAsUID;
 @property BOOL automaticAppToLaunch; // @synthesize automaticAppToLaunch=_automaticAppToLaunch;
 @property BOOL askForAppToLaunch; // @synthesize askForAppToLaunch=_askForAppToLaunch;
 @property(nonatomic) BOOL onlyGenerateCoverageForSpecifiedTargets; // @synthesize onlyGenerateCoverageForSpecifiedTargets=_onlyGenerateCoverageForSpecifiedTargets;
-- (void)setCodeCoverageEnabled:(char)arg1;
-@property(readonly, nonatomic, getter=isCodeCoverageEnabled) BOOL codeCoverageEnabled;
+@property(nonatomic, getter=isCodeCoverageEnabled) BOOL codeCoverageEnabled; // @synthesize codeCoverageEnabled=_codeCoverageEnabled;
 @property(nonatomic) BOOL shouldUseLaunchSchemeArgsEnv; // @synthesize shouldUseLaunchSchemeArgsEnv=_shouldUseLaunchSchemeArgsEnv;
 @property(copy) NSString *selectedLauncherIdentifier; // @synthesize selectedLauncherIdentifier=_selectedLauncherIdentifier;
-// - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)removeCodeCoverageTarget:(id)arg1;
 - (void)addCodeCoverageTarget:(id)arg1;
@@ -120,6 +122,7 @@
 @property(readonly) NSMutableArray *mutableCommandLineArgumentEntries; // @dynamic mutableCommandLineArgumentEntries;
 @property(copy) NSArray *commandLineArgumentEntries; // @dynamic commandLineArgumentEntries;
 @property(readonly) unsigned long long sanitizerOptions;
+@property(readonly) NSString *resolvedCustomLLDBInitFile; // @synthesize resolvedCustomLLDBInitFile=_resolvedCustomLLDBInitFile;
 - (id)subtitle;
 @property(copy) NSString *selectedDebuggerIdentifier; // @synthesize selectedDebuggerIdentifier=_selectedDebuggerIdentifier;
 @property(readonly, nonatomic) IDESchemeCommand<IDEPrimitiveSchemeCommand> *schemeCommand;
