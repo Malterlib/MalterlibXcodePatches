@@ -9,11 +9,8 @@
 //
 
 
-@class IDENavBar;
-
-@protocol IDENavBarDelegate <NSObject>
-
-@optional
-- (void)ideNavBarWillLayout:(IDENavBar *)arg1;
+@protocol IDEFullSizeContentEditor <NSObject>
++ (BOOL)supportsFullSizeContent;
+@property struct NSEdgeInsets fullSizeContentInsets;
 @end
 

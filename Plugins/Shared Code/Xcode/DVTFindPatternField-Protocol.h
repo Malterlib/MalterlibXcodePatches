@@ -9,23 +9,20 @@
 //
 
 
-@class DVTFindPattern, DVTFindPatternAttachmentCell, DVTFindPatternComponents, NSArray, NSFont, NSMenu, NSString;
+@class DVTFindPatternComponents, NSArray, NSFont, NSString;
 @protocol DVTFindPatternManager;
 
 @protocol DVTFindPatternField <NSObject>
-@property(copy) DVTFindPatternComponents *findPatternComponents;
-@property id <DVTFindPatternManager> findPatternManager;
 - (NSFont *)font;
-- (NSMenu *)menuForFindPatternAttachment:(DVTFindPatternAttachmentCell *)arg1;
 - (NSString *)plainTextValue;
 - (void)setFindPatternPropertyList:(id)arg1;
 - (id)findPatternPropertyList;
 - (BOOL)hasFindPattern;
 - (NSString *)replacementExpression;
 - (NSString *)regularExpression;
-- (NSArray *)findPatternTokenArray;
+@property(nonatomic) BOOL searchesImmediatelyAfterInsertingPattern;
+@property(nonatomic, copy) DVTFindPatternComponents *findPatternComponents;
+@property(nonatomic) __weak id <DVTFindPatternManager> findPatternManager;
 - (void)setFindPatternArray:(NSArray *)arg1;
-- (void)insertNewFindPattern:(DVTFindPattern *)arg1;
-- (BOOL)removeFindPattern:(DVTFindPattern *)arg1;
 @end
 

@@ -19,6 +19,7 @@
 @interface DVTFindPatternTextField : NSTextField <DVTFindPatternField, DVTTextFieldFocusable>
 {
     id <DVTFindPatternManager> findPatternManager;
+    BOOL _doesNotSearchesImmediatelyAfterInsertingPattern;
 }
 
 @property id <DVTFindPatternManager> findPatternManager; // @synthesize findPatternManager;
@@ -59,6 +60,7 @@
 - (BOOL)_isFindField;
 - (id)replaceField;
 - (id)findField;
+@property BOOL searchesImmediatelyAfterInsertingPattern;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

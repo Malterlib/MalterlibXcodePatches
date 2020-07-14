@@ -12,13 +12,14 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDispatchLock, DVTStackBacktrace, IDEExecutionRunnableTracker, IDELaunchSession, IDERunOperationWorkerGroup, NSString;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, IDEExecutionRunnableTracker, IDELaunchSession, IDERunOperationWorkerGroup, NSString;
 
 @interface IDERunOperationWorker : NSObject <DVTInvalidation>
 {
     NSString *_extensionIdentifier;
     IDELaunchSession *_launchSession;
     IDERunOperationWorkerGroup *_workerGroup;
+    DVTObservingToken *_runnablePIDOberverToken;
     double _preflightAttemptInterval;
     BOOL _hasPerformedWorkerAction;
     DVTDispatchLock *_hasPerformedWorkerActionLock;
@@ -42,6 +43,7 @@
 - (void)start;
 - (void)_startWithRetrying:(char *)arg1;
 @property(nonatomic) unsigned long long preflightRetryAttempts; // @synthesize preflightRetryAttempts=_preflightRetryAttempts;
+- (void)performPostLaunchActions;
 - (void)performWorkerAction;
 - (BOOL)preflightWithError:(id *)arg1 recoverable:(char *)arg2 shouldRetry:(char *)arg3;
 - (void)startNextWorkerFromCompletedWorker:(id)arg1 error:(id)arg2;

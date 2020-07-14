@@ -44,6 +44,7 @@
 - (id)textRepresentationForPasteboard;
 - (id)generateFindResult;
 - (BOOL)allowsSummarization;
+- (BOOL)emphasizesTitle;
 - (BOOL)contributesToResultCount;
 - (BOOL)contributesToFileResultCount;
 @property(readonly) BOOL isRoot;

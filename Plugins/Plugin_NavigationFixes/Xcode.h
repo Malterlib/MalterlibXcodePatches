@@ -46,8 +46,9 @@
 #import "../Shared Code/Xcode/DVTSourceCodeLanguage.h"
 #import "../Shared Code/Xcode/DVTGeneratedContentProvider.h"
 #import "../Shared Code/Xcode/DVTSourceModel.h"
-
-
+#import "../Shared Code/Xcode/DVTExplorerOutlineViewBase.h"
+#import "../Shared Code/Xcode/IDENavigatorArea.h"
+#import "../Shared Code/Xcode/IDEOpenQuicklyResultOpener.h"
 
 #import "../Shared Code/Xcode/IDENavigatorOutlineView.h"
 #import "../Shared Code/Xcode/IDEIssueNavigator.h"

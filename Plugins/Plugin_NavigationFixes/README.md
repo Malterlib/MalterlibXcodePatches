@@ -2,10 +2,7 @@
 
 This plugin aims to emulate the editor behavior of the Visual Studio editor. The following features are implemented
 
-+ `HOME` (`fn←` and `⌘←` on a Mac keyboard) jumps to first non-white space character and then cycles between start of line and first non-white space character
 + Text is not automatically indented when pasted
-+ Insert tab indents selection instead of deleting it
-+ Insert back tab unindents selection instead of deleting it
 + Move whole word left and right commands emulates the behavior in Visual Studio, where the location is the same when moving forward or backword
 + You can double-click on a <source>:<line>: formatted string in the the console to get to the location in the editor
 + `⌘-N` / `⌘-Shift-N` keyboard shortcuts moves to the next/previous location as in Visual Studio. This means:
@@ -25,15 +22,16 @@ This plugin aims to emulate the editor behavior of the Visual Studio editor. The
  + `Ctrl-Shift-N` finds previous search result
  + `Ctrl-R` Replaces one result
  + `Ctrl-A` Replaces all results
- + `Ctrl-O` Shows the options panel
  + `Ctrl-C` Toggels match case
  + `Ctrl-E` Toggels regular expression
  + `Ctrl-W` Toggles whole word only matching
+ + `Ctrl-L` Opens find scope panel for seach in files
  + `Esc` Returns to editor from batch find
 
-Also fixes limitations bugs in Xcode
+Also fixes bugs in Xcode
 
 + `Ctrl-H` Toggles breakpoints more reliably than the built in shortcut for toggling breakpoints (workaround for Xcode bug)
++ Selection when opening a file quickly goes to editor as expected
 
 ### TODO
 + Keyboard shortcuts should follow whatever is setup by user when possible

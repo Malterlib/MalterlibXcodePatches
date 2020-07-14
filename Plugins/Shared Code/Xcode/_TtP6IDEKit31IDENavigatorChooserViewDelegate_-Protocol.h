@@ -8,10 +8,9 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
+@class IDENavigatorChoice, IDENavigatorChooserView;
 
-@class NSView;
-
-@protocol IDEComparisonEditorScrollerAreaView <NSObject>
-@property(readonly) NSView *viewToInstallScrollerIn;
+@protocol _TtP6IDEKit31IDENavigatorChooserViewDelegate_
+- (void)navigatorChooserView:(IDENavigatorChooserView *)arg1 selected:(IDENavigatorChoice *)arg2;
 @end
 

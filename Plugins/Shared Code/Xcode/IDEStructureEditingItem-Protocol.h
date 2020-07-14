@@ -8,12 +8,15 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDEContainerItem;
+
+@class IDEContainerItem, NSSet;
 @protocol IDEStructureEditingItem;
 
-@protocol IDEStructureEditingItem
+@protocol IDEStructureEditingItem <NSObject>
+- (BOOL)hasAncestorInSet:(NSSet *)arg1;
+- (id)actualRepresentedObject;
 - (id <IDEStructureEditingItem>)parentStructureEditingItem;
-- (unsigned long long)indexUnderParent;
+- (long long)indexUnderParent;
 - (IDEContainerItem *)representedContainerItem;
 @end
 

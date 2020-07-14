@@ -56,6 +56,7 @@
     NSColor *_markupTextOtherHeadingColor;
     NSColor *_markupTextInlineCodeColor;
     NSColor *_markupTextLinkColor;
+    NSColor *_markupAsideKindColor;
     NSFont *_markupTextNormalFont;
     NSFont *_markupTextStrongFont;
     NSFont *_markupTextEmphasisFont;
@@ -64,6 +65,12 @@
     NSFont *_markupTextOtherHeadingFont;
     NSFont *_markupTextLinkFont;
     NSFont *_markupTextCodeFont;
+    NSFont *_markupAsideKindFont;
+    NSColor *_diffTopColor;
+    NSColor *_diffDisabledColor;
+    NSColor *_diffEditableColor;
+    NSColor *_diffConflictColor;
+    NSColor *_diffUneditableColor;
     NSColor *_diffSplitViewBackgroundColor;
     NSColor *_diffSplitViewEdgeColor;
     NSColor *_diffSplitViewFocusedBackgroundColor;
@@ -174,6 +181,18 @@
 - (id)fontForNodeType:(short)arg1;
 - (id)colorIfExistsForNodeType:(short)arg1;
 - (id)colorForNodeType:(short)arg1;
+@property(readonly) NSFont *sourceOtherDeclarationsFont;
+@property(readonly, copy) NSColor *sourceOtherDeclarationsColor;
+@property(readonly) NSFont *sourceTypeDeclarationsFont;
+@property(readonly, copy) NSColor *sourceTypeDeclarationsColor;
+@property(readonly) NSFont *sourceUserTypeFont;
+@property(readonly, copy) NSColor *sourceUserTypeColor;
+@property(readonly) NSFont *sourceSystemTypeFont;
+@property(readonly, copy) NSColor *sourceSystemTypeColor;
+@property(readonly) NSFont *sourceKeywordFont;
+@property(readonly, copy) NSColor *sourceKeywordColor;
+@property(readonly) NSFont *sourceAttributeFont;
+@property(readonly, copy) NSColor *sourceAttributeColor;
 @property(readonly) NSFont *sourcePlainTextFont;
 @property(readonly, copy) NSColor *sourcePlainTextColor;
 - (void)setDebuggerInstructionPointerColor:(NSColor *)arg1;
@@ -191,6 +210,7 @@
 - (void)setConsoleTextInsertionPointColor:(NSColor *)arg1;
 - (void)setConsoleTextSelectionColor:(NSColor *)arg1;
 - (void)setConsoleTextBackgroundColor:(NSColor *)arg1;
+- (void)setMarkupAsideKindFont:(NSFont *)arg1;
 - (void)setMarkupTextCodeFont:(NSFont *)arg1;
 - (void)setMarkupTextLinkFont:(NSFont *)arg1;
 - (void)setMarkupTextOtherHeadingFont:(NSFont *)arg1;
@@ -199,6 +219,7 @@
 - (void)setMarkupTextEmphasisFont:(NSFont *)arg1;
 - (void)setMarkupTextStrongFont:(NSFont *)arg1;
 - (void)setMarkupTextNormalFont:(NSFont *)arg1;
+- (void)setMarkupAsideKindColor:(id)arg1;
 - (void)setMarkupTextLinkColor:(NSColor *)arg1;
 - (void)setMarkupTextInlineCodeColor:(NSColor *)arg1;
 - (void)setMarkupTextOtherHeadingColor:(NSColor *)arg1;
@@ -257,6 +278,12 @@
 @property(readonly, copy) NSColor *diffSplitViewFocusedBackgroundColor;
 @property(readonly, copy) NSColor *diffSplitViewEdgeColor;
 @property(readonly, copy) NSColor *diffSplitViewBackgroundColor;
+@property(readonly) NSColor *diffConflictColor;
+@property(readonly) NSColor *diffDisabledColor;
+@property(readonly) NSColor *diffTopColor;
+@property(readonly) NSColor *diffUneditableColor;
+@property(readonly) NSColor *diffEditableColor;
+@property(readonly) NSFont *markupAsideKindFont;
 @property(readonly) NSFont *markupTextCodeFont;
 @property(readonly) NSFont *markupTextLinkFont;
 @property(readonly) NSFont *markupTextOtherHeadingFont;
@@ -265,6 +292,7 @@
 @property(readonly) NSFont *markupTextEmphasisFont;
 @property(readonly) NSFont *markupTextStrongFont;
 @property(readonly) NSFont *markupTextNormalFont;
+- (id)markupAsideKindColor;
 @property(readonly, copy) NSColor *markupTextLinkColor;
 @property(readonly, copy) NSColor *markupTextInlineCodeColor;
 @property(readonly, copy) NSColor *markupTextOtherHeadingColor;

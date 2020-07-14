@@ -13,13 +13,13 @@
 #import "IDENavigator.h"
 
 
-@class IDENavigableItem, IDENavigatorOutlineView, NSArray, NSMutableArray, NSString;
+@class DVTNotificationToken, IDENavigatorOutlineView, NSArray, NSMutableArray, NSString;
 @protocol IDEOpenRequest;
 
 @interface IDEOutlineBasedNavigator : IDENavigator <NSOutlineViewDelegate>
 {
     NSArray *_selectedObjects;
-    IDENavigableItem *_itemToSelectBasedOnItemBeingEdited;
+    DVTNotificationToken *_didExpandNotificationToken;
     IDENavigatorOutlineView *_outlineView;
     id <IDEOpenRequest> _lastOpenRequest;
 }
@@ -33,9 +33,7 @@
 - (void)revertState;
 - (long long)filterProgress;
 - (void)setFilter:(id)arg1;
-- (void)_updateSelectionToReflectActivelyEditedItem;
-- (void)focusedEditorDidSelectItem;
-- (void)outlineView:(id)arg1 didAddRowView:(id)arg2 forRow:(long long)arg3;
+- (void)showSelectionFromActiveEditor:(id)arg1 expandAncestors:(BOOL)arg2 scrollToVisible:(BOOL)arg3;
 - (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (id)contextMenuSelection;
@@ -53,6 +51,7 @@
 - (BOOL)_shouldOpenNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (BOOL)delegateFirstResponder;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)navigatorScrollView;
 - (void)loadView;
 
 // Remaining properties

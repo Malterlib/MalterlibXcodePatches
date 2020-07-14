@@ -15,6 +15,7 @@
 @property(readonly) NSView *scopeBarsBaseView;
 
 @optional
+@property(readonly) struct NSEdgeInsets scopeBarsTopInsets;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
 @end
 

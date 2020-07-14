@@ -23,15 +23,6 @@ BOOL g_bDisableDyldInsertLibraries = true;
 NSPanel* m_OptionsWindow = nil;
 NSWindow* m_MainWindow = nil;
 
-- (void)optionsDidEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-	[self saveSettings];
-	[sheet orderOut:self];
-	[NSApp stopModal];
-	m_MainWindow = nil;
-	m_OptionsWindow = nil;
-}
-
 - (void) closeOptions:(id)sender
 {
 	[m_MainWindow endSheet:m_OptionsWindow];
@@ -97,18 +88,17 @@ NSWindow* m_MainWindow = nil;
 	[closeButton setBezelStyle: NSBezelStyleRounded];
 	[[window contentView] addSubview:closeButton];
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
-	[NSApp beginSheet:window
-   modalForWindow:m_MainWindow
-    modalDelegate:self
-   didEndSelector:@selector(optionsDidEndSheet: returnCode: contextInfo:)
-      contextInfo:nil];
-
-	[NSApp runModalForWindow: window];
-
-#pragma clang diagnostic pop
+	[
+		m_MainWindow beginSheet: window
+		completionHandler: ^(NSModalResponse returnCode)
+		{
+			[self saveSettings];
+			[window orderOut:self];
+			[NSApp stopModal];
+			m_MainWindow = nil;
+			m_OptionsWindow = nil;
+		}
+	];
 }
 
 - (void) addItemToApplicationMenu

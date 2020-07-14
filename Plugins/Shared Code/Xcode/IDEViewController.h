@@ -38,7 +38,7 @@
 @property(retain, nonatomic) id <IDEWorkspaceDocumentProvider> workspaceDocumentProvider; // @synthesize workspaceDocumentProvider=_workspaceDocumentProvider;
 @property(readonly, nonatomic) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(copy, nonatomic) IDESelection *outputSelection; // @synthesize outputSelection=_outputSelection;
-- (void)setStateToken:(DVTStateToken *)stateToken;
+- (void)setStateToken:(DVTStateToken *)arg1;
 - (BOOL)_knowsAboutInstalledState;
 - (void)revertState;
 - (void)commitState;

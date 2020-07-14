@@ -14,7 +14,7 @@ enum EPreferredNextLocation
 	EPreferredNextLocation_Undefined
 	, EPreferredNextLocation_Search
 	, EPreferredNextLocation_Issue
-	, EPreferredNextLocation_Structure
+	, EPreferredNextLocation_Workspace
 	, EPreferredNextLocation_Console
 };
 
@@ -27,10 +27,13 @@ static IMP original_SourceEditor_SourceEditorView_doCommandBySelector = nil;
 
 
 static IMP original_didSelectTabViewItem = nil;
+static IMP original_pushSelectionToChooserViews = nil;
+static IMP original_openLocation = nil;
 static IMP original_mouseDownInConsole = nil;
 static IMP original_becomeFirstResponder_Console = nil;
 static IMP original_becomeFirstResponder_Search = nil;
 static IMP original_becomeFirstResponder_NavigatorOutlineView = nil;
+static IMP original_becomeFirstResponder_DVTOutlineView = nil;
 static IMP original_becomeFirstResponder_DVTFindPatternFieldEditor = nil;
 static IMP original_becomeFirstResponder_SourceEditor_SourceEditorView = nil;
 static IMP original_resignFirstResponder_DVTFindPatternFieldEditor = nil;
@@ -45,9 +48,11 @@ static IMP original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = nil;
 
 @property (nonatomic, retain) IDEFindNavigatorOutlineView *activeFindNavigatorOutlineView;
 @property (nonatomic, retain) IDENavigatorOutlineView *activeNavigatorOutlineView;
+@property (nonatomic, retain) DVTOutlineView *activeDVTExplorerOutlineView;
+
+
 @property (nonatomic, retain) IDEFindNavigator *activeFindNavigator;
 @property (nonatomic, retain) IDEIssueNavigator *activeIssueNavigator;
-@property (nonatomic, retain) IDEStructureNavigator *activeStructureNavigator;
 
 @property (nonatomic, retain) DVTFindPatternFieldEditor *respondingPatternFieldEditor;
 @property (nonatomic, retain) DVTFindBarOptionsCtrl *findBarOptionsCtrl;
@@ -59,9 +64,9 @@ static IMP original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = nil;
 
 static void * NavigationFixesNSWindow_activeFindNavigatorOutlineView = &NavigationFixesNSWindow_activeFindNavigatorOutlineView;
 static void * NavigationFixesNSWindow_activeNavigatorOutlineView = &NavigationFixesNSWindow_activeNavigatorOutlineView;
+static void * NavigationFixesNSWindow_activeDVTExplorerOutlineView = &NavigationFixesNSWindow_activeDVTExplorerOutlineView;
 static void * NavigationFixesNSWindow_activeFindNavigator = &NavigationFixesNSWindow_activeFindNavigator;
 static void * NavigationFixesNSWindow_activeIssueNavigator = &NavigationFixesNSWindow_activeIssueNavigator;
-static void * NavigationFixesNSWindow_activeStructureNavigator = &NavigationFixesNSWindow_activeStructureNavigator;
 static void * NavigationFixesNSWindow_respondingPatternFieldEditor = &NavigationFixesNSWindow_respondingPatternFieldEditor;
 static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWindow_findBarOptionsCtrl;
 
@@ -75,10 +80,17 @@ static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWin
 }
 
 - (IDENavigatorOutlineView *)activeNavigatorOutlineView {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView);
+	return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView);
 }
 - (void)setActiveNavigatorOutlineView:(IDENavigatorOutlineView *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (IDENavigatorOutlineView *)activeDVTExplorerOutlineView {
+	return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeDVTExplorerOutlineView);
+}
+- (void)setActiveDVTExplorerOutlineView:(IDENavigatorOutlineView *)value {
+	objc_setAssociatedObject(self, NavigationFixesNSWindow_activeDVTExplorerOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (IDEFindNavigator *)activeFindNavigator {
@@ -93,13 +105,6 @@ static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWin
 }
 - (void)setActiveIssueNavigator:(IDEIssueNavigator *)value {
     objc_setAssociatedObject(self, NavigationFixesNSWindow_activeIssueNavigator, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDEStructureNavigator *)activeStructureNavigator {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeStructureNavigator);
-}
-- (void)setActiveStructureNavigator:(IDEStructureNavigator *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_activeStructureNavigator, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (DVTFindPatternFieldEditor *)respondingPatternFieldEditor {
@@ -468,6 +473,12 @@ static Plugin_NavigationFixes *singleton = nil;
 	original_didSelectTabViewItem = XcodePluginOverrideMethodString(@"IDELocationCategoryPrefsPaneController", @selector(tabView:didSelectTabViewItem:), (IMP)&didSelectTabViewItem);
 	XcodePluginAssertOrPerform(original_didSelectTabViewItem, goto failed);
 
+	original_pushSelectionToChooserViews = XcodePluginOverrideMethodString(@"IDENavigatorArea", @selector(pushSelectionToChooserViews), (IMP)&pushSelectionToChooserViews);
+	XcodePluginAssertOrPerform(original_pushSelectionToChooserViews, goto failed);
+
+	original_openLocation = XcodePluginOverrideStaticMethodString(@"IDEOpenQuicklyResultOpener", @selector(openLocation:inWorkspaceTabController:targetOriginatingEditor:completionHandler:), (IMP)&openLocation);
+	XcodePluginAssertOrPerform(original_openLocation, goto failed);
+
 	original_mouseDownInConsole = XcodePluginOverrideMethodString(@"IDEConsoleTextView", @selector(mouseDown:), (IMP)&mouseDownInConsole);
 	XcodePluginAssertOrPerform(original_mouseDownInConsole, goto failed);
 
@@ -479,6 +490,9 @@ static Plugin_NavigationFixes *singleton = nil;
 
 	original_becomeFirstResponder_NavigatorOutlineView = XcodePluginOverrideMethodString(@"IDENavigatorOutlineView", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_NavigatorOutlineView);
 	XcodePluginAssertOrPerform(original_becomeFirstResponder_NavigatorOutlineView, goto failed);
+
+	original_becomeFirstResponder_DVTOutlineView = XcodePluginOverrideMethodString(@"DVTOutlineView", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_DVTOutlineView);
+	XcodePluginAssertOrPerform(original_becomeFirstResponder_DVTOutlineView, goto failed);
 
 	original_becomeFirstResponder_DVTFindPatternFieldEditor = XcodePluginOverrideMethodString(@"DVTFindPatternFieldEditor", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_DVTFindPatternFieldEditor);
 	XcodePluginAssertOrPerform(original_becomeFirstResponder_DVTFindPatternFieldEditor, goto failed);

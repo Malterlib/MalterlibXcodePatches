@@ -16,7 +16,7 @@
 #import "IDEFindNavigatorRelaxedQueryResultsExistCheckerDelegate-Protocol.h"
 
 @class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, IDEBatchFindAbstractQuery, IDEBatchFindAbstractResult, IDEBatchFindLineWrappingParameters, IDEBatchFindQuerySpecification, IDEFindNavigatorFilteredResultSet, IDEFindNavigatorOutlineView, IDEFindNavigatorRelaxedQueryResultsExistChecker, IDEWorkspaceDocument, NSArray, NSMapTable, NSSet, NSString;
-@protocol IDEFindNavigatorQueryResultsControllerDelegate;
+@protocol DVTInvalidation, IDEFindNavigatorQueryResultsControllerDelegate;
 
 @interface IDEFindNavigatorQueryResultsController : NSObject <NSOutlineViewDataSource, IDEFindNavigatorOutlineViewDelegate, IDEBatchFindQueryDelegate, IDEFindNavigatorRelaxedQueryResultsExistCheckerDelegate, DVTInvalidation>
 {
@@ -31,6 +31,7 @@
     NSArray *_filterMatchStrings;
     NSString *_filterText;
     DVTNotificationToken *_maximumNumberOfLinesObservingToken;
+    id <DVTInvalidation> _rowSizeStyleChangedObserver;
     IDEWorkspaceDocument *_workspaceDocument;
     NSSet *_selectedResults;
     NSMapTable *_searchResultDisplayRecords;
@@ -80,6 +81,7 @@
 - (void)outlineViewDoubleClicked:(id)arg1;
 - (void)outlineViewClicked:(id)arg1;
 - (void)openClickedRowWithEventType:(unsigned long long)arg1;
+- (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (void)outlineView:(id)arg1 batchSelectionDidChangeEventsDuring:(CDUnknownBlockType)arg2;
 - (void)processSelectionChanges;
 - (void)outlineViewSelectionDidChange:(id)arg1;

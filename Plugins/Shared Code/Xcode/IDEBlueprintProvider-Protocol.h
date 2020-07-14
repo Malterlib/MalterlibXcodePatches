@@ -24,6 +24,7 @@
 @property(nonatomic, readonly) NSArray *blueprints;
 
 @optional
+@property(nonatomic, readonly) BOOL supportsSourceFolders;
 @property(nonatomic, readonly) NSArray *sourcePackageReferences;
 @property(nonatomic) int buildSystemType;
 @end

@@ -12,7 +12,7 @@
 
 #import "DVTViewController.h"
 
-@class DVTControllerContentView, DVTScopeBarView, NSSegmentedControl;
+@class DVTControllerContentView, DVTScopeBarView, NSSegmentedControl, NSVisualEffectView;
 @protocol DVTScopeBarContentController;
 
 @interface DVTScopeBarController : DVTViewController
@@ -22,6 +22,7 @@
     DVTControllerContentView *_contentView;
     DVTViewController<DVTScopeBarContentController> *_contentViewController;
     BOOL _showsDismissButton;
+    NSVisualEffectView *_backgroundView;
 }
 
 // - (void).cxx_destruct;

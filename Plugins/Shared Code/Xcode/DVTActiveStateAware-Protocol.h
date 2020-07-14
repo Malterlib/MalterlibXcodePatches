@@ -8,10 +8,7 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-
-@class NSView;
-
-@protocol IDEComparisonEditorScrollerAreaView <NSObject>
-@property(readonly) NSView *viewToInstallScrollerIn;
+@protocol DVTActiveStateAware
+@property(nonatomic, getter=isInActiveContext) BOOL inActiveContext;
 @end
 

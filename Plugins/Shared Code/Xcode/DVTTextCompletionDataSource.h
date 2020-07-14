@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTSourceCodeLanguage, DVTStackBacktrace, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue, NSString;
+@class DVTSourceCodeLanguage, DVTStackBacktrace, DVTTextCompletionStrategy, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue, NSString;
 @protocol DVTTextCompletionDataSourceDelegate;
 
 @interface DVTTextCompletionDataSource : NSObject <DVTInvalidation>
@@ -23,10 +23,12 @@
     NSMutableSet *_strategyObservers;
     NSOperationQueue *_completionsGeneratorQueue;
     NSMapTable *_lastGeneratedCompletionItemsPerStrategy;
+    DVTTextCompletionStrategy *_lastDefinitiveStrategy;
 }
 
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(readonly) __weak DVTTextCompletionStrategy *lastDefinitiveStrategy; // @synthesize lastDefinitiveStrategy=_lastDefinitiveStrategy;
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 @property(copy) NSArray *strategies;
 - (void)generateCompletionsForDocumentLocation:(id)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;

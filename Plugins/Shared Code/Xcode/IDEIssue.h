@@ -12,7 +12,7 @@
 
 #import "IDEDiagnosticItemDelegate-Protocol.h"
 
-@class DVTDocumentLocation, IDEActivityLogMessage, IDEActivityLogRecord, IDEIssueProvider, NSArray, NSString;
+@class DVTDocumentLocation, IDEActivityLogMessage, IDEActivityLogRecord, IDEIssueProvider, NSArray, NSSet, NSString;
 @protocol NSCopying;
 
 @interface IDEIssue : NSObject <IDEDiagnosticItemDelegate>
@@ -75,6 +75,7 @@
 - (id)_severityString;
 - (void)_freeze;
 @property(readonly) NSArray *fixableDiagnosticItems;
+@property(readonly, copy) NSSet *secondaryDocumentURLs;
 - (void)_setRepresentedMessage:(id)arg1 force:(BOOL)arg2;
 @property(readonly) NSArray *filteredSubissues; // @synthesize filteredSubissues=_filteredSubissues;
 - (void)_setSubissues:(id)arg1 force:(BOOL)arg2;

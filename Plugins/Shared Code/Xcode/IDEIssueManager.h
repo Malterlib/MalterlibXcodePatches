@@ -82,6 +82,7 @@
 - (void)_hideIssues:(id)arg1;
 - (void)_setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 runtimeGroupingObject:(id)arg5 session:(id)arg6;
 - (void)_removeIssues:(id)arg1 forProviderContext:(id)arg2 session:(id)arg3;
+- (void)_recordIssue:(id)arg1;
 - (void)_addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 runtimeGroupingObject:(id)arg5 session:(id)arg6 tryToCoalesce:(BOOL)arg7;
 - (BOOL)isIssueInRemotePackage:(id)arg1;
 - (BOOL)_vendOnlyActiveSchemeIssues;
@@ -98,6 +99,7 @@
 - (void)_notifyAllObserversOfDocumentURL:(id)arg1 isPrior:(BOOL)arg2;
 - (void)_notifyObserver:(id)arg1 forURL:(id)arg2 isPrior:(BOOL)arg3;
 - (id)issuesWithNoDocument;
+- (id)issuesIncludingOnesWithSecondaryLocationInDocumentURL:(id)arg1;
 - (id)issuesForDocumentURL:(id)arg1;
 - (id)buildtimeIssuesWithNoDocument;
 - (id)buildtimeIssuesForDocumentURL:(id)arg1;
@@ -116,7 +118,6 @@
 - (void)_updateIssueProviders;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspace:(id)arg1;
-- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

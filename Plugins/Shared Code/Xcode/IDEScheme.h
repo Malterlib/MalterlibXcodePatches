@@ -14,7 +14,7 @@
 #import "IDERunDestinationScheme-Protocol.h"
 
 @class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEPreviewSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunDestination, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
-@protocol IDECustomDataStoring;
+@protocol IDECustomDataStoring, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_;
 
 @interface IDEScheme : NSObject <IDERunDestinationScheme, DVTInvalidation>
 {
@@ -201,9 +201,10 @@
 @property(readonly, copy) NSString *description;
 - (id)initFromUnarchiver:(BOOL)arg1 runContextManager:(id)arg2 customDataStoreContainer:(id)arg3 customDataSpecifier:(id)arg4 isShown:(BOOL)arg5 orderHint:(unsigned long long)arg6;
 - (void)_createDefaultSchemeActions;
-- (id)buildDirectoriesForBuildParameters:(id)arg1;
 - (id)runnableForSchemeCommand:(id)arg1;
 - (BOOL)ideIndex_containsBlueprint:(id)arg1;
+@property(nonatomic, readonly) id _customDataStoreContainer;
+@property(nonatomic, readonly) id <_TtP13IDEFoundation32IDESchemeFileReference_Workspace_> workspace;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
