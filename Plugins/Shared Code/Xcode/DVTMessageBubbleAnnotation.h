@@ -39,6 +39,7 @@
 @property(copy, nonatomic) NSString *messageBubbleText; // @synthesize messageBubbleText=_messageBubbleText;
 @property(nonatomic, getter=isMiniaturized) BOOL miniaturized; // @synthesize miniaturized=_miniaturized;
 - (id)annotationDisplayDescription;
+@property(retain) id <DVTMessageBubbleAnnotationDelegate> delegate;
 - (void)fontAndColorThemeChanged:(id)arg1;
 - (void)invalidateDisplayAndLayoutIfNeeded:(BOOL)arg1;
 - (void)setNeedsInvalidate;

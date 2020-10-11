@@ -169,7 +169,7 @@
 - (BOOL)_setupTemplateContext:(id)arg1 forTemplateKind:(id)arg2 useContextualMenuSelection:(BOOL)arg3;
 - (id)_destinationGroupForSelectedItem:(id)arg1 destinationIndex:(long long *)arg2;
 - (BOOL)_shouldSupressNavigationForURL:(id)arg1;
-- (BOOL)canShowSelectionFromActiveEditor;
+- (unsigned long long)strongSelectionStyle;
 - (id)itemToSelectFromActiveEditorSelection:(id)arg1;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
 - (void)_editNavigableItem:(id)arg1;

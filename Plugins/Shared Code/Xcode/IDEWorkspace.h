@@ -162,7 +162,7 @@
 @property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
-@property(readonly, nonatomic) NSSet *provisionableDevices;
+@property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
 - (void)notifyBuildSystemServiceThatBlueprintProviderDidChange:(id)arg1;
 - (id)buildableProductsForBaseName:(id)arg1;

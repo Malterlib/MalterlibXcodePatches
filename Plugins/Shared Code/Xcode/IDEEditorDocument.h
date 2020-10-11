@@ -72,6 +72,7 @@
     NSSet *_readOnlyClients;
     DVTFilePath *_autosavedContentsFilePath;
     DVTDocumentLocation *_previewDocumentLocation;
+    DVTExtension *_requestedExtension;
 }
 
 + (BOOL)_presentsVersionsUserInterface;
@@ -86,6 +87,7 @@
 + (void)initialize;
 + (long long)topUndoGroupingLevel;
 // - (void).cxx_destruct;
+@property(retain) DVTExtension *requestedExtension; // @synthesize requestedExtension=_requestedExtension;
 @property(retain) DVTDocumentLocation *previewDocumentLocation; // @synthesize previewDocumentLocation=_previewDocumentLocation;
 @property(retain, nonatomic) DVTExtension *extension; // @synthesize extension=_extension;
 @property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
@@ -120,6 +122,7 @@
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
 - (void)presentedItemDidChange;
 - (void)presentedItemDidMoveToURL:(id)arg1;
+@property(readonly) NSURL *ide_textRepresentationDocumentURL;
 - (BOOL)canRevert;
 - (id)editedContents;
 - (id)diffDataSource;
@@ -211,6 +214,7 @@
 - (void)continueAsynchronousWorkOnMainThreadUsingBlock:(CDUnknownBlockType)arg1;
 - (void)continueActivityUsingBlock:(CDUnknownBlockType)arg1;
 - (void)continueFileAccessUsingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)ide_satisfiesExtension:(id)arg1;
 - (id)applicableInspectorCategoriesGivenSuggestion:(id)arg1;
 - (void)setSdefSupport_displayName:(id)arg1;
 - (id)sdefSupport_displayName;

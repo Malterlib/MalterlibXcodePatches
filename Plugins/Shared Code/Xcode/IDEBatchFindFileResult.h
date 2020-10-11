@@ -25,6 +25,7 @@
 - (id)contextualSuffix;
 - (BOOL)textRepresentationForPasteboardIsFileName;
 - (id)textRepresentationForPasteboard;
+- (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;
 - (BOOL)emphasizesTitle;
 - (BOOL)contributesToResultCount;

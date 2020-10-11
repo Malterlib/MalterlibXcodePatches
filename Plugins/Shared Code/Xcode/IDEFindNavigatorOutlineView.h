@@ -51,6 +51,8 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)contextMenu_copy:(id)arg1;
 - (void)copy:(id)arg1;
+- (void)performCopyForContextMenu:(BOOL)arg1;
+- (id)pasteboardSubjects:(BOOL)arg1;
 - (BOOL)dataSourceSupportsWritingToPasteboard;
 - (void)mouseDown:(id)arg1;
 - (void)layout;

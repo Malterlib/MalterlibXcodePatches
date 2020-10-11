@@ -16,8 +16,6 @@
 
 + (void)_disableNavigationWithReason:(id)arg1 duringBlock:(CDUnknownBlockType)arg2;
 + (id)_navigationDisabledReason;
-+ (void)_addPostDoubleClickDelayBlock:(CDUnknownBlockType)arg1;
-+ (void)_cancelPostDoubleClickDelayBlock;
 + (id)_runningOpenRequest;
 + (void)_performBlockInsideReentrantGuard:(CDUnknownBlockType)arg1;
 + (id)menuCommandTitleAdditionForEventBehavior:(unsigned long long)arg1 fromPrimaryEditorContext:(BOOL)arg2 isWindowFullscreen:(BOOL)arg3;
@@ -28,6 +26,8 @@
 + (unsigned long long)_defaultTargetForEventBehavior:(unsigned long long)arg1;
 + (void)_setDefaultTarget:(unsigned long long)arg1 forEventBehavior:(unsigned long long)arg2;
 + (void)_enumerateValidTargetsForEventBehavior:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;
++ (void)_setDefaultNavigationStyle:(unsigned long long)arg1;
++ (unsigned long long)_defaultNavigationStyle;
 + (BOOL)_getTarget:(unsigned long long *)arg1 forDefaultsValue:(id)arg2;
 + (id)_defaultsValueForTarget:(unsigned long long)arg1;
 + (id)_symbolNameForEditorCoordinatorTarget:(unsigned long long)arg1;
@@ -44,10 +44,7 @@
 + (id)_openRequestForEditorHistoryItem:(id)arg1 editorContext:(id)arg2 eventBehavior:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (id)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 takeFocus:(unsigned long long)arg3;
 + (id)openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3;
-+ (void)_openEditorOpenSpecifierInOptionalEditor:(id)arg1 forWorkspaceTabController:(id)arg2;
 + (void)_openEditorOpenSpecifierInNavigationHUD:(id)arg1 forWorkspaceTabController:(id)arg2;
-+ (void)_openEditorOpenSpecifierInNewWindowTab:(id)arg1 forWorkspaceTabController:(id)arg2;
-+ (void)_openEditorOpenSpecifierInNewWindow:(id)arg1 forWorkspaceTabController:(id)arg2;
 + (id)_openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventBehavior:(unsigned long long)arg3;
 + (id)_openEditorOpenSpecifier:(id)arg1 forWorkspaceTabController:(id)arg2 eventType:(unsigned long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
 + (id)openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 event:(id)arg3;
@@ -69,7 +66,7 @@
 + (id)_editorContextForEditorDocument:(id)arg1 workspaceTabController:(id)arg2;
 + (void)_doOpenIn_SeparateEditor_withWorkspaceTabController:(id)arg1 documentURL:(id)arg2 client:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
 + (void)_doOpenIn_NewEditorAreaSplitAfter_editorAreaSplit:(id)arg1 workspaceTabController:(id)arg2 client:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
-+ (void)_doOpenIn_NewTab_withWorkspaceWindowController:(id)arg1 client:(unsigned long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
++ (void)_doOpenIn_NewWorkspaceWindow_withWorkspaceWindowController:(id)arg1 isTab:(BOOL)arg2 client:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
 + (void)_doOpenIn_NewEditor_withWorkspaceTabController:(id)arg1 client:(unsigned long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
 + (void)_doOpenIn_AdjacentEditor_withWorkspaceTabController:(id)arg1 editorContext:(id)arg2 documentURL:(id)arg3 client:(unsigned long long)arg4 usingBlock:(CDUnknownBlockType)arg5;
 + (void)_doOpenIn_NextEditor_withWorkspaceTabController:(id)arg1 editorContext:(id)arg2 documentURL:(id)arg3 client:(unsigned long long)arg4 usingBlock:(CDUnknownBlockType)arg5;

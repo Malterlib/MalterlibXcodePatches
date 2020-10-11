@@ -74,7 +74,6 @@
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
-- (id)cacheDictionaryForNavigatorID:(id)arg1;
 - (id)perNavigatorCacheKeyForNavigator:(id)arg1;
 - (void)activateFilterFieldForFocus;
 - (void)installFilterControlBarForNavigator:(id)arg1;

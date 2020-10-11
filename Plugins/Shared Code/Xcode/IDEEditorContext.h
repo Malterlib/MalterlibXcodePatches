@@ -20,13 +20,14 @@
 #import "IDEEditorDelegate-Protocol.h"
 #import "IDEEditorHistoryControllerDelegate-Protocol.h"
 #import "IDENavigableItemCoordinatorDelegate-Protocol.h"
+#import "IDESafeAreaAwareContainer-Protocol.h"
 #import "_IDEEditorContextSplitViewControllerDelegate-Protocol.h"
 #import "_TtP6IDEKit28IDEEditorTabViewHostProtocol_-Protocol.h"
 
 @class CALayer, DVTBindingToken, DVTDocumentLocation, DVTFileDataType, DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorArea, IDEEditorAreaSplit, IDEEditorContainerViewController, IDEEditorContextClipView, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorIssueMenuController, IDEEditorModeSwitcherController, IDEEditorModeViewController, IDEEditorMultipleContext, IDEEditorNavigableItemCoalescingState, IDEEditorNavigationBar, IDEEditorReadOnlyIndicatorController, IDEEditorRelatedItemsPopUpButtonController, IDEEditorSplittingController, IDEEditorStepperView, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSMutableDictionary, NSNumber, NSScrollView, NSSplitViewItem, NSString, NSURL, NSView, _IDEEditorContextSplitViewController, _IDEGeniusResultsContext;
 @protocol DVTCancellable, IDEEditorContextDelegate;
 
-@interface IDEEditorContext : IDEViewController <NSMenuDelegate, DVTFindBarHostable, NSPathControlDelegate, DVTPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, IDEEditorHistoryControllerDelegate, _IDEEditorContextSplitViewControllerDelegate, NSUserInterfaceValidations, IDEEditorContextProtocol, _TtP6IDEKit28IDEEditorTabViewHostProtocol_, NSAnimationDelegate>
+@interface IDEEditorContext : IDEViewController <NSMenuDelegate, DVTFindBarHostable, NSPathControlDelegate, DVTPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, IDEEditorHistoryControllerDelegate, _IDEEditorContextSplitViewControllerDelegate, NSUserInterfaceValidations, IDEEditorContextProtocol, _TtP6IDEKit28IDEEditorTabViewHostProtocol_, NSAnimationDelegate, IDESafeAreaAwareContainer>
 {
     IDEEditorContainerViewController *_editorViewController;
     IDEEditorRelatedItemsPopUpButtonController *_relatedItemsPopUpButtonController;
@@ -47,6 +48,7 @@
     DVTNotificationToken *_navigableItemPropertyObserver;
     DVTNotificationToken *_windowDidBecomeKeyObserverToken;
     DVTNotificationToken *_workspaceWillWriteNotificationToken;
+    DVTNotificationToken *_documentModifiedNotificationToken;
     DVTObservingToken *_currentSelectedItemsObservingToken;
     DVTObservingToken *_editorAreaSplitObservingToken;
     DVTObservingToken *_editorDocumentForNavBarStructureChangedObservingToken;
@@ -97,8 +99,8 @@
     CALayer *_swipeBackgroundLayer;
     CALayer *_swipeForegroundLayer;
     NSDictionary *_editorStateDictionaryPreviousToSwipe;
-    struct NSEdgeInsets _editorTopInsets;
-    BOOL _editorTopInsetsValid;
+    struct NSEdgeInsets _editorAccessoryInsets;
+    BOOL _editorAccessoryInsetsValid;
     NSSplitViewItem *_auxiliaryContentSplitViewItem;
     struct CGSize _lastAuxiliarySplitViewItemSize;
     NSMutableDictionary *_previewEditorStateByExtensionIdentifierAndDocumentURL;
@@ -118,6 +120,7 @@
     BOOL _hideWorkspaceLoadingProgressIndicator;
     BOOL _isCallingNewEditorDocumentWithClass;
     BOOL _isActive;
+    double _safeAreaTopInset;
     id <IDEEditorContextDelegate> _delegate;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
     IDENavigableItem *_navigableItem;
@@ -199,6 +202,8 @@
 @property(retain, nonatomic) IDENavigableItem *navigableItem; // @synthesize navigableItem=_navigableItem;
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain) id <IDEEditorContextDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) double safeAreaTopInset; // @synthesize safeAreaTopInset=_safeAreaTopInset;
+- (id)openableExplorableDocumentURLsFromContainerItems:(id)arg1 includeDescendants:(BOOL)arg2 maximumResults:(long long)arg3;
 - (void)splitViewController:(id)arg1 auxiliarySplitViewItemWasResized:(id)arg2;
 - (void)splitViewController:(id)arg1 auxiliarySplitViewItemDidCollapse:(id)arg2;
 - (void)_updateAuxiliaryEditor;
@@ -259,6 +264,8 @@
 - (id)_findBar;
 @property(readonly) struct NSEdgeInsets scopeBarsTopInsets;
 - (BOOL)dvtFindBar:(id)arg1 validateUserInterfaceItem:(id)arg2;
+- (void)scopeBarsManager:(id)arg1 didRemoveScopeBar:(id)arg2;
+- (void)scopeBarsManager:(id)arg1 didInsertScopeBar:(id)arg2;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
 @property(readonly) NSView *scopeBarsBaseView;
 - (void)primitiveInvalidate;
@@ -380,6 +387,7 @@
 - (int)_openNavigableItem:(id)arg1 withContentsOfURL:(id)arg2 shouldInstallEditorBlock:(CDUnknownBlockType)arg3;
 - (void)_verifyURLsForDocumentAndDocumentNavItem;
 - (id)_defaultDocumentExtensionForNavigableItem:(id)arg1;
+- (void)navigateAwayFromCurrentDocumentWithURL:(id)arg1 removeHistoryItems:(BOOL)arg2;
 - (void)_navigateAwayFromCurrentDocumentWithURL:(id)arg1;
 - (BOOL)_openEditorHistoryItem:(id)arg1 updateHistory:(BOOL)arg2 useStaticEditorTab:(BOOL)arg3 takeFocus:(BOOL)arg4;
 - (BOOL)_openEditorHistoryItem:(id)arg1 options:(unsigned long long)arg2;
@@ -394,7 +402,7 @@
 - (void)_navigableItemChanged;
 - (BOOL)_openEditorHistoryItem:(id)arg1 updateHistory:(BOOL)arg2;
 - (BOOL)_openEmptyEditor;
-- (id)updateIconForDocumentURL:(id)arg1 updateImageBlock:(CDUnknownBlockType)arg2;
+- (id)updateIconForDocumentURL:(id)arg1 historyItem:(id)arg2 updateImageBlock:(CDUnknownBlockType)arg3;
 - (id)iconForDocumentURL:(id)arg1;
 - (void)closeEditorContext:(id)arg1 client:(unsigned long long)arg2;
 - (BOOL)canCloseEditorContext:(id)arg1;
@@ -439,11 +447,11 @@
 - (void)_greatestDocumentAncestorWillBeForgotten;
 - (id)willPresentError:(id)arg1;
 - (id)workspace;
-- (void)_editorTopInsetsUpdated;
-- (struct NSEdgeInsets)_calculatedEditorTopInsets;
-- (struct NSEdgeInsets)editorTopInsets;
-- (void)updateEditorTopInsetsIfNeeded;
-- (void)invalidateEditorTopInsets;
+- (void)_editorInsetsUpdated;
+- (struct NSEdgeInsets)_calculatedEditorAccessoryInsets;
+- (void)invalidateEditorInsets;
+- (struct NSEdgeInsets)editorAccessoryInsets;
+- (void)didInheritNewSafeAreaTopInsetFromParent;
 - (id)_readOnlyIndicatorController;
 - (id)_editorModeSwitcherController;
 - (void)loadView;

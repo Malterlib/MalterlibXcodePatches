@@ -43,6 +43,7 @@
 @property(readonly) NSString *contextualSuffix;
 - (id)textRepresentationForPasteboard;
 - (id)generateFindResult;
+- (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;
 - (BOOL)emphasizesTitle;
 - (BOOL)contributesToResultCount;

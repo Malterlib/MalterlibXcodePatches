@@ -9,7 +9,7 @@
 //
 
 
-@class NSScrollView, NSView;
+@class DVTScopeBarController, DVTScopeBarsManager, NSScrollView, NSView;
 
 @protocol DVTScopeBarHost <NSObject>
 @property(readonly) NSView *scopeBarsBaseView;
@@ -17,5 +17,7 @@
 @optional
 @property(readonly) struct NSEdgeInsets scopeBarsTopInsets;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
+- (void)scopeBarsManager:(DVTScopeBarsManager *)arg1 didRemoveScopeBar:(DVTScopeBarController *)arg2;
+- (void)scopeBarsManager:(DVTScopeBarsManager *)arg1 didInsertScopeBar:(DVTScopeBarController *)arg2;
 @end
 

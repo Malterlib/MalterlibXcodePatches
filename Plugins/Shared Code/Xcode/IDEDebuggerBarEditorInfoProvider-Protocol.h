@@ -10,7 +10,7 @@
 
 
 @protocol IDEDebuggerBarEditorInfoProvider <NSObject>
-@property BOOL showDebuggerArea;
-- (void)setShowDebuggerArea:(BOOL)arg1 animated:(BOOL)arg2;
+@property(readonly) BOOL isDebuggerAreaVisible;
+- (void)toggleDebuggerVisibility:(id)arg1;
 @end
 

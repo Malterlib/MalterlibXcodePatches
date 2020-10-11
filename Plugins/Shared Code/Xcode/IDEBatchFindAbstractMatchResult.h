@@ -25,6 +25,7 @@
 @property(readonly) NSString *contextText; // @synthesize contextText=_contextText;
 - (BOOL)textRepresentationForPasteboardIsFileName;
 - (id)textRepresentationForPasteboard;
+- (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;
 - (BOOL)contributesToResultCount;
 - (BOOL)contributesToFileResultCount;

@@ -37,5 +37,8 @@
 - (void)scrollRangeToVisible:(struct _NSRange)arg1;
 - (BOOL)shouldAutoCompleteAtLocation:(unsigned long long)arg1;
 - (struct _NSRange)wordRangeAtLocation:(unsigned long long)arg1;
+
+@optional
+@property(readonly) BOOL hasDarkBackground;
 @end
 

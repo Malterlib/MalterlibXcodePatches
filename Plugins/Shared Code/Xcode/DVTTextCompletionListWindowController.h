@@ -13,8 +13,8 @@
 #import "DVTDealloc2Main_WindowController.h"
 
 
-@class DVTBindingToken, DVTDelayedInvocation, DVTNotificationToken, DVTTextCompletionItemTableCellView, DVTTextCompletionSession, DVTTextCompletionWindow, DVTViewController, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
-@protocol DVTInvalidation, DVTTextCompletionItem, DVTTextCompletionListDataSource;
+@class DVTBindingToken, DVTNotificationToken, DVTTextCompletionSession, DVTTextCompletionWindow, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
+@protocol DVTTextCompletionListDataSource;
 
 @interface DVTTextCompletionListWindowController : DVTDealloc2Main_WindowController <NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 {
@@ -23,22 +23,18 @@
     DVTNotificationToken *_arrangedCompletionItemsObservation;
     NSMapTable *_compoundFormatContextForItem;
     BOOL _showingWindow;
-    DVTDelayedInvocation *_delayedQuickHelpPlaceholderClearing;
-    DVTDelayedInvocation *_delayedUpdateInfoNewSelection;
     long long _usageGeneration;
     DVTBindingToken *_tableContentBinding;
     DVTBindingToken *_tableSelectionBinding;
     _TtC6DVTKit25DVTTextCompletionListView *_listView;
     NSTableView *_completionsTableView;
-    DVTTextCompletionItemTableCellView *_measurementCellView;
     NSNumber *_lastObservedCompletionListGeneration;
+    NSMapTable *_itemsToQuickHelpRequests;
+    BOOL _previouslyHadQuickHelpContent;
     BOOL _preparingForUse;
     id <DVTTextCompletionListDataSource> _dataSource;
-    NSView *_infoPlaceholder;
-    id <DVTTextCompletionItem> _previousQuickHelpTarget;
     int _hideReason;
     NSScrollView *_completionsScrollView;
-    DVTViewController<DVTInvalidation> *_infoContentViewController;
     NSString *_debugStateString;
 }
 
@@ -50,17 +46,13 @@
 @property(readonly) NSString *debugStateString; // @synthesize debugStateString=_debugStateString;
 @property(readonly) BOOL showingWindow; // @synthesize showingWindow=_showingWindow;
 @property(nonatomic) int hideReason; // @synthesize hideReason=_hideReason;
-@property(readonly) DVTViewController<DVTInvalidation> *infoContentViewController; // @synthesize infoContentViewController=_infoContentViewController;
 @property(readonly) NSScrollView *completionsScrollView; // @synthesize completionsScrollView=_completionsScrollView;
 - (id)tableView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 row:(long long)arg5 mouseLocation:(struct CGPoint)arg6;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)showInfoForSelectedCompletionItem;
-- (void)_removeQuickHelpViewAndPlaceholder;
-- (void)_replaceQuickHelpViewWithPlaceholderIfNeeded;
-- (void)_removeQuickHelpView;
-- (void)storeInfoContentViewController:(id)arg1 generatedFromCompletionItem:(id)arg2;
-- (void)close;
+- (void)prefetchQuickHelpAroundSelectedItems;
+- (void)faultQuickHelpForItem:(id)arg1;
 - (id)longestCompletionItemInRange:(struct _NSRange)arg1 lengthCalculator:(CDUnknownBlockType)arg2;
 - (struct _NSRange)candidateRangeForInitialWindowSize;
 - (id)longestInitialSignatureItem;
@@ -80,12 +72,14 @@
 - (void)hideWindowWithReason:(int)arg1;
 - (void)_hideWindow;
 - (void)showWindowForWordRect:(struct CGRect)arg1 animate:(BOOL)arg2;
-- (void)begingObservingDataSource;
+- (void)beginObservingDataSource;
+@property(readonly) NSView *infoField;
 - (id)_selectedCompletionItem;
 @property(readonly) DVTTextCompletionSession *session;
 - (void)prepareToQueueForFutureReuse;
 - (void)prepareToDequeueForUseWithDataSource:(id)arg1;
 - (void)loadWindow;
+- (id)initWithWindowNibName:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

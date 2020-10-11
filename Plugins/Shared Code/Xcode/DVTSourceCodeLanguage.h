@@ -41,6 +41,7 @@
 + (id)sourceCodeLanguageWithIdentifier:(id)arg1;
 + (id)sourceCodeLanguages;
 + (id)_sourceCodeLanguageForExtension:(id)arg1;
++ (id)swiftSourceCodeLanguage;
 + (id)objectiveCPlusPlusSourceCodeLanguage;
 + (id)cPlusPlusSourceCodeLanguage;
 + (id)objectiveCSourceCodeLanguage;

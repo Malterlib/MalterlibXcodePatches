@@ -16,6 +16,7 @@
 {
 }
 
+- (BOOL)canHaveChildren;
 - (id)initWithChildOrderingSelector:(SEL)arg1 queryIdentifier:(long long)arg2 resultIdentifier:(long long)arg3;
 
 @end

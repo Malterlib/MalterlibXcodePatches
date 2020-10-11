@@ -35,8 +35,8 @@
 + (id)defaultViewNibName;
 + (void)initialize;
 // - (void).cxx_destruct;
-@property(retain, nonatomic) DVTExtension *representedExtension; // @synthesize representedExtension=_representedExtension;
 @property BOOL isViewLoaded; // @synthesize isViewLoaded=_isViewLoaded;
+@property(retain, nonatomic) DVTExtension *representedExtension; // @synthesize representedExtension=_representedExtension;
 - (void)_interposeViewControllerNotifyingLifecycleMethodsIfNecessaryForView:(id)arg1;
 - (void)_checkKvoWindow;
 - (id)_kvoWindow;
@@ -52,6 +52,7 @@
 - (void)_viewDidInstall;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+@property(readonly) NSView *viewIfLoaded;
 - (void)loadView;
 @property(retain) NSView *view;
 - (void)separateKeyViewLoops;

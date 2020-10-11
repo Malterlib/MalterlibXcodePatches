@@ -13,7 +13,7 @@
 @class NSSet;
 
 @protocol IDEProvisionableProvider <DVTInvalidation>
-@property(readonly, nonatomic) NSSet *provisionableDevices;
+@property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
 @property(readonly, nonatomic) BOOL finishedLoading;
 @end

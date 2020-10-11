@@ -66,7 +66,7 @@
 - (void)findNavigatorOutlineViewEmptyContentPlaceholderButtonWasClicked:(id)arg1;
 - (void)replaceMatchesFromResults:(id)arg1 withText:(id)arg2;
 - (id)replaceStateForFindResult:(id)arg1;
-- (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
+- (id)outlineView:(id)arg1 pasteboardWriterForItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (void)invokeWithReplaceableDocumentForLocation:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)validateRowHeights:(id)arg1;

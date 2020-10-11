@@ -38,6 +38,7 @@
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)supportsFullSizeContent;
++ (BOOL)alwaysUseStaticEditorTab;
 + (BOOL)canProvideCurrentSelectedItems;
 // - (void).cxx_destruct;
 @property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;

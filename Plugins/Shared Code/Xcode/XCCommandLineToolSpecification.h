@@ -55,6 +55,7 @@
     NSString<DVTMacroExpansion> *_executionDescription;
     NSString<DVTMacroExpansion> *_progressDescription;
     BOOL _isUnsafeToInterrupt;
+    NSArray *_relatedToolSpecificationIdentifiers;
     unsigned long long _messageLimit;
     NSIndexSet *_successExitCodes;
 }
@@ -73,6 +74,7 @@
 @property(readonly, nonatomic) NSString<DVTMacroExpansion> *dependencyInfoFile; // @synthesize dependencyInfoFile=_dependencyInfoFile;
 @property(readonly) NSIndexSet *successExitCodes; // @synthesize successExitCodes=_successExitCodes;
 @property(readonly) unsigned long long messageLimit; // @synthesize messageLimit=_messageLimit;
+@property(readonly) NSArray *relatedToolSpecificationIdentifiers; // @synthesize relatedToolSpecificationIdentifiers=_relatedToolSpecificationIdentifiers;
 - (id)instantiatedCommandResultsPostprocessorForCommand:(id)arg1;
 - (unsigned long long)concurrentExecutionCountWithMacroExpansionScope:(id)arg1;
 - (id)createCommandsforInputs:(id)arg1 withMacroExpansionScope:(id)arg2;

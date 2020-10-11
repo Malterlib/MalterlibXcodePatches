@@ -14,8 +14,11 @@
 
 @interface DVTExplorerOutlineViewBase : DVTOutlineView
 {
+    BOOL _processingAccessibilityRowSelection;
 }
 
+@property BOOL processingAccessibilityRowSelection; // @synthesize processingAccessibilityRowSelection=_processingAccessibilityRowSelection;
+- (void)accessibilitySetSelectedRowsAttribute:(id)arg1;
 - (double)_indentationForRow:(long long)arg1 withLevel:(long long)arg2 isSourceListGroupRow:(BOOL)arg3;
 - (BOOL)shouldIncreaseIndentationLevelAtRow:(long long)arg1;
 

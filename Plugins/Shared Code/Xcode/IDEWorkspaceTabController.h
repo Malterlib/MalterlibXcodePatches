@@ -366,7 +366,7 @@
 - (BOOL)_isAnimatingInspectorArea;
 - (void)_updateTabLabel;
 - (BOOL)setUserDefinedTabLabel:(id)arg1 error:(id *)arg2;
-- (void)showStandardArchitecturesAlertForScheme:(id)arg1 schemeCommand:(id)arg2 runDestination:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)showStandardArchitecturesAlertForScheme:(id)arg1 schemeTask:(long long)arg2 schemeCommand:(id)arg3 runDestination:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)_setup32bitOnlyMacTargetWarning;
 - (void)loadView;
 - (void)_setDefaultSplitViewItemWidths;

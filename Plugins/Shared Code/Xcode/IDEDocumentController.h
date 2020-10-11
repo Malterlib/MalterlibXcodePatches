@@ -30,10 +30,9 @@
 + (void)_THREAD_verifyMenuItemsForDocumentExtension:(id)arg1 editorDocumentToGeniusFinderDictionary:(id)arg2;
 + (void)_THREAD_verifyAssistantMatchesGearMenuItemsForDocumentExtension:(id)arg1 mistakesDescriptionBlock:(CDUnknownBlockType)arg2;
 + (void)_THREAD_verifyMenuItemsForDocumentExtension:(id)arg1 menuExtensionKey:(id)arg2 matchItemsAtIndex:(id)arg3 checkNoItemsMatch:(id)arg4 mistakesDescriptionBlock:(CDUnknownBlockType)arg5;
-+ (id)_informativeTextFieldForAlert:(id)arg1;
 + (id)_informativeTextForQuarantineProperties:(id)arg1;
 + (id)_documentDisplayNameForDocumentType:(id)arg1;
-+ (BOOL)_shouldOpenURL:(id)arg1 documentType:(id)arg2;
++ (BOOL)_shouldOpenItemAtURLWithSynchronousQuarantinePrompt:(id)arg1 documentType:(id)arg2;
 + (id)schemeForDocumentURL:(id)arg1;
 + (void)_setOpenAsContextMenu:(id)arg1 withViewController:(id)arg2;
 + (BOOL)_isWorkspaceWrappingDocumentURL:(id)arg1;
@@ -78,6 +77,8 @@
 + (id)retainedEditorDocumentForDocumentLocation:(id)arg1 forUseWithWorkspaceDocument:(id)arg2 error:(id *)arg3;
 + (id)_retainedEditorDocumentForURL:(id)arg1 type:(id)arg2 error:(id *)arg3;
 + (id)_newEditorDocumentWithClass:(Class)arg1 forURL:(id)arg2 withContentsOfURL:(id)arg3 ofType:(id)arg4 extension:(id)arg5 error:(id *)arg6;
++ (void)performDocumentTransaction:(CDUnknownBlockType)arg1;
++ (BOOL)isPerformingDocumentTransaction;
 + (void)releaseEditorDocument:(id)arg1;
 + (BOOL)_closeDocumentIfNeeded:(id)arg1;
 + (void)retainEditorDocument:(id)arg1;

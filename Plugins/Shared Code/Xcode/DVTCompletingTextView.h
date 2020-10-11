@@ -151,6 +151,7 @@
 - (BOOL)shouldAutoCompleteAtLocation:(unsigned long long)arg1;
 @property(readonly) BOOL shouldSuppressTextCompletion;
 @property(readonly, copy) NSCharacterSet *autoCompleteChars;
+@property(readonly) BOOL hasDarkBackground;
 @property(readonly) double autoCompletionDelay;
 - (id)contextForCompletionStrategiesAtWordStartLocation:(unsigned long long)arg1;
 - (void)invalidateCompletionsDataSource;

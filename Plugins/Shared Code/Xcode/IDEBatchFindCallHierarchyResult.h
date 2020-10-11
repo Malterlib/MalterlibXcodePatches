@@ -25,6 +25,7 @@
 @property(readonly) id <IDEIndexSymbol> symbol; // @synthesize symbol=_symbol;
 - (BOOL)textRepresentationForPasteboardIsFileName;
 - (id)textRepresentationForPasteboard;
+- (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;
 - (BOOL)contributesToResultCount;
 - (BOOL)contributesToFileResultCount;
