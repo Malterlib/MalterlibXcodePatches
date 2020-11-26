@@ -103,6 +103,7 @@
 + (id)_retainedContainerAtFilePath:(id)arg1 fileDataType:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;
 + (id)retainedContainerAtFilePath:(id)arg1 fileDataType:(id)arg2 workspace:(id)arg3 error:(id *)arg4;
 + (id)_containerOpenInAnotherWorkspaceErrorForPath:(id)arg1;
++ (id)_containerOpenAsAnotherContainerTypeErrorForPath:(id)arg1 newContainerTypeName:(id)arg2 oldContainerTypeName:(id)arg3;
 + (id)_noContainerClassForFileTypeError:(id)arg1;
 + (id)containerTypeDisplayName;
 + (id)containerFileDataType;
