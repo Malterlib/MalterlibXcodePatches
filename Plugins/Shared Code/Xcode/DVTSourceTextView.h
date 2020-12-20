@@ -207,7 +207,6 @@
 - (void)moveUp:(id)arg1;
 - (BOOL)_couldHaveBlinkTimer;
 - (BOOL)_shouldHaveBlinkTimer;
-- (void)_centeredScrollRectToVisible:(struct CGRect)arg1 forceCenter:(BOOL)arg2;
 - (void)scrollViewDidSetFrameSize:(id)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)_adjustAccessoryAnnotations;

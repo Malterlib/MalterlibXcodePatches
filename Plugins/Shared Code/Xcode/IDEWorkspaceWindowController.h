@@ -57,6 +57,7 @@
     BOOL _exitingFullScreenMode;
     DVTStateToken *_stateToken;
     BOOL _shouldPerformWindowClose;
+    BOOL _hasAttachedSheet;
     BOOL _didRestoreFromStateSaving;
     BOOL _showToolbar;
     BOOL _tabBarWasVisibleWithSingleTab;
@@ -66,7 +67,6 @@
     DVTWeakInterposer *_firstResponderInterposer;
     IDEWorkspaceDFRController *_standardWorkspaceTouchBarController;
     IDEWorkspaceDFRController *_systemModalWorkspaceTouchBarController;
-    long long _visibleSheetsCount;
     NSValue *_initialWindowFrameValue;
 }
 
@@ -84,13 +84,13 @@
 @property BOOL isSettingUpWindowControllerClone; // @synthesize isSettingUpWindowControllerClone=_isSettingUpWindowControllerClone;
 @property BOOL tabBarWasVisibleWithSingleTab; // @synthesize tabBarWasVisibleWithSingleTab=_tabBarWasVisibleWithSingleTab;
 @property(retain) NSValue *initialWindowFrameValue; // @synthesize initialWindowFrameValue=_initialWindowFrameValue;
-@property long long visibleSheetsCount; // @synthesize visibleSheetsCount=_visibleSheetsCount;
 @property(retain) IDEWorkspaceDFRController *systemModalWorkspaceTouchBarController; // @synthesize systemModalWorkspaceTouchBarController=_systemModalWorkspaceTouchBarController;
 @property(retain) IDEWorkspaceDFRController *standardWorkspaceTouchBarController; // @synthesize standardWorkspaceTouchBarController=_standardWorkspaceTouchBarController;
 @property(retain) DVTWeakInterposer *firstResponderInterposer; // @synthesize firstResponderInterposer=_firstResponderInterposer;
 @property(nonatomic) BOOL showToolbar; // @synthesize showToolbar=_showToolbar;
 @property BOOL didRestoreFromStateSaving; // @synthesize didRestoreFromStateSaving=_didRestoreFromStateSaving;
 @property(retain) DVTStackBacktrace *windowDidLoadBacktrace; // @synthesize windowDidLoadBacktrace=_windowDidLoadBacktrace;
+@property BOOL hasAttachedSheet; // @synthesize hasAttachedSheet=_hasAttachedSheet;
 @property BOOL shouldPerformWindowClose; // @synthesize shouldPerformWindowClose=_shouldPerformWindowClose;
 @property(copy, nonatomic) NSString *stateSavingIdentifier; // @synthesize stateSavingIdentifier=_stateSavingIdentifier;
 - (void)moveFocusToEditor:(id)arg1;

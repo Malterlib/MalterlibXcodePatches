@@ -64,7 +64,7 @@
 - (void)_invalidateActiveRunDestination;
 - (void)shouldIgnoreDeviceChangesDidEnd:(id)arg1;
 - (void)shouldIgnoreDeviceChangesWillBegin:(id)arg1;
-- (void)_updateOrderHint:(unsigned long long)arg1 forRunContext:(id)arg2;
+- (void)_updateOrderHint:(unsigned long long)arg1 forRunContext:(id)arg2 allowSavingState:(BOOL)arg3;
 - (void)_updateIsShown:(BOOL)arg1 forRunContext:(id)arg2;
 - (id)runContextManagementDictionaryForStore:(id)arg1;
 - (void)saveRunContextManagementDictionaryForStore:(id)arg1;
@@ -78,7 +78,7 @@
 - (id)duplicateRunContext:(id)arg1 withCustomDataSpecifier:(id)arg2 completionQueue:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)newTransientSchemeWithCustomDataStore:(id)arg1 customDataSpecifier:(id)arg2 orderHint:(unsigned long long)arg3;
 - (id)newSchemeWithCustomDataStore:(id)arg1 customDataSpecifier:(id)arg2 orderHint:(unsigned long long)arg3;
-- (id)_newSchemeWithCustomDataStore:(id)arg1 customDataSpecifier:(id)arg2 orderHint:(unsigned long long)arg3 schemeCreationBlock:(CDUnknownBlockType)arg4;
+- (id)_newSchemeWithCustomDataStore:(id)arg1 customDataSpecifier:(id)arg2 orderHint:(unsigned long long)arg3 allowSavingState:(BOOL)arg4 schemeCreationBlock:(CDUnknownBlockType)arg5;
 - (void)_addContext:(id)arg1 specifierToRunContextMap:(id)arg2;
 - (id)_uniqueSpecifierForSpecifier:(id)arg1 inMap:(id)arg2;
 - (void)_setAutocreationSuppressed:(BOOL)arg1 forBuildables:(id)arg2 returningStoresNeedingSave:(id *)arg3;

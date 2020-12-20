@@ -10,23 +10,22 @@
 
 #include "Shared.h"
 
-#import "DVTLayoutView_ML.h"
+#import "DVTStructuredLayoutView.h"
 
 #import "DVTWindowActivationStateObserver-Protocol.h"
 
-@class DVTStackView_ML, NSArray, NSDictionary, NSImage, NSPopUpButton, NSString;
+@class DVTStackView_ML, NSArray, NSDictionary, NSImage, NSString;
 @protocol DVTCancellable, IDEFindNavigatorPathControlDelegate;
 
-@interface IDEFindNavigatorPathControl : DVTLayoutView_ML <DVTWindowActivationStateObserver>
+@interface IDEFindNavigatorPathControl : DVTStructuredLayoutView <DVTWindowActivationStateObserver>
 {
     DVTStackView_ML *_stackView;
     NSDictionary *_segmentValues;
-    NSDictionary *_segmentPopUpInsetViews;
+    NSDictionary *_segmentComponentViews;
     NSArray *_dividerImageViews;
     NSImage *_activeDividerImage;
     NSImage *_inactiveDividerImage;
     id <DVTCancellable> _windowActivationObservation;
-    NSPopUpButton *_popUpButtonForMeasuring;
     id <IDEFindNavigatorPathControlDelegate> _delegate;
 }
 
@@ -35,17 +34,12 @@
 - (void)userChoseSegmentValue:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
-- (void)layoutBottomUp;
-- (void)layoutTopDown;
+- (void)dvt_positionSubviewsAndSizeSelfAfterSubviewLayout;
 - (void)refresh;
-- (struct CDStruct_bf6d4a14)popUpButtonInset;
-- (void)synchronizePopUp:(id)arg1 forSegment:(id)arg2;
-- (struct CGSize)popUpSizeForTitle:(id)arg1;
-- (id)makePopUpButtonInsetView;
-- (id)makePopUpButton;
+- (void)synchronizeComponentView:(id)arg1 forSegment:(id)arg2;
+- (id)makeComponentView;
 - (void)scheduleRefresh;
-- (id)segmentForPopUpButton:(id)arg1;
-- (id)popUpInsetViewForSegment:(id)arg1;
+- (id)componentViewForSegment:(id)arg1;
 - (id)valueForSegment:(id)arg1;
 - (void)awakeFromNib;
 

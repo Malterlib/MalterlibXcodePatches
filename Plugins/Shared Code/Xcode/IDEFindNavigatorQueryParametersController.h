@@ -16,12 +16,12 @@
 #import "IDEFindNavigatorPathControlDelegate-Protocol.h"
 #import "IDEFindNavigatorScopeChooserControllerDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
+@class DVTDelayedInvocation, DVTInsetView, DVTScopeBarButton, IDEBatchFindNamedScope, IDEBatchFindQueryTerm, IDEFindNavigatorPathControl, IDEFindNavigatorScopeChooserController, IDEFindNavigatorTwoControlLeftPriorityLayout, IDEProgressSearchField, NSArray, NSButton, NSPopUpButton, NSString, NSView;
 @protocol DVTInvalidation, IDEFindNavigatorQueryParametersControllerDelegate, IDEFindNavigatorQueryParametersPresentedController;
 
 @interface IDEFindNavigatorQueryParametersController : IDEViewController <IDEFindNavigatorPathControlDelegate, IDEFindNavigatorScopeChooserControllerDelegate, DVTFindPatternManager, NSTextFieldDelegate>
 {
-    NSView *_modeRow;
+    DVTInsetView *_modeRow;
     IDEFindNavigatorPathControl *_modePathControl;
     NSView *_queryTextSearchFieldRow;
     IDEProgressSearchField *_queryTextSearchField;
