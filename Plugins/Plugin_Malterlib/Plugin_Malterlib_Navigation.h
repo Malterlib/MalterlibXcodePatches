@@ -11,7 +11,11 @@
 
 		do
 		{
-			if ((keyCode == kVK_ANSI_G) && (ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == NSEventModifierFlagCommand)
+			if
+				(
+					(keyCode == kVK_ANSI_G)
+					&& (ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == NSEventModifierFlagCommand
+				)
 			{
 				// Run
 

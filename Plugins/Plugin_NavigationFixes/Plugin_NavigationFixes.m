@@ -198,7 +198,7 @@ static void * NavigationFixesNSObjectKey_displayCycleObserver_sequence = &Naviga
 }
 
 - (void)setDisplayCycleObserver_alreadyScheduled:(NSNumber *)generated {
-    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_alreadyScheduled, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC); 
+    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_alreadyScheduled, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSNumber *)displayCycleObserver_lastDraw {
@@ -206,7 +206,7 @@ static void * NavigationFixesNSObjectKey_displayCycleObserver_sequence = &Naviga
 }
 
 - (void)setDisplayCycleObserver_lastDraw:(NSNumber *)generated {
-    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_lastDraw, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC); 
+    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_lastDraw, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSNumber *)displayCycleObserver_sequence {
@@ -214,7 +214,7 @@ static void * NavigationFixesNSObjectKey_displayCycleObserver_sequence = &Naviga
 }
 
 - (void)setDisplayCycleObserver_sequence:(NSNumber *)generated {
-    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_sequence, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC); 
+    objc_setAssociatedObject(self, NavigationFixesNSObjectKey_displayCycleObserver_sequence, generated, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

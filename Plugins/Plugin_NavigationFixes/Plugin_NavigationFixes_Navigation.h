@@ -1037,9 +1037,8 @@ static void potentialView(NSWindow* _pWindow)
 	//XcodePluginTraceViewHierarchy([_pWindow contentView], 0);
 
 	IDEWorkspaceTabController *pTabController = getWorkspaceTabController(_pWindow);
-	if (!pTabController || !pTabController.userWantsNavigatorVisible)
+	if (!pTabController)
 	{
-
 		window.activeFindNavigatorOutlineView = nil;
 		window.activeNavigatorOutlineView = nil;
 		window.activeIssueNavigator = nil;
@@ -1059,8 +1058,6 @@ static void potentialView(NSWindow* _pWindow)
 		window.activeDVTExplorerOutlineView = nil;
 		return;
 	}
-
-	//NSLog(@"pCurrentNavigator: %@", pCurrentNavigator.class);
 
 	IDEFindNavigatorOutlineView *pFindNavigatorOutlineView = (IDEFindNavigatorOutlineView *)findSubViewWithClass(pCurrentNavigator.view, IDEFindNavigatorOutlineView.class);
 	IDENavigatorOutlineView *pNavigatorOutlineView = (IDENavigatorOutlineView *)findSubViewWithClass(pCurrentNavigator.view, IDENavigatorOutlineView.class);

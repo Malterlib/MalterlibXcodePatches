@@ -63,15 +63,13 @@ static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool
 				{
 					pWindow = pTabGroup.lastValidEditorWindow;
 					pLastSelectedTabitem = pWindow;
-					pView = getSourceCodeEditorView(pWindow);
 				}
 			}
-			IDEWorkspaceTabController* pTabController = getWorkspaceTabController(pWindow);
 
-			if (pView && pTabController)
+			IDEWorkspaceTabController *pTabController = getWorkspaceTabController(pWindow);
+
+			if (pTabController)
 			{
-				//IDESourceCodeEditor* pEditor = [pView editor];
-				//pEditor && 
 				NSFileManager *fileManager = [NSFileManager defaultManager];
 				if ([pSource length] > 0 && [fileManager fileExistsAtPath:pSource])
 				{
