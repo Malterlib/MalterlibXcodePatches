@@ -1179,16 +1179,48 @@
         };
     },
     {
-        Identifier = "xcode.lang.string.eval.expression";
+        Identifier = "xcode.lang.string.eval.expression.lexer";
         Syntax = {
-            CaseSensitive = YES;
-            Tokenizer = "xcode.lang.c.lexer";
-            Start = "@(";
+            IncludeRules = (
+                "xcode.lang.string",
+                "xcode.lang.string.eval",
+                "xcode.lang.string.wide",
+                "xcode.lang.string.utf8",
+                "xcode.lang.string.ucs2",
+                "xcode.lang.string.ucs4",
+                "xcode.lang.character",
+                "xcode.lang.character.wide",
+                "xcode.lang.character.utf8",
+                "xcode.lang.character.ucs2",
+                "xcode.lang.character.ucs4",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.c.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.eval.expression.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.string.eval.expression.lexer";
+            Start = "(";
             End = ")";
             Recursive = YES;
             IncludeRules = (
-                "xcode.lang.c.parenexpr",
-                "xcode.lang.c.bracketexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.eval.expression";
+        Syntax = {
+            CaseSensitive = YES;
+            Tokenizer = "xcode.lang.string.eval.expression.lexer";
+            Start = "@(";
+            End = ")";
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.string.eval.expression.parenexpr",
             );
             Type = "xcode.syntax.plain";
         };
@@ -1196,8 +1228,9 @@
     {
         Identifier = "xcode.lang.string.eval.expression.escape";
         Syntax = {
-            Start = "@@";
-            Rules = (
+            StartChars = "@";
+            Chars = "@";
+            Match = (
                 "@@",
             );
             Type = "xcode.syntax.string";
@@ -1210,11 +1243,11 @@
             End = "`";
             EscapeChar = "\\";
             AltEnd = "\n";
-            Recursive = YES;
-            ParseEndBeforeIncludedRules = YES;
+            Recursive = NO;
+            ParseEndBeforeIncludedRules = NO;
             IncludeRules = (
-                "xcode.lang.string.eval.expression.escape",
                 "xcode.lang.string.eval.expression",
+                "xcode.lang.string.eval.expression.escape",
             );
             Type = "xcode.syntax.string";
         };
