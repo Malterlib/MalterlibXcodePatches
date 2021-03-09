@@ -16,7 +16,7 @@
 - (void)database:(IDEBoltIndexDatabase *)arg1 didEndImportSession:(IDEBoltIndexImportSession *)arg2;
 - (void)databaseDidChangeMainFiles:(IDEBoltIndexDatabase *)arg1;
 - (void)databaseDidIndexHotFile:(IDEBoltIndexDatabase *)arg1;
-- (void)databaseDidLoad:(IDEBoltIndexDatabase *)arg1;
+- (void)databaseDidInitializeFromDatastore:(IDEBoltIndexDatabase *)arg1;
 - (void)databaseDidOpen:(IDEBoltIndexDatabase *)arg1;
 @end
 

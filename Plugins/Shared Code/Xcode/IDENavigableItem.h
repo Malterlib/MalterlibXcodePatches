@@ -66,6 +66,10 @@
 + (id)_dynamicSubclass_navigableItemExtraInfo;
 + (id)_navigableItemExtraInfo;
 + (void)initialize;
++ (id)keyPathsAffectingDisplayName;
++ (id)keyPathsForValuesAffectingPathComponentToolTip;
++ (id)keyPathsForValuesAffectingPathComponentImage;
++ (id)keyPathsForValuesAffectingPathComponentName;
 + (id)keyPathsForValuesAffectingRepresentedURL;
 + (id)imageOfRepresentedObject:(id)arg1;
 + (id)nameOfRepresentedObject:(id)arg1;
@@ -161,10 +165,14 @@
 @property(readonly, nonatomic) NSColor *textColor;
 - (id)nearestDocumentFileReferenceProvidingAncestor;
 - (id)greatestDocumentAncestor;
+- (id)displayNameWithExtensionHiding:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL mergeDecendants;
 @property(readonly, nonatomic) NSString *accessibilityIdentifier;
 - (BOOL)representsDocumentRoot;
 @property(readonly, nonatomic) NSURL *representedURLForExternalDrag;
+@property(readonly, nonatomic) NSString *pathComponentToolTip;
+@property(readonly, nonatomic) NSImage *pathComponentImage;
+@property(readonly, nonatomic) NSString *pathComponentName;
 @property(readonly, nonatomic, getter=isVisible) BOOL visible;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
 @property(readonly, nonatomic) NSString *groupIdentifier;

@@ -9,13 +9,14 @@
 //
 
 
-@class DVTTableCellView;
+@class DVTTableCellView, NSString;
 
 @protocol DVTTableCellViewTitleEditingDelegate <NSObject>
 - (void)titleDidChangeForTableCellView:(DVTTableCellView *)arg1;
 - (struct _NSRange)initialSelectionRangeForTableCellView:(DVTTableCellView *)arg1 usingProposedRange:(struct _NSRange)arg2;
 
 @optional
+- (NSString *)titleStringForEditingInTableCellView:(DVTTableCellView *)arg1;
 - (void)titleEditingDidAbortForTableCellView:(DVTTableCellView *)arg1;
 - (BOOL)titleIsEditableForTableCellView:(DVTTableCellView *)arg1;
 @end

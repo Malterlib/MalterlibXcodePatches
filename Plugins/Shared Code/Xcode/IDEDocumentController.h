@@ -37,6 +37,7 @@
 + (void)_setOpenAsContextMenu:(id)arg1 withViewController:(id)arg2;
 + (BOOL)_isWorkspaceWrappingDocumentURL:(id)arg1;
 + (BOOL)_isWorkspaceDocumentURL:(id)arg1;
++ (BOOL)_suppressRecentWorkspaceDocuments;
 + (Class)_THREAD_editorDocumentClassForURLScheme:(id)arg1 documentType:(id)arg2 extension:(id *)arg3;
 + (void)_THREAD_cacheDocumentClass:(Class)arg1 forExtension:(id)arg2;
 + (Class)_THREAD_cachedDocumentClassForExtension:(id)arg1;
@@ -57,7 +58,6 @@
 + (id)_previewEditorDocumentExtensionsForEditorDocumentExtension:(id)arg1;
 + (id)_urlSchemesForEditorDocumentExtension:(id)arg1;
 + (id)_readableTypesForDocumentClass:(Class)arg1;
-+ (id)_organizerSourceExtensionForDocumentType:(id)arg1;
 + (id)_bestEditorDocumentExtensionForDocumentClass:(Class)arg1 urlScheme:(id)arg2 supportingDocumentType:(id)arg3 withEditorCategories:(id)arg4 shouldPreferExtension:(char *)arg5;
 + (id)_documentExtensionForNavigableItem:(id)arg1;
 + (id)_editorDocumentExtensionsForOpenAsWhichSupportURLScheme:(id)arg1 documentType:(id)arg2 editorCategories:(id)arg3;
@@ -65,7 +65,6 @@
 + (BOOL)_THREAD_type:(id)arg1 role:(int)arg2 isPreferableToType:(id)arg3 role:(int)arg4;
 + (void)_THREAD_cacheBestEditorDocumentExtension:(id)arg1 forKey:(id)arg2;
 + (id)_THREAD_cachedBestEditorDocumentExtensionForKey:(id)arg1 valueWasCached:(char *)arg2;
-+ (id)_THREAD_allOrganizerSourceExtensions;
 + (id)_THREAD_allEditorDocumentURLSchemeExtensions;
 + (id)_THREAD_allEditorDocumentExtensions;
 + (id)workspaceDocumentForWorkspace:(id)arg1;

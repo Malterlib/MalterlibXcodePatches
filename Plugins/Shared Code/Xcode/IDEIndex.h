@@ -11,17 +11,21 @@
 #include "Shared.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDETestableDataSource_Index-Protocol.h"
 
-@class DVTStackBacktrace, NSString;
+@class DVTStackBacktrace, IDEIndexBuildManager, NSString;
 
-@interface IDEIndex : NSObject <DVTInvalidation>
+@interface IDEIndex : NSObject <IDETestableDataSource_Index, DVTInvalidation>
 {
     BOOL _valid;
     BOOL _isQuiescent;
+    IDEIndexBuildManager *_indexBuildManager;
 }
 
 + (BOOL)languageSupportsSymbolColoring:(id)arg1;
+// - (void).cxx_destruct;
 @property(readonly) BOOL isQuiescent; // @synthesize isQuiescent=_isQuiescent;
+@property(readonly) IDEIndexBuildManager *indexBuildManager; // @synthesize indexBuildManager=_indexBuildManager;
 @property(readonly, nonatomic, getter=isValid) BOOL valid; // @synthesize valid=_valid;
 
 // Remaining properties

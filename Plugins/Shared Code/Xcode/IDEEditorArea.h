@@ -50,7 +50,10 @@
     DVTObservingToken *_lastActiveEditorContextIsValidToken;
     DVTObservingToken *_contentLayoutRectToken;
     DVTNotificationToken *_didEndLiveResizeToken;
+    DVTNotificationToken *_windowDidBecomeKeyObserverToken;
+    DVTNotificationToken *_windowDidResignKeyObserverToken;
     DVTObservingToken *_primaryEditorDocumentToken;
+    DVTObservingToken *_activeEditorDocumentToken;
     DVTObservingToken *_workspaceFinishedLoadingToken;
     NSArray *_beforeMaximizeEditorAreaSplitStates;
     NSIndexPath *_indexPathOfMaximizedEditorAreaSplit;
@@ -80,6 +83,8 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingIsDebuggerAreaVisible;
 + (id)keyPathsForValuesAffectingIsEditorVisible;
++ (BOOL)_openEditorOpenSpecifier:(id)arg1 editorContext:(id)arg2 options:(unsigned long long)arg3;
++ (BOOL)_openEditorHistoryItem:(id)arg1 editorContext:(id)arg2 options:(unsigned long long)arg3;
 + (id)keyPathsForValuesAffectingSelectedNavigableItemArchivedRepresentation;
 + (id)keyPathsForValuesAffectingNavigationTargetedEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
@@ -194,8 +199,6 @@
 - (void)setStateSavingDefaultPersistentRepresentations:(id)arg1;
 - (id)stateSavingDefaultPersistentRepresentations;
 - (id)_editorContexts;
-- (BOOL)_openEditorOpenSpecifier:(id)arg1 editorContext:(id)arg2 options:(unsigned long long)arg3;
-- (BOOL)_openEditorHistoryItem:(id)arg1 editorContext:(id)arg2 options:(unsigned long long)arg3;
 @property(readonly) IDENavigableItemArchivableRepresentation *selectedNavigableItemArchivedRepresentation;
 @property(readonly) IDEEditorDocument *navigationTargetedEditorDocument;
 @property(readonly) IDEEditorContext *primaryEditorContext;
@@ -216,6 +219,8 @@
 - (void)_refreshEditorContextsAndPreserveCurrentEditorHistoryStack:(BOOL)arg1;
 - (void)__staticAnalyzer_InstanceVariablePartialInvalidator;
 - (void)primitiveInvalidate;
+- (void)documentReceivedFocus:(id)arg1;
+- (void)documentLostFocus:(id)arg1;
 - (void)_updateDebugAreaAfterDocumentOpened;
 - (void)_updateDebugBarAfterDocumentOpened;
 - (void)_updateJumpBarConfigurations;

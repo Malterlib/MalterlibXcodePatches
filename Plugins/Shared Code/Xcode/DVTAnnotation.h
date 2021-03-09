@@ -22,6 +22,7 @@
 @property(getter=isVisible) BOOL visible; // @synthesize visible=_visible;
 @property double precedence; // @synthesize precedence=_precedence;
 @property(readonly) BOOL hideCarets;
+- (id)annotationDisplayValue;
 - (id)annotationDisplayDescription;
 - (id)annotationDisplayName;
 - (long long)comparePrecedence:(id)arg1;

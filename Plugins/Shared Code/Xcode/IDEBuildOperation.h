@@ -16,7 +16,7 @@
 #import "IDEBuilderCallbacks-Protocol.h"
 #import "IDEExecutingOperationTrackable-Protocol.h"
 
-@class DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationConfiguration, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEProvisioningBuildOperationInfo, IDESchemeActionRecord, IDESchemeActionResult, NSArray, NSData, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@class DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationConfiguration, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEProvisioningBuildOperationInfo, IDESchemeActionRecord, IDESchemeActionResult, NSArray, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 @protocol DVTCancellationBlockCompletion, IDEBuildable;
 
 @interface IDEBuildOperation : DVTOperation <IDEExecutingOperationTrackable, IDEBuilderCallbacks, IDEBuildOperationProviding>
@@ -64,7 +64,6 @@
     IDEBuildStatisticsSection *_buildStatisticsSection;
     IDEProvisioningBuildOperationInfo *_provisioningInfo;
     DVTDynamicLogController *_builderTimingDataLogController;
-    NSData *_buildMetricsData;
 }
 
 + (void)outputBuildStatistics:(id)arg1 toSummary:(id)arg2;
@@ -74,7 +73,6 @@
 + (void)setDefaultBuildStatisticsSectionParent:(id)arg1;
 + (void)initialize;
 // - (void).cxx_destruct;
-@property(copy, nonatomic) NSData *buildMetricsData; // @synthesize buildMetricsData=_buildMetricsData;
 @property(readonly) IDEBuildOperationQueueSet *buildTaskQueueSet; // @synthesize buildTaskQueueSet=_buildTaskQueueSet;
 @property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
 @property unsigned int assertionID; // @synthesize assertionID=_assertionID;

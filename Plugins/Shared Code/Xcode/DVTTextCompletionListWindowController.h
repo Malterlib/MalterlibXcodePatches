@@ -14,7 +14,7 @@
 
 
 @class DVTBindingToken, DVTNotificationToken, DVTTextCompletionSession, DVTTextCompletionWindow, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
-@protocol DVTTextCompletionListDataSource;
+@protocol DVTCancellable, DVTTextCompletionListDataSource;
 
 @interface DVTTextCompletionListWindowController : DVTDealloc2Main_WindowController <NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 {
@@ -33,12 +33,16 @@
     BOOL _previouslyHadQuickHelpContent;
     BOOL _preparingForUse;
     id <DVTTextCompletionListDataSource> _dataSource;
+    BOOL _forceShowingPlaceholder;
+    id <DVTCancellable> _scheduledClearingOfForceShowPlaceholder;
     int _hideReason;
     NSScrollView *_completionsScrollView;
     NSString *_debugStateString;
 }
 
 + (long long)maximumVisibleRows;
++ (BOOL)_signatureInfluencesWidth;
++ (double)explicitCompletionMinimumPlaceholderDuration;
 + (double)windowCornerRadius;
 + (void)relenquishWindowControllerForReuse:(id)arg1;
 + (id)dequeReusableWindowForDataSource:(id)arg1;
@@ -58,7 +62,6 @@
 - (id)longestInitialSignatureItem;
 - (id)longestInitialTableViewItem;
 - (void)_updateCurrentDisplayState;
-- (BOOL)_signatureInfluencesWidth;
 - (id)signatureValueForItem:(id)arg1;
 - (id)signatureAttributedStringValueForCompletionItem:(id)arg1;
 - (id)signatureStringValueForCompletionItem:(id)arg1;

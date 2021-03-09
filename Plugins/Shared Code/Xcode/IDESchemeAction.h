@@ -42,11 +42,14 @@
 + (void)modifyEnvironmentForLogging:(id)arg1 buildParameters:(id)arg2;
 + (id)bundleIdentifierFromBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 + (void)setupMainThreadCheckerInEnvironmentVariables:(id)arg1 dylibPath:(id)arg2;
++ (BOOL)addUBSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 device:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testBundlePath:(id)arg7 error:(id *)arg8;
 + (BOOL)addUBSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
++ (BOOL)addThreadSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 device:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testBundlePath:(id)arg7 error:(id *)arg8;
 + (BOOL)addThreadSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
++ (BOOL)addAddressSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 device:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testBundlePath:(id)arg7 error:(id *)arg8;
 + (BOOL)addAddressSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
-+ (BOOL)_addSanitizer:(unsigned long long)arg1 environmentVariables:(id)arg2 buildParameters:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testingSpecifier:(id)arg7 error:(id *)arg8;
-+ (id)_sanitizerOptions:(id)arg1 debugging:(BOOL)arg2 testingSpecifier:(id)arg3;
++ (BOOL)_addSanitizer:(unsigned long long)arg1 environmentVariables:(id)arg2 buildParameters:(id)arg3 device:(id)arg4 buildable:(id)arg5 debugAppExtensions:(BOOL)arg6 debugging:(BOOL)arg7 testBundlePath:(id)arg8 error:(id *)arg9;
++ (id)_sanitizerOptions:(id)arg1 debugging:(BOOL)arg2 testBundlePath:(id)arg3;
 + (id)keyPathsForValuesAffectingRunnable;
 + (BOOL)shouldAllowCustomPhaseActions;
 + (BOOL)runDestinationSupportsSwiftDevelopmentRuntime:(id)arg1 outError:(id *)arg2;

@@ -13,7 +13,6 @@
 
 @protocol IDEEditorHistoryControllerDelegate
 - (BOOL)historyControllerOpenEmptyEditor:(IDEEditorHistoryController *)arg1;
-- (BOOL)historyController:(IDEEditorHistoryController *)arg1 openItem:(id <IDEEditorHistoryControllerItem>)arg2 updateHistory:(BOOL)arg3;
 - (BOOL)historyController:(IDEEditorHistoryController *)arg1 isItemResolvable:(id <IDEEditorHistoryControllerItem>)arg2;
 - (void)historyController:(IDEEditorHistoryController *)arg1 goToItem:(id <IDEEditorHistoryControllerItem>)arg2;
 - (id <IDEEditorHistoryControllerItem>)currentHistoryItem;

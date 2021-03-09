@@ -18,13 +18,12 @@
 #import "IDEActiveRunContextStoring-Protocol.h"
 #import "IDEMustCloseOnQuitDocument-Protocol.h"
 #import "IDEPreBuildSavingDelegate-Protocol.h"
-#import "IDETestManagerUITestingPermissionSheetDelegate-Protocol.h"
 #import "IDEWorkspaceDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDEUIRecordingManager, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDEUIRecordingManager, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 @protocol DVTCancellable, DVTInvalidation, IDESourceControlWorkspaceDocumentUIHandlerProtocol;
 
-@interface IDEWorkspaceDocument : DVTDealloc2Main_Document <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
+@interface IDEWorkspaceDocument : DVTDealloc2Main_Document <IDEActiveRunContextStoring, IDEWorkspaceDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
     DVTStackBacktrace *_invalidationBacktrace;
     DVTStateRepository *_stateRepository;
@@ -78,7 +77,6 @@
     IDEScriptingSchemeActionResult *_lastScriptingSchemeActionResult;
     IDEFindNavigatorQueryHistoryManager *_findNavigatorQueryHistoryManager;
     IDEOpenQuicklyWorkspaceContentContextProvider *_openQuicklyContentContextProvider;
-    IDEUITestingTCCPermissionWindowController *_TCCPermissionWindowController;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -98,7 +96,6 @@
 + (void)initialize;
 // - (void).cxx_destruct;
 @property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
-@property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
 @property(readonly) IDEOpenQuicklyWorkspaceContentContextProvider *openQuicklyContentContextProvider; // @synthesize openQuicklyContentContextProvider=_openQuicklyContentContextProvider;
 @property(readonly) IDEFindNavigatorQueryHistoryManager *findNavigatorQueryHistoryManager; // @synthesize findNavigatorQueryHistoryManager=_findNavigatorQueryHistoryManager;
 @property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
@@ -110,12 +107,12 @@
 @property(retain) NSMutableDictionary *tabStateContextForTabNameMap; // @synthesize tabStateContextForTabNameMap=_tabStateContextForTabNameMap;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
+- (BOOL)containsPlaygroundDocumentAtURL:(id)arg1;
 - (id)dvt_extraBindings;
 - (id)storedRunDestinationSelectable;
 - (id)storedRunContextName;
 - (id)activeRunDestinationInfo;
 - (id)activeRunContextInfo;
-- (void)displayWorkspaceSheetForUITestingPermissionWithReply:(CDUnknownBlockType)arg1;
 @property(copy) NSArray *orderedWindowControllerNames;
 - (void)_restoreSelectedTabsByIdentifierFromStateSaving:(id)arg1;
 - (id)_selectedWindowControllerNamesForStateSaving;

@@ -16,11 +16,12 @@
 #import "IDEClientTracking-Protocol.h"
 #import "IDEIssueLogDataSource-Protocol.h"
 #import "IDEProvisionableProvider-Protocol.h"
+#import "IDETestableDataSource_IndexProvider-Protocol.h"
 
 @class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDENoticeCollator, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation22IDEBuildNoticeProvider, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
 @protocol IDEActiveRunContextStoring, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEWorkspaceDelegate;
 
-@interface IDEWorkspace : IDEXMLPackageContainer <IDEBuildNoticeWorkspace, IDEClientTracking, IDEIssueLogDataSource, IDEProvisionableProvider>
+@interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, IDEClientTracking, IDEIssueLogDataSource, IDEProvisionableProvider>
 {
     NSString *_untitledName;
     IDEWorkspaceArena *_workspaceArena;
@@ -100,9 +101,9 @@
     IDEActivityLogSection *_sourcePackageResolutionIssueLog;
     IDETextFragmentIndex *_textFragmentIndex;
     IDERefactoring *_refactoring;
+    NSString *_xcbuildSandboxProfile;
     IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
     NSDate *_icloudDriveLastHeldDate;
-    NSString *_nameOverride;
     id <IDEActiveRunContextStoring> _activeRunContextStore;
 }
 
@@ -132,7 +133,6 @@
 // - (void).cxx_destruct;
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
-@property(retain) NSString *nameOverride; // @synthesize nameOverride=_nameOverride;
 @property(copy) NSDate *icloudDriveLastHeldDate; // @synthesize icloudDriveLastHeldDate=_icloudDriveLastHeldDate;
 @property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
 @property(retain, nonatomic) IDEWorkspaceSharedSettings *sharedSettings; // @synthesize sharedSettings=_sharedSettings;
@@ -147,6 +147,7 @@
 @property(readonly) DVTFilePath *wrappedContainerPath; // @synthesize wrappedContainerPath=_wrappedContainerPath;
 @property(readonly, nonatomic) BOOL postLoadingPerformanceMetricsAllowed; // @synthesize postLoadingPerformanceMetricsAllowed=_postLoadingPerformanceMetricsAllowed;
 @property(nonatomic) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
+@property(retain, nonatomic) NSString *xcbuildSandboxProfile; // @synthesize xcbuildSandboxProfile=_xcbuildSandboxProfile;
 @property(nonatomic) BOOL wasLoadedForUIContext; // @synthesize wasLoadedForUIContext=_wasLoadedForUIContext;
 @property(retain, nonatomic) IDEProvisioningManager *provisioningManager; // @synthesize provisioningManager=_provisioningManager;
 @property(retain) IDESourceControlWorkspaceMonitor *sourceControlWorkspaceMonitor; // @synthesize sourceControlWorkspaceMonitor=_sourceControlWorkspaceMonitor;
@@ -197,6 +198,7 @@
 - (float)archiveVersion;
 - (id)displayName;
 @property(readonly) NSString *name;
+- (id)allLocalizations;
 @property(readonly) BOOL supportsSourcePackages;
 @property(readonly) id <IDEBuildSystemService> buildSystemService;
 @property(readonly) id <IDEBuildSystemService> buildSystemServiceProvider;
@@ -292,6 +294,7 @@
 - (id)sdefSupport_activeSchemeForDocument:(id)arg1;
 - (id)sdefSupport_schemesForDocument:(id)arg1;
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
+- (id)collectLinkedTargetIndexableIdsForIndexableIds:(id)arg1;
 @property(retain) NSArray *namedBatchFindScopes;
 - (id)localScopeStore;
 - (id)observeActiveRunDestinationDidChange:(CDUnknownBlockType)arg1;

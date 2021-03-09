@@ -27,8 +27,11 @@
 }
 
 + (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 annotationRepresentedObject:(id)arg3 wantsIndicatorAnimation:(BOOL)arg4 exploreAnnotationRepresentedObject:(id)arg5 error:(id *)arg6;
++ (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 annotationRepresentedObject:(id)arg3 wantsIndicatorAnimation:(BOOL)arg4 exploreAnnotationRepresentedObject:(id)arg5 theError:(id *)arg6;
 + (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
++ (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 theError:(id *)arg3;
 + (id)structureEditorOpenSpecifierForDocumentLocation:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
++ (id)structureEditorOpenSpecifierForDocumentLocation:(id)arg1 inWorkspace:(id)arg2 theError:(id *)arg3;
 + (id)structureEditorOpenSpecifiersForNavigableItems:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
 // - (void).cxx_destruct;
 @property(readonly) NSURL *documentURL; // @synthesize documentURL=_documentURL;
@@ -50,6 +53,7 @@
 - (id)initWithNavigableItem:(id)arg1 error:(id *)arg2;
 - (id)_initWithNavigableItem:(id)arg1 locationToSelect:(id)arg2 documentExtensionIdentifier:(id)arg3 error:(id *)arg4;
 - (id)_initWithNavigableItemArchivableRepresentation:(id)arg1 documentExtensionIdentifier:(id)arg2 locationToSelect:(id)arg3 annotationRepresentedObject:(id)arg4 wantsIndicatorAnimation:(BOOL)arg5 exploreAnnotationRepresentedObject:(id)arg6 error:(id *)arg7;
+- (id)description;
 - (id)init;
 
 @end

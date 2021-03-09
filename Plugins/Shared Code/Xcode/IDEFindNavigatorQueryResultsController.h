@@ -58,7 +58,7 @@
 - (BOOL)shouldItemBeInitiallyExpandedWhileFiltered:(id)arg1;
 - (void)findNavigatorQuery:(id)arg1 isStalledOnFilePaths:(id)arg2;
 - (void)findNavigatorQuery:(id)arg1 didFinishGeneratingLazyChildrenOfResult:(id)arg2;
-- (void)findNavigatorQueryDidComplete:(id)arg1;
+- (void)findNavigatorQueryDidComplete:(id)arg1 totalWork:(struct CDStruct_912cb5d2)arg2 duration:(double)arg3;
 - (id)relaxedRetrySpecification;
 @property(readonly) NSString *retryWithRelaxedSpecificationActionTitle;
 @property(readonly) NSString *placeholderText;

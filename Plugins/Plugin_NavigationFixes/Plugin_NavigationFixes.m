@@ -28,7 +28,7 @@ static IMP original_SourceEditor_SourceEditorView_doCommandBySelector = nil;
 
 static IMP original_didSelectTabViewItem = nil;
 static IMP original_pushSelectionToChooserViews = nil;
-static IMP original_openLocation = nil;
+//static IMP original_openLocation = nil;
 static IMP original_mouseDownInConsole = nil;
 static IMP original_becomeFirstResponder_Console = nil;
 static IMP original_becomeFirstResponder_Search = nil;
@@ -476,8 +476,8 @@ static Plugin_NavigationFixes *singleton = nil;
 	original_pushSelectionToChooserViews = XcodePluginOverrideMethodString(@"IDENavigatorArea", @selector(pushSelectionToChooserViews), (IMP)&pushSelectionToChooserViews);
 	XcodePluginAssertOrPerform(original_pushSelectionToChooserViews, goto failed);
 
-	original_openLocation = XcodePluginOverrideStaticMethodString(@"IDEOpenQuicklyResultOpener", @selector(openLocation:inWorkspaceTabController:targetOriginatingEditor:completionHandler:), (IMP)&openLocation);
-	XcodePluginAssertOrPerform(original_openLocation, goto failed);
+/*	original_openLocation = XcodePluginOverrideStaticMethodString(@"IDEOpenQuicklyResultOpener", @selector(openLocation:inWorkspaceTabController:targetOriginatingEditor:completionHandler:), (IMP)&openLocation);
+	XcodePluginAssertOrPerform(original_openLocation, goto failed);*/
 
 	original_mouseDownInConsole = XcodePluginOverrideMethodString(@"IDEConsoleTextView", @selector(mouseDown:), (IMP)&mouseDownInConsole);
 	XcodePluginAssertOrPerform(original_mouseDownInConsole, goto failed);

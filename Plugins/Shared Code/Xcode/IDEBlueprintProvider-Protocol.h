@@ -27,5 +27,6 @@
 @property(nonatomic, readonly) BOOL supportsSourceFolders;
 @property(nonatomic, readonly) NSArray *sourcePackageReferences;
 @property(nonatomic) int buildSystemType;
+@property(nonatomic, readonly) NSString *uniqueIdentifier;
 @end
 

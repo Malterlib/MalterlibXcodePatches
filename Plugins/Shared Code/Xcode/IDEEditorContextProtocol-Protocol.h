@@ -9,7 +9,7 @@
 //
 
 
-@class IDEEditor, IDENavigableItemCoordinator;
+@class DVTExtension, IDEEditor, IDENavigableItemCoordinator;
 @protocol IDEEditorHistoryControllerItem;
 
 @protocol IDEEditorContextProtocol <NSObject>
@@ -17,7 +17,7 @@
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator;
 - (BOOL)_openEmptyEditor;
 - (void)_giveEditorFocusIfNeeded;
-- (BOOL)_openEditorHistoryItem:(id <IDEEditorHistoryControllerItem>)arg1 updateHistory:(BOOL)arg2;
+- (BOOL)_openEditorHistoryItem:(id <IDEEditorHistoryControllerItem>)arg1 documentExtension:(DVTExtension *)arg2 options:(unsigned long long)arg3;
 - (id <IDEEditorHistoryControllerItem>)currentHistoryItem;
 @end
 

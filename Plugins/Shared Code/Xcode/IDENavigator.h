@@ -63,7 +63,6 @@
 - (void)_createEditorSelectedItemObserverIfNecessary;
 - (void)showSelectionFromActiveEditor:(id)arg1 expandAncestors:(BOOL)arg2 scrollToVisible:(BOOL)arg3;
 - (void)showCachedSelectionFromActiveEditor;
-@property(readonly) BOOL canShowSelectionFromActiveEditor;
 @property(readonly) unsigned long long strongSelectionStyle;
 - (id)navigableItemsForArchivedNavigableItems:(id)arg1;
 - (void)revealSelection:(id)arg1;

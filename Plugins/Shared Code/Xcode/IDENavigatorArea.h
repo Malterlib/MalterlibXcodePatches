@@ -39,7 +39,6 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentNavigator;
 + (id)keyPathsForValuesAffectingWorkspace;
-+ (void)initialize;
 // - (void).cxx_destruct;
 @property(retain) IDENavigatorAreaDFRController *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
 @property(retain) IDENavigatorAreaContentView *contentView; // @synthesize contentView=_contentView;
@@ -52,7 +51,6 @@
 - (void)navigatorChooserView:(id)arg1 selected:(id)arg2;
 - (void)chooserView:(id)arg1 userDidSelectChoice:(id)arg2;
 - (BOOL)delegateFirstResponder;
-@property(readonly) BOOL isCurrentNavigatorProjectNavigator;
 @property(readonly) NSString *currentNavigatorGroupIdentifier;
 @property(readonly) NSString *currentNavigatorIdentifier;
 @property(readonly) IDENavigator *currentNavigator;

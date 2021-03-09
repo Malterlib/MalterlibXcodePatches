@@ -25,6 +25,7 @@
     BOOL _modified;
     BOOL _shouldBeEnabled;
     BOOL _continueAfterRunningActions;
+    BOOL _resolved;
     BOOL _textInFilterableTextFieldModified;
     BOOL _shouldBeModifiedAfterCreation;
     BOOL _debuggerIdentifierChanged;
@@ -57,6 +58,7 @@
 @property int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
 @property(nonatomic) BOOL shouldBeModifiedAfterCreation; // @synthesize shouldBeModifiedAfterCreation=_shouldBeModifiedAfterCreation;
 @property BOOL textInFilterableTextFieldModified; // @synthesize textInFilterableTextFieldModified=_textInFilterableTextFieldModified;
+@property(nonatomic) BOOL resolved; // @synthesize resolved=_resolved;
 @property(nonatomic) BOOL continueAfterRunningActions; // @synthesize continueAfterRunningActions=_continueAfterRunningActions;
 @property unsigned long long hitCount; // @synthesize hitCount=_hitCount;
 @property(nonatomic) unsigned long long ignoreCount; // @synthesize ignoreCount=_ignoreCount;
@@ -84,8 +86,11 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (void)_handleActionsChanged:(id)arg1;
+@property(readonly, nonatomic) NSString *toolTip;
 @property(readonly, nonatomic) NSString *accessibilityDescription;
 - (void)resetActionExpressionResults;
+- (void)_determineResolvability:(double)arg1;
+- (void)checkResolvability;
 - (void)setShouldBeEnabled:(BOOL)arg1 withKVO:(BOOL)arg2;
 - (void)toggleShouldBeEnabled;
 @property(readonly, nonatomic) NSString *modifiedDescription;

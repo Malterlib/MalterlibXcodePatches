@@ -23,17 +23,22 @@
     NSString *_lastKnownDebuggerPrompt;
     BOOL _ignorePromptOnce;
     NSObject<OS_dispatch_queue> *_executeLLDBCommandQueue;
+    BOOL _hasFinishedRunning;
     DVTDispatchLock *_lifeCycleLock;
     BOOL _useOnlyStandardLLDBFramework;
     BOOL _hasQueriedLLDBRPCUserDefaults;
     BOOL _terminateCalled;
+    BOOL _forceKillingLLDBRPCServer;
     int _lldbRPCServerPID;
     DBGLLDBSession *_debugSession;
+    NSString *_RPCServerCrashedOrExitedMessage;
 }
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(retain) NSString *RPCServerCrashedOrExitedMessage; // @synthesize RPCServerCrashedOrExitedMessage=_RPCServerCrashedOrExitedMessage;
+@property BOOL forceKillingLLDBRPCServer; // @synthesize forceKillingLLDBRPCServer=_forceKillingLLDBRPCServer;
 @property(retain) DBGLLDBSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(readonly) int lldbRPCServerPID; // @synthesize lldbRPCServerPID=_lldbRPCServerPID;
 @property(readonly) BOOL terminateCalled; // @synthesize terminateCalled=_terminateCalled;
@@ -41,20 +46,23 @@
 - (void)primitiveInvalidate;
 - (void)terminate;
 - (void)start;
-- (void)_messageTrace:(id)arg1;
+- (void)_warnSlowLaunch;
+- (void)_warnSlowLaunchReadFromMemory;
+- (void)_warnSlowLaunchDSYMForUUIDEnabled;
 - (void)_setupSearchPaths:(id)arg1;
 - (void)_addExtraModules:(id)arg1;
 - (id)_consumeEventAfterConnectToDebugServer:(id)arg1 lldbTarget:(id)arg2 launchParameters:(id)arg3;
 - (void)_setMiscHandleCommands:(id)arg1;
 - (void)_setPlatformForStart:(id)arg1;
 - (id)devicePathSubstitutionPairsString;
+- (id)_remoteInstallPath:(id)arg1;
 - (id)_tryWithAnotherArchitectureOnBinaryPath:(id)arg1;
-- (void)_reportDiagnosticStatistics:(id)arg1;
 - (id)_doRegularDebugWithTarget:(id)arg1 usingDebugServer:(BOOL)arg2 errTargetString:(id)arg3;
 - (const char *)UTF8StringFromPotentialString:(id)arg1;
 - (void)_createTargetConsoleAdaptorForPTY:(id)arg1;
 - (void)_reportTarget:(id)arg1 failedToLaunchError:(id)arg2;
 - (id)_doAttachWithTarget:(id)arg1 childPID:(unsigned long long *)arg2;
+- (id)_errorStringFromLLDBError:(id)arg1;
 - (void)_logSetUID:(unsigned int)arg1;
 - (id)_modifyMessageForDisplay:(id)arg1;
 - (void)_showLaunchErrorForDescription:(id)arg1 message:(id)arg2 rawErrorMessage:(id)arg3;
@@ -68,6 +76,7 @@
 - (void)setFinishedRunning;
 - (void)_logToConsoleForUserActions:(id)arg1;
 - (void)_logDebugStringFromLLDB:(const char *)arg1;
+- (void)forceKillLLDBRPCServer;
 - (BOOL)useOnyStandardLLDBFramework;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 

@@ -21,6 +21,7 @@
     DVTObservingToken *_launchSessionObservingToken;
     NSDictionary *_cachedAppExtensionBuiltPaths;
     id <IDEAnalysisToolService> _analysisToolService;
+    BOOL _hasArchivedInternalIOSLaunchStyle;
     BOOL _allowDeviceSensorReplayData;
     BOOL _debugXPCServices;
     BOOL _enableMallocStackLoggingLiteForXPCServices;
@@ -39,11 +40,11 @@
     BOOL _memoryGraphOnResourceException;
     BOOL _placeholderRenderingEnabled;
     BOOL _GPUProfilerEnabled;
+    int _internalIOSLaunchStyle;
     int _launchStyle;
     int _enableGPUFrameCaptureMode;
     int _enableGPUValidationMode;
     int _enableGPUShaderValidationMode;
-    int _internalIOSLaunchStyle;
     NSString *_resolvedCustomWorkingDirectory;
     NSMutableOrderedSet *_debugServiceExtensionContents;
     _TtC13IDEFoundation25IDEDeviceAppDataReference *_deviceAppDataReference;
@@ -76,7 +77,6 @@
 @property BOOL queueDebuggingEnabled; // @synthesize queueDebuggingEnabled=_queueDebuggingEnabled;
 @property BOOL viewDebuggingEnabled; // @synthesize viewDebuggingEnabled=_viewDebuggingEnabled;
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
-@property int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
 @property(retain) NSDictionary *additionalSchemeSettings; // @synthesize additionalSchemeSettings=_additionalSchemeSettings;
 @property(retain) NSString *launchdServiceSpecifier; // @synthesize launchdServiceSpecifier=_launchdServiceSpecifier;
 @property int enableGPUShaderValidationMode; // @synthesize enableGPUShaderValidationMode=_enableGPUShaderValidationMode;
@@ -105,6 +105,7 @@
 @property(retain) _TtC13IDEFoundation24IDESchemeOptionReference *deviceSensorReplayFileReference; // @synthesize deviceSensorReplayFileReference=_deviceSensorReplayFileReference;
 @property BOOL allowDeviceSensorReplayData; // @synthesize allowDeviceSensorReplayData=_allowDeviceSensorReplayData;
 @property(retain) _TtC13IDEFoundation25IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
+@property(nonatomic) int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
 - (void)primitiveInvalidate;
 - (void)addDeviceSensorReplayFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addStoreKitConfigurationFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -145,6 +146,7 @@
 - (void)setDebugDocumentVersioningFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setIgnoresPersistentStateOnLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
+- (BOOL)_shouldArchiveIOSInternalLauchStyle;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 @property(copy) NSMutableOrderedSet *debugServiceExtensionContents; // @synthesize debugServiceExtensionContents=_debugServiceExtensionContents;
 - (void)setAskForAppToLaunch:(BOOL)arg1;
@@ -157,7 +159,6 @@
 - (void)_setLaunchOption:(unsigned long long)arg1 enabled:(BOOL)arg2;
 - (BOOL)_launchOptionIsSet:(unsigned long long)arg1;
 @property(readonly) BOOL gpuDebuggerAvailable;
-- (void)_prepareForMessageTracer:(id)arg1;
 - (id)runOperationForSchemeOperationParameters:(id)arg1 buildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
 - (BOOL)_checkRunDestination:(id *)arg1 buildParameters:(id)arg2 displayName:(id)arg3 schemeActionRecord:(id)arg4 outError:(id *)arg5;
 - (id)_checkRunnablePathFromBuildParameters:(id)arg1 schemeActionRecord:(id)arg2 outError:(id *)arg3;
@@ -173,6 +174,7 @@
 - (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
 - (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
 - (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
+- (int)internalIOSLaunchStyleForBuildables:(id)arg1;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;

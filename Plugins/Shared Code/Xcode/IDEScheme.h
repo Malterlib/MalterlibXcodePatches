@@ -60,6 +60,7 @@
     NSError *_loadError;
     DVTObservingToken *_workspaceReferenceContainersObservingToken;
     IDESchemeOrderedWorkspaceNotificationManager *_orderedWorkspaceNotificationManager;
+    NSNumber *_schemeRunnableRequiresPairedProxyDeviceOverride;
 }
 
 + (id)_buildParametersForPurpose:(long long)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 collectBuildTimeStatistics:(BOOL)arg8 collectTimelineMetrics:(BOOL)arg9;
@@ -67,7 +68,7 @@
 + (BOOL)automaticallyNotifiesObserversOfIsShown;
 + (id)keyPathsForValuesAffectingDisambiguatedName;
 + (BOOL)automaticallyNotifiesObserversOfCustomDataStoreContainer;
-+ (id)mainThreadCheckerPathForRunDestination:(id)arg1;
++ (id)mainThreadCheckerPathForDevice:(id)arg1;
 + (id)keyPathsForValuesAffectingIntegratable;
 + (id)keyPathsForValuesAffectingAnalyzable;
 + (id)keyPathsForValuesAffectingPreviewable;
@@ -80,6 +81,7 @@
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(copy) NSNumber *schemeRunnableRequiresPairedProxyDeviceOverride; // @synthesize schemeRunnableRequiresPairedProxyDeviceOverride=_schemeRunnableRequiresPairedProxyDeviceOverride;
 @property(retain) IDESchemeOrderedWorkspaceNotificationManager *orderedWorkspaceNotificationManager; // @synthesize orderedWorkspaceNotificationManager=_orderedWorkspaceNotificationManager;
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;
 @property(nonatomic, getter=isRunDestinationInvalidationSuspended) BOOL runDestinationInvalidationSuspended; // @synthesize runDestinationInvalidationSuspended=_runDestinationInvalidationSuspended;

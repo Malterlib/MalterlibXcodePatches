@@ -18,6 +18,7 @@
 - (void)breakpointTextFilterablePropertyChanged:(IDEBreakpoint *)arg1;
 - (void)breakpointNameChanged:(IDEBreakpoint *)arg1;
 - (void)breakpointModificationChanged:(IDEBreakpoint *)arg1;
+- (void)breakpointResolutionChanged:(IDEBreakpoint *)arg1;
 - (BOOL)breakpointShouldBeActivated:(IDEBreakpoint *)arg1;
 - (void)breakpointEnablementChanged:(IDEBreakpoint *)arg1;
 @end

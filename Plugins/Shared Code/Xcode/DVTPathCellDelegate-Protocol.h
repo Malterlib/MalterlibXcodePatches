@@ -10,7 +10,7 @@
 
 
 @class DVTPathCell, DVTPathComponentCell, NSArray, NSMenu, NSMenuItem, NSString;
-@protocol DVTPathCellItemDataSource, DVTPathCellItem;
+@protocol DVTPathCellItemDataSource, NSObject, DVTPathCellItem;
 
 @protocol DVTPathCellDelegate <NSPathCellDelegate>
 

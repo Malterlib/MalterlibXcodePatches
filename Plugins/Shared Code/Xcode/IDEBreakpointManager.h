@@ -41,7 +41,6 @@
     IDEWorkspace *_workspace;
 }
 
-+ (BOOL)_isBreakpointAtLocation:(id)arg1 location:(id)arg2;
 + (void)initialize;
 // - (void).cxx_destruct;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
@@ -57,6 +56,7 @@
 - (void)breakpointTextFilterablePropertyChanged:(id)arg1;
 - (void)breakpointNameChanged:(id)arg1;
 - (void)breakpointModificationChanged:(id)arg1;
+- (void)breakpointResolutionChanged:(id)arg1;
 - (void)breakpointEnablementChanged:(id)arg1;
 - (void)_notifyObserversOfActivationStateChange;
 - (void)removeBreakpointObserver:(id)arg1;
@@ -68,6 +68,9 @@
 - (BOOL)_canSetBreakpointAtURL:(id)arg1;
 - (BOOL)_anyFileReferenceForPath:(id)arg1 matchesDataTypeIdentifier:(id)arg2;
 - (void)setBreakpointShared:(id)arg1 shared:(BOOL)arg2;
+- (BOOL)_isBreakpointAtLocation:(id)arg1 location:(id)arg2 columnOnly:(BOOL)arg3;
+- (id)columnBreakpointsAtDocumentLocation:(id)arg1;
+- (id)lineBreakpointAtDocumentLocation:(id)arg1;
 - (id)fileBreakpointAtDocumentLocation:(id)arg1;
 - (void)registerDoingWorkOnBreakpoint:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)removeWatchpoint:(id)arg1;

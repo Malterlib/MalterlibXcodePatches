@@ -36,7 +36,7 @@
 - (BOOL)hasActiveFilter;
 - (void)textView:(id)arg1 doubleClickedOnCell:(id)arg2 inRect:(struct CGRect)arg3 atIndex:(unsigned long long)arg4;
 - (void)textView:(id)arg1 clickedOnCell:(id)arg2 inRect:(struct CGRect)arg3 atIndex:(unsigned long long)arg4;
-- (BOOL)removeFindPattern:(id)arg1;
+- (void)removeFindPattern:(id)arg1;
 - (id)_rangesOfFindPattern:(id)arg1 attachments:(id *)arg2;
 - (id)_rangesOfFindPattern:(id)arg1;
 - (void)setFindPatternPropertyList:(id)arg1;
@@ -53,6 +53,7 @@
 - (void)_insertFindPattern:(id)arg1;
 - (void)insertNewFindPattern:(id)arg1;
 - (void)_insertFindPatternAttachment:(id)arg1;
+- (id)fieldEditorTargettingSelf;
 - (id)_findPatternAttachmentForFindPattern:(id)arg1;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (BOOL)_eventIsInsertPatternKeyEquivalent:(id)arg1;

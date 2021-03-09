@@ -17,6 +17,7 @@
 @optional
 @property(readonly) struct NSEdgeInsets scopeBarsTopInsets;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
+@property(readonly) BOOL scopeBarsAdjustBaseView;
 - (void)scopeBarsManager:(DVTScopeBarsManager *)arg1 didRemoveScopeBar:(DVTScopeBarController *)arg2;
 - (void)scopeBarsManager:(DVTScopeBarsManager *)arg1 didInsertScopeBar:(DVTScopeBarController *)arg2;
 @end

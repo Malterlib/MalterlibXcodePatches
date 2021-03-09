@@ -10,7 +10,7 @@
 
 
 @protocol IDEOpenRequest <NSObject>
-@property(readonly) int requestState;
+@property(readonly) unsigned long long requestState;
 - (void)cancel;
 @end
 

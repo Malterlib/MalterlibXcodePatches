@@ -14,8 +14,8 @@
 #import "DVTLineRangeCharacterRangeConverter-Protocol.h"
 #import "DVTSourceBufferProvider-Protocol.h"
 #import "DVTSourceLanguageServiceDelegate-Protocol.h"
-#import "DVTTextDocumentLocationEncodingConverter-Protocol.h"
 #import "NSConcreteTextStorage.h"
+#import "DVTTextDocumentLocationEncodingConverter-Protocol.h"
 
 @class DVTFontAndColorTheme, DVTObservingToken, DVTSourceCodeLanguage, DVTSourceLandmarkItem, DVTSourceLanguageService, DVTSourceModel, NSDictionary, NSString, NSTimer, _LazyInvalidationHelper;
 @protocol DVTSourceLanguageSourceModelService, DVTSourceLanguageSyntaxTypeService, DVTTextStorageDelegate;

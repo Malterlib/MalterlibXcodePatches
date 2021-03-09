@@ -21,7 +21,7 @@
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 #import "_IDEEditorModeActions-Protocol.h"
 
-@class DVTMutableOrderedSet, DVTObservingToken, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDEInspectorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDesignAreaSplitViewController, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSMapTable, NSMutableArray, NSSplitViewItem, NSString, _TtC6IDEKit29IDEFindResultExplorableSource;
+@class DVTMutableOrderedSet, DVTObservingToken, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDEInspectorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDesignAreaSplitViewController, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSArray, NSMapTable, NSMutableArray, NSSplitViewItem, NSString, _TtC6IDEKit29IDEFindResultExplorableSource;
 @protocol DVTInvalidation;
 
 @interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, _IDEEditorModeActions, DVTStatefulObject, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate, IDEAttachToProcessErrorHandler>
@@ -48,8 +48,8 @@
     IDESwiftMigrationAssistantContext *_swiftMigrationAssistantContext;
     id <DVTInvalidation> _libraryInstallationToken;
     BOOL _isOpeningSimpleFileEditorOpenSpecifier;
-    BOOL _userWantsInspectorAreaVisible;
-    BOOL _userWantsNavigatorVisible;
+    BOOL _isNavigatorVisible;
+    BOOL _isInspectorAreaVisible;
     BOOL _completedInitialStateRestore;
     BOOL _tabLoadingCompleted;
     IDEWorkspaceDocument *_workspaceDocument;
@@ -79,9 +79,9 @@
 }
 
 + (void)initialize;
++ (id)keyPathsForValuesAffectingIsInspectorAreaVisible;
++ (id)keyPathsForValuesAffectingIsNavigatorVisible;
 + (id)keyPathsForValuesAffectingWindowController;
-+ (id)keyPathsForValuesAffectingShowNavigator;
-+ (id)keyPathsForValuesAffectingShowInspectorArea;
 + (id)keyPathsForValuesAffectingLibraryAnchoringEditor;
 + (id)keyPathsForValuesAffectingWorkspace;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
@@ -103,6 +103,8 @@
 @property(retain) NSSplitViewItem *inspectorAreaSplitViewItem; // @synthesize inspectorAreaSplitViewItem=_inspectorAreaSplitViewItem;
 @property(retain) NSSplitViewItem *editorAreaSplitViewItem; // @synthesize editorAreaSplitViewItem=_editorAreaSplitViewItem;
 @property(retain) NSSplitViewItem *navigatorAreaSplitViewItem; // @synthesize navigatorAreaSplitViewItem=_navigatorAreaSplitViewItem;
+@property(nonatomic) BOOL isInspectorAreaVisible; // @synthesize isInspectorAreaVisible=_isInspectorAreaVisible;
+@property(nonatomic) BOOL isNavigatorVisible; // @synthesize isNavigatorVisible=_isNavigatorVisible;
 @property(retain) DVTTextDocumentLocation *issueInstructionPointerLocationForDisassembly; // @synthesize issueInstructionPointerLocationForDisassembly=_issueInstructionPointerLocationForDisassembly;
 @property(retain) DVTTextDocumentLocation *issueInstructionPointerLocation; // @synthesize issueInstructionPointerLocation=_issueInstructionPointerLocation;
 @property(retain, nonatomic) _TtC6IDEKit29IDEFindResultExplorableSource *findResultExplorableSource; // @synthesize findResultExplorableSource=_findResultExplorableSource;
@@ -113,8 +115,6 @@
 @property(retain) IDEWorkspaceDesignAreaSplitViewController *designAreaSplitViewController; // @synthesize designAreaSplitViewController=_designAreaSplitViewController;
 @property(retain, nonatomic) IDELaunchSession *currentLaunchSession; // @synthesize currentLaunchSession=_currentLaunchSession;
 @property(copy) NSString *userDefinedTabLabel; // @synthesize userDefinedTabLabel=_userDefinedTabLabel;
-@property(nonatomic) BOOL userWantsNavigatorVisible; // @synthesize userWantsNavigatorVisible=_userWantsNavigatorVisible;
-@property(nonatomic) BOOL userWantsInspectorAreaVisible; // @synthesize userWantsInspectorAreaVisible=_userWantsInspectorAreaVisible;
 @property(retain) IDEWorkspaceDocument *workspaceDocument; // @synthesize workspaceDocument=_workspaceDocument;
 - (void)discardEditing;
 - (BOOL)commitEditingForAction:(int)arg1 errors:(id)arg2;
@@ -194,11 +194,13 @@
 - (void)analyzeFileAtPath:(id)arg1;
 - (void)generateAssemblyCodeForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)generatePreprocessedFileForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
+- (void)cleanTestResults:(id)arg1;
 - (void)cleanBuildFolder:(id)arg1;
 - (void)reallyCleanBuildFolderWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)reallyCleanBuildFolder;
 - (void)_cleanForRunActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)cleanActiveRunContext:(id)arg1;
+- (void)revealBuildProducts:(id)arg1;
 - (void)buildAndRunToGenerateOptimizationProfileActiveRunContext:(id)arg1;
 - (void)buildForInstallActiveRunContext:(id)arg1;
 - (void)buildAndArchiveActiveRunContext:(id)arg1;
@@ -213,7 +215,7 @@
 - (void)editAndProfileActiveScheme:(id)arg1;
 - (void)profileActiveSchemeWithoutBuilding:(id)arg1;
 - (void)profileActiveScheme:(id)arg1;
-- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 contextString:(id)arg2;
+- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 testRerunPolicy:(id)arg2 contextString:(id)arg3;
 - (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)testActiveRunContextWithContextString:(id)arg1;
 - (void)buildForTestActiveRunContext:(id)arg1;
@@ -232,6 +234,9 @@
 - (void)_alertNonExistentWorkingDirectoryBeforeRunForContext:(id)arg1 usingBlock:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)_askShouldBuildBeforeRunProfileForContext:(id)arg1 title:(id)arg2 defaultButton:(id)arg3 usingBlock:(CDUnknownBlockType)arg4;
 - (void)_runActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)localizationImport:(id)arg1;
+- (void)localizationExport:(id)arg1;
+- (void)performLocalizationAction:(id)arg1;
 - (void)runActiveRunContext:(id)arg1;
 - (void)_runScheme:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
 - (BOOL)_needToSwitchSchemeActionToLLDB:(id)arg1;
@@ -241,9 +246,9 @@
 - (BOOL)_validToolchainForSchemeAction:(id)arg1 schemeCommand:(id)arg2;
 - (id)_runtimeLLDBFilePath;
 - (void)_debugSessionCoalescedStateChanged:(id)arg1 forDebugSession:(id)arg2;
-- (BOOL)isActiveWorkspaceTabController;
+@property(readonly) BOOL isActiveWorkspaceTabController;
 - (id)debuggingAdditionUIControllersForLaunchSession:(id)arg1;
-- (id)currentDebuggingAdditionUIControllers;
+@property(readonly) NSArray *currentDebuggingAdditionUIControllers;
 - (id)debugSessionController;
 - (BOOL)_contentSizeCanBeZeroSize;
 - (void)_performContextTask:(long long)arg1 command:(id)arg2 commandName:(id)arg3 buildCommand:(long long)arg4 runDestination:(id)arg5 filePath:(id)arg6 invocationRecord:(id)arg7 useLegacyCompletionBehavior:(BOOL)arg8 completionBlock:(CDUnknownBlockType)arg9;
@@ -265,14 +270,16 @@
 - (BOOL)_cleanBuildFolderWithError:(id *)arg1;
 - (void)observeBuildOperationForRestoringState:(id)arg1;
 - (void)switchNavigatorOnBuild;
-- (void)hideInspectorArea:(id)arg1;
-- (void)showInspectorArea:(id)arg1;
-- (BOOL)isInspectorAreaVisible;
-- (void)toggleInspectorAreaVisibility:(id)arg1;
-- (void)hideNavigator:(id)arg1;
-- (BOOL)isNavigatorVisible;
-- (void)toggleNavigatorsVisibility:(id)arg1;
-- (void)changeToNavigatorWithIdentifier:(id)arg1 sender:(id)arg2;
+- (void)hideInspectorAreaAnimated:(BOOL)arg1;
+- (void)showInspectorAreaAnimated:(BOOL)arg1;
+- (void)toggleInspectorArea:(id)arg1;
+- (void)_setInspectorAreaVisible:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)hideNavigatorAnimated:(BOOL)arg1;
+- (void)showNavigatorAnimated:(BOOL)arg1;
+- (void)toggleNavigator:(id)arg1;
+- (void)_setNavigatorVisible:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)_setVisible:(BOOL)arg1 ofSplitViewItem:(id)arg2 animated:(BOOL)arg3;
+- (void)setShowNavigator:(BOOL)arg1;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)changeToBreakpointsNavigator:(id)arg1;
 - (void)changeToDebuggerNavigator:(id)arg1;
@@ -288,11 +295,12 @@
 - (void)revealInBreakpointNavigator:(id)arg1 showEditor:(BOOL)arg2;
 - (void)revealSelectionInProjectNavigator:(id)arg1;
 - (void)changeToStructureNavigator:(id)arg1;
-- (void)_splitViewDidToggleClosed;
+- (void)chooseNewFirstResponderIfNecessary;
 - (void)showInspectorWithChoiceFromSender:(id)arg1;
 - (void)showInspectorCategoryWithExtensionIdentifier:(id)arg1;
 - (void)showInspectorWithChoice:(id)arg1;
 - (void)filterInNavigator:(id)arg1;
+- (void)_toggleIndexBuildLog:(id)arg1;
 - (void)_toggleShowCodeReviewForEditor:(id)arg1;
 - (void)_setSubEditorPositionToBelow:(id)arg1;
 - (void)_setSubEditorPositionToOnRight:(id)arg1;
@@ -326,7 +334,7 @@
 @property(readonly) IDEWorkspaceWindowController *windowController;
 - (struct CGSize)minimumSizeForView:(id)arg1;
 - (void)updateMinimumWindowSize:(BOOL)arg1;
-- (struct CGSize)minimumSizeForDesignArea;
+@property(readonly) struct CGSize minimumSizeForDesignArea;
 - (struct CGSize)minimumSizeForDesignAreaIfNavigatorVisible:(BOOL)arg1 editorVisisble:(BOOL)arg2 inspectorAreaVisible:(BOOL)arg3;
 - (void)_removeCursorRectInterceptor:(id)arg1;
 - (void)_addCursorRectInterceptor:(id)arg1;
@@ -336,9 +344,7 @@
 - (BOOL)_interceptSetCursorForMouseLocation:(struct CGPoint)arg1 inWindow:(id)arg2;
 - (void)_openSimpleFileEditorOpenSpecifier:(id)arg1 documentLocationToShowInEditor:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_pushDefaultPrimaryEditorFrameSize;
-@property BOOL showNavigator;
-@property BOOL showInspectorArea;
-- (id)libraryAnchoringEditor;
+@property(readonly) IDEEditor *libraryAnchoringEditor;
 - (id)workspace;
 - (void)_removePendingDebuggingAdditionUIControllerObserversForLaunchSession:(id)arg1;
 - (void)_notifyAndRemoveObserversForCreatedUIController:(id)arg1 inLaunchSession:(id)arg2;
@@ -363,7 +369,6 @@
 - (void)_performExtraViewDidInstallWork;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
-- (BOOL)_isAnimatingInspectorArea;
 - (void)_updateTabLabel;
 - (BOOL)setUserDefinedTabLabel:(id)arg1 error:(id *)arg2;
 - (void)showStandardArchitecturesAlertForScheme:(id)arg1 schemeTask:(long long)arg2 schemeCommand:(id)arg3 runDestination:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;

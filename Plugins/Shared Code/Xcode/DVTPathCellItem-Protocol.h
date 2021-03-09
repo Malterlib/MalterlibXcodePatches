@@ -25,9 +25,9 @@
 @property(nonatomic, readonly) NSArray *childItems;
 @property(nonatomic, readonly) id <DVTPathCellItem> parentItem;
 @property(nonatomic, readonly) id representedObject;
-@property(nonatomic, readonly) NSString *toolTip;
-@property(nonatomic, readonly) NSImage *image;
-@property(nonatomic, readonly) NSString *name;
+@property(nonatomic, readonly) NSString *pathComponentToolTip;
+@property(nonatomic, readonly) NSImage *pathComponentImage;
+@property(nonatomic, readonly) NSString *pathComponentName;
 
 @optional
 @property(nonatomic, readonly) BOOL mergeDecendants;

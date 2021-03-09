@@ -109,6 +109,7 @@
 - (unsigned long long)numberOfAnalyzerResultsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfNoticesInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfRuntimeIssuesInDocumentAtURL:(id)arg1;
+- (unsigned long long)numberOfRemarksInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfWarningsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfErrorsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfTestFailuresInDocumentAtURL:(id)arg1;

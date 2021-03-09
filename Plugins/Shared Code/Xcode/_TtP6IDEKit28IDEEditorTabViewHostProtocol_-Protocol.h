@@ -14,7 +14,7 @@
 
 @protocol _TtP6IDEKit28IDEEditorTabViewHostProtocol_ <DVTInvalidation>
 - (void)navigateAwayFromCurrentDocumentWithURL:(NSURL *)arg1 removeHistoryItems:(BOOL)arg2;
-- (DVTOneShotBlock *)updateIconForDocumentURL:(NSURL *)arg1 historyItem:(IDEEditorHistoryItem *)arg2 updateImageBlock:(void (^)(NSImage *, BOOL))arg3;
+- (DVTOneShotBlock *)observeIconForDocumentURL:(NSURL *)arg1 historyItem:(IDEEditorHistoryItem *)arg2 updateImageBlock:(void (^)(NSImage *, BOOL))arg3;
 - (NSImage *)iconForDocumentURL:(NSURL *)arg1;
 - (void)closeEditorContext:(IDEEditorContext *)arg1 client:(unsigned long long)arg2;
 - (BOOL)canCloseEditorContext:(IDEEditorContext *)arg1;

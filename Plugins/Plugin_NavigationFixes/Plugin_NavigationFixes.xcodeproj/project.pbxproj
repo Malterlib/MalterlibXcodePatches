@@ -19,6 +19,7 @@
 		0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382BA6C199516B500E48ED4 /* Carbon.framework */; };
 		03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */; };
 		0398642A1F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */; };
+		03C6C65E25F7CCFE00318197 /* Xcode in Resources */ = {isa = PBXBuildFile; fileRef = 03C6C65D25F7CCFE00318197 /* Xcode */; };
 		03D3949B1F8A40A1007B9283 /* Plugin_NavigationFixes_Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */; };
 		03DAA8851F7F0AB900617869 /* XcodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAA8841F7F0AB900617869 /* XcodePlugin.swift */; };
 		03FDB0CE1F7FFCC000B6CD73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */; };
@@ -47,6 +48,7 @@
 		03A1896E1992C68500F87332 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
 		03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_PasteNoFormat.h; sourceTree = "<group>"; };
 		03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_Xcode.swift; sourceTree = "<group>"; };
+		03C6C65D25F7CCFE00318197 /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = "../Shared Code/Xcode"; sourceTree = "<group>"; };
 		03DAA8841F7F0AB900617869 /* XcodePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XcodePlugin.swift; path = "../Shared Code/XcodePlugin.swift"; sourceTree = "<group>"; };
 		03DAA8861F7F0D9000617869 /* Plugin_NavigationFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes.h; sourceTree = "<group>"; };
 		03E69FF11F7A6AA200D0A690 /* Plugin_NavigationFixes_ConsoleGoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_ConsoleGoto.h; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		435E246513A8E4510052479A = {
 			isa = PBXGroup;
 			children = (
+				03C6C65D25F7CCFE00318197 /* Xcode */,
 				435E248913A8E5B70052479A /* Sources */,
 				0306EE591F81848B00850443 /* XcodePlugin.mm */,
 				03DAA8841F7F0AB900617869 /* XcodePlugin.swift */,
@@ -197,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C6C65E25F7CCFE00318197 /* Xcode in Resources */,
 				437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +298,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 12.4;
+				XCODE_DOTTED_VERSION = 12.5;
 			};
 			name = Debug;
 		};
@@ -351,7 +355,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 12.4;
+				XCODE_DOTTED_VERSION = 12.5;
 			};
 			name = Release;
 		};

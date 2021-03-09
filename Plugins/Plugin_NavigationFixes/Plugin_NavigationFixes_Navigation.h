@@ -1129,7 +1129,7 @@ static void updateLastValidEditorTab(NSWindow* _pWindow)
 typedef void (^FCompletionHandler)(void);
 
 // + (void)openLocation:(id)arg1 inWorkspaceTabController:(id)arg2 targetOriginatingEditor:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
-static void openLocation(IDEOpenQuicklyResultOpener *self_, SEL _cmd, id _pLocation, IDEWorkspaceTabController *_pTabController, BOOL _bTargetOriginatingEditor, FCompletionHandler _CompletionHandler)
+/*static void openLocation(IDEOpenQuicklyResultOpener *self_, SEL _cmd, id _pLocation, IDEWorkspaceTabController *_pTabController, BOOL _bTargetOriginatingEditor, FCompletionHandler _CompletionHandler)
 {
 	return ((void (*)(id, SEL, id, id, BOOL, FCompletionHandler))original_openLocation)
 		(
@@ -1146,7 +1146,7 @@ static void openLocation(IDEOpenQuicklyResultOpener *self_, SEL _cmd, id _pLocat
 			}
 		)
 	;
-}
+}*/
 
 static void pushSelectionToChooserViews(IDENavigatorArea *self_, SEL _cmd)
 {

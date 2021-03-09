@@ -92,6 +92,7 @@
 - (id)filterDefinitionIdentifier;
 - (void)_updateFilter;
 - (BOOL)_isFiltered;
+- (id)outlineView:(id)arg1 tintConfigurationForItem:(id)arg2;
 - (double)outlineView:(id)arg1 estimatedHeightOfRowByItem:(id)arg2;
 - (void)_configureStandardTableViewCell:(id)arg1;
 - (id)_tableCellViewForCompressedStackFrameItem:(id)arg1;

@@ -48,7 +48,6 @@
 #import "../Shared Code/Xcode/DVTSourceModel.h"
 #import "../Shared Code/Xcode/DVTExplorerOutlineViewBase.h"
 #import "../Shared Code/Xcode/IDENavigatorArea.h"
-#import "../Shared Code/Xcode/IDEOpenQuicklyResultOpener.h"
 
 #import "../Shared Code/Xcode/IDENavigatorOutlineView.h"
 #import "../Shared Code/Xcode/IDEIssueNavigator.h"
@@ -67,7 +66,6 @@
 #import "../Shared Code/Xcode/_TtC13IDEFoundation27IDECommandLineArgumentEntry.h"
 #import "../Shared Code/Xcode/IDEBreakpoint.h"
 #import "../Shared Code/Xcode/IDEBreakpointManager.h"
-#import "../Shared Code/Xcode/IDEStructureNavigator.h"
 #import "../Shared Code/Xcode/IDEContainer.h"
 #import "../Shared Code/Xcode/Xcode3Project.h"
 #import "../Shared Code/Xcode/IDEContainerReloadingDelegate-Protocol.h"

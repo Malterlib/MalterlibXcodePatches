@@ -15,7 +15,7 @@
 #import "DVTUndoManagerDelegate-Protocol.h"
 #import "IDEReadOnlyItem-Protocol.h"
 
-@class DVTDispatchLock, DVTDocumentLocation, DVTExtension, DVTFileDataType, DVTFilePath, DVTNotificationToken, DVTStackBacktrace, NSDictionary, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL, NSUndoManager;
+@class DVTDispatchLock, DVTDocumentLocation, DVTExtension, DVTFileDataType, DVTFilePath, DVTNotificationToken, DVTStackBacktrace, NSDate, NSDictionary, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString, NSTimer, NSURL, NSUndoManager;
 @protocol DVTCancellable, DVTUndo;
 
 @interface IDEEditorDocument : DVTDealloc2Main_Document <IDEReadOnlyItem, DVTUndoManagerDelegate>
@@ -49,6 +49,7 @@
     NSMutableArray *_pendingChanges;
     NSMutableSet *_documentEditors;
     NSURL *_ide_representedURL;
+    NSDate *_mostRecentUnhandledExternalModificationDateInsidePackage;
     id <DVTCancellable> _closeAfterDelayToken;
     id <DVTCancellable> _autosaveAfterDelayToken;
     CDUnknownBlockType _filePresenterWriter;
@@ -69,6 +70,8 @@
     BOOL _trackFileSystemChanges;
     BOOL _wholeDocumentChanged;
     BOOL _isPerformingSynchronousFileAccess;
+    NSTimer *_diskReconciliationTimer;
+    NSSet *_mostRecentlySavedChildFilePaths;
     NSSet *_readOnlyClients;
     DVTFilePath *_autosavedContentsFilePath;
     DVTDocumentLocation *_previewDocumentLocation;
@@ -82,6 +85,7 @@
 + (BOOL)documentSupportsInconsistentState;
 + (id)readableTypes;
 + (BOOL)shouldShowInspectorAreaAtLoadForSimpleFilesFocusedWorkspace;
++ (BOOL)shouldRecursivelyTrackFileSystemChanges;
 + (BOOL)shouldTrackFileSystemChanges;
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;
 + (void)initialize;
@@ -95,6 +99,8 @@
 @property(retain) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property int readOnlyStatus; // @synthesize readOnlyStatus=_readOnlyStatus;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
+@property(retain) NSSet *mostRecentlySavedChildFilePaths; // @synthesize mostRecentlySavedChildFilePaths=_mostRecentlySavedChildFilePaths;
+@property(retain) NSTimer *diskReconciliationTimer; // @synthesize diskReconciliationTimer=_diskReconciliationTimer;
 @property BOOL trackFileSystemChanges; // @synthesize trackFileSystemChanges=_trackFileSystemChanges;
 - (id)derivedContentProviderForType:(id)arg1;
 - (void)restoreStateWithCoder:(id)arg1;
@@ -183,12 +189,17 @@
 - (void)setFileURL:(id)arg1;
 - (id)fileURL;
 - (void)relinquishPresentedItemToWriter:(CDUnknownBlockType)arg1;
+- (void)_insertRecursivePathsStartingFromParent:(id)arg1 intoSet:(id)arg2;
+- (void)_updateSavedChildFilePathsOfParent:(id)arg1;
+- (void)_handleRecentAndExternalFileChangeOnDiskWithFilePath:(id)arg1;
 - (void)_respondToFileChangeOnDiskWithFilePath:(id)arg1;
 - (void)saveForOperation:(unsigned long long)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)saveToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)saveDocumentWithDelegate:(id)arg1 didSaveSelector:(SEL)arg2 contextInfo:(void *)arg3;
+@property(readonly) BOOL shouldAutosaveWhenLosingFocus;
 - (void)ide_finishSaving:(BOOL)arg1 forSaveOperation:(unsigned long long)arg2 previousPath:(id)arg3;
 - (BOOL)writeSafelyToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 error:(id *)arg4;
+- (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 originalContentsURL:(id)arg4 error:(id *)arg5;
 - (id)fileNameExtensionForType:(id)arg1 saveOperation:(unsigned long long)arg2;
 - (BOOL)revertToContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (void)unregisterDocumentEditor:(id)arg1;

@@ -84,6 +84,7 @@
 - (id)evaluatedStringValueForBuildSetting:(id)arg1 withBuildParameters:(id)arg2;
 - (id)allBuildSettingNamesWithBuildParameters:(id)arg1;
 - (id)cachedMacroExpansionScopeForBuildParameters:(id)arg1;
+@property(readonly) NSString *uniqueIdentifier;
 - (void)clearTestablesCache;
 - (void)_updateTestablesForTargetProxies:(id)arg1;
 - (id)testableForBlueprint:(id)arg1;
