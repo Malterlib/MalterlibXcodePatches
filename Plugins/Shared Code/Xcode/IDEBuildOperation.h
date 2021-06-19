@@ -120,6 +120,7 @@
 - (id)_buildableForSingleFileToBuildStartingWithBuildable:(id)arg1 recursionDetectionSet:(id)arg2;
 - (void)_addOperationsForAllBuildables;
 - (void)addOperationsToQueue:(id)arg1;
+- (BOOL)isProjectAllowedToBuildLegacy:(id)arg1;
 - (id)_preparationLogRecorder;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1 recursionDetectionArray:(id)arg2;
@@ -131,6 +132,7 @@
 - (BOOL)isExecuting;
 - (BOOL)isConcurrent;
 - (void)changeMaximumOperationConcurrencyUsingThrottleFactor:(double)arg1;
+- (BOOL)shouldPostNotifications;
 @property(readonly, nonatomic) long long purpose;
 - (id)copiedFilePathsMap;
 - (void)addCopiedFilePathsFromDictionary:(id)arg1;

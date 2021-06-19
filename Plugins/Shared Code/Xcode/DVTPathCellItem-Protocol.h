@@ -9,7 +9,7 @@
 //
 
 
-@class NSArray, NSImage, NSString, NSURL;
+@class DVTIcon, NSArray, NSString, NSURL;
 @protocol DVTPathCellItem;
 
 @protocol DVTPathCellItem <NSObject>
@@ -26,7 +26,7 @@
 @property(nonatomic, readonly) id <DVTPathCellItem> parentItem;
 @property(nonatomic, readonly) id representedObject;
 @property(nonatomic, readonly) NSString *pathComponentToolTip;
-@property(nonatomic, readonly) NSImage *pathComponentImage;
+@property(nonatomic, readonly) DVTIcon *pathComponentIcon;
 @property(nonatomic, readonly) NSString *pathComponentName;
 
 @optional

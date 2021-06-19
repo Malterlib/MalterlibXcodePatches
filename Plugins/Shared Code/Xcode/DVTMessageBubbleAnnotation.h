@@ -47,6 +47,8 @@
 - (BOOL)drawsHighlightedRanges;
 - (void)drawLineHighlightInRect:(struct CGRect)arg1 textView:(id)arg2;
 - (BOOL)drawsLineHighlight;
+@property(readonly) BOOL allowsStartingAsMinimized;
+@property(readonly, getter=isMinimizable) BOOL minimizable;
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;
 - (double)preferredWidthForAvailableWidth:(double)arg1;
 - (void)setVisible:(BOOL)arg1;

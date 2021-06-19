@@ -28,7 +28,6 @@
 {
     DVTMutableOrderedSet *_cursorRectInterceptors;
     NSMapTable *_additionControllersForLaunchSessionTable;
-    NSMutableArray *_debuggingUIControllerLifeCycleObservers;
     NSMapTable *_notificationTokenForLaunchSessionTable;
     NSMapTable *_observerTokenForLaunchSessionsDebuggingAdditionsTable;
     NSMutableArray *_uiControllerObserverEntries;
@@ -38,7 +37,6 @@
     DVTObservingToken *_debugSessionObserverToken;
     DVTObservingToken *_debugSessionCoalescedStateObservingToken;
     DVTObservingToken *_currentStackFrameDisassemblyObservingToken;
-    DVTObservingToken *_firstTimeSnapshotObserverToken;
     NSAlert *_stoppingExecutionAlert;
     id _pendingExecutionNotificationToken;
     CDUnknownBlockType _pendingEnqueuingCompletionBlock;
@@ -190,6 +188,7 @@
 - (id)_generateErrorForScheme:(id)arg1;
 - (void)showModalAlertForScheme:(id)arg1;
 - (void)runWithoutBuildingForSchemeIdentifier:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
+- (void)generateRemarksForFileAtPath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)compileFileAtPath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)analyzeFileAtPath:(id)arg1;
 - (void)generateAssemblyCodeForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
@@ -200,7 +199,8 @@
 - (void)reallyCleanBuildFolder;
 - (void)_cleanForRunActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)cleanActiveRunContext:(id)arg1;
-- (void)revealBuildProducts:(id)arg1;
+- (id)_buildFolderToRevealReturningRevealCommandDisplayTitle:(out id *)arg1;
+- (void)revealBuildFolder:(id)arg1;
 - (void)buildAndRunToGenerateOptimizationProfileActiveRunContext:(id)arg1;
 - (void)buildForInstallActiveRunContext:(id)arg1;
 - (void)buildAndArchiveActiveRunContext:(id)arg1;
@@ -215,7 +215,7 @@
 - (void)editAndProfileActiveScheme:(id)arg1;
 - (void)profileActiveSchemeWithoutBuilding:(id)arg1;
 - (void)profileActiveScheme:(id)arg1;
-- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 testRerunPolicy:(id)arg2 contextString:(id)arg3;
+- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 testRepetitionPolicy:(id)arg2 contextString:(id)arg3 testingCompleteBlock:(CDUnknownBlockType)arg4;
 - (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)testActiveRunContextWithContextString:(id)arg1;
 - (void)buildForTestActiveRunContext:(id)arg1;
@@ -234,6 +234,7 @@
 - (void)_alertNonExistentWorkingDirectoryBeforeRunForContext:(id)arg1 usingBlock:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)_askShouldBuildBeforeRunProfileForContext:(id)arg1 title:(id)arg2 defaultButton:(id)arg3 usingBlock:(CDUnknownBlockType)arg4;
 - (void)_runActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)buildDocumentationForActiveRunContext:(id)arg1;
 - (void)localizationImport:(id)arg1;
 - (void)localizationExport:(id)arg1;
 - (void)performLocalizationAction:(id)arg1;
@@ -326,7 +327,7 @@
 - (void)openLibrary:(id)arg1;
 - (void)showLibrary:(id)arg1;
 - (void)toggleLibraryFromButton:(id)arg1;
-- (void)toggleMaximizedComparisonModeFromToolbar:(id)arg1;
+- (void)toggleComparisonModeFromToolbar:(id)arg1;
 @property(readonly) IDEWorkspaceTabController *structureEditWorkspaceTabController;
 @property(readonly) IDEWorkspace *structureEditWorkspace;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
@@ -346,6 +347,7 @@
 - (void)_pushDefaultPrimaryEditorFrameSize;
 @property(readonly) IDEEditor *libraryAnchoringEditor;
 - (id)workspace;
+- (id)observeDebugSessionStateWithInitialCallback:(BOOL)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_removePendingDebuggingAdditionUIControllerObserversForLaunchSession:(id)arg1;
 - (void)_notifyAndRemoveObserversForCreatedUIController:(id)arg1 inLaunchSession:(id)arg2;
 - (id)debuggingAdditionUIControllerMatchingClass:(id)arg1 forLaunchSession:(id)arg2 handler:(CDUnknownBlockType)arg3;

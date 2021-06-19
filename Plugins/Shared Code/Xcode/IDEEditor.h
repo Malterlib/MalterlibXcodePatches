@@ -12,12 +12,14 @@
 
 #import "IDEViewController.h"
 
-#import "IDEFullSizeContentEditor-Protocol.h"
+#import "IDEBottomBarContextProvider-Protocol.h"
+#import "IDEBottomBarItemProvider-Protocol.h"
+#import "IDESafeAreaAwareContainer-Protocol.h"
 
 @class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, IDEAuxiliaryEditor, IDEAuxiliaryEditorContext, IDEAuxiliaryEditorProvider, IDEEditorContext, IDEEditorDocument, IDEFileTextSettings, NSScrollView, NSSet, NSString;
 @protocol DVTTextFindable, IDEEditorDelegate;
 
-@interface IDEEditor : IDEViewController <NSUserInterfaceValidations, IDEFullSizeContentEditor>
+@interface IDEEditor : IDEViewController <NSUserInterfaceValidations, IDESafeAreaAwareContainer, IDEBottomBarItemProvider, IDEBottomBarContextProvider>
 {
     DVTFindBar *_findBar;
     DVTNotificationToken *_documentDidChangeNotificationToken;
@@ -25,6 +27,9 @@
     DVTObservingToken *_documentFileURLObservingToken;
     DVTObservingToken *_auxiliaryEditorContextObservingToken;
     BOOL _discardsFindResultsWhenContentChanges;
+    BOOL _pullRequestCommentsButtonVisible;
+    double _safeAreaTopInset;
+    double _safeAreaBottomInset;
     id <IDEEditorDelegate> _delegate;
     IDEEditorDocument *_document;
     IDEEditorDocument *_documentForNavBarStructure;
@@ -32,16 +37,22 @@
     IDEFileTextSettings *_fileTextSettings;
     IDEAuxiliaryEditor *_auxiliaryEditor;
     IDEAuxiliaryEditorProvider *_auxiliaryEditorProvider;
+    unsigned long long _sourceEditorVisibleEditorOptions;
     IDEEditorContext *_editorContext;
-    struct NSEdgeInsets _fullSizeContentInsets;
 }
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)supportsFullSizeContent;
 + (BOOL)alwaysUseStaticEditorTab;
++ (id)keyPathsForValuesAffectingShouldShowPullRequestComments;
++ (id)keyPathsForValuesAffectingCodeReviewPreference;
++ (id)keyPathsForValuesAffectingCodeReviewEnabled;
++ (id)keyPathsForValuesAffectingEditorMode;
 + (BOOL)canProvideCurrentSelectedItems;
 // - (void).cxx_destruct;
 @property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;
+@property BOOL pullRequestCommentsButtonVisible; // @synthesize pullRequestCommentsButtonVisible=_pullRequestCommentsButtonVisible;
+@property unsigned long long sourceEditorVisibleEditorOptions; // @synthesize sourceEditorVisibleEditorOptions=_sourceEditorVisibleEditorOptions;
 @property(retain, nonatomic) IDEAuxiliaryEditorProvider *auxiliaryEditorProvider; // @synthesize auxiliaryEditorProvider=_auxiliaryEditorProvider;
 @property(retain, nonatomic) IDEAuxiliaryEditor *auxiliaryEditor; // @synthesize auxiliaryEditor=_auxiliaryEditor;
 @property(retain, nonatomic) IDEFileTextSettings *fileTextSettings; // @synthesize fileTextSettings=_fileTextSettings;
@@ -50,7 +61,8 @@
 @property(retain, nonatomic) IDEEditorDocument *documentForNavBarStructure; // @synthesize documentForNavBarStructure=_documentForNavBarStructure;
 @property(retain) IDEEditorDocument *document; // @synthesize document=_document;
 @property(retain) id <IDEEditorDelegate> delegate; // @synthesize delegate=_delegate;
-@property struct NSEdgeInsets fullSizeContentInsets; // @synthesize fullSizeContentInsets=_fullSizeContentInsets;
+@property(nonatomic) double safeAreaBottomInset; // @synthesize safeAreaBottomInset=_safeAreaBottomInset;
+@property(nonatomic) double safeAreaTopInset; // @synthesize safeAreaTopInset=_safeAreaTopInset;
 @property(retain, nonatomic) IDEAuxiliaryEditorContext *auxiliaryEditorContext;
 @property(readonly) NSSet *applicableLibraryExtensionIDs;
 - (void)shouldNavigateAway:(CDUnknownBlockType)arg1;
@@ -63,10 +75,19 @@
 - (id)navigableItemArchivableRepresentationForRepresentedObject:(id)arg1;
 - (id)currentSelectedDocumentLocations;
 - (id)currentSelectedItems;
+- (void)viewWillUninstall;
 - (void)primitiveInvalidate;
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
 @property(readonly) NSScrollView *mainScrollView;
 @property(readonly) DVTScopeBarsManager *scopeBarsManager;
+- (BOOL)shouldSafeAreaAwareChildInheritBottomInset:(id)arg1;
+- (BOOL)shouldSafeAreaAwareChildInheritTopInset:(id)arg1;
+- (id)safeAreaAwareChildren;
+- (void)didInheritNewSafeAreaInsetsFromParent;
+@property(readonly) NSSet *bottomBarContext;
+- (void)uninstallBottomBarItems;
+- (void)invalidateBottomBarItems;
+- (id)bottomBarItems;
 - (void)disableAllEditorOptions;
 - (void)applyStateDictionaryFromPreviousEditor:(id)arg1;
 @property(readonly, getter=isPrimaryEditor) BOOL primaryEditor;
@@ -83,6 +104,10 @@
 - (id)_getUndoManager:(BOOL)arg1;
 - (id)undoManager;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+@property BOOL shouldShowPullRequestComments;
+@property(nonatomic) BOOL codeReviewButtonEnabled;
+@property(nonatomic) unsigned long long codeReviewPreference;
+@property(readonly, nonatomic) BOOL codeReviewEnabled;
 - (int)editorMode;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (id)_initWithNibName:(id)arg1 bundle:(id)arg2;

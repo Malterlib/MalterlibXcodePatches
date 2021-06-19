@@ -59,10 +59,10 @@
 - (BOOL)_isNavItemDescendantOfRootNavItem:(id)arg1;
 - (id)itemToSelectFromActiveEditorSelection:(id)arg1;
 @property(retain) id cachedItemToSelectFromActiveEditorSelection;
-- (void)didChangeCachedItemToSelect;
 - (void)_createEditorSelectedItemObserverIfNecessary;
 - (void)showSelectionFromActiveEditor:(id)arg1 expandAncestors:(BOOL)arg2 scrollToVisible:(BOOL)arg3;
 - (void)showCachedSelectionFromActiveEditor;
+- (void)updateCachedItemToSelectFromActiveEditorIfNeeded;
 @property(readonly) unsigned long long strongSelectionStyle;
 - (id)navigableItemsForArchivedNavigableItems:(id)arg1;
 - (void)revealSelection:(id)arg1;

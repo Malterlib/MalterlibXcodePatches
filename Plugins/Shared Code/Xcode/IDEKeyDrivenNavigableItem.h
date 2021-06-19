@@ -42,6 +42,7 @@
 + (id)keyPathsForValuesAffectingToolTip;
 + (id)keyPathsForValuesAffectingAccessibilityIdentifier;
 + (id)keyPathsForValuesAffectingAccessibleImageDescription;
++ (id)keyPathsForValuesAffectingIcon;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingName;
@@ -78,6 +79,7 @@
 - (id)toolTip;
 - (id)accessibilityIdentifier;
 - (id)accessibleImageDescription;
+- (id)icon;
 - (id)image;
 - (id)subtitle;
 - (id)name;

@@ -11,13 +11,13 @@
 @class DVTStructuredLayoutViewState, NSView;
 
 @protocol DVTStructuredLayoutView
-@property(readonly) DVTStructuredLayoutViewState *dvt_layoutState;
+@property(nonatomic, readonly) DVTStructuredLayoutViewState *dvt_layoutState;
 
 @optional
 - (void)dvt_invalidateLayout;
 - (void)dvt_didCompleteLayout;
-- (void)dvt_didLayoutSubview:(NSView *)arg1;
-- (void)dvt_willLayoutSubview:(NSView *)arg1;
+- (void)dvt_didLayoutSubview:(NSView *)arg1 atIndex:(long long)arg2;
+- (void)dvt_willLayoutSubview:(NSView *)arg1 atIndex:(long long)arg2;
 - (void)dvt_positionSubviewsAndSizeSelfAfterSubviewLayout;
 - (void)dvt_configureSubviewsBeforeSubviewLayout;
 @end

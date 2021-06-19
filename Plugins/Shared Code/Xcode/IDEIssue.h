@@ -41,6 +41,7 @@
     id <NSCopying> _coalescingIdentifier;
 }
 
++ (unsigned long long)issueTypeFromMessage:(id)arg1 severity:(unsigned long long)arg2;
 + (BOOL)isIssueTypeRuntime:(unsigned long long)arg1;
 // - (void).cxx_destruct;
 @property(getter=_isVended) BOOL _vended; // @synthesize _vended=__vended;

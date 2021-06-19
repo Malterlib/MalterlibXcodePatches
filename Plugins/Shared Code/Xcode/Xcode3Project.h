@@ -137,6 +137,7 @@
 - (id)blueprintForPBXTarget:(id)arg1;
 - (id)blueprintForIdentifier:(id)arg1;
 - (id)blueprintForName:(id)arg1;
+- (void)addSourcePackageReference:(id)arg1;
 @property(readonly) NSArray *sourcePackageReferences;
 @property(readonly, copy) NSArray *blueprints;
 - (void)_packageReferenceDidChange:(id)arg1;

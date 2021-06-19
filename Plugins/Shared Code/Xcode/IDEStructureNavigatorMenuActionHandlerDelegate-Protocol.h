@@ -20,7 +20,7 @@
 - (NSArray *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 groupableSelectedItemsUsingContextualMenuSelection:(BOOL)arg2;
 - (NSArray *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 removableSelectedItemsUsingContextualMenuSelection:(BOOL)arg2;
 - (BOOL)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 performUsingContextualMenuSelection:(BOOL)arg2 block:(BOOL (^)(id <IDEStructureEditingItem>, BOOL))arg3;
-- (IDEContainerItem *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 selectedContainerItemUsingContextualSelection:(BOOL)arg2 useFirstIndex:(BOOL)arg3 selectionWasExplicitlyRejected:(char *)arg4;
+- (IDEContainerItem *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 selectedContainerItemUsingContextualSelection:(BOOL)arg2 useFirstIndex:(BOOL)arg3;
 @property(nonatomic, readonly) IDEViewController *viewController;
 @end
 

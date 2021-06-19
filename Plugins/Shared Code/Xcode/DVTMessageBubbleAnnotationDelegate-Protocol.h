@@ -10,11 +10,15 @@
 
 #import "DVTTextAnnotationDelegate-Protocol.h"
 
-@class DVTMessageBubbleAnnotation, NSEvent, NSView;
+@class DVTAnnotation, DVTMessageBubbleAnnotation, NSEvent, NSImage, NSString, NSView;
 
 @protocol DVTMessageBubbleAnnotationDelegate <DVTTextAnnotationDelegate>
 
 @optional
+- (NSString *)actionMessageForAnnotation:(DVTMessageBubbleAnnotation *)arg1;
+- (NSString *)actionTitleForAnnotation:(DVTMessageBubbleAnnotation *)arg1;
+- (NSImage *)actionStandaloneIconForAnnotation:(DVTAnnotation *)arg1;
 - (void)didClickMessageBubbleForAnnotation:(DVTMessageBubbleAnnotation *)arg1 onIcon:(BOOL)arg2 inView:(NSView *)arg3 event:(NSEvent *)arg4;
+- (void)didClickMessageBubbleControl:(NSView *)arg1 forAnnotation:(DVTMessageBubbleAnnotation *)arg2 inView:(NSView *)arg3;
 @end
 

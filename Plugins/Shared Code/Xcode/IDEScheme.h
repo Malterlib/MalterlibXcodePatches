@@ -13,7 +13,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDERunDestinationScheme-Protocol.h"
 
-@class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEPreviewSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunDestination, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
+@class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunDestination, IDERunnable, IDETestSchemeAction, NSArray, NSData, NSError, NSHashTable, NSNumber, NSString;
 @protocol IDECustomDataStoring, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_;
 
 @interface IDEScheme : NSObject <IDERunDestinationScheme, DVTInvalidation>
@@ -45,25 +45,23 @@
     BOOL _persisted;
     BOOL _wasCreatedForAppExtension;
     BOOL _schemeRunnableRunsDirectlyOnPairedProxyDevice;
-    BOOL _runDestinationInvalidationSuspended;
+    BOOL _referencedContainersAreChanging;
     BOOL _runDestinationInvalidationPending;
     IDEBuildSchemeAction *_buildSchemeAction;
     IDELaunchSchemeAction *_launchSchemeAction;
     IDETestSchemeAction *_testSchemeAction;
     IDEProfileSchemeAction *_profileSchemeAction;
-    IDEPreviewSchemeAction *_previewSchemeAction;
     IDEAnalyzeSchemeAction *_analyzeSchemeAction;
     IDEArchiveSchemeAction *_archiveSchemeAction;
     IDEIntegrateSchemeAction *_integrateSchemeAction;
     IDEInstallSchemeAction *_installSchemeAction;
+    NSHashTable *_mutableReferencedContainerObservers;
     IDEEntityIdentifier *_schemeIdentifier;
     NSError *_loadError;
-    DVTObservingToken *_workspaceReferenceContainersObservingToken;
-    IDESchemeOrderedWorkspaceNotificationManager *_orderedWorkspaceNotificationManager;
     NSNumber *_schemeRunnableRequiresPairedProxyDeviceOverride;
 }
 
-+ (id)_buildParametersForPurpose:(long long)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 collectBuildTimeStatistics:(BOOL)arg8 collectTimelineMetrics:(BOOL)arg9;
++ (id)_buildParametersForPurpose:(long long)arg1 schemeCommand:(id)arg2 buildCommand:(long long)arg3 configurationName:(id)arg4 workspaceArena:(id)arg5 overridingProperties:(id)arg6 activeRunDestination:(id)arg7 activeArchitecture:(id)arg8 collectBuildTimeStatistics:(BOOL)arg9 collectTimelineMetrics:(BOOL)arg10;
 + (BOOL)automaticallyNotifiesObserversOfOrderHint;
 + (BOOL)automaticallyNotifiesObserversOfIsShown;
 + (id)keyPathsForValuesAffectingDisambiguatedName;
@@ -71,7 +69,6 @@
 + (id)mainThreadCheckerPathForDevice:(id)arg1;
 + (id)keyPathsForValuesAffectingIntegratable;
 + (id)keyPathsForValuesAffectingAnalyzable;
-+ (id)keyPathsForValuesAffectingPreviewable;
 + (id)keyPathsForValuesAffectingProfilable;
 + (id)keyPathsForValuesAffectingTestable;
 + (id)keyPathsForValuesAffectingRunnable;
@@ -82,10 +79,8 @@
 + (void)initialize;
 // - (void).cxx_destruct;
 @property(copy) NSNumber *schemeRunnableRequiresPairedProxyDeviceOverride; // @synthesize schemeRunnableRequiresPairedProxyDeviceOverride=_schemeRunnableRequiresPairedProxyDeviceOverride;
-@property(retain) IDESchemeOrderedWorkspaceNotificationManager *orderedWorkspaceNotificationManager; // @synthesize orderedWorkspaceNotificationManager=_orderedWorkspaceNotificationManager;
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;
-@property(nonatomic, getter=isRunDestinationInvalidationSuspended) BOOL runDestinationInvalidationSuspended; // @synthesize runDestinationInvalidationSuspended=_runDestinationInvalidationSuspended;
-@property(retain) DVTObservingToken *workspaceReferenceContainersObservingToken; // @synthesize workspaceReferenceContainersObservingToken=_workspaceReferenceContainersObservingToken;
+@property(nonatomic) BOOL referencedContainersAreChanging; // @synthesize referencedContainersAreChanging=_referencedContainersAreChanging;
 @property(readonly) BOOL didResortToFallbackRunDestination; // @synthesize didResortToFallbackRunDestination=_didResortToFallbackRunDestination;
 @property(readonly) BOOL schemeRunnableRunsDirectlyOnPairedProxyDevice; // @synthesize schemeRunnableRunsDirectlyOnPairedProxyDevice=_schemeRunnableRunsDirectlyOnPairedProxyDevice;
 @property BOOL wasCreatedForAppExtension; // @synthesize wasCreatedForAppExtension=_wasCreatedForAppExtension;
@@ -97,6 +92,7 @@
 @property(retain) IDERunDestination *lastChosenRunDestination; // @synthesize lastChosenRunDestination=_lastChosenRunDestination;
 @property(nonatomic, getter=isPersisted) BOOL persisted; // @synthesize persisted=_persisted;
 @property(getter=isTransient) BOOL transient; // @synthesize transient=_transient;
+@property(readonly, nonatomic) NSHashTable *mutableReferencedContainerObservers; // @synthesize mutableReferencedContainerObservers=_mutableReferencedContainerObservers;
 @property BOOL wasUpgraded; // @synthesize wasUpgraded=_wasUpgraded;
 @property BOOL hasRunUpgradeCheck; // @synthesize hasRunUpgradeCheck=_hasRunUpgradeCheck;
 @property(copy) NSString *lastUpgradeVersion; // @synthesize lastUpgradeVersion=_lastUpgradeVersion;
@@ -105,7 +101,6 @@
 @property(retain) IDEIntegrateSchemeAction *integrateSchemeAction; // @synthesize integrateSchemeAction=_integrateSchemeAction;
 @property(retain) IDEArchiveSchemeAction *archiveSchemeAction; // @synthesize archiveSchemeAction=_archiveSchemeAction;
 @property(retain) IDEAnalyzeSchemeAction *analyzeSchemeAction; // @synthesize analyzeSchemeAction=_analyzeSchemeAction;
-@property(retain) IDEPreviewSchemeAction *previewSchemeAction; // @synthesize previewSchemeAction=_previewSchemeAction;
 @property(retain) IDEProfileSchemeAction *profileSchemeAction; // @synthesize profileSchemeAction=_profileSchemeAction;
 @property(retain) IDETestSchemeAction *testSchemeAction; // @synthesize testSchemeAction=_testSchemeAction;
 @property(retain) IDELaunchSchemeAction *launchSchemeAction; // @synthesize launchSchemeAction=_launchSchemeAction;
@@ -119,7 +114,6 @@
 - (void)addIntegrateAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addArchiveAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addAnalyzeAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)addPreviewAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addProfileAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addTestAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addLaunchAction:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -131,6 +125,8 @@
 @property(readonly) NSData *xmlData;
 - (BOOL)_executionActionsNeedCurrentArchiveVersion;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
+- (void)referencedContainersDidChange:(id)arg1;
+- (void)referencedContainersWillChange:(id)arg1;
 - (id)_groupAndImposeDependenciesForOrderedOperations:(id)arg1;
 - (id)_buildOperationGroupForSchemeOperationParameters:(id)arg1 primaryBuildParameters:(id)arg2 variantSpecifiers:(id)arg3 buildLog:(id)arg4 dontActuallyRunCommands:(BOOL)arg5 restorePersistedBuildResults:(BOOL)arg6 schemeActionRecord:(id)arg7 error:(id *)arg8;
 - (id)_defaultVariantBuildLogForSchemeOperationParameters:(id)arg1 buildParameters:(id)arg2 subtitle:(id)arg3;
@@ -138,9 +134,12 @@
 - (id)_cleanOperationGroupForExecutionEnvironment:(id)arg1 orderedBuildables:(id)arg2 buildConfiguration:(id)arg3 buildLog:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 schemeActionRecord:(id)arg7 error:(id *)arg8;
 - (CDUnknownBlockType)postActionEnvironmentPopulatorForBuildOperation:(id)arg1;
 - (BOOL)_shouldRunPostBuildActionsForBuildResult:(long long)arg1;
+- (void)_unionTestsToSkipInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
+- (void)_unionTestsToRunInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
 - (id)_variantSpecifiersForTestingWithSchemeOperationParameters:(id)arg1 schemeCommand:(id)arg2 runDestination:(id)arg3 buildParameters:(id)arg4;
 - (id)_variantBuildParametersFromBuildParameters:(id)arg1 directoryName:(id)arg2 overridingBuildSettings:(id)arg3;
+- (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 buildCommand:(long long)arg5 destination:(id)arg6 overridingProperties:(id)arg7 overridingBuildConfiguration:(id)arg8 overridingTestingSpecifiers:(id)arg9 collectBuildTimeStatistics:(BOOL)arg10 collectTimelineMetrics:(BOOL)arg11;
 - (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8 collectBuildTimeStatistics:(BOOL)arg9 collectTimelineMetrics:(BOOL)arg10;
 - (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2 codeCoverageEnabled:(BOOL)arg3 sanitizerOptions:(unsigned long long)arg4;
 - (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
@@ -187,7 +186,6 @@
 @property(readonly, getter=isIntegratable) BOOL integratable;
 @property(readonly, getter=isArchivable) BOOL archivable;
 @property(readonly, getter=isAnalyzable) BOOL analyzable;
-@property(readonly, getter=isPreviewable) BOOL previewable;
 @property(readonly, getter=isProfilable) BOOL profilable;
 @property(readonly, getter=isTestable) BOOL testable;
 @property(readonly, getter=isRunnable) BOOL runnable;

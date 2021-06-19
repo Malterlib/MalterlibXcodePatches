@@ -8,7 +8,7 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDENoticeCollator, NSArray;
+@class NSArray, _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem;
 @protocol DVTCancellable, DVTInvalidation, IDEBuildNoticeLogSection, IDEBuildNoticeLogStore;
 
 @protocol IDEBuildNoticeWorkspace
@@ -17,6 +17,6 @@
 - (id <DVTCancellable>)observeLatestBuildLogIdentityDidChange:(void (^)(void))arg1;
 - (NSArray *)activeBlueprintLogSectionIDs;
 @property(nonatomic, readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
-@property(nonatomic, readonly) IDENoticeCollator *noticeCollator;
+@property(nonatomic, readonly) _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem *noticeSubsystem;
 @end
 

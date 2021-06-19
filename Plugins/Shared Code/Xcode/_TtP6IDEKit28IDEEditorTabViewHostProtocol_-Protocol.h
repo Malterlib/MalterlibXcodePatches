@@ -10,12 +10,12 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTOneShotBlock, IDEEditorContext, IDEEditorHistoryController, IDEEditorHistoryItem, NSImage, NSURL;
+@class DVTIcon, DVTOneShotBlock, IDEEditorContext, IDEEditorHistoryController, IDEEditorHistoryItem, NSURL;
 
 @protocol _TtP6IDEKit28IDEEditorTabViewHostProtocol_ <DVTInvalidation>
 - (void)navigateAwayFromCurrentDocumentWithURL:(NSURL *)arg1 removeHistoryItems:(BOOL)arg2;
-- (DVTOneShotBlock *)observeIconForDocumentURL:(NSURL *)arg1 historyItem:(IDEEditorHistoryItem *)arg2 updateImageBlock:(void (^)(NSImage *, BOOL))arg3;
-- (NSImage *)iconForDocumentURL:(NSURL *)arg1;
+- (DVTOneShotBlock *)observeIconForDocumentURL:(NSURL *)arg1 historyItem:(IDEEditorHistoryItem *)arg2 updateImageBlock:(void (^)(DVTIcon *, BOOL))arg3;
+- (DVTIcon *)iconForDocumentURL:(NSURL *)arg1;
 - (void)closeEditorContext:(IDEEditorContext *)arg1 client:(unsigned long long)arg2;
 - (BOOL)canCloseEditorContext:(IDEEditorContext *)arg1;
 - (BOOL)openEmptyEditor;

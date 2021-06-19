@@ -34,6 +34,7 @@
     DVTObservingToken *_customDataStoresObserver;
     DVTObservingToken *_availableDevicesObserver;
     id <DVTInvalidation> _blueprintDidChangeObserver;
+    DVTObservingToken *_workspaceReferenceContainersObservingToken;
 }
 
 + (void)postBlueprintsDidChangeWithBlueprintSet:(id)arg1;
@@ -46,6 +47,7 @@
 + (void)initialize;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 // - (void).cxx_destruct;
+@property(retain) DVTObservingToken *workspaceReferenceContainersObservingToken; // @synthesize workspaceReferenceContainersObservingToken=_workspaceReferenceContainersObservingToken;
 @property(readonly) NSCountedSet *schemeNameCounts; // @synthesize schemeNameCounts=_schemeNameCounts;
 @property(retain, nonatomic) IDERunDestination *activeRunDestination; // @synthesize activeRunDestination=_activeRunDestination;
 @property(retain, nonatomic) IDEScheme *activeRunContext; // @synthesize activeRunContext=_activeRunContext;

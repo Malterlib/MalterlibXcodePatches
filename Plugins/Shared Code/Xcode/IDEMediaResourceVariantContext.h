@@ -22,7 +22,6 @@
     NSMutableSet *_variantSets;
     NSSet *_repositories;
     NSMutableDictionary *_observers;
-    NSSet *_mediaRepositories;
     IDEMediaResourceFoldingStrategy *_foldingStrategy;
 }
 
@@ -30,7 +29,6 @@
 // - (void).cxx_destruct;
 @property(readonly) IDEMediaResourceFoldingStrategy *foldingStrategy; // @synthesize foldingStrategy=_foldingStrategy;
 @property(readonly) NSSet *variantSets; // @synthesize variantSets=_variantSets;
-@property(readonly) NSSet *mediaRepositories; // @synthesize mediaRepositories=_mediaRepositories;
 - (void)repository:(id)arg1 didAddOrUpdateResources:(id)arg2 andRemoveResources:(id)arg3;
 - (void)notifyObserversOfAddsAndModifies:(id)arg1 andDeletes:(id)arg2;
 - (id)registerVariantContextObserverWithOptions:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;

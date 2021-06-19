@@ -13,14 +13,15 @@
 #import "IDEViewController.h"
 
 #import "DVTSplitViewDelegate-Protocol.h"
+#import "IDEBottomBarContextProvider-Protocol.h"
 #import "IDEDebuggerBarEditorInfoProvider-Protocol.h"
 #import "IDEEditorMultipleSplitDelegate-Protocol.h"
 #import "IDESafeAreaAwareContainer-Protocol.h"
 
-@class DVTBorderedView, DVTLayoutView_ML, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugAreaBorderedView, IDEDebugBar, IDEDebuggerAreaContainer, IDEEditorAreaSplit, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDEEditorMultipleSplit, IDENavigableItemArchivableRepresentation, NSArray, NSDictionary, NSIndexPath, NSMutableArray, NSMutableDictionary, NSString, NSTouchBar, NSView;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugAreaBorderedView, IDEDebugBar, IDEDebuggerAreaContainer, IDEEditorAreaContainer, IDEEditorAreaSplit, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDEEditorMultipleSplit, IDENavigableItemArchivableRepresentation, NSArray, NSDictionary, NSIndexPath, NSMutableArray, NSMutableDictionary, NSPanel, NSSet, NSString, NSTouchBar, NSView, _TtC6IDEKit12IDEBottomBar;
 @protocol DVTCancellable;
 
-@interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEDebuggerBarEditorInfoProvider, IDEEditorMultipleSplitDelegate, DVTSplitViewDelegate, IDESafeAreaAwareContainer>
+@interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEDebuggerBarEditorInfoProvider, IDEBottomBarContextProvider, IDEEditorMultipleSplitDelegate, NSWindowDelegate, DVTSplitViewDelegate, IDESafeAreaAwareContainer>
 {
     NSView *_editorAreaSplitHostView;
     int _editorMode;
@@ -55,19 +56,22 @@
     DVTObservingToken *_primaryEditorDocumentToken;
     DVTObservingToken *_activeEditorDocumentToken;
     DVTObservingToken *_workspaceFinishedLoadingToken;
+    NSPanel *_safeAreaHierarchyPanel;
+    DVTNotificationToken *_safeAreaHierarchyUpdateToken;
     NSArray *_beforeMaximizeEditorAreaSplitStates;
     NSIndexPath *_indexPathOfMaximizedEditorAreaSplit;
-    BOOL _beforeMaximizeComparisonMode_isMaximized;
-    int _beforeMaximizeComparisonMode_UserVisibleEditorMode;
+    int _beforeComparisonMode_UserVisibleEditorMode;
     NSDictionary *_unrestoredStateDictionary;
     BOOL _alwaysShowTabBar;
     BOOL _isRestoringState;
     double _safeAreaTopInset;
+    double _safeAreaBottomInset;
     IDEEditorAreaSplit *_primaryEditorAreaSplit;
     NSArray *_editorAreaSplits;
     IDEEditorMultipleSplit *_editorMultipleSplit;
     IDEEditorDocument *_primaryEditorDocument;
-    DVTLayoutView_ML *_editorAreaAutoLayoutView;
+    _TtC6IDEKit12IDEBottomBar *_bottomBar;
+    IDEEditorAreaContainer *_editorAreaAutoLayoutView;
     IDEDebuggerAreaContainer *_debuggerAreaAutoLayoutView;
     IDEEditorAreaSplit *_selectedEditorAreaSplit;
     IDEEditorContext *_navigationTargetedEditorContext;
@@ -88,6 +92,7 @@
 + (id)keyPathsForValuesAffectingSelectedNavigableItemArchivedRepresentation;
 + (id)keyPathsForValuesAffectingNavigationTargetedEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
++ (id)keyPathsForValuesAffectingBottomBarContext;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
 + (id)keyPathsForValuesAffectingLastActiveEditorAreaSplit;
 + (BOOL)_newEditorsHaveEmptyContent;
@@ -98,11 +103,13 @@
 @property(retain) IDEEditorContext *navigationTargetedEditorContext; // @synthesize navigationTargetedEditorContext=_navigationTargetedEditorContext;
 @property(retain, nonatomic) IDEEditorAreaSplit *selectedEditorAreaSplit; // @synthesize selectedEditorAreaSplit=_selectedEditorAreaSplit;
 @property(retain, nonatomic) IDEDebuggerAreaContainer *debuggerAreaAutoLayoutView; // @synthesize debuggerAreaAutoLayoutView=_debuggerAreaAutoLayoutView;
-@property(retain, nonatomic) DVTLayoutView_ML *editorAreaAutoLayoutView; // @synthesize editorAreaAutoLayoutView=_editorAreaAutoLayoutView;
+@property(retain, nonatomic) IDEEditorAreaContainer *editorAreaAutoLayoutView; // @synthesize editorAreaAutoLayoutView=_editorAreaAutoLayoutView;
+@property(readonly) _TtC6IDEKit12IDEBottomBar *bottomBar; // @synthesize bottomBar=_bottomBar;
 @property(retain) IDEEditorDocument *primaryEditorDocument; // @synthesize primaryEditorDocument=_primaryEditorDocument;
 @property(retain) IDEEditorMultipleSplit *editorMultipleSplit; // @synthesize editorMultipleSplit=_editorMultipleSplit;
 @property(retain) NSArray *editorAreaSplits; // @synthesize editorAreaSplits=_editorAreaSplits;
 @property(retain) IDEEditorAreaSplit *primaryEditorAreaSplit; // @synthesize primaryEditorAreaSplit=_primaryEditorAreaSplit;
+@property(nonatomic) double safeAreaBottomInset; // @synthesize safeAreaBottomInset=_safeAreaBottomInset;
 @property(nonatomic) double safeAreaTopInset; // @synthesize safeAreaTopInset=_safeAreaTopInset;
 @property(retain) IDEDebugArea *activeDebuggerArea; // @synthesize activeDebuggerArea=_activeDebuggerArea;
 @property(retain) IDEDebugBar *activeDebuggerBar; // @synthesize activeDebuggerBar=_activeDebuggerBar;
@@ -115,6 +122,8 @@
 - (void)editorMultipleSplit:(id)arg1 didCreateSplitItem:(id)arg2;
 - (void)_updateEditorAreaSplitsWithoutSplitItem:(id)arg1;
 - (void)_updateEditorAreaSplits;
+- (void)_closeToTheRightTabsForEditorContext:(id)arg1 client:(unsigned long long)arg2;
+- (BOOL)_canCloseToTheRightEditorTabsForEditorContext:(id)arg1;
 - (void)_closeOtherTabsForEditorContext:(id)arg1 client:(unsigned long long)arg2;
 - (BOOL)_canCloseOtherEditorTabsForEditorContext:(id)arg1;
 - (void)_closeActiveTabForEditorContext:(id)arg1 client:(unsigned long long)arg2;
@@ -122,14 +131,14 @@
 - (void)_showNextEditorTab:(id)arg1;
 - (void)_showPreviousEditorTab:(id)arg1;
 - (void)_newEditorTab:(id)arg1;
-- (id)_maximizeComparisonMode:(BOOL)arg1 withEditorAreaSplit:(id)arg2 client:(unsigned long long)arg3;
+- (id)_maximizeWithEditorAreaSplit:(id)arg1 client:(unsigned long long)arg2;
 - (void)_primitiveRestoreEditorSplitsWithStateDictionaries:(id)arg1 maximizedState:(long long)arg2 selectedEditorSplitIndexPath:(id)arg3 primaryHistoryStackForSelectedEditor:(id)arg4 secondaryHistoryStackForSelectedEditor:(id)arg5 tabBarStateForSelectedEditor:(id)arg6 client:(unsigned long long)arg7;
 - (void)_restoreEditorSplitsWithStateDictionaries:(id)arg1 maximizedState:(long long)arg2 selectedEditorSplitIndexPath:(id)arg3 primaryHistoryStackForSelectedEditor:(id)arg4 secondaryHistoryStackForSelectedEditor:(id)arg5 tabBarStateForSelectedEditor:(id)arg6 client:(unsigned long long)arg7;
 - (id)_indexPathForEditorAreaSplit:(id)arg1;
 - (void)_unmaximizeAndSelectedEditorAreaSplitWithClient:(unsigned long long)arg1;
 - (void)toggleMaximizeWithEditorAreaSplit:(id)arg1 client:(unsigned long long)arg2;
 - (BOOL)canToggleMaximizeEditor;
-- (void)toggleMaximizedComparisonModeWithEditorAreaSplit:(id)arg1 client:(unsigned long long)arg2;
+- (void)toggleComparisonModeWithEditorAreaSplit:(id)arg1 client:(unsigned long long)arg2;
 - (void)_cancelPendingStateRestoration;
 @property(readonly) unsigned long long editorAreaSplitsLayout;
 @property(readonly) IDEEditorModeViewController *editorModeViewController;
@@ -150,8 +159,7 @@
 - (id)_addEditorAreaSplitAfterEditorAreaSplit:(id)arg1 copyContent:(BOOL)arg2 layout:(unsigned long long)arg3 client:(unsigned long long)arg4;
 - (BOOL)_canAddEditorAreaSplitAfterEditorAreaSplit:(id)arg1 layout:(unsigned long long)arg2;
 - (BOOL)_canChangeEditorAreaSplitsLayout;
-- (void)openMaximizedComparisonModeWithDocumentLocation:(id)arg1 client:(unsigned long long)arg2;
-- (void)openMaximizedComparisonModeWithRevision:(id)arg1 client:(unsigned long long)arg2;
+- (void)openComparisonModeWithRevision:(id)arg1 client:(unsigned long long)arg2;
 - (void)compareRevisionChange:(id)arg1;
 - (void)showBlame;
 - (void)discardEditing;
@@ -190,9 +198,9 @@
 - (void)_addDebuggerBarToEditorArea;
 - (void)_moveDebuggerBarToDebuggerArea;
 - (void)_moveDebuggerBarToEditorArea;
-- (void)_hideDebuggerBarAndResetSplitViewFrames;
 - (void)_resetSplitViewFrames;
-@property(readonly) BOOL showDebuggerBar;
+- (void)toggleBottomBarContextDebugger;
+- (void)showSharedLibrariesPopover;
 - (id)_defaultPersistentRepresentationForDocumentExtensionIdentifier:(id)arg1 documentURL:(id)arg2;
 - (void)_clearDefaultPersistentRepresentationForDocumentExtensionIdentifier:(id)arg1 documentURL:(id)arg2;
 - (void)_cacheDefaultPersistentRepresentation:(id)arg1 forDocumentExtensionIdentifier:(id)arg2 documentURL:(id)arg3;
@@ -207,12 +215,17 @@
 - (void)installNewDefaultDebugAreaWithExtensionID:(id)arg1;
 - (void)_installDefaultDebugAreaAndRevertDebugAreaState:(BOOL)arg1;
 - (void)installDefaultDebugArea;
+@property(readonly) NSSet *bottomBarContext;
 - (void)editorContextWasRemoved:(id)arg1;
 - (void)_updateNavigationTargetedEditorContextIsValidObservingToken;
 - (void)editorContextDidBecomeLastActiveEditor:(id)arg1 focused:(BOOL)arg2;
+- (void)windowWillClose:(id)arg1;
+- (void)updateSafeAreaHierarchyWindow;
+- (void)showSafeAreaHierarchyPanel;
+- (BOOL)shouldSafeAreaAwareChildInheritBottomInset:(id)arg1;
 - (BOOL)shouldSafeAreaAwareChildInheritTopInset:(id)arg1;
 - (id)safeAreaAwareChildren;
-- (void)didInheritNewSafeAreaTopInsetFromParent;
+- (void)didInheritNewSafeAreaInsetsFromParent;
 - (void)viewWillUninstall;
 - (void)updateSafeAreaTopInsets;
 - (void)viewDidInstall;
@@ -222,9 +235,12 @@
 - (void)documentReceivedFocus:(id)arg1;
 - (void)documentLostFocus:(id)arg1;
 - (void)_updateDebugAreaAfterDocumentOpened;
+- (void)uninstallBottomBarItemsForEditor:(id)arg1;
+- (void)invalidateBottomBarItemsForEditor:(id)arg1;
 - (void)_updateDebugBarAfterDocumentOpened;
 - (void)_updateJumpBarConfigurations;
 - (void)_didRefreshEditorContextsForEditorAreaSplit:(id)arg1;
+- (id)debuggerOrBottomBarView;
 - (void)loadView;
 @property(readonly) IDEEditorAreaSplit *lastActiveEditorAreaSplit;
 - (id)editorAreaDFRController;

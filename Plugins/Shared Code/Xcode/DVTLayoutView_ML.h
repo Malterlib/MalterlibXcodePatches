@@ -10,13 +10,11 @@
 
 #include "Shared.h"
 
-#import "DVTDealloc2Main_View.h"
-
 #import "DVTStructuredLayoutView-Protocol.h"
 
 @class DVTStructuredLayoutViewState;
 
-@interface DVTLayoutView_ML : DVTDealloc2Main_View <DVTStructuredLayoutView>
+@interface DVTLayoutView_ML : NSView <DVTStructuredLayoutView>
 {
     BOOL _implementsDrawRect;
     DVTStructuredLayoutViewState *_dvt_layoutState;
@@ -28,8 +26,8 @@
 @property(readonly) DVTStructuredLayoutViewState *dvt_layoutState; // @synthesize dvt_layoutState=_dvt_layoutState;
 - (BOOL)wantsDefaultClipping;
 - (void)dvt_didCompleteLayout;
-- (void)dvt_didLayoutSubview:(id)arg1;
-- (void)dvt_willLayoutSubview:(id)arg1;
+- (void)dvt_didLayoutSubview:(id)arg1 atIndex:(long long)arg2;
+- (void)dvt_willLayoutSubview:(id)arg1 atIndex:(long long)arg2;
 - (void)dvt_positionSubviewsAndSizeSelfAfterSubviewLayout;
 - (void)dvt_configureSubviewsBeforeSubviewLayout;
 - (id)initWithCoder:(id)arg1;

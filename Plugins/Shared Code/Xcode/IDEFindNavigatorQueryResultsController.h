@@ -67,6 +67,7 @@
 - (void)replaceMatchesFromResults:(id)arg1 withText:(id)arg2;
 - (id)replaceStateForFindResult:(id)arg1;
 - (id)outlineView:(id)arg1 pasteboardWriterForItem:(id)arg2;
+- (id)targetedItemsForRow:(long long)arg1;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (void)invokeWithReplaceableDocumentForLocation:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)validateRowHeights:(id)arg1;

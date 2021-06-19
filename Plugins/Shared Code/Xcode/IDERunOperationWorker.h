@@ -23,6 +23,7 @@
     double _preflightAttemptInterval;
     BOOL _hasPerformedWorkerAction;
     DVTDispatchLock *_hasPerformedWorkerActionLock;
+    unsigned long long _startTimeMonotonicNS;
     BOOL _isLongTerm;
     unsigned long long _preflightRetryAttempts;
     IDEExecutionRunnableTracker *_runnableTracker;
@@ -39,6 +40,8 @@
 - (void)terminate;
 - (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
 - (void)finishedWithError:(id)arg1;
+- (void)finishRunnableTrackingWithAnalyticsAndError:(id)arg1;
+- (id)reportCompletionToAnalyticsWithError:(id)arg1;
 - (void)recoveredFromPreflightError;
 - (void)start;
 - (void)_startWithRetrying:(char *)arg1;

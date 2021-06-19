@@ -15,7 +15,7 @@
 #import "DVTTableCellViewLazyProperties-Protocol.h"
 #import "IDEStructureEditingItem-Protocol.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, DVTSymbol, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSMutableArray, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, DVTIcon, DVTStackBacktrace, DVTSymbol, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSMutableArray, NSString, NSURL;
 @protocol IDENavigableItemDebugAreaDelegate, IDENavigableItemDebugBarDelegate;
 
 @interface IDENavigableItem : NSObject <DVTPathCellItem, IDEStructureEditingItem, DVTTableCellViewLazyProperties, DVTInvalidation>
@@ -65,12 +65,14 @@
 + (id)representedExtension;
 + (id)_dynamicSubclass_navigableItemExtraInfo;
 + (id)_navigableItemExtraInfo;
++ (id)keyPathsForValuesAffectingIconOrImage;
 + (void)initialize;
 + (id)keyPathsAffectingDisplayName;
 + (id)keyPathsForValuesAffectingPathComponentToolTip;
-+ (id)keyPathsForValuesAffectingPathComponentImage;
++ (id)keyPathsForValuesAffectingPathComponentIcon;
 + (id)keyPathsForValuesAffectingPathComponentName;
 + (id)keyPathsForValuesAffectingRepresentedURL;
++ (id)iconOfRepresentedObject:(id)arg1;
 + (id)imageOfRepresentedObject:(id)arg1;
 + (id)nameOfRepresentedObject:(id)arg1;
 + (id)keyPathsForValuesAffecting_titleStyleForReferencedContentExistance;
@@ -157,6 +159,8 @@
 @property(readonly, nonatomic) unsigned long long depth;
 @property(readonly, nonatomic) NSArray *additionalFilterMatchingText;
 @property(readonly, nonatomic) NSString *accessibleImageDescription; // @dynamic accessibleImageDescription;
+@property(readonly, nonatomic) DVTIcon *iconOrImage;
+@property(readonly, nonatomic) DVTIcon *icon;
 @property(readonly, nonatomic) NSImage *image; // @dynamic image;
 @property(readonly, nonatomic) NSString *subtitle; // @dynamic subtitle;
 @property(readonly, nonatomic) NSString *toolTip; // @dynamic toolTip;
@@ -165,13 +169,13 @@
 @property(readonly, nonatomic) NSColor *textColor;
 - (id)nearestDocumentFileReferenceProvidingAncestor;
 - (id)greatestDocumentAncestor;
-- (id)displayNameWithExtensionHiding:(BOOL)arg1;
+@property(readonly, nonatomic) NSString *displayNameRespectingExtensionHidingPreference;
 @property(readonly, nonatomic) BOOL mergeDecendants;
 @property(readonly, nonatomic) NSString *accessibilityIdentifier;
 - (BOOL)representsDocumentRoot;
 @property(readonly, nonatomic) NSURL *representedURLForExternalDrag;
 @property(readonly, nonatomic) NSString *pathComponentToolTip;
-@property(readonly, nonatomic) NSImage *pathComponentImage;
+@property(readonly, nonatomic) DVTIcon *pathComponentIcon;
 @property(readonly, nonatomic) NSString *pathComponentName;
 @property(readonly, nonatomic, getter=isVisible) BOOL visible;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;

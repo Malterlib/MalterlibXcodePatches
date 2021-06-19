@@ -12,7 +12,7 @@
 
 @class IDEActivityLogSection;
 
-@protocol IDEIssueLogDataSource <DVTInvalidation>
+@protocol IDEIssueLogDataSource <NSObject, DVTInvalidation>
 @property(nonatomic, readonly) IDEActivityLogSection *issueLog;
 - (void)analyzeModelForIssues;
 @end

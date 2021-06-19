@@ -72,7 +72,7 @@
 @property(nonatomic) int internalDebuggerToolchainSelectionMode; // @synthesize internalDebuggerToolchainSelectionMode=_internalDebuggerToolchainSelectionMode;
 @property(retain) IDESchemeBuildableReference *buildableReferenceToUseForMacroExpansion; // @synthesize buildableReferenceToUseForMacroExpansion=_buildableReferenceToUseForMacroExpansion;
 @property(retain) IDEFileReference *notificationPayloadFile; // @synthesize notificationPayloadFile=_notificationPayloadFile;
-@property(readonly) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property(readonly, nonatomic) IDEScheme *runContext; // @synthesize runContext=_runContext;
 @property(readonly, copy) NSString *description;
 - (id)swiftVersionOfRunnableForSchemeCommand:(id)arg1;
 - (id)llvmProfdataToolchainForSchemeCommand:(id)arg1;
@@ -112,6 +112,8 @@
 @property(copy) NSArray *prePhaseExecutionActions; // @dynamic prePhaseExecutionActions;
 - (void)primitiveInvalidate;
 - (id)bundleIdentifierWithRunnablePath:(id)arg1;
+- (id)dstrootPathsForBuildParameters:(id)arg1;
+- (id)pathForBuildSetting:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3;
 - (id)absolutePathOfBuildSetting:(id)arg1 forSchemeCommand:(id)arg2;
 - (id)expandMacrosInString:(id)arg1 forSchemeCommand:(id)arg2 buildParameters:(id)arg3;
 - (id)expandMacrosInString:(id)arg1 forSchemeCommand:(id)arg2;

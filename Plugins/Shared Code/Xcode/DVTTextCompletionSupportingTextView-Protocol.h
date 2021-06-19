@@ -40,5 +40,6 @@
 
 @optional
 @property(readonly) BOOL hasDarkBackground;
+- (void)textCompletionSession:(DVTTextCompletionSession *)arg1 willDisplayCompletionItem:(id <DVTTextCompletionItem>)arg2;
 @end
 

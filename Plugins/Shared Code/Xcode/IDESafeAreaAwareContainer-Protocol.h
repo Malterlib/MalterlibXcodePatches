@@ -13,10 +13,12 @@
 @protocol IDESafeAreaAwareContainer;
 
 @protocol IDESafeAreaAwareContainer <NSObject>
-- (void)didInheritNewSafeAreaTopInsetFromParent;
+- (void)didInheritNewSafeAreaInsetsFromParent;
+@property(nonatomic) double safeAreaBottomInset;
 @property(nonatomic) double safeAreaTopInset;
 
 @optional
+- (BOOL)shouldSafeAreaAwareChildInheritBottomInset:(id <IDESafeAreaAwareContainer>)arg1;
 - (BOOL)shouldSafeAreaAwareChildInheritTopInset:(id <IDESafeAreaAwareContainer>)arg1;
 - (NSArray *)safeAreaAwareChildren;
 @end

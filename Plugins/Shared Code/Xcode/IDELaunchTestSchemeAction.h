@@ -133,7 +133,7 @@
 - (void)setRunContext:(id)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)init;
-- (void)dvt_commonInit;
+- (void)dvt_commonInitIsFromUnarchiver:(BOOL)arg1;
 
 @end
 

@@ -10,8 +10,6 @@
 
 #include "Shared.h"
 
-#import "DVTDealloc2Main_Document.h"
-
 #import "DVTInvalidation-Protocol.h"
 #import "DVTStateRepositoryDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
@@ -23,7 +21,7 @@
 @class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDEUIRecordingManager, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 @protocol DVTCancellable, DVTInvalidation, IDESourceControlWorkspaceDocumentUIHandlerProtocol;
 
-@interface IDEWorkspaceDocument : DVTDealloc2Main_Document <IDEActiveRunContextStoring, IDEWorkspaceDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
+@interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
     DVTStackBacktrace *_invalidationBacktrace;
     DVTStateRepository *_stateRepository;

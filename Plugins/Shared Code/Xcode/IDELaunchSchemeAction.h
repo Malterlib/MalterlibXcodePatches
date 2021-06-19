@@ -40,11 +40,11 @@
     BOOL _memoryGraphOnResourceException;
     BOOL _placeholderRenderingEnabled;
     BOOL _GPUProfilerEnabled;
-    int _internalIOSLaunchStyle;
     int _launchStyle;
     int _enableGPUFrameCaptureMode;
     int _enableGPUValidationMode;
     int _enableGPUShaderValidationMode;
+    long long _internalIOSInstallStyle;
     NSString *_resolvedCustomWorkingDirectory;
     NSMutableOrderedSet *_debugServiceExtensionContents;
     _TtC13IDEFoundation25IDEDeviceAppDataReference *_deviceAppDataReference;
@@ -105,7 +105,7 @@
 @property(retain) _TtC13IDEFoundation24IDESchemeOptionReference *deviceSensorReplayFileReference; // @synthesize deviceSensorReplayFileReference=_deviceSensorReplayFileReference;
 @property BOOL allowDeviceSensorReplayData; // @synthesize allowDeviceSensorReplayData=_allowDeviceSensorReplayData;
 @property(retain) _TtC13IDEFoundation25IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
-@property(nonatomic) int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
+@property(nonatomic) long long internalIOSInstallStyle; // @synthesize internalIOSInstallStyle=_internalIOSInstallStyle;
 - (void)primitiveInvalidate;
 - (void)addDeviceSensorReplayFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addStoreKitConfigurationFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -174,7 +174,7 @@
 - (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
 - (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
 - (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
-- (int)internalIOSLaunchStyleForBuildables:(id)arg1;
+- (long long)internalIOSInstallStyleForBuildables:(id)arg1;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;
@@ -189,7 +189,7 @@
 - (void)_setupQueueDebuggingState;
 - (void)_setupAnalysisToolService;
 - (id)schemeCommand;
-- (void)dvt_commonInit;
+- (void)dvt_commonInitIsFromUnarchiver:(BOOL)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 
 @end

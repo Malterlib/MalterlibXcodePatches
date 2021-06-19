@@ -27,9 +27,11 @@
     NSString *_emptyContentButtonTitle;
     long long _emptyContentStringStyle;
     NSFont *_emptyContentFont;
+    long long _mouseDownRow;
 }
 
 // - (void).cxx_destruct;
+@property(readonly) long long mouseDownRow; // @synthesize mouseDownRow=_mouseDownRow;
 @property(readonly) BOOL processingMouseEvent; // @synthesize processingMouseEvent=_processingMouseEvent;
 @property(nonatomic) BOOL hasContent; // @synthesize hasContent=_hasContent;
 @property(copy, nonatomic) NSFont *emptyContentFont; // @synthesize emptyContentFont=_emptyContentFont;

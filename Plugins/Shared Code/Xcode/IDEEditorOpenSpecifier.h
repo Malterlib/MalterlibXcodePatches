@@ -24,16 +24,15 @@
     id _exploreAnnotationRepresentedObject;
     BOOL _annotationWantsIndicatorAnimation;
     BOOL _highlightSelection;
+    BOOL _shouldOpenInComparisonMode;
 }
 
 + (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 annotationRepresentedObject:(id)arg3 wantsIndicatorAnimation:(BOOL)arg4 exploreAnnotationRepresentedObject:(id)arg5 error:(id *)arg6;
-+ (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 annotationRepresentedObject:(id)arg3 wantsIndicatorAnimation:(BOOL)arg4 exploreAnnotationRepresentedObject:(id)arg5 theError:(id *)arg6;
 + (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
-+ (id)structureEditorOpenSpecifierForDocumentURL:(id)arg1 inWorkspace:(id)arg2 theError:(id *)arg3;
 + (id)structureEditorOpenSpecifierForDocumentLocation:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
-+ (id)structureEditorOpenSpecifierForDocumentLocation:(id)arg1 inWorkspace:(id)arg2 theError:(id *)arg3;
 + (id)structureEditorOpenSpecifiersForNavigableItems:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
 // - (void).cxx_destruct;
+@property BOOL shouldOpenInComparisonMode; // @synthesize shouldOpenInComparisonMode=_shouldOpenInComparisonMode;
 @property(readonly) NSURL *documentURL; // @synthesize documentURL=_documentURL;
 @property BOOL highlightSelection; // @synthesize highlightSelection=_highlightSelection;
 @property(readonly) DVTFileDataType *fileDataType; // @synthesize fileDataType=_fileDataType;

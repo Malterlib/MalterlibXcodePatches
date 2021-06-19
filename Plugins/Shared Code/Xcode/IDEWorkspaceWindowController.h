@@ -10,8 +10,6 @@
 
 #include "Shared.h"
 
-#import "DVTDealloc2Main_WindowController.h"
-
 #import "DVTEditor-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
@@ -20,7 +18,7 @@
 
 @class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, NSValue, _IDEWindowFullScreenSavedDebuggerTransitionValues;
 
-@interface IDEWorkspaceWindowController : DVTDealloc2Main_WindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation, IDETabbedWindowController>
+@interface IDEWorkspaceWindowController : NSWindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation, IDETabbedWindowController>
 {
     NSTimer *_springToFrontTimer;
     int _debugSessionState;

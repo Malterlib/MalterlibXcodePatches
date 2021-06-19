@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTSourceCodeLanguage, DVTStackBacktrace, DVTTextCompletionStrategy, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue, NSString;
+@class DVTSourceCodeLanguage, DVTStackBacktrace, DVTTextCompletionStrategy, DVTWeakInterposer, NSArray, NSMutableArray, NSMutableSet, NSOperationQueue, NSString;
 @protocol DVTTextCompletionDataSourceDelegate;
 
 @interface DVTTextCompletionDataSource : NSObject <DVTInvalidation>
@@ -22,15 +22,17 @@
     NSMutableArray *_strategies;
     NSMutableSet *_strategyObservers;
     NSOperationQueue *_completionsGeneratorQueue;
-    NSMapTable *_lastGeneratedCompletionItemsPerStrategy;
     DVTTextCompletionStrategy *_lastDefinitiveStrategy;
+    NSObject *_lastCompletionsBackingStore;
 }
 
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(readonly) NSObject *lastCompletionsBackingStore; // @synthesize lastCompletionsBackingStore=_lastCompletionsBackingStore;
 @property(readonly) __weak DVTTextCompletionStrategy *lastDefinitiveStrategy; // @synthesize lastDefinitiveStrategy=_lastDefinitiveStrategy;
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 @property(copy) NSArray *strategies;
+- (void)completionResultsForDocumentLocation:(id)arg1 filterText:(id)arg2 context:(id)arg3 priorityCoefficients:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)generateCompletionsForDocumentLocation:(id)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)primitiveInvalidate;
 - (id)initWithLanguage:(id)arg1;

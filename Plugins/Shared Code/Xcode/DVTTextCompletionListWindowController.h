@@ -10,13 +10,11 @@
 
 #include "Shared.h"
 
-#import "DVTDealloc2Main_WindowController.h"
-
 
 @class DVTBindingToken, DVTNotificationToken, DVTTextCompletionSession, DVTTextCompletionWindow, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
 @protocol DVTCancellable, DVTTextCompletionListDataSource;
 
-@interface DVTTextCompletionListWindowController : DVTDealloc2Main_WindowController <NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
+@interface DVTTextCompletionListWindowController : NSWindowController <NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 {
     struct CGRect _wordRectInScreen;
     NSViewAnimation *_fadeOutAnimation;
@@ -54,6 +52,7 @@
 - (id)tableView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 row:(long long)arg5 mouseLocation:(struct CGPoint)arg6;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)disabledVariantOfImage:(id)arg1;
 - (BOOL)showInfoForSelectedCompletionItem;
 - (void)prefetchQuickHelpAroundSelectedItems;
 - (void)faultQuickHelpForItem:(id)arg1;

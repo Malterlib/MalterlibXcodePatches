@@ -14,14 +14,14 @@
 
 #import "IDEBuildNoticeWorkspace-Protocol.h"
 #import "IDEClientTracking-Protocol.h"
-#import "IDEIssueLogDataSource-Protocol.h"
 #import "IDEProvisionableProvider-Protocol.h"
 #import "IDETestableDataSource_IndexProvider-Protocol.h"
+#import "_TtP13IDEFoundation32IDESchemeFileReference_Workspace_-Protocol.h"
 
-@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDENoticeCollator, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation22IDEBuildNoticeProvider, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
+@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
 @protocol IDEActiveRunContextStoring, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEWorkspaceDelegate;
 
-@interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, IDEClientTracking, IDEIssueLogDataSource, IDEProvisionableProvider>
+@interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_, IDEClientTracking, IDEProvisionableProvider>
 {
     NSString *_untitledName;
     IDEWorkspaceArena *_workspaceArena;
@@ -38,13 +38,12 @@
     NSMapTable *_blueprintProviderObserverMap;
     NSMapTable *_blueprintProviderEditedObserverMap;
     NSMutableSet *_referencedBlueprints;
+    NSDictionary *_uniqueIdentifiersToReferencedBlueprints;
     BOOL _initialContainerScanComplete;
     NSMutableArray *_referencedRunnableBuildableProducts;
     IDERunContextManager *_runContextManager;
     IDELogManager *_logManager;
     IDEIssueManager *_issueManager;
-    IDENoticeCollator *_noticeCollator;
-    _TtC13IDEFoundation22IDEBuildNoticeProvider *_buildNoticeProvider;
     IDEBreakpointManager *_breakpointManager;
     IDETestManager *_testManager;
     _TtC16DVTDocumentation23DVTDocumentationManager *_documentationManager;
@@ -99,6 +98,7 @@
     IDEDynamicContentRootGroup *_dynamicContentRootGroup;
     NSArray *_sourcePackageLoadingErrors;
     IDEActivityLogSection *_sourcePackageResolutionIssueLog;
+    _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem *_noticeSubsystem;
     IDETextFragmentIndex *_textFragmentIndex;
     IDERefactoring *_refactoring;
     NSString *_xcbuildSandboxProfile;
@@ -156,12 +156,13 @@
 @property(readonly) IDERefactoring *refactoring; // @synthesize refactoring=_refactoring;
 @property(readonly) IDETextFragmentIndex *textFragmentIndex; // @synthesize textFragmentIndex=_textFragmentIndex;
 @property(retain) IDEIndex *index; // @synthesize index=_index;
-@property(readonly) IDENoticeCollator *noticeCollator; // @synthesize noticeCollator=_noticeCollator;
+@property(readonly) _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem *noticeSubsystem; // @synthesize noticeSubsystem=_noticeSubsystem;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
 @property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
 @property(copy) IDEActivityLogSection *sourcePackageResolutionIssueLog; // @synthesize sourcePackageResolutionIssueLog=_sourcePackageResolutionIssueLog;
 @property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
+@property(retain) NSDictionary *uniqueIdentifiersToReferencedBlueprints; // @synthesize uniqueIdentifiersToReferencedBlueprints=_uniqueIdentifiersToReferencedBlueprints;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
@@ -270,7 +271,7 @@
 - (void)_setupWorkspaceArenaIfNeeded;
 - (BOOL)_shouldLoadUISubsystems;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
-@property(readonly) IDEActivityLogSection *issueLog;
+- (id)issueLog;
 - (void)_validateSchemeOptionReference:(id)arg1 scheme:(id)arg2 referenceDisplayType:(id)arg3;
 - (void)analyzeModelForIssues;
 @property(readonly) IDEActivityLogMessage *swiftDeprecationLogMessage;
@@ -313,6 +314,7 @@
 - (id)ideIndex_runDestinationForIndexingWithScheme:(id)arg1;
 - (id)ideIndex_bestSchemeForBlueprint:(id)arg1;
 - (id)ideIndex_buildParametersForIndexingBlueprint:(id)arg1 synthesizedMacroOverrides:(id)arg2;
+- (void)_updateUniqueIdentifiersToReferencedBlueprints;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

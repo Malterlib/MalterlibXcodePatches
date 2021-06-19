@@ -28,6 +28,8 @@
     BOOL _resolved;
     BOOL _textInFilterableTextFieldModified;
     BOOL _shouldBeModifiedAfterCreation;
+    BOOL _isBeingModified;
+    BOOL _recreateIsRequired;
     BOOL _debuggerIdentifierChanged;
     BOOL _isRuntimeIssue;
     int _breakpointStackSelectionBehavior;
@@ -42,8 +44,10 @@
     unsigned long long _hitCount;
     NSString *_customStopReasonString;
     NSSet *_actionClassesToIgnoreAsModified;
+    NSArray *_customUnresolvedTooltipParts;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (id)keyPathsForValuesAffectingModifiedDescription;
 + (id)keyPathsForValuesAffectingModified;
 + (id)propertiesAffectingPersistenceState;
@@ -52,10 +56,13 @@
 + (void)initialize;
 // - (void).cxx_destruct;
 @property(readonly) BOOL isRuntimeIssue; // @synthesize isRuntimeIssue=_isRuntimeIssue;
+@property(readonly, nonatomic) NSArray *customUnresolvedTooltipParts; // @synthesize customUnresolvedTooltipParts=_customUnresolvedTooltipParts;
 @property(readonly) NSSet *actionClassesToIgnoreAsModified; // @synthesize actionClassesToIgnoreAsModified=_actionClassesToIgnoreAsModified;
 @property(copy) NSString *customStopReasonString; // @synthesize customStopReasonString=_customStopReasonString;
 @property BOOL debuggerIdentifierChanged; // @synthesize debuggerIdentifierChanged=_debuggerIdentifierChanged;
 @property int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
+@property(nonatomic) BOOL recreateIsRequired; // @synthesize recreateIsRequired=_recreateIsRequired;
+@property BOOL isBeingModified; // @synthesize isBeingModified=_isBeingModified;
 @property(nonatomic) BOOL shouldBeModifiedAfterCreation; // @synthesize shouldBeModifiedAfterCreation=_shouldBeModifiedAfterCreation;
 @property BOOL textInFilterableTextFieldModified; // @synthesize textInFilterableTextFieldModified=_textInFilterableTextFieldModified;
 @property(nonatomic) BOOL resolved; // @synthesize resolved=_resolved;
@@ -95,7 +102,7 @@
 - (void)toggleShouldBeEnabled;
 @property(readonly, nonatomic) NSString *modifiedDescription;
 - (BOOL)_shouldBeModified;
-- (void)locationWasRemoved:(id)arg1;
+- (void)locationsWereRemoved:(id)arg1;
 - (void)_updateLocation:(id)arg1 fromLocation:(id)arg2;
 - (unsigned long long)_indexOfSimilarBreakpointLocationMatching:(id)arg1 inLocations:(id)arg2 hintIndex:(unsigned long long)arg3;
 - (id)locationWasResolved:(id)arg1;

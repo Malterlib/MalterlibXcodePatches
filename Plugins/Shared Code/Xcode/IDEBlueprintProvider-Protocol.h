@@ -10,7 +10,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class NSArray, NSString;
+@class IDESourcePackageReference, NSArray, NSString;
 @protocol IDEBlueprint, IDETestableProvider;
 
 @protocol IDEBlueprintProvider <DVTInvalidation, NSObject>
@@ -25,6 +25,7 @@
 
 @optional
 @property(nonatomic, readonly) BOOL supportsSourceFolders;
+- (void)addSourcePackageReference:(IDESourcePackageReference *)arg1;
 @property(nonatomic, readonly) NSArray *sourcePackageReferences;
 @property(nonatomic) int buildSystemType;
 @property(nonatomic, readonly) NSString *uniqueIdentifier;

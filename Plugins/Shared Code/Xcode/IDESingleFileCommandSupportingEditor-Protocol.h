@@ -20,5 +20,9 @@
 - (BOOL)canPreprocessFile;
 - (void)assembleCurrentFile;
 - (BOOL)canAssembleFile;
+
+@optional
+- (void)generateRemarksCurrentFile;
+- (BOOL)canGenerateRemarksFile;
 @end
 

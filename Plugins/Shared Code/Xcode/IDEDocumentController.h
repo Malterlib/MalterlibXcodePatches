@@ -164,7 +164,6 @@
 - (id)_frontmostSimpleFilesFocusedWorkspaceWindowForTopLevelFilePaths:(id)arg1;
 - (BOOL)_workspace:(id)arg1 topLevelChildrenMatches:(id)arg2;
 - (void)_promptToOpenWorkspaceWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_chooseWorkspaceWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)_openWrappingContainerDocument:(id)arg1 displayDocument:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)makeDocumentWithContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (void)_openWorkspaceDocumentForWorkspace:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
