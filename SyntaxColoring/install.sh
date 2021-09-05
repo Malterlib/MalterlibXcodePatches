@@ -26,3 +26,12 @@ cp -f Malterlib.xccolortheme "$HOME/Library/Developer/Xcode/UserData/FontAndColo
 defaults write com.apple.dt.xcode XCFontAndColorCurrentTheme Malterlib.xccolortheme
 
 cp -f UnbrokenFont/* "$HOME/Library/Fonts"
+
+exit 0
+
+xcode.syntax.markup.emphasis = Italic
+xcode.syntax.markup.emphasis.strong = Bold
+xcode.syntax.markup.strikethrough = Strikthrough
+
+xcode.syntax.markup.aside.kind = xcode.syntax.markup.aside.kind
+xcode.syntax.markup.code = DVTMarkupTextInlineCodeColor

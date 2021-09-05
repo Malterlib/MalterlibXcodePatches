@@ -70,6 +70,7 @@
             IncludeRules = (
                 "xcode.lang.malterlib.variable.explicit",
                 "xcode.lang.malterlib.keyword.builtinconstant",
+                "xcode.lang.malterlib.constant.std",
                 "xcode.lang.malterlib.constant",
                 "xcode.lang.malterlib.constant.private",
                 "xcode.lang.malterlib.namespace",
@@ -487,6 +488,7 @@
             IncludeRules = (
                 "xcode.lang.malterlib.variable.explicit",
                 "xcode.lang.malterlib.keyword.builtinconstant",
+                "xcode.lang.malterlib.constant.std",
                 "xcode.lang.malterlib.constant",
                 "xcode.lang.malterlib.constant.private",
                 "xcode.lang.malterlib.namespace",
@@ -774,7 +776,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.declaration.other";
+            Type = "xcode.syntax.plain";
         };
     },
     {

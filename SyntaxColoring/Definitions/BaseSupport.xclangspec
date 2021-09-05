@@ -375,8 +375,6 @@
                 "else",
                 "return",
                 "switch",
-                "likely",
-                "unlikely",
                 "assume",
                 "yield_cpu",
                 "constant_int64",
@@ -420,6 +418,10 @@
                 "property",
                 "selectany",
                 "maybe_unused",
+                "no_unique_address",
+                "nodiscard",
+                "likely",
+                "unlikely",
                 "thread",
                 "uuid",
                 "explicit",
@@ -748,6 +750,21 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.constant.std";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "less",
+                "greater",
+                "equivalent",
+                "equal",
+                "unordered",
+             );
+            Type = "xcode.syntax.url";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.constant";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
@@ -789,7 +806,7 @@
             Match = (
                 "(?-i)^(tf_|tfp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.comment.doc";
+            Type = "xcode.syntax.markup.code";
         };
     },
     {
@@ -897,7 +914,7 @@
                 "(?-i)^f[A-Z][a-zA-Z0-9_]+$",
                 "(?-i)^fl_[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.class.system";
+            Type = "xcode.syntax.markup.aside.kind";
         };
     },
     {
@@ -930,7 +947,7 @@
             Match = (
                 "(?-i)^m_f[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.class.system";
+            Type = "xcode.syntax.declaration.other";
         };
     },
     {
@@ -941,7 +958,7 @@
             Match = (
                 "(?-i)^mp_f[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.class.system";
+            Type = "xcode.syntax.declaration.other";
         };
     },
     {

@@ -70,6 +70,7 @@
             IncludeRules = (
                 "xcode.lang.malterlib.variable.explicit",
                 "xcode.lang.malterlib.keyword.builtinconstant",
+                "xcode.lang.malterlib.constant.std",
                 "xcode.lang.malterlib.constant",
                 "xcode.lang.malterlib.constant.private",
                 "xcode.lang.malterlib.namespace",
@@ -853,7 +854,7 @@
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
             Rules = ( "xcode.lang.objc.identifier", );
-            Type = "xcode.syntax.declaration.other";
+            Type = "xcode.syntax.plain";
         };
     },
 
@@ -1055,7 +1056,7 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.declaration.other";
+            Type = "xcode.syntax.plain";
         };
     },
     {
@@ -1255,7 +1256,7 @@
             Rules = (
                 "xcode.lang.objc.identifier",
             );
-            Type = "xcode.syntax.declaration.other";
+            Type = "xcode.syntax.plain";
         };
     },
     {

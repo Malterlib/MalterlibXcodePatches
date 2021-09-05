@@ -45,7 +45,7 @@
 	<key>DVTMarkupTextEmphasisFont</key>
 	<string>.AppleSystemUIFontItalic - 9.0</string>
 	<key>DVTMarkupTextInlineCodeColor</key>
-	<string>0.996332 0.817868 0.0377372 0.7</string>
+	<string>1 0.717647 0.858823 1</string>
 	<key>DVTMarkupTextLinkColor</key>
 	<string>1 0.805 1 1</string>
 	<key>DVTMarkupTextLinkFont</key>
@@ -98,6 +98,8 @@
 	<string>0.238923 0.238923 0.238923 1</string>
 	<key>DVTSourceTextSyntaxColors</key>
 	<dict>
+		<key>xcode.syntax.markup.aside.kind</key>
+		<string>0 0.929412 0.682352 1</string>
 		<key>xcode.syntax.attribute</key>
 		<string>1 0.843137 0 1</string>
 		<key>xcode.syntax.character</key>
@@ -109,7 +111,7 @@
 		<key>xcode.syntax.comment.doc.keyword</key>
 		<string>1 0.34902 0.4 1</string>
 		<key>xcode.syntax.declaration.other</key>
-		<string>1 0.717647 0.858824 1</string>
+		<string>0 0.94901 0.39607 1</string>
 		<key>xcode.syntax.declaration.type</key>
 		<string>1 0.960784 0.294118 1</string>
 		<key>xcode.syntax.identifier.class</key>
@@ -141,7 +143,7 @@
 		<key>xcode.syntax.mark</key>
 		<string>0.509804 0.411765 1 1</string>
 		<key>xcode.syntax.markup.code</key>
-		<string>1 0 0 1</string>
+		<string>1 0.717647 0.858823 1</string>
 		<key>xcode.syntax.number</key>
 		<string>1 0 0.501961 1</string>
 		<key>xcode.syntax.plain</key>
@@ -155,6 +157,8 @@
 	</dict>
 	<key>DVTSourceTextSyntaxFonts</key>
 	<dict>
+		<key>xcode.syntax.markup.aside.kind</key>
+		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.attribute</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.character</key>
