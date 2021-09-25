@@ -20,6 +20,6 @@
 - (DVTStateToken *)stateToken;
 
 @optional
-@property(nonatomic, readonly) BOOL canRevertWithEmptyStateDictionary;
+@property(readonly) BOOL canRevertWithEmptyStateDictionary;
 @end
 

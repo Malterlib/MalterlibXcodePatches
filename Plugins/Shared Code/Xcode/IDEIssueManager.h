@@ -22,8 +22,11 @@
     NSMutableArray *_issueGroups;
     NSMapTable *_identifierToGroupIndex;
     NSMapTable *_issueToGroupsIndex;
+    NSMapTable *_issueToBlueprintsIndex;
+    NSMapTable *_issueToContainersIndex;
     NSMutableSet *_issuesThatWillBeRemoved;
     NSMutableArray *_vendedIssuesWithNoDocument;
+    NSMutableDictionary *_issuesWithNoDocumentGroupedByCoalescingBucketID;
     NSMutableSet *_issuesWithNoDocument;
     NSMutableArray *_documentURLsWithVendedIssues;
     NSMutableDictionary *_documentURLToIssueSummaryDict;
@@ -68,6 +71,9 @@
 @property(readonly) IDEIssueLogRecordsGroup *issueLogRecordsGroup; // @synthesize issueLogRecordsGroup=_issueLogRecordsGroup;
 @property(readonly, getter=areLiveIssuesEnabled) BOOL liveIssuesEnabled; // @synthesize liveIssuesEnabled=_liveIssuesEnabled;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+- (void)removeIssueFromIssuesWithNoDocument:(id)arg1;
+- (void)addIssueToIssuesWithNoDocument:(id)arg1;
+- (id)_coalescingBucketIDForIssueWithNoDocument:(id)arg1;
 - (void)_containersOrBlueprintsUpdated;
 - (id)_issuesForProviderContext:(id)arg1;
 - (id)_providerContextToProvisionInfoMapForIssues:(id)arg1;
@@ -91,6 +97,9 @@
 - (void)_setNumBuildtimeIssues:(unsigned long long)arg1 numRuntimeIssues:(unsigned long long)arg2;
 - (id)similarExistingIssueForIssue:(id)arg1;
 - (id)_similarExistingIssueForIssue:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
+- (id)__similarExistingIssueWithNoDocument:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
+- (id)__similarExistingIssueWithDocument:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
+- (id)__firstSimilarExistingIssueFromIssuesToMatch:(id)arg1 coalesceingWithIssue:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
 - (_Bool)_doesIssue:(id)arg1 fromContainer:(id)arg2 andBlueprint:(id)arg3 coalesceWithIssue:(id)arg4;
 - (_Bool)_doesIssue:(id)arg1 coalesceWithIssue:(id)arg2;
 - (id)_groupingObjectsForIssue:(id)arg1;
@@ -115,6 +124,9 @@
 - (unsigned long long)numberOfTestFailuresInDocumentAtURL:(id)arg1;
 - (id)_documentIssueSummaryForURL:(id)arg1;
 @property(readonly) NSArray *documentURLsWithIssues;
+- (void)removeIndexesForIssue:(id)arg1;
+- (BOOL)disassociateIssue:(id)arg1 withGroup:(id)arg2;
+- (void)associateIssue:(id)arg1 withGroup:(id)arg2;
 @property(readonly) NSArray *issueGroups;
 - (void)_updateIssueProviders;
 - (void)primitiveInvalidate;

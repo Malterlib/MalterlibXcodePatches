@@ -23,7 +23,7 @@
 // - (void).cxx_destruct;
 @property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (id)contextualSuffix;
-- (BOOL)textRepresentationForPasteboardIsFileName;
+- (BOOL)textIsFileName;
 - (id)textRepresentationForPasteboard;
 - (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;

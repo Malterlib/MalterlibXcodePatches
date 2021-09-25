@@ -23,7 +23,7 @@
 // - (void).cxx_destruct;
 @property(readonly) struct _NSRange contextTextMatchingRange; // @synthesize contextTextMatchingRange=_contextTextMatchingRange;
 @property(readonly) NSString *contextText; // @synthesize contextText=_contextText;
-- (BOOL)textRepresentationForPasteboardIsFileName;
+- (BOOL)textIsFileName;
 - (id)textRepresentationForPasteboard;
 - (BOOL)canHaveChildren;
 - (BOOL)allowsSummarization;

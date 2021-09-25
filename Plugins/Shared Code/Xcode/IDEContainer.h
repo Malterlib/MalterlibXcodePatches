@@ -219,6 +219,7 @@
 - (id)_containerInstanceDescription;
 - (BOOL)openQuickly_shouldIncludeAsResult;
 - (BOOL)openQuickly_shouldIncludeDescendants;
+@property(readonly) BOOL structureEditingTreatAsBlueFolder;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

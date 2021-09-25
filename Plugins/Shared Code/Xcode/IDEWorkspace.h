@@ -160,10 +160,11 @@
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
 @property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
 @property(copy) IDEActivityLogSection *sourcePackageResolutionIssueLog; // @synthesize sourcePackageResolutionIssueLog=_sourcePackageResolutionIssueLog;
-@property(copy) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
+@property(copy, nonatomic) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) NSDictionary *uniqueIdentifiersToReferencedBlueprints; // @synthesize uniqueIdentifiersToReferencedBlueprints=_uniqueIdentifiersToReferencedBlueprints;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
+@property(readonly) DVTFilePath *containingDirectory;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
 - (void)notifyBuildSystemServiceThatBlueprintProviderDidChange:(id)arg1;
@@ -306,8 +307,7 @@
 - (id)activeBlueprintLogSectionIDs;
 - (id)observeLatestBuildLogIdentityDidChange:(CDUnknownBlockType)arg1;
 @property(readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
-- (void)endSourcePackagePreflightResolution:(id)arg1;
-- (id)beginSourcePackagePreflightResolutionWithReference:(id)arg1 delegate:(id)arg2 error:(out id *)arg3;
+- (id)beginSourcePackagePreflightResolutionWithReference:(id)arg1 delegate:(id)arg2;
 - (id)latestSourcePackageVersionFromTags:(id)arg1;
 - (id)ideModelObjectTypeIdentifier;
 - (id)ideIndex_configurationNameForIndexingBlueprint:(id)arg1 scheme:(id)arg2;

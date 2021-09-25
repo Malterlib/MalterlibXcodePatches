@@ -122,6 +122,7 @@
 - (id)filePathForRelativePathString:(id)arg1;
 - (id)filePathForRelativeFileSystemRepresentation:(const char *)arg1;
 - (id)filePathForRelativeFileSystemRepresentation:(const char *)arg1 length:(unsigned long long)arg2;
+- (id)firstAncestorPassingTest:(CDUnknownBlockType)arg1;
 - (BOOL)isAncestorOfFilePath:(id)arg1;
 @property(readonly) DVTFilePath *volumeFilePath;
 @property(readonly) DVTFilePath *parentFilePath;

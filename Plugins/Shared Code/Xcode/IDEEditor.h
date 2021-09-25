@@ -16,7 +16,7 @@
 #import "IDEBottomBarItemProvider-Protocol.h"
 #import "IDESafeAreaAwareContainer-Protocol.h"
 
-@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, IDEAuxiliaryEditor, IDEAuxiliaryEditorContext, IDEAuxiliaryEditorProvider, IDEEditorContext, IDEEditorDocument, IDEFileTextSettings, NSScrollView, NSSet, NSString;
+@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, IDEAuxiliaryEditor, IDEAuxiliaryEditorContext, IDEAuxiliaryEditorProvider, IDEEditorContext, IDEEditorDocument, IDEFileTextSettings, IDENavigableItem, NSScrollView, NSSet, NSString;
 @protocol DVTTextFindable, IDEEditorDelegate;
 
 @interface IDEEditor : IDEViewController <NSUserInterfaceValidations, IDESafeAreaAwareContainer, IDEBottomBarItemProvider, IDEBottomBarContextProvider>
@@ -109,6 +109,7 @@
 @property(nonatomic) unsigned long long codeReviewPreference;
 @property(readonly, nonatomic) BOOL codeReviewEnabled;
 - (int)editorMode;
+@property(readonly, nonatomic) IDENavigableItem *greatestDocumentAncestor;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (id)_initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

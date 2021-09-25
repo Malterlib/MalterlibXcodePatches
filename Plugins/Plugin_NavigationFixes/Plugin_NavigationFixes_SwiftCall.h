@@ -3,7 +3,7 @@
 
 	#define DXcodePlugin_ImplementSwiftCallGlue(_Name) \
 		__attribute((swiftcall)) void (*g_f##_Name)(id __attribute__((swift_context)) _pContext); \
-		__attribute((swiftcall)) __attribute((noinline)) __attribute((naked)) void Call_##_Name() \
+		__attribute((swiftcall)) __attribute((noinline)) __attribute((naked)) void Call_##_Name(void) \
 		{\
 			asm("ldr  x9, %0" :: "m"(g_f##_Name));\
 			asm("br   x9");\
@@ -13,7 +13,7 @@
 
 	#define DXcodePlugin_ImplementSwiftCallGlue(_Name) \
 		__attribute((swiftcall)) void (*g_f##_Name)(id __attribute__((swift_context)) _pContext); \
-		__attribute((swiftcall)) __attribute((noinline)) __attribute((naked)) void Call_##_Name() \
+		__attribute((swiftcall)) __attribute((noinline)) __attribute((naked)) void Call_##_Name(void) \
 		{\
 			asm	{ jmp g_f##_Name};\
 		}
@@ -36,7 +36,7 @@ DXcodePlugin_ImplementSwiftCallGlue(SourceEditor_SourceEditorView_selectTextRang
 DXcodePlugin_ImplementSwiftCallGlue(SourceEditor_SourceEditorView_clearSelectionAnchors);
 DXcodePlugin_ImplementSwiftCallGlue(SourceEditor_SourceEditorTextFindPanel_updatePanelModePopup);
 
-void Call_InitFunctiontPointers()
+void Call_InitFunctiontPointers(void)
 {
 	DXcodePlugin_InitSwiftCallGlue(SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded, "SourceEditor.framework/Versions/A/SourceEditor", "_$s12SourceEditor0aB13LayoutManagerC19expandRangeIfNeededySnyAA0aB8PositionVGAGF");
 	DXcodePlugin_InitSwiftCallGlue(SourceEditor_SourceEditorView_deleteSourceRange, "SourceEditor.framework/Versions/A/SourceEditor", "_$s12SourceEditor0aB4ViewC06deleteA5Range5range7forward11useKillRingySnyAA0aB8PositionVG_S2btF");

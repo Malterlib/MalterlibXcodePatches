@@ -39,7 +39,7 @@
 @property(readonly) SEL childOrderingSelector; // @synthesize childOrderingSelector=_childOrderingSelector;
 @property(readonly) DVTDocumentLocation *location; // @synthesize location=_location;
 - (long long)compareSuggestedOrder:(id)arg1;
-- (BOOL)textRepresentationForPasteboardIsFileName;
+- (BOOL)textIsFileName;
 @property(readonly) NSString *contextualSuffix;
 - (id)textRepresentationForPasteboard;
 - (id)generateFindResult;

@@ -131,7 +131,8 @@ static void DumpIvars(Class clz)
         int Size = 0;
         if (i + 1<count)
             Size = (int)(ivar_getOffset(ivars[i+1]) - ivar_getOffset(ivar));
-        printf("\t%s %s   Offset %p   Size %d\n", [ReadableTypeString([NSString stringWithUTF8String: ivar_getTypeEncoding(ivar)]) UTF8String], ivar_getName(ivar), (void *)ivar_getOffset(ivar), Size);
+        char const *pTypeEncoding = ivar_getTypeEncoding(ivar);
+        printf("\t%s %s   Offset %p   Size %d\n", pTypeEncoding ? [ReadableTypeString([NSString stringWithUTF8String: pTypeEncoding]) UTF8String] : "Invalid", ivar_getName(ivar), (void *)ivar_getOffset(ivar), Size);
         Last = ivar_getOffset(ivar);
 
     }

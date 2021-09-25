@@ -32,6 +32,7 @@
     NSString *_filterText;
     DVTNotificationToken *_maximumNumberOfLinesObservingToken;
     id <DVTInvalidation> _rowSizeStyleChangedObserver;
+    id <DVTInvalidation> _displayNameObserver;
     IDEWorkspaceDocument *_workspaceDocument;
     NSSet *_selectedResults;
     NSMapTable *_searchResultDisplayRecords;
@@ -103,6 +104,7 @@
 - (void)didCompleteFirstLayout;
 - (id)regenerateLineWrappingParameters;
 - (void)pushExpansionStates;
+- (void)reloadAllFileRows;
 - (void)recusrivelyPushExpansionStateForChildrenOfItem:(id)arg1;
 - (void)initiate;
 - (id)initWithQuerySpecification:(id)arg1 initialLineWrappingParameters:(id)arg2 workspaceDocument:(id)arg3 delegate:(id)arg4 error:(id *)arg5;

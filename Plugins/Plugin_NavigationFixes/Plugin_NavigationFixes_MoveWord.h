@@ -66,9 +66,10 @@ __attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorVie
 
 __attribute((swiftcall)) __attribute((noinline)) void *SourceEditor_SourceEditorView_getSelectionPointer(id __attribute__((swift_context)) _pSourceEditorView)
 {
+	//XcodePluginDumpClass([_pSourceEditorView class]);
 	static Ivar s_Ivar = nil;
 	if (!s_Ivar)
-		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "selection");
+		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "primitiveSelection");
 
 	ptrdiff_t offset = ivar_getOffset(s_Ivar);
 	unsigned char* bytes = (unsigned char *)(__bridge void*)_pSourceEditorView;

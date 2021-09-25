@@ -195,9 +195,8 @@
 - (void)generatePreprocessedFileForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)cleanTestResults:(id)arg1;
 - (void)cleanBuildFolder:(id)arg1;
-- (void)reallyCleanBuildFolderWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)reallyCleanBuildFolder;
-- (void)_cleanForRunActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)_reallyCleanWithInvocationRecord:(id)arg1 invokedViaScripting:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)cleanActiveRunContext:(id)arg1;
 - (id)_buildFolderToRevealReturningRevealCommandDisplayTitle:(out id *)arg1;
 - (void)revealBuildFolder:(id)arg1;
@@ -215,8 +214,10 @@
 - (void)editAndProfileActiveScheme:(id)arg1;
 - (void)profileActiveSchemeWithoutBuilding:(id)arg1;
 - (void)profileActiveScheme:(id)arg1;
-- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 testRepetitionPolicy:(id)arg2 contextString:(id)arg3 testingCompleteBlock:(CDUnknownBlockType)arg4;
+- (void)testUsingActiveRunContextWithOverridingTestingSpecifierGroups:(id)arg1 testRepetitionPolicy:(id)arg2 schemeTask:(long long)arg3 contextString:(id)arg4 testingCompleteBlock:(CDUnknownBlockType)arg5;
+- (void)_testActiveRunContextFromScripting:(BOOL)arg1 schemeTask:(long long)arg2 withInvocationRecord:(id)arg3 additionalCommandLineArgs:(id)arg4 overridingEnvironmentVars:(id)arg5 contextString:(id)arg6 completionBlock:(CDUnknownBlockType)arg7;
 - (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (void)testActiveRunContextWithContextString:(id)arg1 schemeTask:(long long)arg2;
 - (void)testActiveRunContextWithContextString:(id)arg1;
 - (void)buildForTestActiveRunContext:(id)arg1;
 - (void)editAndBuildForTestingActiveRunContext:(id)arg1;

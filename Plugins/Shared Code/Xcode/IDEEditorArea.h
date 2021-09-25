@@ -94,6 +94,7 @@
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
 + (id)keyPathsForValuesAffectingBottomBarContext;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
++ (id)stringForEditorMode:(int)arg1;
 + (id)keyPathsForValuesAffectingLastActiveEditorAreaSplit;
 + (BOOL)_newEditorsHaveEmptyContent;
 // - (void).cxx_destruct;
@@ -122,6 +123,8 @@
 - (void)editorMultipleSplit:(id)arg1 didCreateSplitItem:(id)arg2;
 - (void)_updateEditorAreaSplitsWithoutSplitItem:(id)arg1;
 - (void)_updateEditorAreaSplits;
+- (void)_closeToTheLeftTabsForEditorContext:(id)arg1 client:(unsigned long long)arg2;
+- (BOOL)_canCloseToTheLeftEditorTabsForEditorContext:(id)arg1;
 - (void)_closeToTheRightTabsForEditorContext:(id)arg1 client:(unsigned long long)arg2;
 - (BOOL)_canCloseToTheRightEditorTabsForEditorContext:(id)arg1;
 - (void)_closeOtherTabsForEditorContext:(id)arg1 client:(unsigned long long)arg2;

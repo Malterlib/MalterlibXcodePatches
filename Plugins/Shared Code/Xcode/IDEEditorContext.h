@@ -313,6 +313,8 @@
 - (BOOL)wantsScrollEventsForSwipeTrackingOnAxis:(long long)arg1;
 - (void)swipeWithEvent:(id)arg1;
 - (void)_swipeToGoForward:(BOOL)arg1;
+- (void)changeAssistantToShowGeniusCategoryWithIdentifier:(id)arg1;
+- (id)availableGeniusCategories;
 - (void)jumpToInstructionPointer:(id)arg1;
 - (void)fixPreviousIssue:(id)arg1;
 - (void)fixNextIssue:(id)arg1;
@@ -418,6 +420,7 @@
 - (void)_setEmptyRootNavigableItem;
 - (void)_primitiveSetNavBarRootNavigableItem:(id)arg1 selectedNavigableItem:(id)arg2;
 - (void)setNavBarNavigableItem:(IDENavigableItem *)arg1;
+- (id)_currentHistoryItemAllowingCoalescingAdjustment:(BOOL)arg1;
 - (id)currentHistoryItem;
 - (id)_currentSelectedDocumentLocations;
 - (void)_updateSiblingInfoFromNavigableItem;

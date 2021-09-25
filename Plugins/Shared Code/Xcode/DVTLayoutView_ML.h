@@ -21,7 +21,6 @@
 }
 
 + (void)initialize;
-+ (BOOL)isLayingoutWindow:(id)arg1;
 // - (void).cxx_destruct;
 @property(readonly) DVTStructuredLayoutViewState *dvt_layoutState; // @synthesize dvt_layoutState=_dvt_layoutState;
 - (BOOL)wantsDefaultClipping;

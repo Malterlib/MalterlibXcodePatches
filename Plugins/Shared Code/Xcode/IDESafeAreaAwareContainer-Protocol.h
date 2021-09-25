@@ -13,9 +13,9 @@
 @protocol IDESafeAreaAwareContainer;
 
 @protocol IDESafeAreaAwareContainer <NSObject>
-- (void)didInheritNewSafeAreaInsetsFromParent;
 @property(nonatomic) double safeAreaBottomInset;
 @property(nonatomic) double safeAreaTopInset;
+- (void)didInheritNewSafeAreaInsetsFromParent;
 
 @optional
 - (BOOL)shouldSafeAreaAwareChildInheritBottomInset:(id <IDESafeAreaAwareContainer>)arg1;

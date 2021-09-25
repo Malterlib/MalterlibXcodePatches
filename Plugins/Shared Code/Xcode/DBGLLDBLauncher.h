@@ -60,6 +60,8 @@
 - (void)_createTargetConsoleAdaptorForPTY:(id)arg1;
 - (id)errorForLLDBLaunchError:(id)arg1 target:(id)arg2;
 - (id)_doAttachWithTarget:(id)arg1 childPID:(unsigned long long *)arg2 outError:(id *)arg3;
+- (id)_errorMessageForAttachingToPID:(unsigned long long)arg1;
+- (id)_errorMessageForAttachingToName:(id)arg1;
 - (id)_errorStringFromLLDBError:(id)arg1;
 - (void)_logSetUID:(unsigned int)arg1;
 - (id)_modifyMessageForDisplay:(id)arg1 suggestedErrorCode:(int *)arg2;
