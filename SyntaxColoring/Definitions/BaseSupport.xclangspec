@@ -6,9 +6,10 @@
 			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			CaseSensitive = NO;
 			Match = (
-				"^(acap|adir|afp|afs|callto|cap|cid|cvs|data|doi|facetime|fax|feed|file|ftp|git|go|gopher|gtalk|https|http|imap|info|jabber|jdbc|ldaps|ldap|mailserver|message|mid|modem|news|nntp|odbc|opaquelocktoken|pop|prospero|rdar|rtsp|rsync|service|sftp|sips|sip|skype|snews|snmp|soap\\.beep|soap\\.beeps|ssh|svn|tag|telnet|tel|tip|tn3270|urn|vemmi|vnc|wais|webcal|xcdoc|z39\\.50r|z39\\.50s)://([\\p{Letter}\\p{Number}\\-_.]+/)?[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
+				"^(acap|adir|afp|afs|callto|cap|cid|cvs|data|doc|doi|facetime|fax|feed|file|ftp|git|go|gopher|gtalk|https|http|imap|info|jabber|jdbc|ldaps|ldap|mailserver|message|mid|modem|news|nntp|odbc|opaquelocktoken|pop|prospero|rdar|rtsp|rsync|service|sftp|sips|sip|skype|snews|snmp|soap\\.beep|soap\\.beeps|ssh|svn|tag|telnet|tel|tip|tn3270|urn|vemmi|vnc|wais|webcal|x-source-tag|xcdoc|z39\\.50r|z39\\.50s)://([\\p{Letter}\\p{Number}\\-_.]+/)?[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
 				"^(mailto|im):[\\p{Letter}\\p{Number}\\-_]+@[\\p{Letter}\\p{Number}\\-_\\.!%]+",
 				"^radar:[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
+				"^doc:([\\p{Letter}\\p{Number}\\-_.]+/)?[\\p{Letter}\\p{Number};/?:@\\&=+$,\\-_.!~*'()%#]+",
 			);
 			Type = "xcode.syntax.url";
 		};
@@ -91,12 +92,31 @@
         };
     },
     {
+        Identifier = "xcode.lang.string.singlequote.multiline";
+        BasedOn = "xcode.lang.string";
+        Syntax = {
+            Start = "'";
+            End = "'";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
         Identifier = "xcode.lang.string.backquote";
         BasedOn = "xcode.lang.string";
         Syntax = {
             Start = "`";
             EscapeChar = "\\";
             End = "`|\n";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.string.backquote.multiline";
+        BasedOn = "xcode.lang.string";
+        Syntax = {
+            Start = "`";
+            EscapeChar = "\\";
+            End = "`";
             Type = "xcode.syntax.string";
         };
     },
@@ -183,7 +203,7 @@
 			IncludeRules = (
 				"xcode.lang.url",
 				"xcode.lang.url.mail",
-				"xcode.lang.comment.mark",
+				"xcode.lang.comment.star.mark",
 			);
 			Type = "xcode.syntax.comment";
 		};
@@ -224,18 +244,29 @@
             CaseSensitive = NO;
 			StartChars = "MTF!?";
 			Match = (
-				"^MARK:[ \t]+(.*)$",
-				"^(TODO:[ \t]+.*)$",
-				"^(FIXME:[ \t]+.*)$",
-				"^(!!!:.*)$",
-				"^(\\?\\?\\?:.*)$",
+				"^MARK:[ \t]+.*$",
+				"^TODO:[ \t]+.*$",
+				"^FIXME:[ \t]+.*$",
+				"^!!!:.*$",
+				"^\\?\\?\\?:.*$",
 			);
-			CaptureTypes = (
-				"xcode.syntax.mark",
-			);
-			Type = "xcode.syntax.comment";
+			Type = "xcode.syntax.mark";
 		};
 	},
+    {
+        Identifier = "xcode.lang.comment.star.mark";
+        Syntax = {
+            StartChars = "MTF!?";
+            Match = (
+                "^MARK:[ \t]+.*?(?=$|\\*/)",
+                "^TODO:[ \t]+.*?(?=$|\\*/)",
+                "^FIXME:[ \t]+.*?(?=$|\\*/)",
+                "^!!!:.*?(?=$|\\*/)",
+                "^\\?\\?\\?:.*?(?=$|\\*/)",
+            );
+            Type = "xcode.syntax.mark";
+        };
+    },
 	{
 		Identifier = "xcode.lang.number";
 		Syntax = {
@@ -244,10 +275,10 @@
 			Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			Match = (
 				"^[+-]?0[bB][01]+([lLuU])*",
-				"^[+-]?0[xX][0-9a-fA-F]+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfFuU])*",
-				"^[+-]?0[xX][0-9a-fA-F]*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfFuU])*",
-				"^[+-]?[0-9]+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfFuU])*",
-				"^[+-]?[0-9]*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfFuU])*",
+				"^[+-]?0[xX][0-9a-fA-F]+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]*)?)?([lLfFuU])*",
+				"^[+-]?0[xX][0-9a-fA-F]*\\.[0-9a-fA-F]+([pP][+-]?[0-9]*)?([lLfFuU])*",
+				"^[+-]?[0-9]+((\\.[0-9]*)?([eE][+-]?[0-9]*)?)?([lLfFuU])*",
+				"^[+-]?[0-9]*\\.[0-9]+([eE][+-]?[0-9]*)?([lLfFuU])*",
 			);
 			Type = "xcode.syntax.number";
 		};
