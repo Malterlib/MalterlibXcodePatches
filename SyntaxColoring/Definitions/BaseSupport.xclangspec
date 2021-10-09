@@ -8,7 +8,7 @@
                 "const",
                 "volatile",
              );
-            Type = "xcode.syntax.identifier.macro.system";
+            Type = "xcode.syntax.preprocessor";
         };
     },
 
@@ -627,7 +627,7 @@
             Words = (
                 "auto",
              );
-            Type = "xcode.syntax.plain";
+            Type = "xcode.syntax.markup.aside.kind";
         };
     },
 
@@ -851,7 +851,7 @@
             Match = (
                 "(?-i)^(tf_C|tf_F|tf_TC|tfp_C|tfp_F|tfp_TC)[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.type.system";
+            Type = "xcode.syntax.attribute";
         };
     },
     {
@@ -914,7 +914,7 @@
                 "(?-i)^f[A-Z][a-zA-Z0-9_]+$",
                 "(?-i)^fl_[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.markup.aside.kind";
+            Type = "xcode.syntax.declaration.type";
         };
     },
     {
@@ -1007,7 +1007,7 @@
             Match = (
                 "(?-i)^(fp_|fpr_|fp_r|fsp_|fspr_|fsp_r)[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.preprocessor";
+            Type = "xcode.syntax.identifier.macro.system";
         };
     },
     {
@@ -1069,7 +1069,7 @@
             Match = (
                 "(?-i)^d_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
             );
-            Type = "xcode.syntax.identifier.macro.system";
+            Type = "xcode.syntax.preprocessor";
         };
     },
     {
@@ -1136,7 +1136,7 @@
                 "(?-i)^CMake[a-zA-Z0-9_]+$",
 
             );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.identifier.type.system";
         };
     },
     {
@@ -1148,7 +1148,7 @@
                 "(?-i)^[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
 
             );
-            Type = "xcode.syntax.attribute";
+            Type = "xcode.syntax.identifier.type.system";
         };
     },
     {

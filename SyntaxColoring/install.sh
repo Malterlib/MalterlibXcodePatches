@@ -35,3 +35,36 @@ xcode.syntax.markup.strikethrough = Strikthrough
 
 xcode.syntax.markup.aside.kind = xcode.syntax.markup.aside.kind
 xcode.syntax.markup.code = DVTMarkupTextInlineCodeColor
+
+################
+
+# Used
+xcode.syntax.markup.aside.kind				# Auto <------ Not critical
+xcode.syntax.declaration.type 				# Local Functor (OK)
+xcode.syntax.identifier.type.system 		# Variable (OK)
+xcode.syntax.character						# Char
+xcode.syntax.comment						# Comment
+xcode.syntax.comment.doc					# Template constant <--------- Does not work in Xcode anyway
+xcode.syntax.comment.doc.keyword 			# Built in type <------------- Not critical
+xcode.syntax.declaration.other				# Member functor (OK)
+xcode.syntax.identifier.class				# Type (OK)
+xcode.syntax.identifier.class.system		# Functor param (OK)
+xcode.syntax.identifier.constant			# Member (OK)
+xcode.syntax.identifier.constant.system		# Member private (OK)
+xcode.syntax.identifier.function			# Member function (OK)
+xcode.syntax.identifier.function.system		# Global function (OK)
+xcode.syntax.identifier.macro				# Macro Define (OK)
+xcode.syntax.preprocessor					# Macro parameter <----------- Not critical
+xcode.syntax.identifier.type				# Namespace (OK)
+xcode.syntax.attribute						# Template function typename <------ Does not work in Xcode anyway
+xcode.syntax.identifier.variable			# Function parameter (OK)
+xcode.syntax.identifier.variable.system		# (private) static member, global static, global (OK)
+xcode.syntax.keyword						# Keywords <--------- Not critical
+xcode.syntax.mark							# Tempalte typename <--------- Does not work in Xcode anyway
+xcode.syntax.markup.code					# Template function constant <----  Does not work in Xcode anyway
+xcode.syntax.number							# Number
+xcode.syntax.plain							# Language constructs
+xcode.syntax.identifier.macro.system		# Member function private (OK)
+xcode.syntax.string							# String
+xcode.syntax.url							# Enumerator, member constant etc (OK)
+

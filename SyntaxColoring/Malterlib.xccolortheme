@@ -98,9 +98,9 @@
 	<string>0.238923 0.238923 0.238923 1</string>
 	<key>DVTSourceTextSyntaxColors</key>
 	<dict>
-		<key>xcode.syntax.markup.aside.kind</key>
+		<key>xcode.syntax.declaration.type</key>
 		<string>0 0.929412 0.682352 1</string>
-		<key>xcode.syntax.attribute</key>
+		<key>xcode.syntax.identifier.type.system</key>
 		<string>1 0.843137 0 1</string>
 		<key>xcode.syntax.character</key>
 		<string>1 0.282353 0.941176 1</string>
@@ -112,8 +112,8 @@
 		<string>1 0.34902 0.4 1</string>
 		<key>xcode.syntax.declaration.other</key>
 		<string>0 0.94901 0.39607 1</string>
-		<key>xcode.syntax.declaration.type</key>
-		<string>1 0.960784 0.294118 1</string>
+		<key>xcode.syntax.markup.aside.kind</key>
+		<string>0.859 0.827 1 1</string>
 		<key>xcode.syntax.identifier.class</key>
 		<string>0.721569 0.666667 1 1</string>
 		<key>xcode.syntax.identifier.class.system</key>
@@ -128,11 +128,11 @@
 		<string>0.109804 0.72549 0 1</string>
 		<key>xcode.syntax.identifier.macro</key>
 		<string>1 0.466667 0 1</string>
-		<key>xcode.syntax.identifier.macro.system</key>
+		<key>xcode.syntax.preprocessor</key>
 		<string>1 0.737255 0.505882 1</string>
 		<key>xcode.syntax.identifier.type</key>
 		<string>0.843137 0.521569 1 1</string>
-		<key>xcode.syntax.identifier.type.system</key>
+		<key>xcode.syntax.attribute</key>
 		<string>0.803922 0.764706 1 1</string>
 		<key>xcode.syntax.identifier.variable</key>
 		<string>0.901961 1 0 1</string>
@@ -148,7 +148,7 @@
 		<string>1 0 0.501961 1</string>
 		<key>xcode.syntax.plain</key>
 		<string>1 1 1 1</string>
-		<key>xcode.syntax.preprocessor</key>
+		<key>xcode.syntax.identifier.macro.system</key>
 		<string>0.552941 0.835294 0.501961 1</string>
 		<key>xcode.syntax.string</key>
 		<string>0 0.619608 1 1</string>
@@ -157,9 +157,9 @@
 	</dict>
 	<key>DVTSourceTextSyntaxFonts</key>
 	<dict>
-		<key>xcode.syntax.markup.aside.kind</key>
+		<key>xcode.syntax.declaration.type</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.attribute</key>
+		<key>xcode.syntax.identifier.type.system</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.character</key>
 		<string>Unbroken20px-Regular - 10.0</string>
@@ -171,7 +171,7 @@
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.declaration.other</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.declaration.type</key>
+		<key>xcode.syntax.markup.aside.kind</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.class</key>
 		<string>Unbroken20px-Regular - 10.0</string>
@@ -187,11 +187,11 @@
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.macro</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.identifier.macro.system</key>
+		<key>xcode.syntax.preprocessor</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.type</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.identifier.type.system</key>
+		<key>xcode.syntax.attribute</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.identifier.variable</key>
 		<string>Unbroken20px-Regular - 10.0</string>
@@ -207,7 +207,7 @@
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.plain</key>
 		<string>Unbroken20px-Regular - 10.0</string>
-		<key>xcode.syntax.preprocessor</key>
+		<key>xcode.syntax.identifier.macro.system</key>
 		<string>Unbroken20px-Regular - 10.0</string>
 		<key>xcode.syntax.string</key>
 		<string>Unbroken20px-Regular - 10.0</string>
