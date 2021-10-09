@@ -214,6 +214,7 @@
                 "self",
                 "super",
                 "instancetype",
+                "direct",
 
                 // Keywords from C++
                 "__private_extern__",
@@ -299,20 +300,6 @@
     },
 
     {
-        Identifier = "xcode.lang.objcpp.enumMacros";
-        Syntax = {
-            Words = (
-                "NS_ENUM",
-                "NS_OPTIONS",
-                "CF_ENUM",
-                "CF_OPTIONS",
-            );
-            Type = "xcode.syntax.identifier";
-            WordBreak = NO;
-        };
-    },
-
-    {
         Identifier = "xcode.lang.objcpp.interestingOperators";
         Syntax = {
             Words = (
@@ -320,6 +307,10 @@
                 "->",
                 "::",
                 ".",
+                ",",
+                ";",
+                "=",
+                "*",
              );
             Type = "xcode.syntax.plain";
         };
@@ -337,6 +328,7 @@
         Name = "Objective-C++";
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer.toplevel";
+            ShouldTraverse = YES;
             IncludeRules = (
                 "xcode.lang.objcpp.interface",
                 "xcode.lang.objcpp.implementation",
@@ -361,7 +353,7 @@
                 "xcode.lang.objcpp.array.literal",
                 "xcode.lang.objcpp.dictionary.literal",
                 "xcode.lang.objcpp.expression.literal",
-                "xcode.lang.objcpp.initializer",
+                "xcode.lang.objcpp.assignment",
                 "xcode.lang.objcpp.import",
             );
             Type = "xcode.syntax.plain";
@@ -415,7 +407,6 @@
                 "xcode.lang.character.ucs2",
                 "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.objcpp.enumMacros",
                 "xcode.lang.objc.number",
                 "xcode.lang.objcpp.array.literal.start",
                 "xcode.lang.objcpp.dictionary.literal.start",
@@ -461,7 +452,6 @@
                 "xcode.lang.objcpp.protocol.declarator",
                 "xcode.lang.objcpp.property.declarator",
                 "xcode.lang.objcpp.operatorclause",
-                "xcode.lang.objcpp.enumMacros",
                 "xcode.lang.objc.number",
                 "xcode.lang.objcpp.array.literal.start",
                 "xcode.lang.objcpp.dictionary.literal.start",
@@ -502,7 +492,6 @@
                 "xcode.lang.character.ucs2",
                 "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
-                "xcode.lang.objcpp.enumMacros",
                 "xcode.lang.objc.number",
                 "xcode.lang.objcpp.array.literal.start",
                 "xcode.lang.objcpp.array.literal.end",
@@ -530,8 +519,8 @@
         Identifier = "xcode.lang.objcpp.lexer.operator";
         Syntax = {
             IncludeRules = (
-                "xcode.lang.objcpp.identifier",
                 "xcode.lang.objcpp.anoperator",
+                "xcode.lang.objcpp.identifier",
             );
         };
     },
@@ -575,6 +564,7 @@
             Rules = (
                 "@protocol",
                 "xcode.lang.objcpp.protocolname",
+                "xcode.lang.objcpp.protocolclause?",
             );
             Type = "xcode.syntax.name.tree";
         };
@@ -587,7 +577,7 @@
             Rules = (
                 "xcode.lang.objcpp.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -611,29 +601,7 @@
             Rules = (
                 "xcode.lang.objcpp.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
-        };
-    },
-    {
-        Identifier = "xcode.lang.objcpp.protocol.openangle";
-        BasedOn = "xcode.lang.objc.protocol.openangle";
-        Syntax = {
-            Tokenizer = "xcode.lang.objcpp.lexer";
-            Rules = (
-                "<",
-            );
-            Type = "xcode.syntax.name.partial";
-        };
-    },
-    {
-        Identifier = "xcode.lang.objcpp.protocol.closeangle";
-        BasedOn = "xcode.lang.objc.protocol.closeangle";
-        Syntax = {
-            Tokenizer = "xcode.lang.objcpp.lexer";
-            Rules = (
-                ">",
-            );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -641,12 +609,15 @@
         BasedOn = "xcode.lang.objc.protocolclause";
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer";
-            Rules = (
-                "xcode.lang.objcpp.protocol.openangle",
-                "xcode.lang.objcpp.protocolname",
-                "xcode.lang.objcpp.protocol.protocollist*",
-                "xcode.lang.objcpp.protocol.closeangle",
+            Start = "<";
+            End = ">";
+            Until = "{|}|)|]|;"; // error out if we get unexpected stuff.
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.objcpp.bracketexpr",
+                "xcode.lang.objcpp.parenexpr",
             );
+            Type = "xcode.syntax.protocolclause";
         };
     },
     {
@@ -737,6 +708,7 @@
                 ",",
                 "xcode.lang.objcpp.protocolname",
             );
+            Type = "xcode.syntax.protocollist";
         };
     },
     {
@@ -779,7 +751,7 @@
                 "xcode.lang.objcpp.block",
                 "xcode.lang.objcpp.bracketexpr",
                 "xcode.lang.objcpp.parenexpr",
-                "xcode.lang.objcpp.initializer",
+                "xcode.lang.objcpp.assignment",
             );
             Type = "xcode.syntax.definition.objc.implementation";
         };
@@ -974,8 +946,9 @@
     {
         Identifier = "xcode.lang.objcpp.anoperator";
         Syntax = {
+            StartChars = "nd-,+|&><=!^/%*~[(";
             Match = (
-                "^[ \t]*(new|delete|->\\*|->|,|\\+\\+|--|\\|\\||&&|>>=|<<=|>>|<<|>=|<=|==|!=|\\|=|&=|\\^=|%=|/=|\\*=|-=|\\+=|>|<|\\+|-|\\*|/|%|\\^|&|\\||~|!|=|\\[\\]|\\(\\))[ \t]*",
+                "^(new|delete|->\\*|->|,|\\+\\+|--|\\|\\||&&|>>=|<<=|>>|<<|>=|<=|==|!=|\\|=|&=|\\^=|%=|/=|\\*=|-=|\\+=|>|<|\\+|-|\\*|/|%|\\^|&|\\||~|!|=|\\[\\]|\\(\\))",
             );
         };
     },
@@ -1205,6 +1178,9 @@
             Tokenizer = "xcode.lang.objcpp.lexer";
             Rules = (
                 "xcode.lang.objcpp.nsenum.declarator",
+                "xcode.lang.generated.preprocessor.ignore*",
+                "xcode.lang.cpp.expression.attribute.function*",
+                "xcode.lang.generated.preprocessor.ignore*",
                 "xcode.lang.objcpp.block",
             );
             Type = "xcode.syntax.declaration.enum";
@@ -1215,9 +1191,10 @@
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer";
             Rules = (
-                "NS_ENUM|NS_OPTIONS|CF_ENUM|CF_OPTIONS",
+                "NS_ENUM",
                 "(",
-                "xcode.lang.objcpp.identifier",
+                // somewhat hacky, ideally we would just allow anything between `(` and `,`
+                "int|unsigned|xcode.lang.objcpp.identifier+",
                 "xcode.lang.objcpp.enum.optionalname?",
                 ")",
             );
@@ -1413,6 +1390,7 @@
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.property.name.lexer";
             Rules = (
+                "xcode.lang.objcpp.parenexpr*",
                 "xcode.lang.objcpp.property.name",
                 "xcode.lang.objcpp.property.morenames?",
                 "xcode.lang.generated.preprocessor.ignore*",
@@ -1608,7 +1586,6 @@
                 "xcode.lang.character.ucs4",
                 "xcode.lang.completionplaceholder",
                 "xcode.lang.objcpp.typedef.end",
-                "xcode.lang.objcpp.enumMacros",
                 "xcode.lang.objc.number",
                 "xcode.lang.objcpp.identifier",
                 "xcode.lang.c.number",
@@ -1681,7 +1658,7 @@
             Rules = (
                 "xcode.lang.objcpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -1759,6 +1736,7 @@
                 "xcode.lang.objcpp.array.literal",
                 "xcode.lang.objcpp.dictionary.literal",
                 "xcode.lang.objcpp.expression.literal",
+                "xcode.lang.objcpp.assignment",
             );
         };
     },
@@ -1813,7 +1791,7 @@
                 "xcode.lang.objcpp.array.literal",
                 "xcode.lang.objcpp.dictionary.literal",
                 "xcode.lang.objcpp.expression.literal",
-                "xcode.lang.objcpp.initializer",
+                "xcode.lang.objcpp.assignment",
             );
             Type = "xcode.syntax.plain";
         };
@@ -1823,6 +1801,7 @@
         Identifier = "xcode.lang.objcpp.namespace";
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer.toplevel";
+            ShouldTraverse = YES;
             Rules = (
                 "namespace",
                 "xcode.lang.generated.preprocessor.ignore*",
@@ -1840,6 +1819,7 @@
         Identifier = "xcode.lang.objcpp.externblock";
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer.toplevel";
+            ShouldTraverse = YES;
             Rules = (
                 "extern",
                 "xcode.lang.string",
@@ -1869,6 +1849,7 @@
                 "xcode.lang.objcpp.array.literal",
                 "xcode.lang.objcpp.dictionary.literal",
                 "xcode.lang.objcpp.expression.literal",
+                "xcode.lang.objcpp.assignment",
             );
         };
     },
@@ -1880,6 +1861,7 @@
             Tokenizer = "xcode.lang.objcpp.lexer";
             Start = "(";
             End = ")";
+            Until = "]|}";
             Recursive = YES;
             IncludeRules = (
                 "xcode.lang.objcpp.bracketexpr",
@@ -1897,6 +1879,7 @@
             Tokenizer = "xcode.lang.objcpp.lexer";
             Start = "[";
             End = "]";
+            Until = ")|}";
             Recursive = YES;
             IncludeRules = (
                 "xcode.lang.objcpp.parenexpr",
@@ -1914,6 +1897,7 @@
             Tokenizer = "xcode.lang.objcpp.literal.lexer";
             Start = "@[";
             End = "xcode.lang.objcpp.array.literal.end";
+            Until = ")|}";
             Recursive = YES;
             IncludeRules = (
                 "xcode.lang.objcpp.dictionary.literal",
@@ -1946,6 +1930,7 @@
             Tokenizer = "xcode.lang.objcpp.literal.lexer";
             Start = "@{";
             End = "xcode.lang.objcpp.dictionary.literal.end";
+            Until = ")|]";
             Recursive = YES;
             IncludeRules = (
                 "xcode.lang.objcpp.array.literal",
@@ -2054,7 +2039,7 @@
             Rules = (
                 "xcode.lang.objcpp.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -2197,9 +2182,9 @@
             Tokenizer = "xcode.lang.objcpp.lexer";
             Start = "<";
             End = ">";
+            Until = "{|}|)|]|;"; // error out if we get unexpected stuff.
             Recursive = YES;
             IncludeRules = (
-                "xcode.lang.objcpp.block",
                 "xcode.lang.objcpp.bracketexpr",
                 "xcode.lang.objcpp.parenexpr",
             );
@@ -2226,7 +2211,7 @@
             Start = "->";
             Until = "{|;";
             IncludeRules = (
-                "xcode.lang.objcpp.templateclause",
+                "xcode.lang.objcpp.cpp.templateclause",
                 "xcode.lang.objcpp.bracketexpr",
                 "xcode.lang.objcpp.parenexpr",
             );
@@ -2251,14 +2236,14 @@
                 "xcode.lang.objcpp.unionblock",
                 "xcode.lang.objcpp.bracketexpr",
                 "xcode.lang.objcpp.parenexpr",
-                "xcode.lang.objcpp.initializer",
+                "xcode.lang.objcpp.assignment",
             );
         };
     },
     
     {
-        Identifier = "xcode.lang.objcpp.initializer";
-        BasedOn = "xcode.lang.objc.initializer";
+        Identifier = "xcode.lang.objcpp.assignment";
+        BasedOn = "xcode.lang.objc.assignment";
         Syntax = {
             Tokenizer = "xcode.lang.objcpp.lexer.toplevel";
             Start = "=";
@@ -2273,6 +2258,7 @@
                 "xcode.lang.objcpp.parenexpr",
                 "xcode.lang.objcpp.bracketexpr",
             );
+            Type = "xcode.syntax.assignment";
         };
     },
 

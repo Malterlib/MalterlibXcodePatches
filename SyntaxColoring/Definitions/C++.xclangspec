@@ -239,6 +239,10 @@
                 "->",
                 "::",
                 ".",
+                ",",
+                ";",
+                "=",
+                "*",
              );
             Type = "xcode.syntax.plain";
         };
@@ -273,7 +277,7 @@
                 "xcode.lang.cpp.namespace",
                 "xcode.lang.cpp.externblock",
                 "xcode.lang.cpp.block.toplevel",
-                "xcode.lang.cpp.initializer",
+                "xcode.lang.cpp.assignment",
             );
             Type = "xcode.syntax.plain";
         };
@@ -358,8 +362,8 @@
         Identifier = "xcode.lang.cpp.lexer.operator";
         Syntax = {
             IncludeRules = (
-                "xcode.lang.cpp.identifier",
                 "xcode.lang.cpp.anoperator",
+                "xcode.lang.cpp.identifier",
             );
         };
     },
@@ -512,8 +516,9 @@
     {
         Identifier = "xcode.lang.cpp.anoperator";
         Syntax = {
+            StartChars = "nd-,+|&><=!^/%*~[(";
             Match = (
-                "^[ \t]*(new|delete|->\\*|->|,|\\+\\+|--|\\|\\||&&|>>=|<<=|>>|<<|>=|<=|==|!=|\\|=|&=|\\^=|%=|/=|\\*=|-=|\\+=|>|<|\\+|-|\\*|/|%|\\^|&|\\||~|!|=|\\[\\]|\\(\\))[ \t]*",
+                "^(new|delete|->\\*|->|,|\\+\\+|--|\\|\\||&&|>>=|<<=|>>|<<|>=|<=|==|!=|\\|=|&=|\\^=|%=|/=|\\*=|-=|\\+=|>|<|\\+|-|\\*|/|%|\\^|&|\\||~|!|=|\\[\\]|\\(\\))",
             );
         };
     },
@@ -614,7 +619,7 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -757,6 +762,7 @@
             Tokenizer = "xcode.lang.cpp.lexer";
             Start = "<";
             End = ">";
+            Until = "{|}|)|]|;"; // error out if we get unexpected stuff.
             Recursive = YES;
             IncludeRules = (
                 "xcode.lang.cpp.bracketexpr",
@@ -1006,7 +1012,6 @@
                 "xcode.lang.cpp.typedef.function",
                 "xcode.lang.cpp.block",
                 "xcode.lang.cpp.bracketexpr",
-                "xcode.lang.cpp.parenexpr",
             );
             Type = "xcode.syntax.typedef";
         };
@@ -1018,7 +1023,7 @@
             Rules = (
                 "xcode.lang.cpp.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -1035,17 +1040,42 @@
     {
         Identifier = "xcode.lang.cpp.typedef.function";
         Syntax = {
+            Start = "(";
+            End = ")";
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.typedef.function.star",
+                "xcode.lang.cpp.typedef.function.caret",
+            );
+            Tokenizer = "xcode.lang.cpp.lexer.typedef.name";
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typedef.function.star";
+        Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.typedef.name";
             Rules = (
-                "(",
                 "*",
                 "xcode.lang.cpp.typedef.name",
-                ")",
             );
             Type = "xcode.syntax.name.tree";
         };
     },
-    
+    {
+        Identifier = "xcode.lang.cpp.typedef.function.caret";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.typedef.name";
+            Rules = (
+                "^",
+                "xcode.lang.cpp.typedef.name",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+
 
 /****************************************************************************/
 // MARK: - C++ Blocks
@@ -1108,7 +1138,7 @@
                 "xcode.lang.cpp.externblock",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
-                "xcode.lang.cpp.initializer",
+                "xcode.lang.cpp.assignment",
             );
             Type = "xcode.syntax.plain";
         };
@@ -1118,6 +1148,7 @@
         Identifier = "xcode.lang.cpp.namespace";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            ShouldTraverse = YES;
             Rules = (
                 "namespace",
                 "xcode.lang.generated.preprocessor.ignore*",
@@ -1135,6 +1166,7 @@
         Identifier = "xcode.lang.cpp.externblock";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            ShouldTraverse = YES;
             Rules = (
                 "extern",
                 "xcode.lang.string",
@@ -1163,7 +1195,7 @@
                 "xcode.lang.cpp.unionblock",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
-                "xcode.lang.cpp.initializer",
+                "xcode.lang.cpp.assignment",
             );
         };
     },
@@ -1185,6 +1217,7 @@
                 "xcode.lang.cpp.unionblock",
                 "xcode.lang.cpp.bracketexpr",
                 "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.assignment",
             );
         };
     },
@@ -1218,7 +1251,7 @@
     },
     
     {
-        Identifier = "xcode.lang.cpp.initializer";
+        Identifier = "xcode.lang.cpp.assignment";
         Syntax = {
             Tokenizer = "xcode.lang.cpp.lexer.toplevel";
             Start = "=";
@@ -1230,6 +1263,7 @@
                 "xcode.lang.cpp.parenexpr",
                 "xcode.lang.cpp.bracketexpr",
             );
+            Type = "xcode.syntax.assignment";
         };
     },
 )

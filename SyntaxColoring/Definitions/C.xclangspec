@@ -189,6 +189,7 @@
             Rules = (
                 "define",
                 "xcode.lang.c.preprocessor.define.name",
+                "xcode.lang.c.preprocessor.parameters?",
             );
             Type = "xcode.syntax.plain";
         };
@@ -201,6 +202,17 @@
                 "xcode.lang.c.preprocessor.identifier",
             );
             Type = "xcode.syntax.identifier.macro";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.preprocessor.parameters";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.preprocessor.lexer";
+            Start = "(";
+            EscapeChar = "\\";
+            End = ")";
+            AltUntil = "\n";
+            Type = "xcode.syntax.preprocessor.parameters";
         };
     },
     {
@@ -569,6 +581,10 @@
                 "...",
                 ".",
                 "->",
+                ",",
+                ";",
+                "=",
+                "*",
              );
             Type = "xcode.syntax.plain";
         };
@@ -583,10 +599,10 @@
             Chars = "0123456789'+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             Match = (
                 "^[+-]?0[bB][01']+([lLuU])*",
-                "^[+-]?0[xX][0-9a-fA-F']+((\\.[0-9a-fA-F']*)?([pP][+-]?[0-9']+)?)?([lLfFuU])*",
-                "^[+-]?0[xX][0-9a-fA-F']*\\.[0-9a-fA-F']+([pP][+-]?[0-9']+)?([lLfFuU])*",
-                "^[+-]?[0-9']+((\\.[0-9']*)?([eE][+-]?[0-9']+)?)?([lLfFuU])*",
-                "^[+-]?[0-9']*\\.[0-9']+([eE][+-]?[0-9']+)?([lLfFuU])*",
+                "^[+-]?0[xX][0-9a-fA-F']*((\\.[0-9a-fA-F']*)?([pP][+-]?[0-9']*)?)?([lLfFuU])*",
+                "^[+-]?0[xX][0-9a-fA-F']*\\.[0-9a-fA-F']*([pP][+-]?[0-9']*)?([lLfFuU])*",
+                "^[+-]?[0-9']+((\\.[0-9']*)?([eE][+-]?[0-9']*)?)?([lLfFuU])*",
+                "^[+-]?[0-9']*\\.[0-9']+([eE][+-]?[0-9']*)?([lLfFuU])*",
             );
             Type = "xcode.syntax.number";
         };
@@ -618,7 +634,7 @@
                 "xcode.lang.c.block.toplevel",
                 "xcode.lang.c.bracketexpr",
                 "xcode.lang.c.parenexpr",
-                "xcode.lang.c.initializer",
+                "xcode.lang.c.assignment",
             );
             Type = "xcode.syntax.plain";
         };
@@ -640,7 +656,7 @@
                 "xcode.lang.c.block",
                 "xcode.lang.c.bracketexpr",
                 "xcode.lang.c.parenexpr",
-                "xcode.lang.c.initializer",
+                "xcode.lang.c.assignment",
             );
             Type = "xcode.syntax.plain";
         };
@@ -902,7 +918,6 @@
                 "xcode.lang.c.typedef.function",
                 "xcode.lang.c.block",
                 "xcode.lang.c.bracketexpr",
-                "xcode.lang.c.parenexpr",
             );
             Type = "xcode.syntax.typedef";
         };
@@ -914,7 +929,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.name.partial";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -931,17 +946,42 @@
     {
         Identifier = "xcode.lang.c.typedef.function";
         Syntax = {
+            Start = "(";
+            End = ")";
+            IncludeRules = (
+                "xcode.lang.c.bracketexpr",
+                "xcode.lang.c.block",
+                "xcode.lang.c.parenexpr",
+                "xcode.lang.c.typedef.function.star",
+                "xcode.lang.c.typedef.function.caret",
+            );
+            Tokenizer = "xcode.lang.c.lexer.typedef.name";
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.c.typedef.function.star";
+        Syntax = {
             Tokenizer = "xcode.lang.c.lexer.typedef.name";
             Rules = (
-                "(",
                 "*",
                 "xcode.lang.c.typedef.name",
-                ")",
             );
             Type = "xcode.syntax.name.tree";
         };
     },
-    
+    {
+        Identifier = "xcode.lang.c.typedef.function.caret";
+        Syntax = {
+            Tokenizer = "xcode.lang.c.lexer.typedef.name";
+            Rules = (
+                "^",
+                "xcode.lang.c.typedef.name",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+
 /****************************************************************************/
 // MARK: - Blocks and such
 /****************************************************************************/
@@ -957,6 +997,7 @@
             IncludeRules = (
                 "xcode.lang.c.bracketexpr",
                 "xcode.lang.c.parenexpr",
+                "xcode.lang.c.assignment",
             );
         };
     },
@@ -1041,7 +1082,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -1073,7 +1114,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     {
@@ -1105,7 +1146,7 @@
             Rules = (
                 "xcode.lang.c.identifier",
             );
-            Type = "xcode.syntax.declaration.type";
+            Type = "xcode.syntax.name.type";
         };
     },
     
@@ -1137,7 +1178,7 @@
     },
     
     {
-        Identifier = "xcode.lang.c.initializer";
+        Identifier = "xcode.lang.c.assignment";
         Syntax = {
             Tokenizer = "xcode.lang.c.lexer";
             Start = "=";
@@ -1149,6 +1190,7 @@
                 "xcode.lang.c.parenexpr",
                 "xcode.lang.c.bracketexpr",
             );
+            Type = "xcode.syntax.assignment";
         };
     },
 )
