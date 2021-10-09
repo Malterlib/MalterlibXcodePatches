@@ -11,10 +11,10 @@
             Start = "#";
             EscapeChar = "\\";
             End = "\n";
-
+            
             // only recognize the '#' if it's the first non-whitespace on a line
             StartAtBOL = YES;
-
+            
             // multi-line comments extend the preprocessor statement across lines too
             Tokenizer = "xcode.lang.opencl.preprocessor.lexer";
             IncludeRules = (
@@ -78,7 +78,7 @@
             AltType = "xcode.syntax.preprocessor.identifier";
         };
     },
-
+ 
     {
         Identifier = "xcode.lang.opencl.preprocessor.mark";
         Syntax = {
@@ -211,74 +211,6 @@
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-            IncludeRules = (
-                "xcode.lang.malterlib.variable.explicit",
-                "xcode.lang.malterlib.keyword.builtinconstant",
-                "xcode.lang.malterlib.constant.std",
-                "xcode.lang.malterlib.constant",
-                "xcode.lang.malterlib.constant.private",
-                "xcode.lang.malterlib.namespace",
-                "xcode.lang.malterlib.namespace.explicit",
-                "xcode.lang.malterlib.templatetypeparam",
-                "xcode.lang.malterlib.functiontemplatetypeparam",
-                "xcode.lang.malterlib.constant.template",
-                "xcode.lang.malterlib.constant.templatefunction",
-                "xcode.lang.malterlib.type",
-                "xcode.lang.malterlib.type.explicit",
-                "xcode.lang.malterlib.functor.param",
-                "xcode.lang.malterlib.functor.param.output",
-                "xcode.lang.malterlib.functor.member",
-                "xcode.lang.malterlib.functor.member.private",
-                "xcode.lang.malterlib.member",
-                "xcode.lang.malterlib.member.private",
-                "xcode.lang.malterlib.function",
-                "xcode.lang.malterlib.function.explicit",
-                "xcode.lang.malterlib.function.private",
-                "xcode.lang.malterlib.function.global",
-                "xcode.lang.malterlib.function.global.explicit",
-                "xcode.lang.malterlib.macro",
-                "xcode.lang.malterlib.macro.explicit",
-                "xcode.lang.malterlib.macro.parameter",
-                "xcode.lang.malterlib.function.parameter",
-                "xcode.lang.malterlib.function.parameter.output",
-                "xcode.lang.malterlib.member.static",
-                "xcode.lang.malterlib.member.static.private",
-                "xcode.lang.malterlib.global",
-                "xcode.lang.malterlib.functor.local",
-                "xcode.lang.malterlib.keyword.qualifiers",
-                "xcode.lang.malterlib.keyword.storageclass",
-                "xcode.lang.malterlib.keyword.builtintype",
-                "xcode.lang.malterlib.keyword.builtincharactertype",
-                "xcode.lang.malterlib.keyword.builtinintegertype",
-                "xcode.lang.malterlib.keyword.builtintypemodifier",
-                "xcode.lang.malterlib.keyword.builtinvectortype",
-                "xcode.lang.malterlib.keyword.builtinfloattype",
-                "xcode.lang.malterlib.keyword.exceptionhandling",
-                "xcode.lang.malterlib.keyword.introspection",
-                "xcode.lang.malterlib.keyword.staticassert",
-                "xcode.lang.malterlib.keyword.controlstatement",
-                "xcode.lang.malterlib.keyword.optimization",
-                "xcode.lang.malterlib.keyword.propertymodifier",
-                "xcode.lang.malterlib.keyword.newdelete",
-                "xcode.lang.malterlib.keyword.clr",
-                "xcode.lang.malterlib.keyword.other",
-                "xcode.lang.malterlib.keyword.typespecification",
-                "xcode.lang.malterlib.keyword.namespace",
-                "xcode.lang.malterlib.keyword.typename",
-                "xcode.lang.malterlib.keyword.template",
-                "xcode.lang.malterlib.keyword.typedef",
-                "xcode.lang.malterlib.keyword.using",
-                "xcode.lang.malterlib.keyword.auto",
-                "xcode.lang.malterlib.keyword.js.var",
-                "xcode.lang.malterlib.keyword.this",
-                "xcode.lang.malterlib.keyword.operator",
-                "xcode.lang.malterlib.keyword.access",
-                "xcode.lang.malterlib.keyword.virtual",
-                "xcode.lang.malterlib.keyword.casts",
-                "xcode.lang.malterlib.keyword.ignore",
-                "xcode.lang.malterlib.keyword.preprocessordirective",
-                "xcode.lang.malterlib.variable",
-            );
             Words = (
                 "__alignof__",
                 "__asm__",
@@ -448,10 +380,10 @@
                 "xcode.lang.opencl.parenexpr",
                 "xcode.lang.opencl.initializer",
             );
-            Type = "xcode.syntax.keyword";
+            Type = "xcode.syntax.plain";
         };
     },
-
+    
     // The following rule returns tokens to the other rules
     {
         Identifier = "xcode.lang.opencl.lexer";
@@ -471,7 +403,7 @@
             );
         };
     },
-
+    
     {
         Identifier = "xcode.lang.opencl.attribute";
         Syntax = {
@@ -509,7 +441,7 @@
             Recursive = YES;
         };
     },
-
+    
 /****************************************************************************/
 // MARK: Functions
 /****************************************************************************/
@@ -557,7 +489,7 @@
             Type = "xcode.syntax.name.partial";
         };
     },
-
+    
 /****************************************************************************/
 // MARK: Typedefs
 /****************************************************************************/
@@ -605,8 +537,7 @@
         Syntax = {
             Tokenizer = "xcode.lang.opencl.lexer.typedef";
             Start = "typedef";
-            End = "xcode.lang.opencl.typedef.end";
-            AltEnd = ";";
+            End = "xcode.lang.opencl.typedef.end|;";
             Foldable = YES;
             Recursive = YES;
             IncludeRules = (
@@ -652,7 +583,7 @@
             Type = "xcode.syntax.name.tree";
         };
     },
-
+    
 /****************************************************************************/
 // MARK: Blocks and such
 /****************************************************************************/
@@ -671,7 +602,7 @@
             );
         };
     },
-
+    
     {
         Identifier = "xcode.lang.opencl.parenexpr";
         Syntax = {
@@ -685,7 +616,7 @@
             );
         };
     },
-
+    
     {
         Identifier = "xcode.lang.opencl.bracketexpr";
         Syntax = {
@@ -698,7 +629,7 @@
             );
         };
     },
-
+    
     {
         Identifier = "xcode.lang.opencl.initializer";
         Syntax = {
