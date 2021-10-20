@@ -285,6 +285,8 @@
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)changeToBreakpointsNavigator:(id)arg1;
 - (void)changeToDebuggerNavigator:(id)arg1;
+- (void)changeToRepositoriesNavigator:(id)arg1;
+- (void)changeToChangesNavigator:(id)arg1;
 - (void)changeToWorkingCopiesNavigator:(id)arg1;
 - (void)changeToFindNavigator:(id)arg1;
 - (void)changeToTestNavigator:(id)arg1;

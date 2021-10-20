@@ -1,5 +1,6 @@
 build/
 /Plugins/Shared Code/XcodeDump/
+/Plugins/Plugin_NavigationFixes/Plugin_NavigationFixes.d
 
 *.mode1
 *.mode1v3
