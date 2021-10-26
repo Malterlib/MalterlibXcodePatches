@@ -66,5 +66,5 @@ xcode.syntax.number							# Number
 xcode.syntax.plain							# Language constructs
 xcode.syntax.identifier.macro.system		# Member function private (OK)
 xcode.syntax.string							# String
-xcode.syntax.url							# Enumerator, member constant etc (OK)
+xcode.syntax.url							# Enumerator, member constant etc (OK, does not work with completion)
 
