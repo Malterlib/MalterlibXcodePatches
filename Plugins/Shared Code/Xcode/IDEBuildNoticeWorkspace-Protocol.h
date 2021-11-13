@@ -8,8 +8,8 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class NSArray, _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem;
-@protocol DVTCancellable, DVTInvalidation, IDEBuildNoticeLogSection, IDEBuildNoticeLogStore;
+@class IDEWorkspaceNoticeSubsystem, NSArray;
+@protocol DVTCancellable, DVTInvalidation, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildNoticeLogStore;
 
 @protocol IDEBuildNoticeWorkspace
 - (id <IDEBuildNoticeLogStore>)makeLogStoreForNoticeLogs;
@@ -17,6 +17,7 @@
 - (id <DVTCancellable>)observeLatestBuildLogIdentityDidChange:(void (^)(void))arg1;
 - (NSArray *)activeBlueprintLogSectionIDs;
 @property(nonatomic, readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
-@property(nonatomic, readonly) _TtC13IDEFoundation27IDEWorkspaceNoticeSubsystem *noticeSubsystem;
+@property(nonatomic, readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
+@property(nonatomic, readonly) IDEWorkspaceNoticeSubsystem *noticeSubsystem;
 @end
 

@@ -73,9 +73,8 @@
 + (id)keyPathsForValuesAffectingPathComponentName;
 + (id)keyPathsForValuesAffectingRepresentedURL;
 + (id)iconOfRepresentedObject:(id)arg1;
-+ (id)imageOfRepresentedObject:(id)arg1;
 + (id)nameOfRepresentedObject:(id)arg1;
-+ (id)keyPathsForValuesAffecting_titleStyleForReferencedContentExistance;
++ (id)keyPathsForValuesAffectingTitleColorOverride;
 + (id)keyPathsForValuesAffectingIde_canStructureEditName;
 // - (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *arrangedChildItems; // @synthesize arrangedChildItems=_arrangedChildItems;
@@ -189,8 +188,8 @@
 @property(readonly, nonatomic, getter=isMajorGroup) BOOL majorGroup;
 @property(readonly, nonatomic) DVTFileDataType *documentType;
 @property(readonly, nonatomic) BOOL isDocumentNavigableItem;
-- (unsigned long long)_titleStyleForMissingContent;
-- (unsigned long long)_titleStyleForReferencedContentExistance;
+- (id)_titleColorOverrideForMissingContent;
+- (id)titleColorOverride;
 - (BOOL)_allowsNonFileReferenceDocumentInFileInspector;
 - (BOOL)ide_canStructureEditName;
 - (BOOL)hasAncestorInSet:(id)arg1;

@@ -10,11 +10,13 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class IDESourcePackageReference, NSArray, NSString;
+@class DVTFilePath, IDESourcePackageReference, IDEWorkspace, NSArray, NSString;
 @protocol IDEBlueprint, IDETestableProvider;
 
 @protocol IDEBlueprintProvider <DVTInvalidation, NSObject>
 + (NSArray *)availableSwiftVersions;
+@property(nonatomic, readonly) IDEWorkspace *workspace;
+@property(nonatomic, readonly) DVTFilePath *filePath;
 @property(nonatomic, readonly) id <IDETestableProvider> testableProvider;
 - (id <IDEBlueprint>)blueprintForName:(NSString *)arg1;
 - (id <IDEBlueprint>)blueprintForIdentifier:(NSString *)arg1;

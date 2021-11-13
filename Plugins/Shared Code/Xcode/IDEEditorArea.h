@@ -14,14 +14,13 @@
 
 #import "DVTSplitViewDelegate-Protocol.h"
 #import "IDEBottomBarContextProvider-Protocol.h"
-#import "IDEDebuggerBarEditorInfoProvider-Protocol.h"
 #import "IDEEditorMultipleSplitDelegate-Protocol.h"
 #import "IDESafeAreaAwareContainer-Protocol.h"
 
-@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugAreaBorderedView, IDEDebugBar, IDEDebuggerAreaContainer, IDEEditorAreaContainer, IDEEditorAreaSplit, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDEEditorMultipleSplit, IDENavigableItemArchivableRepresentation, NSArray, NSDictionary, NSIndexPath, NSMutableArray, NSMutableDictionary, NSPanel, NSSet, NSString, NSTouchBar, NSView, _TtC6IDEKit12IDEBottomBar;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDFRDebugBar, IDEDebugArea, IDEDebugAreaBorderedView, IDEDebugBar, IDEDebuggerAreaContainer, IDEEditorAreaContainer, IDEEditorAreaSplit, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDEEditorMultipleSplit, IDENavigableItemArchivableRepresentation, NSArray, NSDictionary, NSIndexPath, NSMutableArray, NSMutableDictionary, NSPanel, NSSet, NSString, NSTouchBar, NSView, _TtC6IDEKit12IDEBottomBar;
 @protocol DVTCancellable;
 
-@interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEDebuggerBarEditorInfoProvider, IDEBottomBarContextProvider, IDEEditorMultipleSplitDelegate, NSWindowDelegate, DVTSplitViewDelegate, IDESafeAreaAwareContainer>
+@interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEBottomBarContextProvider, IDEEditorMultipleSplitDelegate, NSWindowDelegate, DVTSplitViewDelegate, IDESafeAreaAwareContainer>
 {
     NSView *_editorAreaSplitHostView;
     int _editorMode;
@@ -29,7 +28,6 @@
     DVTObservingToken *_navigationTargetedEditorContextIsValidObservingToken;
     DVTObservingToken *_finishedLoadingObservingToken;
     IDEEditorContext *_lastActiveEditorContext;
-    IDEDebugBar *_activeDebuggerBar;
     IDEDebugArea *_activeDebuggerArea;
     NSMutableDictionary *_defaultPersistentRepresentations;
     NSString *_currentDefaultDebugAreaExtensionID;
@@ -42,7 +40,6 @@
     DVTSplitViewItem *_editorSplitViewItem;
     DVTSplitViewItem *_debugAreaSplitViewItem;
     double _heightToReturnToDebuggerArea;
-    id _launchSessionObserver;
     BOOL _needsToRefreshContexts;
     BOOL _didRestoreState;
     BOOL _restoringStateSelfInitiated;
@@ -70,6 +67,7 @@
     NSArray *_editorAreaSplits;
     IDEEditorMultipleSplit *_editorMultipleSplit;
     IDEEditorDocument *_primaryEditorDocument;
+    IDEDFRDebugBar *_activeDFRDebuggerBar;
     _TtC6IDEKit12IDEBottomBar *_bottomBar;
     IDEEditorAreaContainer *_editorAreaAutoLayoutView;
     IDEDebuggerAreaContainer *_debuggerAreaAutoLayoutView;
@@ -106,6 +104,7 @@
 @property(retain, nonatomic) IDEDebuggerAreaContainer *debuggerAreaAutoLayoutView; // @synthesize debuggerAreaAutoLayoutView=_debuggerAreaAutoLayoutView;
 @property(retain, nonatomic) IDEEditorAreaContainer *editorAreaAutoLayoutView; // @synthesize editorAreaAutoLayoutView=_editorAreaAutoLayoutView;
 @property(readonly) _TtC6IDEKit12IDEBottomBar *bottomBar; // @synthesize bottomBar=_bottomBar;
+@property(retain) IDEDFRDebugBar *activeDFRDebuggerBar; // @synthesize activeDFRDebuggerBar=_activeDFRDebuggerBar;
 @property(retain) IDEEditorDocument *primaryEditorDocument; // @synthesize primaryEditorDocument=_primaryEditorDocument;
 @property(retain) IDEEditorMultipleSplit *editorMultipleSplit; // @synthesize editorMultipleSplit=_editorMultipleSplit;
 @property(retain) NSArray *editorAreaSplits; // @synthesize editorAreaSplits=_editorAreaSplits;
@@ -113,7 +112,6 @@
 @property(nonatomic) double safeAreaBottomInset; // @synthesize safeAreaBottomInset=_safeAreaBottomInset;
 @property(nonatomic) double safeAreaTopInset; // @synthesize safeAreaTopInset=_safeAreaTopInset;
 @property(retain) IDEDebugArea *activeDebuggerArea; // @synthesize activeDebuggerArea=_activeDebuggerArea;
-@property(retain) IDEDebugBar *activeDebuggerBar; // @synthesize activeDebuggerBar=_activeDebuggerBar;
 @property(retain, nonatomic) IDEEditorContext *lastActiveEditorContext; // @synthesize lastActiveEditorContext=_lastActiveEditorContext;
 @property(readonly) DVTReplacementView *debuggerAreaReplacementView; // @synthesize debuggerAreaReplacementView=_debuggerAreaReplacementView;
 - (void)editorMultipleSplit:(id)arg1 didRemoveSplitItem:(id)arg2 fromIndex:(unsigned long long)arg3;
@@ -162,6 +160,7 @@
 - (id)_addEditorAreaSplitAfterEditorAreaSplit:(id)arg1 copyContent:(BOOL)arg2 layout:(unsigned long long)arg3 client:(unsigned long long)arg4;
 - (BOOL)_canAddEditorAreaSplitAfterEditorAreaSplit:(id)arg1 layout:(unsigned long long)arg2;
 - (BOOL)_canChangeEditorAreaSplitsLayout;
+@property(readonly) IDEDebugBar *activeDebuggerBar;
 - (void)openComparisonModeWithRevision:(id)arg1 client:(unsigned long long)arg2;
 - (void)compareRevisionChange:(id)arg1;
 - (void)showBlame;
@@ -196,12 +195,11 @@
 @property(readonly) BOOL isEditorVisible;
 - (void)hideEditor;
 - (void)showEditor;
-- (void)_updateDebuggerBarVisibility;
+- (void)_updateDebuggerBarSplitPane;
 - (void)_addDebuggerBarToDebuggerArea;
 - (void)_addDebuggerBarToEditorArea;
 - (void)_moveDebuggerBarToDebuggerArea;
 - (void)_moveDebuggerBarToEditorArea;
-- (void)_resetSplitViewFrames;
 - (void)toggleBottomBarContextDebugger;
 - (void)showSharedLibrariesPopover;
 - (id)_defaultPersistentRepresentationForDocumentExtensionIdentifier:(id)arg1 documentURL:(id)arg2;
@@ -243,7 +241,6 @@
 - (void)_updateDebugBarAfterDocumentOpened;
 - (void)_updateJumpBarConfigurations;
 - (void)_didRefreshEditorContextsForEditorAreaSplit:(id)arg1;
-- (id)debuggerOrBottomBarView;
 - (void)loadView;
 @property(readonly) IDEEditorAreaSplit *lastActiveEditorAreaSplit;
 - (id)editorAreaDFRController;

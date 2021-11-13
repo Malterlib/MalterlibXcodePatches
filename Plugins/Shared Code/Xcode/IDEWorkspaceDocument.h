@@ -193,7 +193,6 @@
 - (void)_setupLaunchSessionsObservation;
 - (void)_presentErrorForLaunch:(id)arg1;
 - (id)_firstErrorForExecutionTracker:(id)arg1;
-- (void)_reportSCMStatisticsInWorkspace:(id)arg1;
 - (void)_reportBuildPhaseStatisticsInWorkspace:(id)arg1;
 - (long long)_projectCountForWorkspace:(id)arg1;
 - (void)_reportSchemeStatisticsInWorkspace:(id)arg1 inReport:(id)arg2;

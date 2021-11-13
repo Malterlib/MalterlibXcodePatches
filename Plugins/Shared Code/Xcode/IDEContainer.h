@@ -14,14 +14,13 @@
 
 #import "DVTDirectoryBasedCustomDataStoreDelegate-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
-#import "IDEIssueLogDataSource-Protocol.h"
 #import "IDEReadOnlyItem-Protocol.h"
 #import "IDEUpgradeableItem-Protocol.h"
 
-@class DVTExtension, DVTFilePath, DVTOperation, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEActivityLogSection, IDEGroup, IDEWorkspace, NSDictionary, NSMapTable, NSMutableDictionary, NSString, NSTimer, NSURL;
+@class DVTExtension, DVTFilePath, DVTOperation, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEGroup, IDEWorkspace, NSDictionary, NSMapTable, NSMutableDictionary, NSString, NSTimer, NSURL;
 @protocol IDEContainerCore, IDEContainerDelegate;
 
-@interface IDEContainer : DVTModelObject <DVTInvalidation, IDEIssueLogDataSource, IDEReadOnlyItem, DVTDirectoryBasedCustomDataStoreDelegate, IDEUpgradeableItem>
+@interface IDEContainer : DVTModelObject <DVTInvalidation, IDEReadOnlyItem, DVTDirectoryBasedCustomDataStoreDelegate, IDEUpgradeableItem>
 {
     id <IDEContainerCore> _containerCore;
     IDEWorkspace *_workspace;
@@ -54,7 +53,6 @@
     BOOL _isFolderLike;
     BOOL _validForSchemeBuildableReferences;
     BOOL _transitioningToNewFilePath;
-    IDEActivityLogSection *_issueLog;
 }
 
 + (BOOL)_shouldTrackReadOnlyStatus;
@@ -112,7 +110,6 @@
 + (void)initialize;
 // - (void).cxx_destruct;
 @property(getter=isTransitioningToNewFilePath) BOOL transitioningToNewFilePath; // @synthesize transitioningToNewFilePath=_transitioningToNewFilePath;
-@property(retain) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
 @property int readOnlyStatus; // @synthesize readOnlyStatus=_readOnlyStatus;
 @property(readonly) IDEGroup *rootGroup; // @synthesize rootGroup=_rootGroup;
 @property(copy, nonatomic) DVTFilePath *itemBaseFilePath; // @synthesize itemBaseFilePath=_itemBaseFilePath;
@@ -138,7 +135,6 @@
 - (void)_enqueueSCMUpdateForItem:(id)arg1;
 - (void)collectMessageTracerStatisticsIntoDictionary:(id)arg1;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
-- (void)analyzeModelForIssues;
 - (void)enumerateUpgradeTasksWithBlock:(CDUnknownBlockType)arg1;
 @property(readonly) BOOL supportsOnDemandResources;
 @property(readonly, getter=isFolderLike) BOOL folderLike;

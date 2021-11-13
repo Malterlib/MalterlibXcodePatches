@@ -298,7 +298,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 13.1;
+				XCODE_DOTTED_VERSION = 13.2;
 			};
 			name = Debug;
 		};
@@ -355,7 +355,7 @@
 					"-Wno-nullability-completeness",
 					"-Wno-property-attribute-mismatch",
 				);
-				XCODE_DOTTED_VERSION = 13.1;
+				XCODE_DOTTED_VERSION = 13.2;
 			};
 			name = Release;
 		};

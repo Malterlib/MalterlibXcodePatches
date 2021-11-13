@@ -78,10 +78,11 @@
 - (id)llvmProfdataToolchainForSchemeCommand:(id)arg1;
 - (id)bestLLDBToolchainForSchemeCommand:(id)arg1 preferBuildProductToolchain:(BOOL)arg2;
 - (id)_buildProductToolchainForSchemeCommand:(id)arg1;
-- (BOOL)_useInternalDebuggerToolchainSelectionLogic;
-@property(readonly, nonatomic) BOOL runnableUsesInternalSDK;
+@property(readonly, nonatomic) BOOL useInternalDebuggerToolchainSelectionLogic;
+- (BOOL)_resolvedBuildableUsesInternalSDK;
 - (id)_buildProductToolchainIdentifiersForSchemeCommand:(id)arg1;
-- (id)_resolvedRunnableBuildableForToolchainDetection;
+- (id)_resolvedRunnableBuildableForToolchainDetection:(BOOL)arg1;
+- (BOOL)_hasBaseSDKForToolchainDetectionInBuildable:(id)arg1;
 - (BOOL)isDeprecatedOption:(id)arg1;
 - (void)addBuildableProductRunnable:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addPathRunnable:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -133,7 +134,7 @@
 - (BOOL)addressSanitizerEnabledForSchemeCommand:(id)arg1;
 - (id)_sanitizerSchemeActionForSchemeCommand:(id)arg1;
 - (id)buildableForPlaceholderPathRunnable;
-- (id)setUpActionDependenciesForCorePhaseOperation:(id)arg1 shouldRunPostActionsBlock:(CDUnknownBlockType)arg2 prePhaseEnvironmentPopulationBlock:(CDUnknownBlockType)arg3 postPhaseEnvironmentPopulationBlock:(CDUnknownBlockType)arg4 buildParameters:(id)arg5 schemeActionResultOperation:(id)arg6 error:(id *)arg7;
+- (id)setUpActionDependenciesForCorePhaseOperation:(id)arg1 shouldRunPostActionsBlock:(CDUnknownBlockType)arg2 prePhaseEnvironmentPopulationBlock:(CDUnknownBlockType)arg3 postPhaseEnvironmentPopulationBlock:(CDUnknownBlockType)arg4 handlePreActionsActivityLogSection:(CDUnknownBlockType)arg5 handlePostActionsActivityLogSection:(CDUnknownBlockType)arg6 buildParameters:(id)arg7 schemeActionResultOperation:(id)arg8 error:(id *)arg9;
 - (id)realAppNameForRunnablePath:(id)arg1;
 - (void)updateExtensionInfosOfLaunchParmeters:(id)arg1;
 - (id)filePathsForContainersAndExtensionsForBuildParameters:(id)arg1 runnableProductType:(id)arg2 schemeCommand:(id)arg3;

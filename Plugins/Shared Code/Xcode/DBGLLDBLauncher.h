@@ -25,6 +25,8 @@
     NSObject<OS_dispatch_queue> *_executeLLDBCommandQueue;
     BOOL _hasFinishedRunning;
     DVTDispatchLock *_lifeCycleLock;
+    NSString *_remoteInstallPath;
+    BOOL _lldbTargetFromLocalPath;
     BOOL _useOnlyStandardLLDBFramework;
     BOOL _hasQueriedLLDBRPCUserDefaults;
     BOOL _terminateCalled;
@@ -49,13 +51,13 @@
 - (void)_warnSlowLaunchDSYMForUUIDEnabled;
 - (void)_setupSearchPaths:(id)arg1;
 - (void)_addExtraModules:(id)arg1;
-- (id)_consumeEventAfterConnectToDebugServer:(id)arg1 lldbTarget:(id)arg2 launchParameters:(id)arg3;
+- (void)_consumeEventAfterConnectToDebugServer:(id)arg1;
 - (void)_setMiscHandleCommands:(id)arg1;
 - (void)_setPlatformForStart:(id)arg1;
-- (id)devicePathSubstitutionPairsString;
-- (id)_remoteInstallPath:(id)arg1;
+- (id)_devicePathSubstitutionPairsString;
 - (id)_tryWithAnotherArchitectureOnBinaryPath:(id)arg1;
 - (id)_doRegularDebugWithTarget:(id)arg1 usingDebugServer:(BOOL)arg2 errTargetString:(id)arg3 outError:(id *)arg4;
+- (BOOL)_configureConsoleMode:(id)arg1 forLaunchInfo:(id)arg2;
 - (const char *)UTF8StringFromPotentialString:(id)arg1;
 - (void)_createTargetConsoleAdaptorForPTY:(id)arg1;
 - (id)errorForLLDBLaunchError:(id)arg1 target:(id)arg2;

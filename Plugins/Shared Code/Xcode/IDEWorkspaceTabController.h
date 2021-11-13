@@ -77,6 +77,7 @@
 }
 
 + (void)initialize;
++ (void)_recordMetricsForBuildPlatformsFromOperationParameters:(id)arg1;
 + (id)keyPathsForValuesAffectingIsInspectorAreaVisible;
 + (id)keyPathsForValuesAffectingIsNavigatorVisible;
 + (id)keyPathsForValuesAffectingWindowController;
@@ -219,6 +220,7 @@
 - (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)testActiveRunContextWithContextString:(id)arg1 schemeTask:(long long)arg2;
 - (void)testActiveRunContextWithContextString:(id)arg1;
+- (void)buildForTestActiveRunContext:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)buildForTestActiveRunContext:(id)arg1;
 - (void)editAndBuildForTestingActiveRunContext:(id)arg1;
 - (void)editAndTestActiveRunContext:(id)arg1;
@@ -290,6 +292,8 @@
 - (void)changeToWorkingCopiesNavigator:(id)arg1;
 - (void)changeToFindNavigator:(id)arg1;
 - (void)changeToTestNavigator:(id)arg1;
+- (void)changeToNoticeNavigatorAndFilterNoticesWithNoticeSeverities:(id)arg1 noticeKinds:(id)arg2;
+- (void)changeToNoticeNavigator;
 - (void)_changeToIssuesNavigatorForBuildIssues;
 - (void)changeToIssuesNavigatorAndShowRuntime:(BOOL)arg1 clearFilterType:(unsigned long long)arg2 openNavigatorArea:(BOOL)arg3;
 - (void)changeToIssuesNavigator:(id)arg1 showRuntime:(BOOL)arg2 clearFilterType:(unsigned long long)arg3;

@@ -8,7 +8,7 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDEEditor, IDEEditorHistoryController, NSImage;
+@class DVTIcon, IDEEditor, IDEEditorHistoryController;
 @protocol IDEEditorHistoryControllerItem;
 
 @protocol IDEEditorHistoryControllerDelegate
@@ -16,7 +16,7 @@
 - (BOOL)historyController:(IDEEditorHistoryController *)arg1 isItemResolvable:(id <IDEEditorHistoryControllerItem>)arg2;
 - (void)historyController:(IDEEditorHistoryController *)arg1 goToItem:(id <IDEEditorHistoryControllerItem>)arg2;
 - (id <IDEEditorHistoryControllerItem>)currentHistoryItem;
-- (NSImage *)historyController:(IDEEditorHistoryController *)arg1 menuIconForItem:(id <IDEEditorHistoryControllerItem>)arg2;
+- (DVTIcon *)historyController:(IDEEditorHistoryController *)arg1 menuIconForItem:(id <IDEEditorHistoryControllerItem>)arg2;
 @property(nonatomic, readonly) IDEEditor *editor;
 @end
 

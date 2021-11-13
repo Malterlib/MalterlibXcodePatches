@@ -9,9 +9,10 @@
 //
 
 
-@class NSArray, NSDate;
+@class IDEActivityLogSection, NSArray, NSDate;
 
 @protocol IDEBuildOperationProviding <NSObject>
+@property(readonly) IDEActivityLogSection *buildLog;
 @property(readonly) NSArray *buildables;
 @property(readonly, copy) NSDate *startTime;
 @property(readonly) long long result;

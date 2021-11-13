@@ -69,6 +69,7 @@
 - (id)completionItemToMeasureBasedOn:(id)arg1;
 @property(retain) DVTTextCompletionWindow *window; // @dynamic window;
 - (void)completionListChanged;
+@property(readonly) BOOL needsToUpdateCompletionList;
 - (id)formatContextForCompletionItem:(id)arg1;
 - (id)fuzzyMatchingRangesForCompletionItem:(id)arg1;
 - (void)_doubleClickOnRow:(id)arg1;

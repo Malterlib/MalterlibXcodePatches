@@ -15,15 +15,16 @@
 #import "IDEBlueprintProvider-Protocol.h"
 #import "IDECustomDataStoring-Protocol.h"
 #import "IDEIndexableProvider-Protocol.h"
+#import "IDEIssueLogDataSource-Protocol.h"
 #import "IDELocalizedContainer-Protocol.h"
 #import "IDETestableProvider-Protocol.h"
 #import "IDEWorkspaceWrappingContainer-Protocol.h"
 #import "Xcode3SourceListItemEditing-Protocol.h"
 
-@class DVTLocale, DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString, PBXProject, PBXReference;
+@class DVTFilePath, DVTLocale, DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString, PBXProject, PBXReference;
 @protocol IDETestableProvider;
 
-@interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer>
+@interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer, IDEIssueLogDataSource>
 {
     PBXProject *_project;
     PBXReference *_projectReference;
@@ -34,6 +35,7 @@
     NSMapTable *_xc3TargetsToTestables;
     NSMutableArray *_localizations;
     BOOL _isBaseLocalized;
+    IDEActivityLogSection *_issueLog;
     BOOL _integrityCheckingBlockQueued;
     BOOL _hasRunUpgradeCheck;
     DVTObservingToken *_projectObservation_targets;
@@ -181,11 +183,13 @@
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) DVTFilePath *filePath;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, nonatomic) DVTModelObjectGraph *objectGraph;
 @property(readonly) Class superclass;
 @property(readonly) BOOL supportsSourceFolders;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
+@property(readonly) IDEWorkspace *workspace;
 
 @end
 
