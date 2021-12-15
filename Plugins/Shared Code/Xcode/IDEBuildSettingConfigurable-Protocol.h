@@ -9,8 +9,9 @@
 //
 
 
-@protocol IDEFullSizeContentEditor <NSObject>
-+ (BOOL)supportsFullSizeContent;
-@property struct NSEdgeInsets fullSizeContentInsets;
+@class NSDictionary, NSSet;
+
+@protocol IDEBuildSettingConfigurable <NSObject>
+- (BOOL)setBuildSettingsFromDictionary:(NSDictionary *)arg1 forConfigurationsNamed:(NSSet *)arg2 error:(id *)arg3;
 @end
 

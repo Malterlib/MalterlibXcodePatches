@@ -374,7 +374,7 @@
 - (void)_updateSiblingStepperControlVisibility;
 - (void)invalidateNavBarLayout;
 @property(readonly) unsigned long long assistantCategoriesCount;
-- (void)setNavigableItemSiblingsSelectionIndexes:(NSIndexSet *)arg1;
+- (void)setNavigableItemSiblingsSelectionIndexes:(NSIndexSet *)navigableItemSiblingsSelectionIndexes;
 - (void)_importNavigableItem:(id)arg1;
 - (BOOL)_notifyDelegateAndOpenEditorHistoryItem:(id)arg1 documentExtension:(id)arg2 previousHistoryItemOrNil:(id)arg3 alwaysReplaceExistingNavigableItem:(BOOL)arg4 skipSubDocumentNavigationUnlessEditorIsReplaced:(BOOL)arg5;
 - (BOOL)_notifyDelegateAndOpenEditorOpenSpecifier:(id)arg1 documentExtension:(id)arg2 updateHistory:(BOOL)arg3;
@@ -419,7 +419,7 @@
 - (void)_updateNavBarNavigableItemForNavItem:(id)arg1;
 - (void)_setEmptyRootNavigableItem;
 - (void)_primitiveSetNavBarRootNavigableItem:(id)arg1 selectedNavigableItem:(id)arg2;
-- (void)setNavBarNavigableItem:(IDENavigableItem *)arg1;
+- (void)setNavBarNavigableItem:(IDENavigableItem *)navBarNavigableItem;
 - (id)_currentHistoryItemAllowingCoalescingAdjustment:(BOOL)arg1;
 - (id)currentHistoryItem;
 - (id)_currentSelectedDocumentLocations;
@@ -462,7 +462,7 @@
 - (void)_didForgetNavigableItems:(id)arg1;
 - (void)_didForgetNavigableItems_Helper_SoftAssertNavigableItemIsValid_25644868;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)setGreatestDocumentAncestor:(IDENavigableItem *)arg1;
+- (void)setGreatestDocumentAncestor:(IDENavigableItem *)greatestDocumentAncestor;
 - (id)navBarNavigableItemRootChildItems;
 - (void)setOutputSelection:(id)arg1;
 - (id)outputSelection;

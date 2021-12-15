@@ -177,6 +177,7 @@
 - (void)_setContainerEdited;
 - (void)_containerEditedDidChange;
 - (BOOL)_saveContainerForAction:(int)arg1 error:(id *)arg2;
+- (BOOL)saveRecursivelyWithError:(id *)arg1;
 - (void)_scheduleAutosaveTimer;
 - (void)_saveContainerPeriodically;
 @property BOOL containerEdited;

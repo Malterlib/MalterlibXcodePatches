@@ -146,7 +146,7 @@
 - (void)_resetToolchainStatusHard:(BOOL)arg1;
 @property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
 @property(retain, nonatomic) IDERunnable *runnable; // @synthesize runnable=_runnable;
-- (void)setRunContext:(IDEScheme *)arg1;
+- (void)setRunContext:(IDEScheme *)runContext;
 @property(readonly) BOOL doesNonActionWork;
 @property(readonly) NSString *subtitle;
 @property(readonly) NSString *name;

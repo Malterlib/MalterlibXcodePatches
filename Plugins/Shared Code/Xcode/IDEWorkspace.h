@@ -258,6 +258,7 @@
 @property(readonly) IDEConcreteClientTracker *clientTracker;
 - (BOOL)_cancelOngoingBuildWithCompletionBlockIfNeeded:(CDUnknownBlockType)arg1;
 - (void)_setupBuildCompletedNotificationForExecutionEnvironment:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (BOOL)saveRecursivelyWithError:(id *)arg1;
 - (BOOL)setContainerFilePath:(id)arg1 error:(id *)arg2;
 - (BOOL)_setContainerFilePath:(id)arg1 upgradeToWorkspace:(BOOL)arg2 error:(id *)arg3;
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2 upgradeToWorkspace:(BOOL)arg3;

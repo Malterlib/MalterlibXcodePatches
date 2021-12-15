@@ -234,6 +234,7 @@
 @property BOOL ide_isTemporaryDocument;
 - (id)handleCloseScriptCommand:(id)arg1;
 - (id)observeCloseWithHandler:(CDUnknownBlockType)arg1;
+- (id)documentNoticeProvider_sourceEditorOverrideFor:(id)arg1;
 - (id)documentNoticeProviderFor:(id)arg1;
 
 // Remaining properties

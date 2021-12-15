@@ -130,6 +130,8 @@
     long long _fontSizeModifier;
 }
 
++ (id)ideDefaultDarkTheme;
++ (id)ideDefaultLightTheme;
 + (long long)scrollerKnobStyleForBackgroundColor:(id)arg1;
 + (id)_defaultSourceCodeFont;
 + (id)keyPathsForValuesAffectingConsoleTextSecondarySelectionColor;

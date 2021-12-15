@@ -13,6 +13,7 @@
 #import "IDEContainer.h"
 
 #import "IDEBlueprintProvider-Protocol.h"
+#import "IDEBuildSettingConfigurable-Protocol.h"
 #import "IDECustomDataStoring-Protocol.h"
 #import "IDEIndexableProvider-Protocol.h"
 #import "IDEIssueLogDataSource-Protocol.h"
@@ -24,7 +25,7 @@
 @class DVTFilePath, DVTLocale, DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString, PBXProject, PBXReference;
 @protocol IDETestableProvider;
 
-@interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer, IDEIssueLogDataSource>
+@interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer, IDEIssueLogDataSource, IDEBuildSettingConfigurable>
 {
     PBXProject *_project;
     PBXReference *_projectReference;
@@ -122,6 +123,7 @@
 @property(readonly) NSString *lastSwiftUpdateVersion;
 @property(readonly) BOOL shouldLogUpgradeCheck;
 - (void)_runUpgradeChecksIfNecessary;
+- (BOOL)setBuildSettingsFromDictionary:(id)arg1 forConfigurationsNamed:(id)arg2 error:(id *)arg3;
 - (BOOL)setBaseSDKPlatform:(id)arg1 forConfiguration:(id)arg2;
 - (void)enableAnalyzerLocalizabilityCheckIfNeeded;
 @property(copy) DVTLocale *developmentRegion;
