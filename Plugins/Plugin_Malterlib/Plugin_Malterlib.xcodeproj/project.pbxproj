@@ -41,6 +41,7 @@
 		03E69FF81F7A72E900D0A690 /* Plugin_Malterlib_BuildSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_BuildSystem.h; sourceTree = "<group>"; };
 		03E69FF91F7A735F00D0A690 /* Plugin_Malterlib_DebugOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_DebugOptions.h; sourceTree = "<group>"; };
 		03F332F61B891CA30014B200 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		03FCFF11276A1F2900DE0775 /* Plugin_Malterlib_SyntaxFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_SyntaxFixes.h; sourceTree = "<group>"; };
 		03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		435E247213A8E4A20052479A /* Plugin_Malterlib.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_Malterlib.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 				03E69FF61F7A722D00D0A690 /* Plugin_Malterlib_Options.h */,
 				03E69FF91F7A735F00D0A690 /* Plugin_Malterlib_DebugOptions.h */,
 				03E69FF71F7A72AA00D0A690 /* Plugin_Malterlib_ProjectReload.h */,
+				03FCFF11276A1F2900DE0775 /* Plugin_Malterlib_SyntaxFixes.h */,
 				03E69FF81F7A72E900D0A690 /* Plugin_Malterlib_BuildSystem.h */,
 				03DAA8861F7F0D9000617869 /* Plugin_Malterlib.h */,
 				039128061F8A244300994632 /* Xcode.h */,

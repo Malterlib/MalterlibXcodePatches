@@ -22,6 +22,7 @@ static IMP original_saveContainerForAction = nil;
 static IMP original_updateOperationConcurrency = nil;
 static IMP original_changeMaximumOperationConcurrencyUsingThrottleFactor = nil;
 static IMP original_canSaveContainer = nil;
+static IMP original_SMSourceModel_parse = nil;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,11 +118,17 @@ static Plugin_Malterlib *singleton = nil;
 #include "Plugin_Malterlib_BuildSystem.h"
 #include "Plugin_Malterlib_ProjectReload.h"
 #include "Plugin_Malterlib_Options.h"
+#include "Plugin_Malterlib_SyntaxFixes.h"
 
 Class g_SourceEditorViewClass = nil;
 
 - (void) applicationReady:(NSNotification*)notification {
 	g_SourceEditorViewClass = NSClassFromString(@"SourceEditor.SourceEditorContentView");
+
+	g_SourceModelParseLock = [[NSLock alloc] init];;
+
+	original_SMSourceModel_parse = XcodePluginOverrideMethodString(@"SMSourceModel", @selector(parse), (IMP)&SMSourceModel_parse);
+
 	[self loadSettings];
 }
 
