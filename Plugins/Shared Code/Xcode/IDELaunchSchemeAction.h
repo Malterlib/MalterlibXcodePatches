@@ -28,6 +28,7 @@
     BOOL _hiddenMallocStackLoggingLiteForXPCServices;
     BOOL _stopOnEveryThreadSanitizerIssue;
     BOOL _stopOnEveryUBSanitizerIssue;
+    BOOL _enableSanitizerCoverage;
     BOOL _stopOnEveryMainThreadCheckerIssue;
     BOOL _migratedStopOnEveryIssue;
     BOOL _useCustomWorkingDirectory;
@@ -97,6 +98,7 @@
 @property(nonatomic) int launchStyle; // @synthesize launchStyle=_launchStyle;
 @property BOOL migratedStopOnEveryIssue; // @synthesize migratedStopOnEveryIssue=_migratedStopOnEveryIssue;
 @property BOOL stopOnEveryMainThreadCheckerIssue; // @synthesize stopOnEveryMainThreadCheckerIssue=_stopOnEveryMainThreadCheckerIssue;
+@property BOOL enableSanitizerCoverage; // @synthesize enableSanitizerCoverage=_enableSanitizerCoverage;
 @property BOOL stopOnEveryUBSanitizerIssue; // @synthesize stopOnEveryUBSanitizerIssue=_stopOnEveryUBSanitizerIssue;
 @property BOOL stopOnEveryThreadSanitizerIssue; // @synthesize stopOnEveryThreadSanitizerIssue=_stopOnEveryThreadSanitizerIssue;
 @property BOOL hiddenMallocStackLoggingLiteForXPCServices; // @synthesize hiddenMallocStackLoggingLiteForXPCServices=_hiddenMallocStackLoggingLiteForXPCServices;
@@ -137,6 +139,7 @@
 - (void)setEnableGPUFrameCaptureModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugServiceExtensionContentsStringFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugServiceExtensionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setCustomLaunchCommandPauseAfterCommandsFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setCustomLaunchCommandFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setStopOnEveryMainThreadCheckerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setStopOnEveryUBSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -175,6 +178,7 @@
 - (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
 - (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
 - (long long)internalIOSInstallStyleForBuildables:(id)arg1;
+@property BOOL customLaunchCommandPauseAfterCommands;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;

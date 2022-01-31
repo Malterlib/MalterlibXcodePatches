@@ -13,7 +13,7 @@
 #import "IDETabbedWindow.h"
 
 
-@class DVTObservingToken, NSString;
+@class DVTObservingToken, IDEWorkspaceWindowController, NSString;
 
 @interface IDEWorkspaceWindow : IDETabbedWindow <NSKeyedArchiverDelegate>
 {
@@ -45,11 +45,11 @@
 - (void)toggleTabOverview:(id)arg1;
 - (void)renameCurrentTab:(id)arg1;
 - (void)toggleToolbarShown:(id)arg1;
-- (id)firstResponder;
 - (void)endSheet:(id)arg1 returnCode:(long long)arg2;
 - (void)sendEvent:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)_attemptToCloseAllTabs:(id)arg1;
+@property(readonly, nonatomic) IDEWorkspaceWindowController *workspaceWindowController;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -16,7 +16,7 @@
 #import "IDEEditorAreaContainer-Protocol.h"
 #import "IDETabbedWindowController-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, NSValue, _IDEWindowFullScreenSavedDebuggerTransitionValues;
+@class DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateToken, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceDFRController, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMutableArray, NSString, NSTimer, NSTouchBar, NSValue, _IDEWindowFullScreenSavedDebuggerTransitionValues;
 
 @interface IDEWorkspaceWindowController : NSWindowController <NSTouchBarProvider, NSTouchBarDelegate, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTEditor, DVTInvalidation, IDETabbedWindowController>
 {
@@ -62,7 +62,6 @@
     BOOL _isSettingUpWindowControllerClone;
     NSString *_stateSavingIdentifier;
     DVTStackBacktrace *_windowDidLoadBacktrace;
-    DVTWeakInterposer *_firstResponderInterposer;
     IDEWorkspaceDFRController *_standardWorkspaceTouchBarController;
     IDEWorkspaceDFRController *_systemModalWorkspaceTouchBarController;
     NSValue *_initialWindowFrameValue;
@@ -84,7 +83,6 @@
 @property(retain) NSValue *initialWindowFrameValue; // @synthesize initialWindowFrameValue=_initialWindowFrameValue;
 @property(retain) IDEWorkspaceDFRController *systemModalWorkspaceTouchBarController; // @synthesize systemModalWorkspaceTouchBarController=_systemModalWorkspaceTouchBarController;
 @property(retain) IDEWorkspaceDFRController *standardWorkspaceTouchBarController; // @synthesize standardWorkspaceTouchBarController=_standardWorkspaceTouchBarController;
-@property(retain) DVTWeakInterposer *firstResponderInterposer; // @synthesize firstResponderInterposer=_firstResponderInterposer;
 @property(nonatomic) BOOL showToolbar; // @synthesize showToolbar=_showToolbar;
 @property BOOL didRestoreFromStateSaving; // @synthesize didRestoreFromStateSaving=_didRestoreFromStateSaving;
 @property(retain) DVTStackBacktrace *windowDidLoadBacktrace; // @synthesize windowDidLoadBacktrace=_windowDidLoadBacktrace;

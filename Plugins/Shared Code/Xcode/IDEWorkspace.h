@@ -19,8 +19,8 @@
 #import "IDETestableDataSource_IndexProvider-Protocol.h"
 #import "_TtP13IDEFoundation32IDESchemeFileReference_Workspace_-Protocol.h"
 
-@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
-@protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEWorkspaceDelegate;
+@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
+@protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEPackageManagerWorkspace, IDEWorkspaceDelegate;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_, IDEClientTracking, IDEProvisionableProvider, IDEIssueLogDataSource>
 {
@@ -56,6 +56,7 @@
     IDEDeviceInstallWorkspaceMonitor *_deviceInstallWorkspaceMonitor;
     IDEProvisioningWorkspaceMonitor *_provisioningWorkspaceMonitor;
     IDESourceControlWorkspaceMonitor *_sourceControlWorkspaceMonitor;
+    IDELocalizationWorkspaceMonitor *_localizationWorkspaceMonitor;
     IDEProvisioningManager *_provisioningManager;
     IDELocalizationManager *_localizationManager;
     _TtC13IDEFoundation30IDEStructureEditingCoordinator *_structureEditingMoveCoordinator;
@@ -100,6 +101,7 @@
     IDEDynamicContentRootGroup *_dynamicContentRootGroup;
     NSArray *_sourcePackageLoadingErrors;
     IDEActivityLogSection *_sourcePackageResolutionIssueLog;
+    id <IDEPackageManagerWorkspace> _packageManager;
     IDEWorkspaceNoticeSubsystem *_noticeSubsystem;
     IDETextFragmentIndex *_textFragmentIndex;
     IDERefactoring *_refactoring;
@@ -153,6 +155,7 @@
 @property(retain, nonatomic) NSString *xcbuildSandboxProfile; // @synthesize xcbuildSandboxProfile=_xcbuildSandboxProfile;
 @property(nonatomic) BOOL wasLoadedForUIContext; // @synthesize wasLoadedForUIContext=_wasLoadedForUIContext;
 @property(retain, nonatomic) IDEProvisioningManager *provisioningManager; // @synthesize provisioningManager=_provisioningManager;
+@property(retain) IDELocalizationWorkspaceMonitor *localizationWorkspaceMonitor; // @synthesize localizationWorkspaceMonitor=_localizationWorkspaceMonitor;
 @property(retain) IDESourceControlWorkspaceMonitor *sourceControlWorkspaceMonitor; // @synthesize sourceControlWorkspaceMonitor=_sourceControlWorkspaceMonitor;
 @property(retain) IDEProvisioningWorkspaceMonitor *provisioningWorkspaceMonitor; // @synthesize provisioningWorkspaceMonitor=_provisioningWorkspaceMonitor;
 @property(retain) IDEDeviceInstallWorkspaceMonitor *deviceInstallWorkspaceMonitor; // @synthesize deviceInstallWorkspaceMonitor=_deviceInstallWorkspaceMonitor;
@@ -161,6 +164,7 @@
 @property(retain) IDEIndex *index; // @synthesize index=_index;
 @property(readonly) IDEWorkspaceNoticeSubsystem *noticeSubsystem; // @synthesize noticeSubsystem=_noticeSubsystem;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
+@property(retain) id <IDEPackageManagerWorkspace> packageManager; // @synthesize packageManager=_packageManager;
 @property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
 @property(copy) IDEActivityLogSection *sourcePackageResolutionIssueLog; // @synthesize sourcePackageResolutionIssueLog=_sourcePackageResolutionIssueLog;
 @property(copy, nonatomic) NSArray *sourcePackageLoadingErrors; // @synthesize sourcePackageLoadingErrors=_sourcePackageLoadingErrors;
@@ -180,6 +184,7 @@
 - (void)_setupWorkspaceUpgradeTasksController;
 - (void)_setupSourceControlWorkspaceMonitorIfNeeded;
 - (void)_initializeSourceControlWorkspaceMonitor;
+- (void)_setupLocalizationWorkspaceMonitor;
 - (void)_setupProvisioningWorkspaceMonitor;
 - (void)_setupDeviceInstallWorkspaceMonitor;
 - (void)tearDownIndexAndRefactoring;
@@ -265,7 +270,6 @@
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (BOOL)_configureWrappedWorkspaceWithError:(id *)arg1;
 - (id)_wrappingContainerPath;
-- (BOOL)wrappedContainerConformsToProtocol:(id)arg1;
 - (id)_wrappedPlaygroundContainer;
 - (id)_wrappedContainer;
 - (void)_setWrappedContainerPath:(id)arg1;
@@ -304,6 +308,7 @@
 - (id)collectLinkedTargetIndexableIdsForIndexableIds:(id)arg1;
 @property(retain) NSArray *namedBatchFindScopes;
 - (id)localScopeStore;
+- (id)observeCurrentBuildOperationDidChange:(CDUnknownBlockType)arg1;
 - (id)observeActiveRunDestinationDidChange:(CDUnknownBlockType)arg1;
 - (id)observeBuildImplicitDependenciesDidChange:(CDUnknownBlockType)arg1;
 - (id)observeActiveSchemeDidChange:(CDUnknownBlockType)arg1;
@@ -313,14 +318,17 @@
 @property(readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
 - (id)observeLatestBuildLogIdentityDidChange:(CDUnknownBlockType)arg1;
 @property(readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
-- (id)beginSourcePackagePreflightResolutionWithReference:(id)arg1 delegate:(id)arg2;
-- (id)latestSourcePackageVersionFromTags:(id)arg1;
 - (id)ideModelObjectTypeIdentifier;
 - (id)ideIndex_configurationNameForIndexingBlueprint:(id)arg1 scheme:(id)arg2;
 - (id)ideIndex_runDestinationForIndexingWithScheme:(id)arg1;
 - (id)ideIndex_bestSchemeForBlueprint:(id)arg1;
 - (id)ideIndex_buildParametersForIndexingBlueprint:(id)arg1 synthesizedMacroOverrides:(id)arg2;
 - (void)_updateUniqueIdentifiersToReferencedBlueprints;
+- (void)issueLogDataSourceDidChangeForUntypedDataSource:(id)arg1;
+- (void)issueLogDataSourceDidChangeForBlueprintProvider:(id)arg1;
+- (void)issueLogDataSourceDidChangeForBlueprint:(id)arg1;
+- (void)issueLogDataSourceDidChangeForWorkspace:(id)arg1;
+- (void)issueLogDataSourceDidChange;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

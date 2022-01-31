@@ -12,11 +12,13 @@
 
 #import "DVTUndoManagerDelegate-Protocol.h"
 #import "IDEReadOnlyItem-Protocol.h"
+#import "_TtP6IDEKit29IDEEditorTab_DocumentProtocol_-Protocol.h"
+#import "_TtP6IDEKit39IDETestReportCallStackCodeRoll_Document_-Protocol.h"
 
 @class DVTDispatchLock, DVTDocumentLocation, DVTExtension, DVTFileDataType, DVTFilePath, DVTNotificationToken, DVTStackBacktrace, NSDate, NSDictionary, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString, NSTimer, NSURL, NSUndoManager;
 @protocol DVTCancellable, DVTUndo;
 
-@interface IDEEditorDocument : NSDocument <IDEReadOnlyItem, DVTUndoManagerDelegate>
+@interface IDEEditorDocument : NSDocument <_TtP6IDEKit29IDEEditorTab_DocumentProtocol_, _TtP6IDEKit39IDETestReportCallStackCodeRoll_Document_, IDEReadOnlyItem, DVTUndoManagerDelegate>
 {
     DVTDispatchLock *_editorDocumentLock;
     DVTExtension *_extension;

@@ -35,6 +35,7 @@
 + (BOOL)_shouldOpenItemAtURLWithSynchronousQuarantinePrompt:(id)arg1 documentType:(id)arg2;
 + (id)schemeForDocumentURL:(id)arg1;
 + (void)_setOpenAsContextMenu:(id)arg1 withViewController:(id)arg2;
++ (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (BOOL)_isWorkspaceWrappingDocumentURL:(id)arg1;
 + (BOOL)_isWorkspaceDocumentURL:(id)arg1;
 + (BOOL)_suppressRecentWorkspaceDocuments;
@@ -107,6 +108,9 @@
 - (void)menuNeedsUpdate:(id)arg1;
 - (id)_openAsDocumentExtensionsForURLScheme:(id)arg1 fileDataTypes:(id)arg2 editorCategories:(id)arg3;
 - (void)_openAs:(id)arg1;
+- (void)_openNextDocumentURLFromIDEApplicationRestorableState:(id)arg1 nextIndex:(long long)arg2;
+- (void)openDocumentURLsFromIDEApplicationRestorableState:(id)arg1;
+- (id)documentURLsForIDEApplicationRestorableState;
 - (void)noteNewRecentDocumentURL:(id)arg1;
 - (id)_recentDocumentRecordsKeyForMenuTag:(long long)arg1;
 - (id)_recentWorkspaceDocumentInfosAsyncUpdate:(CDUnknownBlockType)arg1;
@@ -173,6 +177,7 @@
 - (id)_frontmostWorkspaceWindowForWorkspaces:(id)arg1;
 - (BOOL)_isWorkspaceWindow:(id)arg1 forWorkspaces:(id)arg2;
 - (id)typeForContentsOfURL:(id)arg1 error:(id *)arg2;
+- (id)_createNewDocumentForDebuggingOfExecutableURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)reopenDocumentForURL:(id)arg1 withContentsOfURL:(id)arg2 display:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)asyncSaveUntitledWorkspaceDocument:(id)arg1 forProjectDocument:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;

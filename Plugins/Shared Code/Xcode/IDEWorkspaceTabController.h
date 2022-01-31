@@ -21,7 +21,7 @@
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 #import "_IDEEditorModeActions-Protocol.h"
 
-@class DVTMutableOrderedSet, DVTObservingToken, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDEInspectorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDesignAreaSplitViewController, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSArray, NSMapTable, NSMutableArray, NSSplitViewItem, NSString, _TtC6IDEKit29IDEFindResultExplorableSource;
+@class DVTMutableOrderedSet, DVTObservingToken, DVTTextDocumentLocation, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditor, IDEEditorArea, IDEExecutionHoldAlertHelper, IDEFindNavigatorQueryResultsController, IDEInspectorArea, IDELaunchSession, IDENavigatorArea, IDENoticeBuildAlertMonitor, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDESwiftMigrationAssistantContext, IDEWorkspace, IDEWorkspaceDesignAreaSplitViewController, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSArray, NSMapTable, NSMutableArray, NSSplitViewItem, NSString, _TtC6IDEKit29IDEFindResultExplorableSource;
 @protocol DVTInvalidation;
 
 @interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, _IDEEditorModeActions, DVTStatefulObject, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor, IDEProvisioningManagerDelegate, IDEAttachToProcessErrorHandler>
@@ -47,6 +47,8 @@
     id <DVTInvalidation> _libraryInstallationToken;
     BOOL _isOpeningSimpleFileEditorOpenSpecifier;
     BOOL _isNavigatorVisible;
+    BOOL _isIssuesNavigatorVisible;
+    BOOL _isNoticeNavigatorVisible;
     BOOL _isInspectorAreaVisible;
     BOOL _completedInitialStateRestore;
     BOOL _tabLoadingCompleted;
@@ -70,6 +72,7 @@
     IDEAppChooserWindowController *_appChooserWindowController;
     IDEExecutionHoldAlertHelper *_executionHoldAlertHelper;
     IDEBuildAlertMonitor *_buildAlertMonitor;
+    IDENoticeBuildAlertMonitor *_noticeBuildAlertMonitor;
     unsigned long long _assistantEditorsLayout;
     NSString *_tabLabel;
     NSString *_name;
@@ -92,6 +95,7 @@
 @property(copy) NSString *tabLabel; // @synthesize tabLabel=_tabLabel;
 @property(nonatomic) BOOL tabLoadingCompleted; // @synthesize tabLoadingCompleted=_tabLoadingCompleted;
 @property(nonatomic) unsigned long long assistantEditorsLayout; // @synthesize assistantEditorsLayout=_assistantEditorsLayout;
+@property(retain) IDENoticeBuildAlertMonitor *noticeBuildAlertMonitor; // @synthesize noticeBuildAlertMonitor=_noticeBuildAlertMonitor;
 @property(retain) IDEBuildAlertMonitor *buildAlertMonitor; // @synthesize buildAlertMonitor=_buildAlertMonitor;
 @property(retain) IDEExecutionHoldAlertHelper *executionHoldAlertHelper; // @synthesize executionHoldAlertHelper=_executionHoldAlertHelper;
 @property(retain) IDEAppChooserWindowController *appChooserWindowController; // @synthesize appChooserWindowController=_appChooserWindowController;
@@ -103,6 +107,8 @@
 @property(retain) NSSplitViewItem *editorAreaSplitViewItem; // @synthesize editorAreaSplitViewItem=_editorAreaSplitViewItem;
 @property(retain) NSSplitViewItem *navigatorAreaSplitViewItem; // @synthesize navigatorAreaSplitViewItem=_navigatorAreaSplitViewItem;
 @property(nonatomic) BOOL isInspectorAreaVisible; // @synthesize isInspectorAreaVisible=_isInspectorAreaVisible;
+@property(nonatomic) BOOL isNoticeNavigatorVisible; // @synthesize isNoticeNavigatorVisible=_isNoticeNavigatorVisible;
+@property(nonatomic) BOOL isIssuesNavigatorVisible; // @synthesize isIssuesNavigatorVisible=_isIssuesNavigatorVisible;
 @property(nonatomic) BOOL isNavigatorVisible; // @synthesize isNavigatorVisible=_isNavigatorVisible;
 @property(retain) DVTTextDocumentLocation *issueInstructionPointerLocationForDisassembly; // @synthesize issueInstructionPointerLocationForDisassembly=_issueInstructionPointerLocationForDisassembly;
 @property(retain) DVTTextDocumentLocation *issueInstructionPointerLocation; // @synthesize issueInstructionPointerLocation=_issueInstructionPointerLocation;
@@ -236,7 +242,7 @@
 - (void)_alertNonExistentWorkingDirectoryBeforeProfileForContext:(id)arg1 usingBlock:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)_alertNonExistentWorkingDirectoryBeforeRunForContext:(id)arg1 usingBlock:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)_askShouldBuildBeforeRunProfileForContext:(id)arg1 title:(id)arg2 defaultButton:(id)arg3 usingBlock:(CDUnknownBlockType)arg4;
-- (void)_runActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)_runSchemeName:(id)arg1 fromScripting:(BOOL)arg2 skipBuilding:(BOOL)arg3 invocationRecord:(id)arg4 runDestinationSpecifier:(id)arg5 additionalCommandLineArgs:(id)arg6 overridingEnvironmentVars:(id)arg7 completionBlock:(CDUnknownBlockType)arg8;
 - (void)buildDocumentationForActiveRunContext:(id)arg1;
 - (void)localizationImport:(id)arg1;
 - (void)localizationExport:(id)arg1;
@@ -293,6 +299,8 @@
 - (void)changeToFindNavigator:(id)arg1;
 - (void)changeToTestNavigator:(id)arg1;
 - (void)changeToNoticeNavigatorAndFilterNoticesWithNoticeSeverities:(id)arg1 noticeKinds:(id)arg2;
+- (void)changeToNoticeNavigatorAndOpenDocumentLocationForWrappedNotice:(id)arg1;
+- (void)changeToNoticeNavigatorAndSelectWrappedNotice:(id)arg1;
 - (void)changeToNoticeNavigator;
 - (void)_changeToIssuesNavigatorForBuildIssues;
 - (void)changeToIssuesNavigatorAndShowRuntime:(BOOL)arg1 clearFilterType:(unsigned long long)arg2 openNavigatorArea:(BOOL)arg3;

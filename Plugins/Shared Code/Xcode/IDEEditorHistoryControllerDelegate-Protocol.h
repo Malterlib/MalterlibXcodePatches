@@ -12,11 +12,11 @@
 @protocol IDEEditorHistoryControllerItem;
 
 @protocol IDEEditorHistoryControllerDelegate
+@property(readonly, nonatomic) IDEEditor *editor;
 - (BOOL)historyControllerOpenEmptyEditor:(IDEEditorHistoryController *)arg1;
 - (BOOL)historyController:(IDEEditorHistoryController *)arg1 isItemResolvable:(id <IDEEditorHistoryControllerItem>)arg2;
 - (void)historyController:(IDEEditorHistoryController *)arg1 goToItem:(id <IDEEditorHistoryControllerItem>)arg2;
 - (id <IDEEditorHistoryControllerItem>)currentHistoryItem;
 - (DVTIcon *)historyController:(IDEEditorHistoryController *)arg1 menuIconForItem:(id <IDEEditorHistoryControllerItem>)arg2;
-@property(nonatomic, readonly) IDEEditor *editor;
 @end
 

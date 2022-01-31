@@ -21,9 +21,10 @@
 
 + (void)initialize;
 // - (void).cxx_destruct;
-@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
+@property(readonly) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
+- (id)initWithCreationBacktrace:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

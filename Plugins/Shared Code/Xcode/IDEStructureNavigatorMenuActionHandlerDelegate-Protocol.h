@@ -12,7 +12,7 @@
 #import "IDETemplateSupportingNavigator-Protocol.h"
 
 @class IDEContainerItem, IDEStructureNavigatorMenuActionHandler, IDEViewController, NSArray;
-@protocol IDEStructureEditingItem;
+@protocol IDEStructureEditingItem, NSMenuDelegate;
 
 @protocol IDEStructureNavigatorMenuActionHandlerDelegate <IDETemplateSupportingNavigator, DVTInvalidation>
 - (id <IDEStructureEditingItem>)firstTopLevelContainerItem;
@@ -20,6 +20,7 @@
 - (NSArray *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 groupableSelectedItemsUsingContextualMenuSelection:(BOOL)arg2;
 - (NSArray *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 removableSelectedItemsUsingContextualMenuSelection:(BOOL)arg2;
 - (BOOL)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 performUsingContextualMenuSelection:(BOOL)arg2 block:(BOOL (^)(id <IDEStructureEditingItem>, BOOL))arg3;
+- (IDEContainerItem *)nestedMenuActionHandler:(id <NSMenuDelegate>)arg1 selectedContainerItemUsingContextualSelection:(BOOL)arg2 useFirstIndex:(BOOL)arg3;
 - (IDEContainerItem *)menuActionHandler:(IDEStructureNavigatorMenuActionHandler *)arg1 selectedContainerItemUsingContextualSelection:(BOOL)arg2 useFirstIndex:(BOOL)arg3;
 @property(nonatomic, readonly) IDEViewController *viewController;
 @end

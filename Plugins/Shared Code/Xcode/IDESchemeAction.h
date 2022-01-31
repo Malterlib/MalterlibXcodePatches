@@ -41,6 +41,7 @@
 + (void)updateSearchPathSettingsInEnvironment:(id)arg1 withBuildProducts:(id)arg2 runDestination:(id)arg3;
 + (void)modifyEnvironmentForLogging:(id)arg1 buildParameters:(id)arg2;
 + (id)bundleIdentifierFromBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
++ (void)setupPerformanceAntipatternCheckerInEnvironmentVariables:(id)arg1 dylibPath:(id)arg2;
 + (void)setupMainThreadCheckerInEnvironmentVariables:(id)arg1 dylibPath:(id)arg2;
 + (BOOL)addUBSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 device:(id)arg3 buildable:(id)arg4 debugAppExtensions:(BOOL)arg5 debugging:(BOOL)arg6 testBundlePath:(id)arg7 error:(id *)arg8;
 + (BOOL)addUBSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
@@ -126,6 +127,7 @@
 - (BOOL)threadSanitizerAllowedForRunDestination:(id)arg1;
 - (BOOL)_isTSanSupportedArch:(id)arg1;
 - (BOOL)mainThreadCheckerEnabledForSchemeCommand:(id)arg1 runDestination:(id)arg2;
+- (BOOL)performanceAntipatternCheckerEnabledForSchemeCommand:(id)arg1 runDestination:(id)arg2;
 - (BOOL)UBSanitizerEnabledWithOverride;
 - (BOOL)UBSanitizerEnabledForSchemeCommand:(id)arg1 runDestination:(id)arg2;
 - (BOOL)threadSanitizerEnabledWithOverride;

@@ -9,11 +9,12 @@
 //
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEIssueLogDataSource-Protocol.h"
 
 @class DVTFilePath, IDESourcePackageReference, IDEWorkspace, NSArray, NSString;
 @protocol IDEBlueprint, IDETestableProvider;
 
-@protocol IDEBlueprintProvider <DVTInvalidation, NSObject>
+@protocol IDEBlueprintProvider <DVTInvalidation, NSObject, IDEIssueLogDataSource>
 + (NSArray *)availableSwiftVersions;
 @property(nonatomic, readonly) IDEWorkspace *workspace;
 @property(nonatomic, readonly) DVTFilePath *filePath;

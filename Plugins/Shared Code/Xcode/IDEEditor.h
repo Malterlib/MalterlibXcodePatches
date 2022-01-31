@@ -105,7 +105,7 @@
 - (id)undoManager;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 @property BOOL shouldShowPullRequestComments;
-@property(nonatomic) BOOL codeReviewAvailable;
+@property(nonatomic) BOOL canToggleCodeReview;
 @property(nonatomic) unsigned long long codeReviewPreference;
 @property(readonly, nonatomic) BOOL codeReviewEnabled;
 - (int)editorMode;

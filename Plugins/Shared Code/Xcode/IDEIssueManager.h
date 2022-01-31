@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEBuildParameters, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEBuildParameters, IDEIssueCounter, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueManager : NSObject <DVTInvalidation>
 {
@@ -26,6 +26,7 @@
     NSMapTable *_issueToContainersIndex;
     NSMutableSet *_issuesThatWillBeRemoved;
     NSMutableArray *_vendedIssuesWithNoDocument;
+    IDEIssueCounter *_allIssuesCounter;
     NSMutableDictionary *_issuesWithNoDocumentGroupedByCoalescingBucketID;
     NSMutableSet *_issuesWithNoDocument;
     NSMutableArray *_documentURLsWithVendedIssues;
@@ -56,9 +57,9 @@
     DVTObservingToken *_workspaceFinishedLoadingObserver;
     BOOL _liveIssuesEnabled;
     IDEWorkspace *_workspace;
-    IDEIssueLogRecordsGroup *_issueLogRecordsGroup;
     unsigned long long _numberOfBuildtimeIssues;
     unsigned long long _numberOfRuntimeIssues;
+    IDEIssueLogRecordsGroup *_issueLogRecordsGroup;
 }
 
 + (id)issueManagerLogAspect;
@@ -66,10 +67,10 @@
 + (void)_useDebugProviderExtensionPointWithIdentifier:(id)arg1;
 + (void)initialize;
 // - (void).cxx_destruct;
-@property unsigned long long numberOfRuntimeIssues; // @synthesize numberOfRuntimeIssues=_numberOfRuntimeIssues;
-@property unsigned long long numberOfBuildtimeIssues; // @synthesize numberOfBuildtimeIssues=_numberOfBuildtimeIssues;
 @property(readonly) IDEIssueLogRecordsGroup *issueLogRecordsGroup; // @synthesize issueLogRecordsGroup=_issueLogRecordsGroup;
 @property(readonly, getter=areLiveIssuesEnabled) BOOL liveIssuesEnabled; // @synthesize liveIssuesEnabled=_liveIssuesEnabled;
+@property unsigned long long numberOfRuntimeIssues; // @synthesize numberOfRuntimeIssues=_numberOfRuntimeIssues;
+@property unsigned long long numberOfBuildtimeIssues; // @synthesize numberOfBuildtimeIssues=_numberOfBuildtimeIssues;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void)removeIssueFromIssuesWithNoDocument:(id)arg1;
 - (void)addIssueToIssuesWithNoDocument:(id)arg1;
@@ -94,7 +95,7 @@
 - (BOOL)_vendOnlyActiveSchemeIssues;
 - (void)_retractIssues:(id)arg1;
 - (void)_vendIssues:(id)arg1 container:(id)arg2 blueprint:(id)arg3 runtimeGroupingObject:(id)arg4 issueToGroupingObjectMap:(id)arg5 session:(id)arg6;
-- (void)_setNumBuildtimeIssues:(unsigned long long)arg1 numRuntimeIssues:(unsigned long long)arg2;
+- (void)_issueKVOForIssueCountsIfNecessary;
 - (id)similarExistingIssueForIssue:(id)arg1;
 - (id)_similarExistingIssueForIssue:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
 - (id)__similarExistingIssueWithNoDocument:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
@@ -117,12 +118,28 @@
 - (unsigned long long)numberOfFixableDiagnosticItemsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfAnalyzerResultsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfNoticesInDocumentAtURL:(id)arg1;
+- (unsigned long long)numberOfOptimizationOpportunitiesInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfRuntimeIssuesInDocumentAtURL:(id)arg1;
+- (unsigned long long)numberOfBuildtimeIssuesInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfRemarksInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfWarningsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfErrorsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfTestFailuresInDocumentAtURL:(id)arg1;
+- (unsigned long long)numberOfTotalIssuesInDocumentAtURL:(id)arg1;
 - (id)_documentIssueSummaryForURL:(id)arg1;
+- (unsigned long long)maxSeverity;
+- (unsigned long long)numberOfFixableDiagnosticItems;
+- (unsigned long long)numberOfAnalyzerResults;
+- (unsigned long long)numberOfRemarks;
+- (unsigned long long)numberOfNotices;
+- (unsigned long long)numberOfOptimizationOpportunities;
+- (unsigned long long)aggregatedRuntimeIssueCount;
+- (unsigned long long)aggregatedBuildtimeIssueCount;
+- (unsigned long long)numberOfWarnings;
+- (unsigned long long)numberOfErrors;
+- (unsigned long long)numberOfTestFailures;
+- (unsigned long long)numberOfTotalIssues;
+- (id)_issueCounterForURL:(id)arg1;
 @property(readonly) NSArray *documentURLsWithIssues;
 - (void)removeIndexesForIssue:(id)arg1;
 - (BOOL)disassociateIssue:(id)arg1 withGroup:(id)arg2;

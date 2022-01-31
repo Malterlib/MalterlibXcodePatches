@@ -11,12 +11,12 @@
 #include "Shared.h"
 
 
-@class DVTSourceTextView, DVTWeakInterposer, NSAnimation, NSString;
+@class DVTSourceTextView, NSAnimation, NSString;
 
 @interface DVTTextVisualization : NSObject <NSAnimationDelegate>
 {
-    DVTWeakInterposer *_textView_dvtWeakInterposer;
     NSAnimation *_fadeAnimation;
+    DVTSourceTextView *_textView;
     double _opacity;
     unsigned long long _drawOrdering;
 }
@@ -25,6 +25,7 @@
 // - (void).cxx_destruct;
 @property unsigned long long drawOrdering; // @synthesize drawOrdering=_drawOrdering;
 @property(nonatomic) double opacity; // @synthesize opacity=_opacity;
+@property __weak DVTSourceTextView *textView; // @synthesize textView=_textView;
 - (void)drawUnderTextInRect:(struct CGRect)arg1;
 - (void)drawUnderCurrentLineHighlightInRect:(struct CGRect)arg1;
 - (void)drawOverTextInRect:(struct CGRect)arg1;
@@ -35,7 +36,6 @@
 - (void)animationDidEnd:(id)arg1;
 - (void)fadeToOpacity:(double)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)init;
-@property(retain) DVTSourceTextView *textView;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -112,7 +112,6 @@
     NSFont *_consoleDebuggerOutputTextFont;
     NSFont *_consoleExecutableInputTextFont;
     NSFont *_consoleExecutableOutputTextFont;
-    NSColor *_debuggerInstructionPointerColor;
     NSColor *_sourcePlainTextColor;
     NSFont *_sourcePlainTextFont;
     NSPointerArray *_syntaxColorsByNodeType;
@@ -197,7 +196,6 @@
 @property(readonly, copy) NSColor *sourceAttributeColor;
 @property(readonly) NSFont *sourcePlainTextFont;
 @property(readonly, copy) NSColor *sourcePlainTextColor;
-- (void)setDebuggerInstructionPointerColor:(NSColor *)arg1;
 - (void)setConsoleExecutableOutputTextFont:(NSFont *)arg1;
 - (void)setConsoleExecutableInputTextFont:(NSFont *)arg1;
 - (void)setConsoleDebuggerOutputTextFont:(NSFont *)arg1;
@@ -238,7 +236,6 @@
 - (void)setSourceTextSelectionColor:(NSColor *)arg1;
 - (void)setSourceTextBackgroundColor:(NSColor *)arg1;
 - (void)_setColorOrFont:(id)arg1 forKey:(id)arg2 colorOrFontivar:(id *)arg3;
-@property(readonly, copy) NSColor *debuggerInstructionPointerColor;
 @property(readonly) NSFont *consoleExecutableOutputTextFont;
 @property(readonly) NSFont *consoleExecutableInputTextFont;
 @property(readonly) NSFont *consoleDebuggerOutputTextFont;

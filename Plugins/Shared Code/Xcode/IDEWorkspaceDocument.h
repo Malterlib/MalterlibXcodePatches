@@ -85,6 +85,7 @@
 + (long long)_unlimitedMaximumRecentEditorDocumentCountMarker;
 + (BOOL)canRecentFilesUseDocumentURL:(id)arg1 checkIsFileURLReachable:(BOOL)arg2;
 + (id)documentForWorkspace:(id)arg1;
++ (id)activeWorkspaceTabControllerForWorkspace:(id)arg1;
 + (id)debuggerUIExtensionForLaunchSession:(id)arg1;
 + (id)documentTypeName;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
@@ -242,6 +243,8 @@
 - (id)initWithWorkspace:(id)arg1;
 - (id)init;
 - (id)_openWindowTerminationDisablingReason;
+- (id)sdefSupport_debug:(id)arg1;
+- (id)sdefSupport_attach:(id)arg1;
 - (id)_performScriptingSchemeCommand:(unsigned long long)arg1 forScriptCommand:(id)arg2;
 - (id)sdefSupport_stop:(id)arg1;
 - (id)sdefSupport_test:(id)arg1;

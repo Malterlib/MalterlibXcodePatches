@@ -12,11 +12,12 @@
 
 #import "DVTInvalidation-Protocol.h"
 #import "IDERunDestinationScheme-Protocol.h"
+#import "_TtP13IDEFoundation29IDESchemeFileReference_Scheme_-Protocol.h"
 
 @class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunDestination, IDERunnable, IDETestSchemeAction, NSArray, NSData, NSError, NSHashTable, NSNumber, NSString;
 @protocol IDECustomDataStoring, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_;
 
-@interface IDEScheme : NSObject <IDERunDestinationScheme, DVTInvalidation>
+@interface IDEScheme : NSObject <IDERunDestinationScheme, _TtP13IDEFoundation29IDESchemeFileReference_Scheme_, DVTInvalidation>
 {
     NSString *_lastUpgradeVersion;
     NSString *_cachedLastUpgradeVersion;
@@ -66,6 +67,7 @@
 + (BOOL)automaticallyNotifiesObserversOfIsShown;
 + (id)keyPathsForValuesAffectingDisambiguatedName;
 + (BOOL)automaticallyNotifiesObserversOfCustomDataStoreContainer;
++ (id)performanceAntipatternCheckerPathForDevice:(id)arg1;
 + (id)mainThreadCheckerPathForDevice:(id)arg1;
 + (id)keyPathsForValuesAffectingIntegratable;
 + (id)keyPathsForValuesAffectingAnalyzable;
@@ -136,6 +138,7 @@
 - (BOOL)_shouldRunPostBuildActionsForBuildResult:(long long)arg1;
 - (void)_unionTestsToSkipInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
 - (void)_unionTestsToRunInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
+- (id)_writeTestProductsForCommand:(id)arg1 buildParameters:(id)arg2 testPlanRunSpecifications:(id)arg3 runDestination:(id)arg4;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
 - (id)_variantSpecifiersForTestingWithSchemeOperationParameters:(id)arg1 schemeCommand:(id)arg2 runDestination:(id)arg3 buildParameters:(id)arg4;
 - (id)_variantBuildParametersFromBuildParameters:(id)arg1 directoryName:(id)arg2 overridingBuildSettings:(id)arg3;

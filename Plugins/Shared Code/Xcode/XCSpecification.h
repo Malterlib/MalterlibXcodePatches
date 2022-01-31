@@ -44,6 +44,7 @@
 + (id)registerSpecificationProxiesFromPropertyListsInDirectory:(id)arg1 recursively:(BOOL)arg2 inDomain:(id)arg3;
 + (id)registerSpecificationProxiesFromPropertyListsInDirectory:(id)arg1 recursively:(BOOL)arg2 inDomain:(id)arg3 inBundle:(id)arg4;
 + (BOOL)_shouldRecurseIntoDirectoryNamed:(id)arg1 ofType:(id)arg2;
++ (void)_tryRegisterLocalizationDictionaryForSpecification:(id)arg1 bundle:(id)arg2;
 + (id)_registerSpecificationProxiesOfType:(id)arg1 fromDictionaryOrArray:(id)arg2 inDirectory:(id)arg3 bundle:(id)arg4 sourceDescription:(id)arg5 inDomain:(id)arg6;
 + (id)registerSpecificationProxyFromPropertyList:(id)arg1;
 + (id)registerSpecificationProxyFromPropertyList:(id)arg1 inDomain:(id)arg2 outSpecificationOrProxy:(id *)arg3;

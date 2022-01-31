@@ -10,9 +10,10 @@
 
 #include "Shared.h"
 
+
 @class MISSING_TYPE, NSString;
 
-@interface _TtC13IDEFoundation27IDECommandLineArgumentEntry : NSObject
+@interface _TtC13IDEFoundation27IDECommandLineArgumentEntry : NSObject <NSCopying>
 {
     MISSING_TYPE *argument;
     MISSING_TYPE *enabled;
