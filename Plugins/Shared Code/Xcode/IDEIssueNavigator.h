@@ -138,6 +138,7 @@
 - (void)revealInProjectNavigator:(id)arg1;
 - (void)_revealInProjectNavigatorUsingContextMenuSelection:(BOOL)arg1;
 - (void)_pushSelection;
+- (BOOL)showNextScope;
 - (void)openDoubleClickedNavigableItemsAction:(id)arg1;
 - (void)openClickedNavigableItemAction:(id)arg1;
 - (void)openSelectedNavigableItemsKeyAction:(id)arg1;

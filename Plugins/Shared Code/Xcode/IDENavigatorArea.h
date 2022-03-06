@@ -56,8 +56,9 @@
 @property(readonly) IDENavigator *currentNavigator;
 - (void)_clearPerNavigatorCache;
 - (void)showNavigatorWithIdentifier:(id)arg1 openNavigatorArea:(BOOL)arg2;
+- (void)showNavigatorGroupWithIdentifier:(id)arg1 openNavigatorArea:(BOOL)arg2 allowSwitchingGroupEntry:(BOOL)arg3;
 - (void)showNavigatorGroupWithIdentifier:(id)arg1 openNavigatorArea:(BOOL)arg2;
-- (void)showNavigatorGroup:(id)arg1 openNavigatorArea:(BOOL)arg2;
+- (void)showNavigatorGroup:(id)arg1 openNavigatorArea:(BOOL)arg2 allowSwitchingGroupEntry:(BOOL)arg3;
 - (id)currentNavigatorForGroup:(id)arg1;
 - (id)currentNavigatorIdentifierForGroupIdentifier:(id)arg1;
 - (id)currentNavigatorForGroupIdentifier:(id)arg1;

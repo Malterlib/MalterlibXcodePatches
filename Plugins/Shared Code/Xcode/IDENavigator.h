@@ -54,6 +54,7 @@
 @property(retain) NSScrollView *navigatorScrollView; // @synthesize navigatorScrollView=_navigatorScrollView;
 @property(readonly, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
+- (BOOL)showNextScope;
 - (void)willForgetNavigableItems:(id)arg1;
 - (void)_navigableItemCoordinatorWillForgetNavigableItems:(id)arg1;
 - (BOOL)_isNavItemDescendantOfRootNavItem:(id)arg1;
