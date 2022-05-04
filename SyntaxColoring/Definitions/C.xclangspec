@@ -132,6 +132,7 @@
                 "xcode.lang.malterlib.keyword.virtual",
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
+                "xcode.lang.malterlib.concept",
                 "xcode.lang.malterlib.variable",
             );
             Words = (
@@ -563,6 +564,7 @@
                 "xcode.lang.malterlib.keyword.casts",
                 "xcode.lang.malterlib.keyword.ignore",
                 "xcode.lang.malterlib.keyword.preprocessordirective",
+                "xcode.lang.malterlib.concept",
                 "xcode.lang.malterlib.variable",
                 "xcode.lang.c.identifier.default",
             );

@@ -771,7 +771,7 @@
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
                 "(?-i)^E[A-Z][a-zA-Z0-9_]+_[a-zA-Z0-9_]+$",
-                "(?-i)^(c_|gc_|mc_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(c_|gc_|mc_)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.url";
         };
@@ -782,7 +782,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^mcp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^mcp_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.url";
         };
@@ -793,7 +793,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(t_|tp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(t_|tp_)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.comment.doc";
         };
@@ -804,7 +804,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(tf_|tfp_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(tf_|tfp_)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.markup.code";
         };
@@ -889,7 +889,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^m_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^m_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.constant";
         };
@@ -900,7 +900,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^mp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^mp_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.constant.system";
         };
@@ -1067,7 +1067,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^d_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^d_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.preprocessor";
         };
@@ -1078,7 +1078,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(_|p_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(_|p_)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable";
         };
@@ -1089,7 +1089,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(o_|w_|po_|pw_|_o|p_o)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(o_|w_|po_|pw_|_o|p_o)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable";
         };
@@ -1100,7 +1100,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^ms_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^ms_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1111,7 +1111,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^msp_[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^msp_[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1122,7 +1122,7 @@
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^(gs_|g_|s_)[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^(gs_|g_|s_)[binpfr]?[A-Z][a-zA-Z0-9_]+$",
             );
             Type = "xcode.syntax.identifier.variable.system";
         };
@@ -1140,12 +1140,24 @@
         };
     },
     {
+        Identifier = "xcode.lang.malterlib.concept";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Match = (
+                "(?-i)^c[A-Z][a-zA-Z0-9_]+$",
+
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
         Identifier = "xcode.lang.malterlib.variable";
         Syntax = {
             StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
             Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             Match = (
-                "(?-i)^[bcfinptr]?[A-Z][a-zA-Z0-9_]+$",
+                "(?-i)^[binpfr]?[A-Z][a-zA-Z0-9_]+$",
 
             );
             Type = "xcode.syntax.identifier.type.system";
