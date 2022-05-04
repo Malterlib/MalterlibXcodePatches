@@ -22,7 +22,16 @@ defaults write com.apple.dt.Xcode DVTTextEnableNativeParser -bool NO
 
 mkdir -p "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
 
-cp -f Malterlib.xccolortheme "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+if [[ "$UseMalterlib12" == "true" ]]; then
+	OverrideFont="Unbroken12-Retina-Regular - 12.0"
+fi
+
+if [[ "$OverrideFont" != "" ]]; then
+	sed "s/Unbroken-Retina-Regular - 10\\.0/${OverrideFont}/g" Malterlib.xccolortheme > "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Malterlib.xccolortheme"
+else
+	cp -f Malterlib.xccolortheme "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+fi
+
 defaults write com.apple.dt.xcode XCFontAndColorCurrentTheme Malterlib.xccolortheme
 
 cp -f UnbrokenFont/* "$HOME/Library/Fonts"
