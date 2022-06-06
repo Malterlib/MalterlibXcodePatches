@@ -439,6 +439,7 @@
                 "_Imaginary",
                 "_Nonnull",
                 "_Nullable",
+                "_Nullable_result",
                 "_Null_unspecified",
                 "asm",
                 "auto",
