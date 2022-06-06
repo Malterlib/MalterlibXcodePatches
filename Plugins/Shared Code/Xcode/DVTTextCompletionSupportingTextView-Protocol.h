@@ -9,7 +9,7 @@
 //
 
 
-@class DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextCompletionSession, DVTTextDocumentLocation, NSCharacterSet, NSMutableDictionary, NSScrollView, NSString, NSUndoManager, NSWindow;
+@class DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextCompletionSession, DVTTextDocumentLocation, NSAttributedString, NSCharacterSet, NSMutableDictionary, NSScrollView, NSString, NSUndoManager, NSWindow;
 @protocol DVTTextCompletionItem;
 
 @protocol DVTTextCompletionSupportingTextView <NSObject>
@@ -40,6 +40,7 @@
 
 @optional
 @property(readonly) BOOL hasDarkBackground;
+- (NSAttributedString *)textCompletionSession:(DVTTextCompletionSession *)arg1 messageForCompletionItem:(id <DVTTextCompletionItem>)arg2;
 - (void)textCompletionSession:(DVTTextCompletionSession *)arg1 willDisplayCompletionItem:(id <DVTTextCompletionItem>)arg2;
 @end
 

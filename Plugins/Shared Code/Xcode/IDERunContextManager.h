@@ -13,7 +13,7 @@
 #import "DVTInvalidation-Protocol.h"
 
 @class DVTObservingToken, DVTStackBacktrace, IDERunDestination, IDEScheme, IDEWorkspace, NSArray, NSCountedSet, NSEvent, NSMapTable, NSMutableArray, NSMutableSet, NSString;
-@protocol DVTInvalidation;
+@protocol DVTCancellable, DVTInvalidation;
 
 @interface IDERunContextManager : NSObject <DVTInvalidation>
 {
@@ -34,6 +34,7 @@
     DVTObservingToken *_customDataStoresObserver;
     DVTObservingToken *_availableDevicesObserver;
     id <DVTInvalidation> _blueprintDidChangeObserver;
+    id <DVTCancellable> _installablePlatformObserver;
     DVTObservingToken *_workspaceReferenceContainersObservingToken;
 }
 
@@ -54,6 +55,10 @@
 @property(readonly) NSArray *nonTransientRunContexts; // @synthesize nonTransientRunContexts=_nonTransientRunContexts;
 @property(readonly) NSArray *runContexts; // @synthesize runContexts=_runContexts;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+- (void)clearRecentRunDestinations;
+- (id)recentRunDestinationsForScheme:(id)arg1;
+- (void)clearRecentSchemes;
+- (id)recentSchemes;
 - (void)setActiveRunContext:(id)arg1 andRunDestination:(id)arg2;
 - (void)blueprintsDidBulkChange:(id)arg1;
 - (void)blueprintsWillBulkChange:(id)arg1;

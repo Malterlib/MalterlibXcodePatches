@@ -65,6 +65,7 @@
 @property(readonly) BOOL canShowPreviousStep;
 @property(readonly) BOOL canShowNextStep;
 - (void)setCurrentStepIssue:(id)arg1;
+- (void)setCurrentStepWithStepConfiguration:(id)arg1;
 - (void)loadView;
 - (void)primitiveInvalidate;
 - (id)initUsingDefaultNib;

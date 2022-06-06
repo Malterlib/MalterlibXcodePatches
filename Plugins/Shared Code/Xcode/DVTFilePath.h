@@ -20,17 +20,17 @@
     struct fastsimplearray *_childfsaPaths;
     DVTFileSystemVNode *_vnode;
     DVTFileDataType *_presumedType;
-    unsigned long long _numAssociates;
-    unsigned long long _numObservers;
+    unsigned int _numAssociates;
+    unsigned int _numObservers;
     id _associates;
     NSString *_pathString;
     NSURL *_fileURL;
+    struct DVTUnfairLock _childPathsLock;
+    struct DVTUnfairLock _associatesLock;
+    unsigned short _fsrepLength;
+    _Atomic unsigned char _validationState;
     BOOL _hasResolvedVnode;
     BOOL _cleanRemoveFromParent;
-    _Atomic unsigned char _validationState;
-    unsigned short _fsrepLength;
-    struct os_unfair_lock_s _childPathsLock;
-    struct os_unfair_lock_s _associatesLock;
     char _fsrep[0];
 }
 
@@ -48,6 +48,7 @@
 + (id)_lookupOrCreateFilePathWithParentPath:(id)arg1 fileSystemRepresentation:(const char *)arg2 length:(unsigned long long)arg3 allowCreation:(BOOL)arg4;
 + (id)rootFilePath;
 + (void)initialize;
+// - (id).cxx_construct;
 // - (void).cxx_destruct;
 - (id)_descriptionOfAssociates;
 - (id)description;

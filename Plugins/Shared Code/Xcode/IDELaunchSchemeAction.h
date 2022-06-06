@@ -36,11 +36,12 @@
     BOOL _showNonLocalizedStrings;
     BOOL _ignoresPersistentStateOnLaunch;
     BOOL _debugDocumentVersioning;
+    BOOL _showGraphicsOverview;
+    BOOL _logGraphicsOverview;
     BOOL _viewDebuggingEnabled;
     BOOL _queueDebuggingEnabled;
     BOOL _memoryGraphOnResourceException;
     BOOL _placeholderRenderingEnabled;
-    BOOL _GPUProfilerEnabled;
     int _launchStyle;
     int _enableGPUFrameCaptureMode;
     int _enableGPUValidationMode;
@@ -71,7 +72,6 @@
 // - (void).cxx_destruct;
 @property(copy) NSString *debugServiceExtension; // @synthesize debugServiceExtension=_debugServiceExtension;
 @property(copy) NSString *debugServiceExtensionContentsString; // @synthesize debugServiceExtensionContentsString=_debugServiceExtensionContentsString;
-@property BOOL GPUProfilerEnabled; // @synthesize GPUProfilerEnabled=_GPUProfilerEnabled;
 @property BOOL placeholderRenderingEnabled; // @synthesize placeholderRenderingEnabled=_placeholderRenderingEnabled;
 @property long long consoleMode; // @synthesize consoleMode=_consoleMode;
 @property BOOL memoryGraphOnResourceException; // @synthesize memoryGraphOnResourceException=_memoryGraphOnResourceException;
@@ -80,6 +80,8 @@
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
 @property(retain) NSDictionary *additionalSchemeSettings; // @synthesize additionalSchemeSettings=_additionalSchemeSettings;
 @property(retain) NSString *launchdServiceSpecifier; // @synthesize launchdServiceSpecifier=_launchdServiceSpecifier;
+@property(nonatomic) BOOL logGraphicsOverview; // @synthesize logGraphicsOverview=_logGraphicsOverview;
+@property(nonatomic) BOOL showGraphicsOverview; // @synthesize showGraphicsOverview=_showGraphicsOverview;
 @property int enableGPUShaderValidationMode; // @synthesize enableGPUShaderValidationMode=_enableGPUShaderValidationMode;
 @property int enableGPUValidationMode; // @synthesize enableGPUValidationMode=_enableGPUValidationMode;
 @property int enableGPUFrameCaptureMode; // @synthesize enableGPUFrameCaptureMode=_enableGPUFrameCaptureMode;
@@ -120,7 +122,6 @@
 - (BOOL)needsNewSchemeVersionForAppDataPackage;
 - (void)setAskForAppToLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setUseCustomWorkingDirectoryFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)setGPUProfilerEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setPlaceholderRenderingEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setConsoleModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setMemoryGraphOnResourceExceptionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -134,6 +135,8 @@
 - (void)setShowNonLocalizedStringsFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setAllowDeviceSensorReplayDataFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setAllowLocationSimulationFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setLogGraphicsOverviewFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setShowGraphicsOverviewFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableGPUShaderValidationModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableGPUValidationModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableGPUFrameCaptureModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -177,6 +180,7 @@
 - (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
 - (void)modifyEnvironmentForMallocStackLogging:(id)arg1;
 - (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
+- (BOOL)performanceAntipatternCheckerAllowedForRunnable;
 - (long long)internalIOSInstallStyleForBuildables:(id)arg1;
 @property BOOL customLaunchCommandPauseAfterCommands;
 @property(retain) NSString *customLaunchCommand;

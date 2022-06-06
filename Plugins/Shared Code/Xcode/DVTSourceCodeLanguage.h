@@ -34,6 +34,7 @@
     BOOL _usesColorLiteral;
     BOOL _usesFileLiteral;
     BOOL _usesImageLiteral;
+    BOOL _usesSymbolImageCodeGeneration;
 }
 
 + (id)sourceCodeLanguageForFileDataType:(id)arg1;
@@ -48,6 +49,7 @@
 + (id)cSourceCodeLanguage;
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(readonly) BOOL usesSymbolImageCodeGeneration; // @synthesize usesSymbolImageCodeGeneration=_usesSymbolImageCodeGeneration;
 @property(readonly) BOOL usesImageLiteral; // @synthesize usesImageLiteral=_usesImageLiteral;
 @property(readonly) BOOL usesFileLiteral; // @synthesize usesFileLiteral=_usesFileLiteral;
 @property(readonly) BOOL usesColorLiteral; // @synthesize usesColorLiteral=_usesColorLiteral;

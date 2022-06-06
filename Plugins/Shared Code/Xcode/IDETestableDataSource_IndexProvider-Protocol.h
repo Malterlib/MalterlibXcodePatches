@@ -8,13 +8,15 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
+#import "DVTInvalidation-Protocol.h"
 
 @class NSArray, NSDictionary, NSString;
-@protocol IDETestableDataSource_Index;
+@protocol DVTInvalidation, IDETestableDataSource, IDETestableDataSource_Index;
 
-@protocol IDETestableDataSource_IndexProvider <NSObject>
+@protocol IDETestableDataSource_IndexProvider <DVTInvalidation>
 @property(readonly) NSString *name;
 @property(readonly) id <IDETestableDataSource_Index> index;
+- (id <DVTInvalidation, IDETestableDataSource>)testableDataSourceForTestingSystemWithIdentifier:(NSString *)arg1;
 - (NSDictionary *)collectLinkedTargetIndexableIdsForIndexableIds:(NSArray *)arg1;
 @end
 

@@ -24,6 +24,7 @@
     BOOL _ignorePromptOnce;
     NSObject<OS_dispatch_queue> *_executeLLDBCommandQueue;
     BOOL _hasFinishedRunning;
+    BOOL _shouldProceedToAttach;
     DVTDispatchLock *_lifeCycleLock;
     NSString *_remoteInstallPath;
     BOOL _lldbTargetFromLocalPath;
@@ -42,10 +43,15 @@
 @property(retain) DBGLLDBSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(readonly) int lldbRPCServerPID; // @synthesize lldbRPCServerPID=_lldbRPCServerPID;
 @property(readonly) BOOL terminateCalled; // @synthesize terminateCalled=_terminateCalled;
-- (id)_storeKitConfigurationFileSync;
 - (void)primitiveInvalidate;
+- (id)_storeKitConfigurationFileSync;
+- (id)logSectionDetails;
+- (id)logSectionTitle;
+- (void)_logDebugOptions;
 - (void)terminate;
 - (void)start;
+- (void)removeTrackedName:(id)arg1 addTrackedPID:(unsigned long long)arg2 forDeviceIdentifier:(id)arg3;
+- (void)removeTrackedPID:(unsigned long long)arg1 forDeviceIdentifier:(id)arg2;
 - (void)_warnSlowLaunch;
 - (void)_warnSlowLaunchReadFromMemory;
 - (void)_warnSlowLaunchDSYMForUUIDEnabled;
@@ -62,6 +68,9 @@
 - (void)_createTargetConsoleAdaptorForPTY:(id)arg1;
 - (id)errorForLLDBLaunchError:(id)arg1 target:(id)arg2;
 - (id)_doAttachWithTarget:(id)arg1 childPID:(unsigned long long *)arg2 outError:(id *)arg3;
+- (BOOL)_shouldProceedAttachToPID:(unsigned long long)arg1;
+- (BOOL)_shouldProceedAttachToName:(id)arg1;
+- (void)_setErrorDueToDebugMoreThanOnce:(id)arg1 code:(int)arg2;
 - (id)_errorMessageForAttachingToPID:(unsigned long long)arg1;
 - (id)_errorMessageForAttachingToName:(id)arg1;
 - (id)_errorStringFromLLDBError:(id)arg1;

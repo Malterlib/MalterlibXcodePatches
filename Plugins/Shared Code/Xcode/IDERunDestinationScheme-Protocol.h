@@ -8,11 +8,14 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-@class IDERunnable, IDESchemeCommand, NSArray, NSString;
+@class DVTDevice, IDERunnable, IDESchemeCommand, NSArray, NSString;
 @protocol IDEPrimitiveSchemeCommand;
 
 @protocol IDERunDestinationScheme
 @property(readonly) BOOL schemeRunnableRequiresPairedProxyDevice;
+@property(readonly) BOOL schemeRunnableIsForWatchApplication;
+@property(readonly) BOOL schemeRunnableIsForWatchInternal;
+@property(readonly) BOOL schemeRunnableIsForWatch;
 @property(readonly) BOOL isTransient;
 @property(readonly) NSString *disambiguatedName;
 @property(readonly) NSString *name;
@@ -20,5 +23,6 @@
 - (NSArray *)buildablesForSchemeCommand:(IDESchemeCommand<IDEPrimitiveSchemeCommand> *)arg1 testingSpecifiers:(NSArray *)arg2 includingDependencies:(BOOL)arg3;
 - (NSString *)buildConfigurationForSchemeCommand:(IDESchemeCommand<IDEPrimitiveSchemeCommand> *)arg1;
 - (IDERunnable *)runnableForSchemeCommand:(IDESchemeCommand<IDEPrimitiveSchemeCommand> *)arg1;
+- (BOOL)schemeRunnableRequiresPairedProxyForDevice:(DVTDevice *)arg1;
 @end
 

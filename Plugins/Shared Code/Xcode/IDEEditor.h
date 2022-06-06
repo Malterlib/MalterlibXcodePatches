@@ -104,6 +104,7 @@
 - (id)_getUndoManager:(BOOL)arg1;
 - (id)undoManager;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+@property(readonly, nonatomic) BOOL fluidSwipesDisabled;
 @property BOOL shouldShowPullRequestComments;
 @property(nonatomic) BOOL canToggleCodeReview;
 @property(nonatomic) unsigned long long codeReviewPreference;

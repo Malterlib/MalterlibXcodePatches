@@ -128,6 +128,7 @@
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
 - (void)presentedItemDidChange;
 - (void)presentedItemDidMoveToURL:(id)arg1;
+@property(readonly) NSURL *fileURLForAnnotations;
 @property(readonly) NSURL *ide_textRepresentationDocumentURL;
 - (BOOL)canRevert;
 - (id)editedContents;

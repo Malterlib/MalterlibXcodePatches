@@ -43,7 +43,6 @@
 + (id)keyPathsForValuesAffectingAccessibilityIdentifier;
 + (id)keyPathsForValuesAffectingAccessibleImageDescription;
 + (id)keyPathsForValuesAffectingIcon;
-+ (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingName;
 + (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
@@ -80,7 +79,6 @@
 - (id)accessibilityIdentifier;
 - (id)accessibleImageDescription;
 - (id)icon;
-- (id)image;
 - (id)subtitle;
 - (id)name;
 - (void)_setRepresentedObject:(id)arg1;

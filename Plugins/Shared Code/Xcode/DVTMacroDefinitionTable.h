@@ -24,7 +24,7 @@
     NSDictionary *_cachedDictRep;
     NSSet *_cachedMacroNameSet;
     unsigned long long _cachedHash;
-    struct os_unfair_lock_s _cacheLock;
+    struct DVTUnfairLock _cacheLock;
     BOOL _isImmutable;
     BOOL _postsChangeNotifications;
     BOOL _declaredMutable;
@@ -33,6 +33,7 @@
 + (id)macroNameRegistry;
 + (id)empty;
 + (id)newWithLabel:(id)arg1;
+// - (id).cxx_construct;
 // - (void).cxx_destruct;
 @property BOOL postsChangeNotifications; // @synthesize postsChangeNotifications=_postsChangeNotifications;
 - (id)description;
@@ -57,6 +58,7 @@
 - (id)dictionaryRepresentation;
 - (void)enumerateMacroNamesAndValuesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateValuesForMacroName:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)removeAllConditionSetsForMacroName:(id)arg1;
 - (id)valueForMacroName:(id)arg1 conditionSet:(id)arg2;
 - (void)parseAndSetValue:(id)arg1 forMacroName:(id)arg2 conditionSet:(id)arg3;
 - (void)_setLiteralValue:(id)arg1 forMacroName:(id)arg2 conditionSet:(id)arg3 wantsCheckForDVTMacroExpansionConformance:(BOOL)arg4;

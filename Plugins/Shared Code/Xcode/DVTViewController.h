@@ -29,6 +29,8 @@
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)requiresUninstallAfterLoadView;
 + (id)viewControllerUsingDefaultNib;
++ (id)defaultNibBundle;
++ (id)defaultNibName;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
 + (void)initialize;

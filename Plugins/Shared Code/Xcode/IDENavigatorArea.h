@@ -39,6 +39,7 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentNavigator;
 + (id)keyPathsForValuesAffectingWorkspace;
++ (void)initialize;
 // - (void).cxx_destruct;
 @property(retain) IDENavigatorAreaDFRController *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
 @property(retain) IDENavigatorAreaContentView *contentView; // @synthesize contentView=_contentView;

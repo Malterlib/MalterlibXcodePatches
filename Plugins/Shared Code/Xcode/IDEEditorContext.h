@@ -24,8 +24,8 @@
 #import "_IDEEditorContextSplitViewControllerDelegate-Protocol.h"
 #import "_TtP6IDEKit28IDEEditorTabViewHostProtocol_-Protocol.h"
 
-@class CALayer, DVTBindingToken, DVTDocumentLocation, DVTFileDataType, DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorAreaSplit, IDEEditorCodeReviewPreferenceController, IDEEditorContainerViewController, IDEEditorContextClipView, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorIssueMenuController, IDEEditorModeSwitcherController, IDEEditorModeViewController, IDEEditorMultipleContext, IDEEditorNavigableItemCoalescingState, IDEEditorNavigationBar, IDEEditorReadOnlyIndicatorController, IDEEditorRelatedItemsPopUpButtonController, IDEEditorSplittingController, IDEEditorStepperView, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSMutableDictionary, NSNumber, NSScrollView, NSSplitViewItem, NSString, NSURL, NSView, _IDEEditorContextSplitViewController, _IDEGeniusResultsContext, _TtC6IDEKit38IDEEditorPullRequestCommentsController;
-@protocol DVTCancellable, IDEEditorContextDelegate;
+@class CALayer, DVTBindingToken, DVTDocumentLocation, DVTFileDataType, DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorAreaSplit, IDEEditorCodeReviewPreferenceController, IDEEditorContainerViewController, IDEEditorContextClipView, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorModeSwitcherController, IDEEditorModeViewController, IDEEditorMultipleContext, IDEEditorNavigableItemCoalescingState, IDEEditorNavigationBar, IDEEditorReadOnlyIndicatorController, IDEEditorRelatedItemsPopUpButtonController, IDEEditorSplittingController, IDEEditorStepperView, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSMutableDictionary, NSNumber, NSScrollView, NSSplitViewItem, NSString, NSURL, NSView, _IDEEditorContextSplitViewController, _IDEGeniusResultsContext, _TtC6IDEKit38IDEEditorPullRequestCommentsController;
+@protocol DVTCancellable, IDEEditorContextDelegate, IDEEditorMiniIssueNavigatorProtocol;
 
 @interface IDEEditorContext : IDEViewController <NSMenuDelegate, DVTFindBarHostable, NSPathControlDelegate, DVTPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, IDEEditorHistoryControllerDelegate, _IDEEditorContextSplitViewControllerDelegate, NSUserInterfaceValidations, IDEEditorContextProtocol, _TtP6IDEKit28IDEEditorTabViewHostProtocol_, NSAnimationDelegate, IDESafeAreaAwareContainer>
 {
@@ -50,10 +50,10 @@
     DVTNotificationToken *_workspaceWillWriteNotificationToken;
     DVTNotificationToken *_documentModifiedNotificationToken;
     DVTObservingToken *_currentSelectedItemsObservingToken;
-    DVTObservingToken *_editorAreaSplitObservingToken;
     DVTObservingToken *_editorDocumentForNavBarStructureChangedObservingToken;
     DVTObservingToken *_previewDocumentLocationObservingToken;
     DVTObservingToken *_windowMainViewControllerChangedObservingToken;
+    DVTObservingToken *_greatestDocumentAncestorDocumentTypeChangedObservingToken;
     id <DVTCancellable> _deferredUpdateSubDocumentNavigableItemsCancellableToken;
     DVTBindingToken *_navBarNavigableItemRootChildItemsBindingToken;
     DVTBindingToken *_navBarNavigableItemBindingToken;
@@ -66,7 +66,7 @@
     DVTFindBar *_findBar;
     NSDictionary *_editorStateDictionaryPreviousToFind;
     IDEEditorCodeReviewPreferenceController *_codeReviewPreferenceController;
-    IDEEditorIssueMenuController *_issueMenuController;
+    id <IDEEditorMiniIssueNavigatorProtocol> _miniIssueNavigator;
     IDEEditorSplittingController *_splittingController;
     IDEEditorModeSwitcherController *_editorModeSwitcherController;
     DVTObservingToken *_workspaceLoadingObservingToken;
@@ -86,7 +86,6 @@
     BOOL _isFetchingCurrentSelectedItems;
     BOOL _shouldImmediatleyProcessCurrentSelectedItemsChange;
     BOOL _isSettingUpNewEditor;
-    BOOL _editorGeniusResultsGenerationEnabled;
     BOOL _showAddEditorSplitBelowIcon;
     BOOL _showsEditorModeSwitcher;
     BOOL _isSettingEditor;
@@ -118,6 +117,7 @@
     BOOL _isPreviewEditorContext;
     BOOL _hideWorkspaceLoadingProgressIndicator;
     BOOL _isCallingNewEditorDocumentWithClass;
+    BOOL _editorGeniusResultsGenerationEnabled;
     BOOL _isActive;
     double _safeAreaTopInset;
     double _safeAreaBottomInset;
@@ -175,6 +175,7 @@
 @property(retain, nonatomic) IDENavigableItem *navigableItem; // @synthesize navigableItem=_navigableItem;
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain) id <IDEEditorContextDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL editorGeniusResultsGenerationEnabled; // @synthesize editorGeniusResultsGenerationEnabled=_editorGeniusResultsGenerationEnabled;
 @property(readonly) _TtC6IDEKit38IDEEditorPullRequestCommentsController *pullRequestCommentsController; // @synthesize pullRequestCommentsController=_pullRequestCommentsController;
 @property(retain) DVTStackBacktrace *viewWillUninstallBacktrace; // @synthesize viewWillUninstallBacktrace=_viewWillUninstallBacktrace;
 @property(retain) DVTStackBacktrace *viewDidInstallBacktrace; // @synthesize viewDidInstallBacktrace=_viewDidInstallBacktrace;
@@ -303,6 +304,9 @@
 - (void)openInAdjacentEditorWithShiftPlusAlternate:(id)arg1;
 - (void)openInAdjacentEditorWithAlternate:(id)arg1;
 - (void)_openInAdjacentEditorWithEventBehavior:(unsigned long long)arg1;
+- (void)swipeForwardInHistory:(id)arg1;
+- (void)swipeBackInHistory:(id)arg1;
+- (void)trackSwipeWithSwiper:(id)arg1;
 - (void)scrollWheel:(id)arg1;
 - (void)_moveOverlayToMatchGestureAmount:(double)arg1 imageOfCurrentEditorOnTop:(BOOL)arg2;
 - (void)_hideSwipeOverlay;
@@ -316,11 +320,9 @@
 - (void)changeAssistantToShowGeniusCategoryWithIdentifier:(id)arg1;
 - (id)availableGeniusCategories;
 - (void)jumpToInstructionPointer:(id)arg1;
-- (void)fixPreviousIssue:(id)arg1;
-- (void)fixNextIssue:(id)arg1;
 - (void)jumpToPreviousIssue:(id)arg1;
 - (BOOL)canJumpToIssue:(id)arg1;
-- (id)_issueMenuController;
+- (id)_miniIssueNavigator;
 - (void)jumpToNextIssue:(id)arg1;
 - (void)jumpToPreviousCounterpartWithShiftPlusAlternate:(id)arg1;
 - (void)jumpToPreviousCounterpartWithAlternate:(id)arg1;
@@ -329,6 +331,7 @@
 - (void)jumpToNextCounterpartWithAlternate:(id)arg1;
 - (void)jumpToNextCounterpart:(id)arg1;
 - (void)_jumpToCounterpartUp:(BOOL)arg1;
+- (id)_jumpToCounterpartDocumentLocationUp:(BOOL)arg1;
 - (BOOL)pathControl:(id)arg1 acceptDrop:(id)arg2;
 - (BOOL)pathCell:(id)arg1 shouldPopUpMenuForPathComponentCell:(id)arg2 item:(id)arg3;
 - (unsigned long long)pathControl:(id)arg1 validateDrop:(id)arg2;
@@ -434,7 +437,7 @@
 - (BOOL)_enableJumpToCounterpartMenuItems;
 - (id)_primaryEditorJumpToCounterpartsCategoryNavigableItem;
 - (id)_navigableItemForCategoryWithIdentifier:(id)arg1;
-- (void)_setEditorGeniusResultsGenerationEnabled:(BOOL)arg1;
+- (void)_updateEditorGeniusResults;
 - (void)_writeCurrentStateToLastUsedDictionaryIfNeeded;
 - (id)_defaultEditorStateDictionaryForDocumentExtensionIdentifier:(id)arg1 forDocumentURL:(id)arg2;
 - (BOOL)historyControllerOpenEmptyEditor:(id)arg1;

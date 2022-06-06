@@ -19,7 +19,7 @@
 #import "IDETestableDataSource_IndexProvider-Protocol.h"
 #import "_TtP13IDEFoundation32IDESchemeFileReference_Workspace_-Protocol.h"
 
-@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
+@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTOneShotBlock, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELaunchSessionLogReporter, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
 @protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEPackageManagerWorkspace, IDEWorkspaceDelegate;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_, IDEClientTracking, IDEProvisionableProvider, IDEIssueLogDataSource>
@@ -32,7 +32,7 @@
     DVTObservingToken *_containerQueryObservingToken;
     NSMutableSet *_referencedContainers;
     NSHashTable *_fileRefsWithContainerLoadingIssues;
-    IDEActivityLogSection *_containerLoadingIntegrityLog;
+    DVTOneShotBlock *_analyzeContainerIntegrityToken;
     NSMutableSet *_customDataStores;
     IDEWorkspaceUserSettings *_userSettings;
     IDEWorkspaceSharedSettings *_sharedSettings;
@@ -59,6 +59,7 @@
     IDELocalizationWorkspaceMonitor *_localizationWorkspaceMonitor;
     IDEProvisioningManager *_provisioningManager;
     IDELocalizationManager *_localizationManager;
+    IDELaunchSessionLogReporter *_launchLogReporter;
     _TtC13IDEFoundation30IDEStructureEditingCoordinator *_structureEditingMoveCoordinator;
     NSNumber *_shouldUseLegacyBuildSystem;
     id <IDEBuildSystemService> _buildSystemService;
@@ -97,7 +98,9 @@
     BOOL _hostsOnlyPackages;
     BOOL _hostsOnlyPlaygroundProject;
     BOOL _hostsOnlyPlayground;
+    BOOL _shouldShowSwiftDeprecationWarning;
     BOOL _isPotentiallyClosing;
+    IDEActivityLogSection *_issueLog;
     IDEDynamicContentRootGroup *_dynamicContentRootGroup;
     NSArray *_sourcePackageLoadingErrors;
     IDEActivityLogSection *_sourcePackageResolutionIssueLog;
@@ -106,6 +109,7 @@
     IDETextFragmentIndex *_textFragmentIndex;
     IDERefactoring *_refactoring;
     NSString *_xcbuildSandboxProfile;
+    IDEActivityLogMessage *_swiftDeprecationLogMessage;
     IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
     NSDate *_icloudDriveLastHeldDate;
     id <IDEActiveRunContextStoring> _activeRunContextStore;
@@ -138,12 +142,15 @@
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
 @property(copy) NSDate *icloudDriveLastHeldDate; // @synthesize icloudDriveLastHeldDate=_icloudDriveLastHeldDate;
+@property(readonly) BOOL shouldShowSwiftDeprecationWarning; // @synthesize shouldShowSwiftDeprecationWarning=_shouldShowSwiftDeprecationWarning;
 @property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
 @property(retain, nonatomic) IDEWorkspaceSharedSettings *sharedSettings; // @synthesize sharedSettings=_sharedSettings;
 @property(retain, nonatomic) IDEWorkspaceUserSettings *userSettings; // @synthesize userSettings=_userSettings;
 @property(nonatomic) BOOL pendingFileReferencesAndContainers; // @synthesize pendingFileReferencesAndContainers=_pendingFileReferencesAndContainers;
 @property(retain, nonatomic) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
+@property(readonly) IDELaunchSessionLogReporter *launchLogReporter; // @synthesize launchLogReporter=_launchLogReporter;
 @property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
+@property(readonly) IDEActivityLogMessage *swiftDeprecationLogMessage; // @synthesize swiftDeprecationLogMessage=_swiftDeprecationLogMessage;
 @property BOOL hostsOnlyPlayground; // @synthesize hostsOnlyPlayground=_hostsOnlyPlayground;
 @property BOOL hostsOnlyPlaygroundProject; // @synthesize hostsOnlyPlaygroundProject=_hostsOnlyPlaygroundProject;
 @property BOOL hostsOnlyPackages; // @synthesize hostsOnlyPackages=_hostsOnlyPackages;
@@ -171,6 +178,7 @@
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) NSDictionary *uniqueIdentifiersToReferencedBlueprints; // @synthesize uniqueIdentifiersToReferencedBlueprints=_uniqueIdentifiersToReferencedBlueprints;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
+@property(retain) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
 @property(readonly) DVTFilePath *containingDirectory;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
@@ -181,6 +189,7 @@
 - (void)didCreateIndex:(id)arg1;
 - (void)initializeIndexAndRefactoring;
 - (void)_scheduleWorkspaceUpgradeTasksController:(id)arg1;
+- (void)_setupLaunchLogWorkspaceReporter;
 - (void)_setupWorkspaceUpgradeTasksController;
 - (void)_setupSourceControlWorkspaceMonitorIfNeeded;
 - (void)_initializeSourceControlWorkspaceMonitor;
@@ -208,6 +217,7 @@
 - (float)archiveVersion;
 - (id)displayName;
 @property(readonly) NSString *name;
+@property(readonly, nonatomic) BOOL hasLocalizations;
 - (id)allLocalizations;
 @property(readonly) BOOL supportsSourcePackages;
 @property(readonly) id <IDEBuildSystemService> buildSystemService;
@@ -237,6 +247,8 @@
 - (BOOL)containsSwiftPackages;
 @property(readonly) NSSet *referencedBlueprints;
 - (id)containerGraphOrderForBlueprintProviders:(id)arg1;
+@property(readonly) NSSet *localizableReferencedBlueprints;
+@property(readonly) NSSet *localizableReferencedBlueprintProviders;
 @property(readonly) NSSet *referencedBlueprintProviders;
 @property(readonly) NSSet *referencedContainers;
 - (void)_referencedContainersDidUpdate;
@@ -281,11 +293,7 @@
 - (void)_setupWorkspaceArenaIfNeeded;
 - (BOOL)_shouldLoadUISubsystems;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
-@property(readonly) IDEActivityLogSection *issueLog;
-- (void)_validateSchemeOptionReference:(id)arg1 scheme:(id)arg2 referenceDisplayType:(id)arg3;
 - (void)analyzeModelForIssues;
-@property(readonly) IDEActivityLogMessage *swiftDeprecationLogMessage;
-@property(readonly) BOOL shouldShowSwiftDeprecationWarning;
 - (void)_setFileRefsWithContainerLoadingIssues:(id)arg1;
 - (void)_handleContainerResolutionFailureForFileReference:(id)arg1;
 - (void)_clearPendingFileReferencesAndContainerLoadingTokens;
@@ -305,6 +313,7 @@
 - (id)sdefSupport_activeSchemeForDocument:(id)arg1;
 - (id)sdefSupport_schemesForDocument:(id)arg1;
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
+- (id)testableDataSourceForTestingSystemWithIdentifier:(id)arg1;
 - (id)collectLinkedTargetIndexableIdsForIndexableIds:(id)arg1;
 @property(retain) NSArray *namedBatchFindScopes;
 - (id)localScopeStore;
@@ -312,9 +321,9 @@
 - (id)observeActiveRunDestinationDidChange:(CDUnknownBlockType)arg1;
 - (id)observeBuildImplicitDependenciesDidChange:(CDUnknownBlockType)arg1;
 - (id)observeActiveSchemeDidChange:(CDUnknownBlockType)arg1;
-- (id)observeActiveBlueprintLogSectionIDs:(CDUnknownBlockType)arg1;
+- (id)observeActiveNoticeDomains:(CDUnknownBlockType)arg1;
 - (id)makeLogStoreForNoticeLogs;
-- (id)activeBlueprintLogSectionIDs;
+- (id)activeNoticeDomains;
 @property(readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
 - (id)observeLatestBuildLogIdentityDidChange:(CDUnknownBlockType)arg1;
 @property(readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;

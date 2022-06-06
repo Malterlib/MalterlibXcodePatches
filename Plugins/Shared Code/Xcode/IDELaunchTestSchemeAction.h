@@ -33,6 +33,7 @@
     BOOL _enableThreadSanitizer;
     BOOL _enableUBSanitizer;
     BOOL _enableMainThreadChecker;
+    BOOL _enablePerformanceAntipatternChecker;
     unsigned int _debugProcessAsUID;
     NSString *_selectedDebuggerIdentifier;
     NSString *_selectedLauncherIdentifier;
@@ -63,6 +64,7 @@
 @property long long systemAttachmentLifetime; // @synthesize systemAttachmentLifetime=_systemAttachmentLifetime;
 @property(copy, nonatomic) NSString *region; // @synthesize region=_region;
 @property(copy, nonatomic) NSString *language; // @synthesize language=_language;
+@property BOOL enablePerformanceAntipatternChecker; // @synthesize enablePerformanceAntipatternChecker=_enablePerformanceAntipatternChecker;
 @property BOOL enableMainThreadChecker; // @synthesize enableMainThreadChecker=_enableMainThreadChecker;
 @property BOOL enableUBSanitizer; // @synthesize enableUBSanitizer=_enableUBSanitizer;
 @property BOOL enableThreadSanitizer; // @synthesize enableThreadSanitizer=_enableThreadSanitizer;
@@ -89,6 +91,7 @@
 - (void)setSystemAttachmentLifetimeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setRegionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setLanguageFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setDisablePerformanceAntipatternCheckerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDisableMainThreadCheckerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableUBSanitizerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableThreadSanitizerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -106,6 +109,7 @@
 @property BOOL mallocStackLoggingSelected;
 @property(copy) NSString *selectedMallocStackLoggingType; // @synthesize selectedMallocStackLoggingType=_selectedMallocStackLoggingType;
 @property(readonly) NSArray *availableMallocStackLoggingTypes;
+- (BOOL)performanceAntipatternCheckerAllowedForRunnable;
 - (BOOL)containSwiftForTheRunnable;
 - (BOOL)UBSanitizerAllowedForRunnable;
 - (BOOL)_detectSwiftnessForTheRunnableWithSelector:(SEL)arg1 expectedValue:(BOOL)arg2;

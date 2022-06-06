@@ -71,7 +71,6 @@
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (void)invalidate;
-- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)awakeFromNib;
 

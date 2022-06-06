@@ -34,6 +34,7 @@
     DVTToolchain *_lldbToolchain;
     DVTToolchain *_llvmProfdataToolchain;
     NSString *_intentQueryString;
+    NSString *_appClipInvocationURLString;
 }
 
 + (id)commandLineArgumentsForLanguage:(id)arg1 andRegion:(id)arg2;
@@ -51,6 +52,7 @@
 + (BOOL)addAddressSanitizerEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildable:(id)arg3 debugAppExtensions:(BOOL)arg4 debugging:(BOOL)arg5 testingSpecifier:(id)arg6 error:(id *)arg7;
 + (BOOL)_addSanitizer:(unsigned long long)arg1 environmentVariables:(id)arg2 buildParameters:(id)arg3 device:(id)arg4 buildable:(id)arg5 debugAppExtensions:(BOOL)arg6 debugging:(BOOL)arg7 testBundlePath:(id)arg8 error:(id *)arg9;
 + (id)_sanitizerOptions:(id)arg1 debugging:(BOOL)arg2 testBundlePath:(id)arg3;
++ (id)TSanSupportedArchs;
 + (id)keyPathsForValuesAffectingRunnable;
 + (BOOL)shouldAllowCustomPhaseActions;
 + (BOOL)runDestinationSupportsSwiftDevelopmentRuntime:(id)arg1 outError:(id *)arg2;
@@ -65,6 +67,7 @@
 + (id)addressSanitizerEnabledOverride;
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(retain) NSString *appClipInvocationURLString; // @synthesize appClipInvocationURLString=_appClipInvocationURLString;
 @property(retain) NSString *intentQueryString; // @synthesize intentQueryString=_intentQueryString;
 @property(readonly) DVTToolchain *llvmProfdataToolchain; // @synthesize llvmProfdataToolchain=_llvmProfdataToolchain;
 @property(retain) DVTToolchain *lldbToolchain; // @synthesize lldbToolchain=_lldbToolchain;
@@ -75,7 +78,6 @@
 @property(retain) IDEFileReference *notificationPayloadFile; // @synthesize notificationPayloadFile=_notificationPayloadFile;
 @property(readonly, nonatomic) IDEScheme *runContext; // @synthesize runContext=_runContext;
 @property(readonly, copy) NSString *description;
-- (id)swiftVersionOfRunnableForSchemeCommand:(id)arg1;
 - (id)llvmProfdataToolchainForSchemeCommand:(id)arg1;
 - (id)bestLLDBToolchainForSchemeCommand:(id)arg1 preferBuildProductToolchain:(BOOL)arg2;
 - (id)_buildProductToolchainForSchemeCommand:(id)arg1;
@@ -123,6 +125,7 @@
 - (id)stringListForBuildSettings:(id)arg1 forSchemeCommand:(id)arg2 buildable:(id)arg3;
 - (id)adjustedBuildParametersForMacroExpansionBuildableWithBaselineParamters:(id)arg1;
 - (BOOL)mallocStackLightAllowedForRunDestination:(id)arg1;
+- (BOOL)performanceAntipatternCheckerAllowedForRunnable;
 - (BOOL)UBSanitizerAllowedForRunnable;
 - (BOOL)threadSanitizerAllowedForRunDestination:(id)arg1;
 - (BOOL)_isTSanSupportedArch:(id)arg1;

@@ -200,6 +200,7 @@
 - (void)analyzeFileAtPath:(id)arg1;
 - (void)generateAssemblyCodeForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)generatePreprocessedFileForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
+- (void)clearAllIssues:(id)arg1;
 - (void)cleanTestResults:(id)arg1;
 - (void)cleanBuildFolder:(id)arg1;
 - (void)reallyCleanBuildFolder;
@@ -226,6 +227,7 @@
 - (void)_testActiveRunContextFromScripting:(BOOL)arg1 withInvocationRecord:(id)arg2 additionalCommandLineArgs:(id)arg3 overridingEnvironmentVars:(id)arg4 contextString:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)testActiveRunContextWithContextString:(id)arg1 schemeTask:(long long)arg2;
 - (void)testActiveRunContextWithContextString:(id)arg1;
+- (void)buildForTestActiveRunContext:(id)arg1 testProductsPath:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)buildForTestActiveRunContext:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)buildForTestActiveRunContext:(id)arg1;
 - (void)editAndBuildForTestingActiveRunContext:(id)arg1;
@@ -275,6 +277,10 @@
 - (void)_rejectStoppingExecutionAlert:(id)arg1;
 - (void)_cleanupAfterStoppingExecutionAlert;
 - (void)_actuallyPerformTaskOnScheme:(id)arg1 forSchemeOperationParameters:(id)arg2 useLegacyCompletionBehavior:(BOOL)arg3 enqueuingErrorBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)_errorForEmbeddedWatchContentMissingPlatformWithScheme:(id)arg1 operationParameters:(id)arg2 underlyingError:(id)arg3;
+- (id)_errorForMissingInstallablePlatformWithScheme:(id)arg1 operationParameters:(id)arg2 underlyingError:(id)arg3;
+- (id)_missingPlatformAlertMesageForPlatformNameAndVersion:(id)arg1 shouldPresentDownloadOption:(BOOL)arg2;
+- (id)_errorForInvalidActionForScheme:(id)arg1 operationParameters:(id)arg2;
 - (CDUnknownBlockType)_deviceAvailableCheckerOnScheme:(id)arg1 forSchemeOperationParameters:(id)arg2 enqueuingErrorBlock:(CDUnknownBlockType)arg3;
 - (void)invalidateAllBuildAlertMonitorsForWorkspace;
 - (BOOL)_cleanBuildFolderWithError:(id *)arg1;
@@ -283,12 +289,12 @@
 - (void)hideInspectorAreaAnimated:(BOOL)arg1;
 - (void)showInspectorAreaAnimated:(BOOL)arg1;
 - (void)toggleInspectorArea:(id)arg1;
-- (void)_setInspectorAreaVisible:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setInspectorAreaVisible:(BOOL)arg1 animated:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)hideNavigatorAnimated:(BOOL)arg1;
 - (void)showNavigatorAnimated:(BOOL)arg1;
 - (void)toggleNavigator:(id)arg1;
-- (void)_setNavigatorVisible:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)_setVisible:(BOOL)arg1 ofSplitViewItem:(id)arg2 animated:(BOOL)arg3;
+- (void)_setNavigatorVisible:(BOOL)arg1 animated:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)_setVisible:(BOOL)arg1 ofSplitViewItem:(id)arg2 animated:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)setShowNavigator:(BOOL)arg1;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)changeToBreakpointsNavigator:(id)arg1;
@@ -299,7 +305,6 @@
 - (void)changeToFindNavigator:(id)arg1;
 - (void)changeToTestNavigator:(id)arg1;
 - (void)changeToNoticeNavigatorAndFilterNoticesWithNoticeSeverities:(id)arg1 noticeKinds:(id)arg2;
-- (void)changeToNoticeNavigatorAndOpenDocumentLocationForWrappedNotice:(id)arg1;
 - (void)changeToNoticeNavigatorAndSelectWrappedNotice:(id)arg1;
 - (void)changeToNoticeNavigator;
 - (void)_changeToIssuesNavigatorForBuildIssues;
@@ -345,6 +350,7 @@
 - (void)toggleComparisonModeFromToolbar:(id)arg1;
 @property(readonly) IDEWorkspaceTabController *structureEditWorkspaceTabController;
 @property(readonly) IDEWorkspace *structureEditWorkspace;
+- (BOOL)shouldEnableLocalizationActions;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
 @property(readonly) IDEWorkspaceWindowController *windowController;

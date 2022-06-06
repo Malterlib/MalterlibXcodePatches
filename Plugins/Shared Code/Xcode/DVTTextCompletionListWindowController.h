@@ -10,18 +10,16 @@
 
 #include "Shared.h"
 
-#import "DVTTextCompletionFormatContextDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTNotificationToken, DVTTextCompletionFormatContext, DVTTextCompletionSession, DVTTextCompletionWindow, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
+@class DVTBindingToken, DVTNotificationToken, DVTObservingToken, DVTTextCompletionSession, DVTTextCompletionWindow, NSMapTable, NSNumber, NSScrollView, NSString, NSTableView, NSView, NSViewAnimation, _TtC6DVTKit25DVTTextCompletionListView;
 @protocol DVTCancellable, DVTTextCompletionListDataSource;
 
-@interface DVTTextCompletionListWindowController : NSWindowController <DVTTextCompletionFormatContextDelegate, NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
+@interface DVTTextCompletionListWindowController : NSWindowController <NSAnimationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 {
     struct CGRect _wordRectInScreen;
     NSViewAnimation *_fadeOutAnimation;
     DVTNotificationToken *_arrangedCompletionItemsObservation;
-    NSMapTable *_compoundFormatContextForItem;
-    DVTTextCompletionFormatContext *_defaultFormatContext;
+    DVTObservingToken *_insertCompletionStyleObservingToken;
     BOOL _showingWindow;
     long long _usageGeneration;
     DVTBindingToken *_tableContentBinding;
@@ -70,8 +68,6 @@
 @property(retain) DVTTextCompletionWindow *window; // @dynamic window;
 - (void)completionListChanged;
 @property(readonly) BOOL needsToUpdateCompletionList;
-- (id)formatContextForCompletionItem:(id)arg1;
-- (id)fuzzyMatchingRangesForCompletionItem:(id)arg1;
 - (void)_doubleClickOnRow:(id)arg1;
 - (void)animationDidEnd:(id)arg1;
 - (void)animationDidStop:(id)arg1;

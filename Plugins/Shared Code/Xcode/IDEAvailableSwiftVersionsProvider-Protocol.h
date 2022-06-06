@@ -8,12 +8,9 @@
 // SDK Root: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 //
 
-#import "DVTInvalidation-Protocol.h"
+@class DVTVersion;
 
-@class IDEActivityLogSection;
-
-@protocol IDEIssueLogDataSource <NSObject, DVTInvalidation>
-@property(readonly) IDEActivityLogSection *issueLog;
-- (void)analyzeModelForIssues;
+@protocol IDEAvailableSwiftVersionsProvider
++ (DVTVersion *)latestAvailableSwiftLanguageVersionAndReturnError:(id *)arg1;
 @end
 

@@ -13,9 +13,9 @@
 
 @protocol IDEBuildNoticeWorkspace
 - (id <IDEBuildNoticeLogStore>)makeLogStoreForNoticeLogs;
-- (id <DVTInvalidation>)observeActiveBlueprintLogSectionIDs:(void (^)(void))arg1;
+- (id <DVTInvalidation>)observeActiveNoticeDomains:(void (^)(void))arg1;
 - (id <DVTCancellable>)observeLatestBuildLogIdentityDidChange:(void (^)(void))arg1;
-- (NSArray *)activeBlueprintLogSectionIDs;
+- (NSArray *)activeNoticeDomains;
 @property(nonatomic, readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
 @property(nonatomic, readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
 @property(nonatomic, readonly) IDEWorkspaceNoticeSubsystem *noticeSubsystem;

@@ -12,7 +12,7 @@
 @class DVTCustomDataOwnership, DVTCustomDataSpecifier, NSArray, NSData, NSOperationQueue, NSString;
 
 @protocol DVTCustomDataStoring <NSObject>
-@property(nonatomic, readonly) NSString *displayName;
+@property(readonly) NSString *displayName;
 - (BOOL)supportsCustomDataForOwnership:(DVTCustomDataOwnership *)arg1;
 - (void)moveCustomDataWithSpecifier:(DVTCustomDataSpecifier *)arg1 toSpecifier:(DVTCustomDataSpecifier *)arg2 completionQueue:(NSOperationQueue *)arg3 completionBlock:(void (^)(BOOL, NSError *))arg4;
 - (void)removeCustomDataWithSpecifier:(DVTCustomDataSpecifier *)arg1 completionQueue:(NSOperationQueue *)arg2 completionBlock:(void (^)(BOOL, NSError *))arg3;

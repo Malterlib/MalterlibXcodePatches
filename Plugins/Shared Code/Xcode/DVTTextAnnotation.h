@@ -89,6 +89,7 @@
 - (void)invalidateDisplayAndLayoutIfNeeded:(BOOL)arg1;
 - (void)setNeedsInvalidate;
 - (long long)comparePrecedenceAndLayering:(id)arg1;
+@property(readonly) BOOL allowSidebarMarkerInAccessoryLinePresentations;
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;
 - (id)currentStateInTextView:(id)arg1;
 - (void)drawHighlightedRangesInRect:(struct CGRect)arg1 textView:(id)arg2;

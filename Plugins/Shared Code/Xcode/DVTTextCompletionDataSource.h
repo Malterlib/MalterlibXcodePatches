@@ -33,8 +33,7 @@
 @property __weak id <DVTTextCompletionDataSourceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 @property(copy) NSArray *strategies;
-- (void)cancelInProgressCompletions;
-- (void)completionResultsForDocumentLocation:(id)arg1 filterText:(id)arg2 context:(id)arg3 priorityCoefficients:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)cancellableCompletionResultsForDocumentLocation:(id)arg1 filterText:(id)arg2 expandedCompletionItems:(id)arg3 context:(id)arg4 priorityCoefficients:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)generateCompletionsForDocumentLocation:(id)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)primitiveInvalidate;
 - (id)initWithLanguage:(id)arg1;

@@ -18,7 +18,7 @@
 #import "IDEPreBuildSavingDelegate-Protocol.h"
 #import "IDEWorkspaceDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDEScriptingSchemeActionResult, IDEUIRecordingManager, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEFindNavigatorQueryHistoryManager, IDELibraryWindowController, IDEOpenQuicklyWorkspaceContentContextProvider, IDERunContextRecents, IDEScriptingSchemeActionResult, IDEUIRecordingManager, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 @protocol DVTCancellable, DVTInvalidation, IDESourceControlWorkspaceDocumentUIHandlerProtocol;
 
 @interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, DVTInvalidation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
@@ -75,6 +75,7 @@
     IDEScriptingSchemeActionResult *_lastScriptingSchemeActionResult;
     IDEFindNavigatorQueryHistoryManager *_findNavigatorQueryHistoryManager;
     IDEOpenQuicklyWorkspaceContentContextProvider *_openQuicklyContentContextProvider;
+    IDERunContextRecents *_runContextRecents;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -95,10 +96,12 @@
 + (void)initialize;
 // - (void).cxx_destruct;
 @property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
+@property(retain) IDERunContextRecents *runContextRecents; // @synthesize runContextRecents=_runContextRecents;
 @property(readonly) IDEOpenQuicklyWorkspaceContentContextProvider *openQuicklyContentContextProvider; // @synthesize openQuicklyContentContextProvider=_openQuicklyContentContextProvider;
 @property(readonly) IDEFindNavigatorQueryHistoryManager *findNavigatorQueryHistoryManager; // @synthesize findNavigatorQueryHistoryManager=_findNavigatorQueryHistoryManager;
 @property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
 @property(retain) IDEScriptingSchemeActionResult *lastScriptingSchemeActionResult; // @synthesize lastScriptingSchemeActionResult=_lastScriptingSchemeActionResult;
+@property(readonly, nonatomic) BOOL isClosing; // @synthesize isClosing=_isClosing;
 @property(readonly, getter=dvt_isClosed) BOOL dvt_closed; // @synthesize dvt_closed=_dvt_closed;
 @property(retain, nonatomic) IDEUIRecordingManager<DVTInvalidation> *uiRecordingManager; // @synthesize uiRecordingManager=_uiRecordingManager;
 @property(retain) id <IDESourceControlWorkspaceDocumentUIHandlerProtocol> sourceControlWorkspaceUIHandler; // @synthesize sourceControlWorkspaceUIHandler=_sourceControlWorkspaceUIHandler;
@@ -108,6 +111,14 @@
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
 - (BOOL)containsPlaygroundDocumentAtURL:(id)arg1;
 - (id)dvt_extraBindings;
+- (void)clearRecentRunDestinations;
+- (void)setCurrentRunDestination:(id)arg1 activeScheme:(id)arg2;
+- (id)orderedRecentRunDestinationsForScheme:(id)arg1;
+- (void)clearRecentSchemes;
+- (void)clearSchemeHistory:(id)arg1;
+- (void)schemeDidChangeNameFromOldName:(id)arg1 toNewName:(id)arg2;
+- (id)orderedRecentSchemes;
+- (void)setCurrentScheme:(id)arg1;
 - (id)storedRunDestinationSelectable;
 - (id)storedRunContextName;
 - (id)activeRunDestinationInfo;

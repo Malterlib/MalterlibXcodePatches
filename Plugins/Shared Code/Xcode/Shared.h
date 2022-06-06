@@ -107,3 +107,19 @@ struct __va_list_tag {
 	struct IndexerCallbacks *__ptr_;
 	struct __shared_weak_count *__cntrl_;
 };
+
+#ifndef classdump_DVTUnfairLock
+#define classdump_DVTUnfairLock
+struct DVTUnfairLock {
+	struct os_unfair_lock_s __lock;
+};
+#endif
+
+#ifndef classdump_CDStruct_912cb5d2
+#define classdump_CDStruct_912cb5d2
+typedef struct {
+	long long _field1;
+	long long _field2;
+} CDStruct_912cb5d2;
+
+#endif

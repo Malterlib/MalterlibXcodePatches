@@ -12,6 +12,7 @@
 
 #import "IDEContainer.h"
 
+#import "IDEAvailableSwiftVersionsProvider-Protocol.h"
 #import "IDEBlueprintProvider-Protocol.h"
 #import "IDEBuildSettingConfigurable-Protocol.h"
 #import "IDECustomDataStoring-Protocol.h"
@@ -23,9 +24,9 @@
 #import "Xcode3SourceListItemEditing-Protocol.h"
 
 @class DVTFilePath, DVTLocale, DVTModelObjectGraph, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEDirectoryBasedCustomDataStore, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString, PBXProject, PBXReference;
-@protocol IDETestableProvider;
+@protocol DVTInvalidation, IDETestableProvider;
 
-@interface Xcode3Project : IDEContainer <IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer, IDEIssueLogDataSource, IDEBuildSettingConfigurable>
+@interface Xcode3Project : IDEContainer <IDEAvailableSwiftVersionsProvider, IDEBlueprintProvider, IDEIndexableProvider, IDETestableProvider, Xcode3SourceListItemEditing, IDECustomDataStoring, IDEWorkspaceWrappingContainer, IDELocalizedContainer, IDEIssueLogDataSource, IDEBuildSettingConfigurable>
 {
     PBXProject *_project;
     PBXReference *_projectReference;
@@ -47,6 +48,7 @@
     NSArray *_customUpgradeTasks;
     NSMutableDictionary *_deferredCustomUpgradeRegistrations;
     id _activeSchemeObservation;
+    id <DVTInvalidation> _projectSettingsDidChangeBroadcastToken;
     NSArray *_sortedLocalizationsIncludingBase;
     NSArray *_sortedLocalizationsWithoutBase;
 }
@@ -73,6 +75,7 @@
 + (id)containerFileDataType;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
++ (id)latestAvailableSwiftLanguageVersionAndReturnError:(id *)arg1;
 // - (void).cxx_destruct;
 @property(nonatomic) BOOL pbxProjectEdited; // @synthesize pbxProjectEdited=_pbxProjectEdited;
 @property BOOL hasRunUpgradeCheck; // @synthesize hasRunUpgradeCheck=_hasRunUpgradeCheck;
@@ -133,6 +136,7 @@
 - (void)copyLocalizationVariantGroups:(id)arg1 toLocalization:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)addLocalization:(id)arg1;
 @property(readonly, getter=isBaseLocalized) BOOL baseLocalized;
+@property(readonly) BOOL isLocalizable;
 @property(readonly, copy) NSArray *localizations;
 - (void)_invalidateSortedLocalizations;
 - (id)sortedLocalizationsIncludingBase:(BOOL)arg1;

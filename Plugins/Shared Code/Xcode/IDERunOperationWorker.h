@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, IDEExecutionRunnableTracker, IDELaunchSession, IDERunOperationWorkerGroup, NSString;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, IDEExecutionRunnableTracker, IDELaunchSession, IDELaunchSessionLogSection, IDERunOperationWorkerGroup, NSString;
 
 @interface IDERunOperationWorker : NSObject <DVTInvalidation>
 {
@@ -27,21 +27,35 @@
     BOOL _isLongTerm;
     unsigned long long _preflightRetryAttempts;
     IDEExecutionRunnableTracker *_runnableTracker;
+    IDELaunchSessionLogSection *_logSection;
 }
 
 + (void)initialize;
 // - (void).cxx_destruct;
+@property(retain, nonatomic) IDELaunchSessionLogSection *logSection; // @synthesize logSection=_logSection;
 @property BOOL isLongTerm; // @synthesize isLongTerm=_isLongTerm;
 @property(retain, nonatomic) IDEExecutionRunnableTracker *runnableTracker; // @synthesize runnableTracker=_runnableTracker;
 @property(readonly) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 @property(readonly) NSString *extensionIdentifier; // @synthesize extensionIdentifier=_extensionIdentifier;
 - (void)primitiveInvalidate;
+- (void)logInstallWatchApplicationFinishedWithError:(id)arg1;
+- (void)logInstallingWatchApplication;
+- (void)logInstallApplicationFinishedWithError:(id)arg1;
+- (void)logInstallingApplication;
+- (void)logLaunchApplicationFinishedWithError:(id)arg1;
+- (void)logLaunchingApplication;
+- (void)logUsingExistingApplicationInstance;
+- (id)formattedLaunchParameters;
+- (id)logSectionDetails;
+- (id)logSectionTitle;
+- (void)createLogSection;
 @property(readonly, copy) NSString *description;
 - (void)terminate;
 - (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
 - (void)finishedWithError:(id)arg1;
 - (void)finishRunnableTrackingWithAnalyticsAndError:(id)arg1;
 - (id)reportCompletionToAnalyticsWithError:(id)arg1;
+- (void)rerunPreflight;
 - (void)recoveredFromPreflightError;
 - (void)start;
 - (void)_startWithRetrying:(char *)arg1;
@@ -51,6 +65,7 @@
 - (BOOL)preflightWithError:(id *)arg1 recoverable:(char *)arg2 shouldRetry:(char *)arg3;
 - (void)startNextWorkerFromCompletedWorker:(id)arg1 error:(id)arg2;
 - (void)setWorkerGroup:(id)arg1;
+- (id)workerGroup;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 - (id)init;
 

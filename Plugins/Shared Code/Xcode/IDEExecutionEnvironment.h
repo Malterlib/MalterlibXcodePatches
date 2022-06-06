@@ -61,6 +61,7 @@
 + (BOOL)automaticallyNotifiesObserversForCurrentExecutionTracker;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
++ (id)keyPathsForValuesAffectingDebugSessionsForRuntimeIssues;
 // - (void).cxx_destruct;
 @property(retain) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property(retain) NSMapTable *operationGroupSuboperationObserversByExecutionTracker; // @synthesize operationGroupSuboperationObserversByExecutionTracker=_operationGroupSuboperationObserversByExecutionTracker;
@@ -79,7 +80,6 @@
 @property(readonly) NSArray *queuedBuildOperationInfos; // @synthesize queuedBuildOperationInfos=_queuedBuildOperationInfos;
 @property(retain) IDEBuildOperation *currentBuildOperation; // @synthesize currentBuildOperation=_currentBuildOperation;
 - (id)queuedBuildOperationsDescription;
-- (void)serializeMetrics:(id)arg1;
 - (void)_setLocalizedResultStringForBuildLog:(id)arg1 usingBuildOperationProvider:(id)arg2 buildAction:(id)arg3;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_completeBuildOperation:(id)arg1 andPostLastBuildCompleted:(BOOL)arg2 andPostLastUserInitiatedBuildCompleted:(BOOL)arg3;
@@ -98,6 +98,7 @@
 @property(readonly) IDEActivityLogSection *latestBuildLog;
 @property(readonly, copy) NSArray *logRecords;
 - (void)_storeLogForOperation:(id)arg1;
+- (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 terminationSignpost:(CDUnknownBlockType)arg5 suppressingErrorPresentation:(BOOL)arg6 error:(id *)arg7;
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 terminationSignpost:(CDUnknownBlockType)arg5 error:(id *)arg6;
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 error:(id *)arg5;
 - (void)_startNextQueuedBuildOperationIfNecessary;
@@ -117,7 +118,11 @@
 @property(readonly) IDEBreakpointManager *breakpointManager;
 - (void)primitiveInvalidate;
 - (void)_setupDebugSessionsObservation;
+- (void)_setupDebugSignalHandlers;
+- (void)enumerateOperation:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)_conditionallyLogToStdoutForSignal:(int)arg1 format:(id)arg2;
 - (id)initWithWorkspaceArena:(id)arg1;
+@property(nonatomic, readonly) NSArray *debugSessionsForRuntimeIssues;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

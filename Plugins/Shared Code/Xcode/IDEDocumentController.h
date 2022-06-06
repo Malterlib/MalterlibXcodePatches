@@ -150,7 +150,6 @@
 - (void)_printDocumentsWithContentsOfUnprocessedURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_printDocumentsWithContentsOfURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_openDocumentsWithContentsOfURLs:(id)arg1 presentErrors:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_coordinateReadingAndGetAlternateContentsForOpeningDocumentAtURL:(id)arg1 resolvingSymlinks:(BOOL)arg2 thenContinueOnMainThreadWithAccessor:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2;
 - (void)asyncOpenDocumentsWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;

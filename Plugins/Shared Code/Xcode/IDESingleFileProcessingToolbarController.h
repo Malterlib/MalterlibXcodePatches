@@ -28,7 +28,7 @@
 }
 
 + (id)keyPathsForValuesAffectingActionLabel;
-+ (id)defaultViewNibName;
++ (id)defaultNibName;
 // - (void).cxx_destruct;
 @property(retain, nonatomic) IDEProcessedFileAttributes *attributes; // @synthesize attributes=_attributes;
 @property BOOL canRefresh; // @synthesize canRefresh=_canRefresh;

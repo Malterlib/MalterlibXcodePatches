@@ -29,7 +29,6 @@
     DVTCustomDataSpecifier *_customDataSpecifier;
     IDERunDestination *_lastChosenRunDestination;
     NSArray *_availableRunDestinations;
-    BOOL _didResortToFallbackRunDestination;
     BOOL _isShown;
     unsigned long long _orderHint;
     BOOL _dataStoreClosed;
@@ -45,7 +44,6 @@
     BOOL _transient;
     BOOL _persisted;
     BOOL _wasCreatedForAppExtension;
-    BOOL _schemeRunnableRunsDirectlyOnPairedProxyDevice;
     BOOL _referencedContainersAreChanging;
     BOOL _runDestinationInvalidationPending;
     IDEBuildSchemeAction *_buildSchemeAction;
@@ -83,8 +81,6 @@
 @property(copy) NSNumber *schemeRunnableRequiresPairedProxyDeviceOverride; // @synthesize schemeRunnableRequiresPairedProxyDeviceOverride=_schemeRunnableRequiresPairedProxyDeviceOverride;
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;
 @property(nonatomic) BOOL referencedContainersAreChanging; // @synthesize referencedContainersAreChanging=_referencedContainersAreChanging;
-@property(readonly) BOOL didResortToFallbackRunDestination; // @synthesize didResortToFallbackRunDestination=_didResortToFallbackRunDestination;
-@property(readonly) BOOL schemeRunnableRunsDirectlyOnPairedProxyDevice; // @synthesize schemeRunnableRunsDirectlyOnPairedProxyDevice=_schemeRunnableRunsDirectlyOnPairedProxyDevice;
 @property BOOL wasCreatedForAppExtension; // @synthesize wasCreatedForAppExtension=_wasCreatedForAppExtension;
 @property(retain) NSError *loadError; // @synthesize loadError=_loadError;
 @property(copy, nonatomic) IDEEntityIdentifier *schemeIdentifier; // @synthesize schemeIdentifier=_schemeIdentifier;
@@ -138,7 +134,7 @@
 - (BOOL)_shouldRunPostBuildActionsForBuildResult:(long long)arg1;
 - (void)_unionTestsToSkipInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
 - (void)_unionTestsToRunInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
-- (id)_writeTestProductsForCommand:(id)arg1 buildParameters:(id)arg2 testPlanRunSpecifications:(id)arg3 runDestination:(id)arg4;
+- (id)_writeTestProductsForCommand:(id)arg1 buildParameters:(id)arg2 testPlanRunSpecifications:(id)arg3 runDestination:(id)arg4 testProductsPath:(id)arg5;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
 - (id)_variantSpecifiersForTestingWithSchemeOperationParameters:(id)arg1 schemeCommand:(id)arg2 runDestination:(id)arg3 buildParameters:(id)arg4;
 - (id)_variantBuildParametersFromBuildParameters:(id)arg1 directoryName:(id)arg2 overridingBuildSettings:(id)arg3;
@@ -168,8 +164,14 @@
 - (void)_invalidateAvailableRunDestinations;
 - (void)immediatelyInvalidateAvailableRunDestinations;
 @property(readonly) NSArray *nonFaultingAvailableRunDestinations;
-- (BOOL)schemeRunnableRunsOnPairedProxyDevice;
+- (BOOL)_schemeRunnableEmbedsWatchContent;
+- (BOOL)schemeRunnableIsForIndependentWatch;
+@property(readonly) BOOL schemeRunnableIsForWatchApplication;
+@property(readonly) BOOL schemeRunnableIsForWatch;
 @property(readonly) BOOL schemeRunnableRequiresPairedProxyDevice;
+- (BOOL)runnableIsRegularWatch:(id)arg1;
+@property(readonly) BOOL schemeRunnableIsForWatchInternal;
+- (BOOL)schemeRunnableRequiresPairedProxyForDevice:(id)arg1;
 - (void)buildConfigurationDidChange:(id)arg1;
 - (id)buildParametersForSchemeCommand:(id)arg1 destination:(id)arg2;
 - (id)buildParametersForSchemeCommand:(id)arg1 buildable:(id)arg2 runDestination:(id)arg3;
@@ -204,6 +206,8 @@
 @property(readonly, copy) NSString *description;
 - (id)initFromUnarchiver:(BOOL)arg1 runContextManager:(id)arg2 customDataStoreContainer:(id)arg3 customDataSpecifier:(id)arg4 isShown:(BOOL)arg5 orderHint:(unsigned long long)arg6;
 - (void)_createDefaultSchemeActions;
+- (BOOL)isRunDestinationAvailable:(id)arg1;
+@property(readonly) IDERunDestination *lastChosenDestinationIfAvailable;
 - (id)runnableForSchemeCommand:(id)arg1;
 - (BOOL)ideIndex_containsBlueprint:(id)arg1;
 @property(nonatomic, readonly) id _customDataStoreContainer;

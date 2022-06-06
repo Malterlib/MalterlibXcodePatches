@@ -14,6 +14,7 @@
 
 #import "DVTStatefulObject-Protocol.h"
 #import "IDESelectionSource-Protocol.h"
+#import "DVTStateToken.h"
 
 @class DVTNotificationToken, DVTStateToken, IDESelection, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceTabController, NSString;
 @protocol IDEWorkspaceDocumentProvider;

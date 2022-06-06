@@ -96,6 +96,8 @@
 - (void)applyFilter:(id)arg1 isRestoringState:(BOOL)arg2;
 - (void)selectFindResult:(id)arg1 openResultsInEditor:(BOOL)arg2;
 - (void)expandItemAndAncestors:(id)arg1;
+@property(readonly) NSString *resultsSummary;
+- (id)resultsSummaryWithPrefix:(id)arg1;
 - (id)contextMenuFocusedResults;
 - (id)selectedResults;
 - (id)allVisibleResults;

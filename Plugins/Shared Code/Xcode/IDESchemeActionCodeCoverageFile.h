@@ -31,10 +31,6 @@
 - (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) NSNumber *functionCoverage;
 - (id)initWithDocumentLocation:(id)arg1 functions:(id)arg2;
-- (id)makeCopyWithChildren:(id)arg1;
-- (id)diffableChildren;
-- (id)diffIdentifier;
-- (unsigned long long)diffType;
 
 @end
 

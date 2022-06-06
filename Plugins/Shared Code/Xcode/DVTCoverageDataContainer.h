@@ -15,18 +15,18 @@
 
 @interface DVTCoverageDataContainer : NSObject <NSSecureCoding>
 {
-    unsigned int _executableLines;
-    unsigned int _coveredLines;
     NSNumber *_lineCoverage;
     NSString *_identifier;
+    unsigned int _executableLines;
+    unsigned int _coveredLines;
     NSString *_name;
 }
 
 + (BOOL)supportsSecureCoding;
 // - (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) unsigned int coveredLines; // @synthesize coveredLines=_coveredLines;
-@property(readonly, nonatomic) unsigned int executableLines; // @synthesize executableLines=_executableLines;
+@property(nonatomic) unsigned int coveredLines; // @synthesize coveredLines=_coveredLines;
+@property(nonatomic) unsigned int executableLines; // @synthesize executableLines=_executableLines;
 @property(readonly, nonatomic) NSNumber *lineCoverage;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

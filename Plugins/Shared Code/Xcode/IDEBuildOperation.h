@@ -10,7 +10,7 @@
 
 #include "Shared.h"
 
-#import "DVTOperation.h"
+#import "DVTAsyncOperation.h"
 
 #import "IDEBuildOperationProviding-Protocol.h"
 #import "IDEBuilderCallbacks-Protocol.h"
@@ -19,7 +19,7 @@
 @class DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationConfiguration, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEProvisioningBuildOperationInfo, IDESchemeActionRecord, IDESchemeActionResult, NSArray, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 @protocol DVTCancellationBlockCompletion, IDEBuildable;
 
-@interface IDEBuildOperation : DVTOperation <IDEExecutingOperationTrackable, IDEBuilderCallbacks, IDEBuildOperationProviding>
+@interface IDEBuildOperation : DVTAsyncOperation <IDEExecutingOperationTrackable, IDEBuilderCallbacks, IDEBuildOperationProviding>
 {
     IDEBuildOperationDescription *_buildOperationDescription;
     long long _purpose;
@@ -34,7 +34,6 @@
     DVTFilePath *_moduleBuildSessionFilePath;
     DVTFilePath *_singleFileToBuild;
     IDEActivityLogSection *_buildLog;
-    BOOL _isFinished;
     NSOperationQueue *_builderQueue;
     IDEBuildOperationQueueSet *_buildTaskQueueSet;
     NSMapTable *_buildersToSerializationKeys;
@@ -57,7 +56,6 @@
     IDEExecutionEnvironment *_executionEnvironment;
     IDEEntityIdentifier *_schemeIdentifier;
     IDESchemeActionRecord *_schemeActionRecord;
-    long long _state;
     IDEBuildOperationStatus *_buildStatus;
     NSDate *_startTime;
     NSDate *_stopTime;
@@ -68,7 +66,6 @@
 
 + (void)outputBuildStatistics:(id)arg1 toSummary:(id)arg2;
 + (CDUnknownBlockType)buildStatisticsEmissionSummaryBlock;
-+ (id)keyPathsForValuesAffectingIsExecuting;
 + (long long)defaultQualityOfServiceClass;
 + (void)setDefaultBuildStatisticsSectionParent:(id)arg1;
 + (void)initialize;
@@ -104,10 +101,12 @@
 - (void)registerTracker:(id)arg1;
 @property(retain) IDEBuildStatisticsSection *topLevelStatisticsSection;
 - (void)_postDistributedProgressNotification;
-- (void)stopWithResultCode:(long long)arg1;
-- (void)lastBuilderDidFinish;
+- (void)_stopWithResultCode:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_lastBuilderDidFinishWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_cancelAllBuilders;
 - (void)cancel;
+- (void)_invokeWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)mainWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)start;
 @property(readonly, nonatomic) BOOL shouldCreateModuleBuildSessionFile;
 - (void)builder:(id)arg1 didUpdateBuildStatusWithStateDescription:(id)arg2 fileProgressString:(id)arg3 builderProgress:(double)arg4;
@@ -118,8 +117,8 @@
 - (void)_addOperationsForSingleFileBuild;
 - (id)buildableToUseForSingleFileBuild;
 - (id)_buildableForSingleFileToBuildStartingWithBuildable:(id)arg1 recursionDetectionSet:(id)arg2;
-- (void)_addOperationsForAllBuildables;
-- (void)addOperationsToQueue:(id)arg1;
+- (BOOL)_addOperationsForAllBuildablesAndReturnError:(id *)arg1;
+- (BOOL)addOperationsToQueue:(id)arg1 error:(id *)arg2;
 - (BOOL)isProjectAllowedToBuildLegacy:(id)arg1;
 - (id)_preparationLogRecorder;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1;
@@ -128,9 +127,6 @@
 - (id)finalBuildParametersForBuildable:(id)arg1;
 - (void)setupCallbackBlocksOnNewBuilder:(id)arg1;
 - (void)_takeMemorySnapshotsWithLog:(id)arg1;
-- (BOOL)isFinished;
-- (BOOL)isExecuting;
-- (BOOL)isConcurrent;
 - (void)changeMaximumOperationConcurrencyUsingThrottleFactor:(double)arg1;
 - (BOOL)shouldPostNotifications;
 @property(readonly, nonatomic) long long purpose;

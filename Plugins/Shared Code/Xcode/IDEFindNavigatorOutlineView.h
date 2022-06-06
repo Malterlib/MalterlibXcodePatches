@@ -30,6 +30,7 @@
     long long _mouseDownRow;
 }
 
++ (void)loadOutlineView:(id *)arg1 scrollView:(id *)arg2;
 // - (void).cxx_destruct;
 @property(readonly) long long mouseDownRow; // @synthesize mouseDownRow=_mouseDownRow;
 @property(readonly) BOOL processingMouseEvent; // @synthesize processingMouseEvent=_processingMouseEvent;

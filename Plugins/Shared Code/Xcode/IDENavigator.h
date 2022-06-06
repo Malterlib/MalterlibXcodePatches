@@ -51,7 +51,7 @@
 @property __weak NSMutableDictionary *cachedStateForParentViewController; // @synthesize cachedStateForParentViewController=_cachedStateForParentViewController;
 @property(retain, nonatomic) IDENavigableItemFilter *filter; // @synthesize filter=_filter;
 @property BOOL displaysAdditionalScopeBars; // @synthesize displaysAdditionalScopeBars=_displaysAdditionalScopeBars;
-@property(retain) NSScrollView *navigatorScrollView; // @synthesize navigatorScrollView=_navigatorScrollView;
+@property(retain, nonatomic) NSScrollView *navigatorScrollView; // @synthesize navigatorScrollView=_navigatorScrollView;
 @property(readonly, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
 - (BOOL)showNextScope;
@@ -87,6 +87,8 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (id)_createNavigableItemCoordinator;
+- (void)_adjustNavigatorScrollViewInsets;
+- (void)viewDidLoad;
 - (void)loadView;
 - (void)updateBoundContent;
 - (id)dvt_extraBindings;

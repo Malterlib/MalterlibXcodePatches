@@ -9,9 +9,17 @@
 //
 
 
-@class IDERunDestinationSelectable, NSString;
+@class IDERunDestination, IDERunDestinationSelectable, IDEScheme, NSArray, NSString;
 
 @protocol IDEActiveRunContextStoring <NSObject>
+- (void)clearRecentRunDestinations;
+- (void)setCurrentRunDestination:(IDERunDestination *)arg1 activeScheme:(IDEScheme *)arg2;
+- (NSArray *)orderedRecentRunDestinationsForScheme:(IDEScheme *)arg1;
+- (void)clearSchemeHistory:(IDEScheme *)arg1;
+- (void)clearRecentSchemes;
+- (void)schemeDidChangeNameFromOldName:(NSString *)arg1 toNewName:(NSString *)arg2;
+- (void)setCurrentScheme:(IDEScheme *)arg1;
+- (NSArray *)orderedRecentSchemes;
 - (IDERunDestinationSelectable *)storedRunDestinationSelectable;
 - (NSString *)storedRunContextName;
 @end

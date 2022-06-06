@@ -34,8 +34,6 @@
         unsigned int _isBeingForgotten:1;
         unsigned int _isBeingForgottenInNICInvalidation:1;
         unsigned int _representedObjectConformsToInvalidation:1;
-        unsigned int _isMajorGroupOrDecendentOfMajorGroup:1;
-        unsigned int _isMajorGroupOrDecendentOfMajorGroupSet:1;
     } _ideniFlags;
     id _representedObject;
     IDENavigableItem *_parentItem;
@@ -65,7 +63,6 @@
 + (id)representedExtension;
 + (id)_dynamicSubclass_navigableItemExtraInfo;
 + (id)_navigableItemExtraInfo;
-+ (id)keyPathsForValuesAffectingIconOrImage;
 + (void)initialize;
 + (id)keyPathsAffectingDisplayName;
 + (id)keyPathsForValuesAffectingPathComponentToolTip;
@@ -81,7 +78,6 @@
 @property(readonly, nonatomic) IDENavigableItem *parentItem; // @synthesize parentItem=_parentItem;
 @property(readonly, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(readonly, nonatomic) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_coordinator;
-@property(readonly, nonatomic) BOOL _isMajorGroupOrDecendentOfMajorGroup;
 - (id)_navigableItemForExternalDrag;
 - (id)_navigableItemForNavigationInWorkspace:(id)arg1;
 - (id)contextualValueForProperty:(id)arg1;
@@ -158,7 +154,6 @@
 @property(readonly, nonatomic) unsigned long long depth;
 @property(readonly, nonatomic) NSArray *additionalFilterMatchingText;
 @property(readonly, nonatomic) NSString *accessibleImageDescription; // @dynamic accessibleImageDescription;
-@property(readonly, nonatomic) DVTIcon *iconOrImage;
 @property(readonly, nonatomic) DVTIcon *icon;
 @property(readonly, nonatomic) NSImage *image; // @dynamic image;
 @property(readonly, nonatomic) NSString *subtitle; // @dynamic subtitle;

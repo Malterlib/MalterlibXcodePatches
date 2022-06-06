@@ -13,8 +13,9 @@
 @class DVTLocale, NSArray, NSString;
 
 @protocol IDELocalizedContainer <DVTModelObject>
+@property(readonly) BOOL isLocalizable;
+@property(readonly, copy) NSString *name;
 - (DVTLocale *)developmentRegion;
 - (NSArray *)localizations;
-- (NSString *)name;
 @end
 
