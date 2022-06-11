@@ -1,6 +1,6 @@
 import Foundation
 
-func binarySearchLine(_ lineData: [SourceEditor.SourceEditorLineData], characterPos: Int) -> Int {
+func binarySearchLine(_ lineData: ContiguousArray<SourceEditor.SourceEditorLineData>, characterPos: Int) -> Int {
 	var lowerBound = 0
 	var upperBound = lineData.count
 	var iIter = 0;
@@ -30,11 +30,11 @@ let g_WhiteSpace = CharacterSet.whitespaces;
 let g_NewLine = CharacterSet.newlines;
 let g_CodeCharSet = getCodeCharSet();
 
-@inline(never) func positionFromCharPos(_ dataSource: Unmanaged<SourceEditor.SourceEditorDataSource>, _ charPos: Int) -> SourceEditor.SourceEditorPosition {
-	let iLine: Int = max(binarySearchLine(dataSource.takeUnretainedValue().lineData, characterPos: charPos) - 1, 0);
+@inline(never) func positionFromCharPos(_ dataSource: SourceEditor.SourceEditorDataSource, _ charPos: Int) -> SourceEditor.SourceEditorPosition {
+	let iLine: Int = max(binarySearchLine(dataSource.lineData, characterPos: charPos) - 1, 0);
 
 	for iSearch in iLine..<(iLine + 3) {
-		let lineContentRange = dataSource.takeUnretainedValue().lineData[iSearch].lineContentRange;
+		let lineContentRange = dataSource.lineData[iSearch].lineContentRange;
 		if (charPos >= lineContentRange.location) && (charPos <= (lineContentRange.location + lineContentRange.length)) {
 			return SourceEditor.SourceEditorPosition(line: iSearch, col: charPos - lineContentRange.location);
 		}
@@ -43,13 +43,13 @@ let g_CodeCharSet = getCodeCharSet();
 	abort()
 }
 
-@inline(never) func charPosFromPosition(_ dataSource: Unmanaged<SourceEditor.SourceEditorDataSource>, _ pos: SourceEditor.SourceEditorPosition) -> Int {
-	let lineData = dataSource.takeUnretainedValue().lineData[Int(pos.line)];
+@inline(never) func charPosFromPosition(_ dataSource: SourceEditor.SourceEditorDataSource, _ pos: SourceEditor.SourceEditorPosition) -> Int {
+	let lineData = dataSource.lineData[Int(pos.line)];
 	return lineData.lineContentRange.location + Int(pos.col);
 }
 
-@inline(never) func getNextWordPosition(_ dataSource: Unmanaged<SourceEditor.SourceEditorDataSource>, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
-	let contents = dataSource.takeUnretainedValue().contents;
+@inline(never) func getNextWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
+	let contents = dataSource.contents;
 
 	var iCharPos = charPosFromPosition(dataSource, fromPos);
 
@@ -115,8 +115,8 @@ let g_CodeCharSet = getCodeCharSet();
 	return positionFromCharPos(dataSource, iCharPos);
 }
 
-@inline(never) func getPrevWordPosition(_ dataSource: Unmanaged<SourceEditor.SourceEditorDataSource>, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
-	let contents = dataSource.takeUnretainedValue().contents;
+@inline(never) func getPrevWordPosition(_ dataSource: SourceEditor.SourceEditorDataSource, fromPos: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition {
+	let contents = dataSource.contents;
 
 	var iCharPos = charPosFromPosition(dataSource, fromPos);
 	let nCharacters = contents.length;
@@ -200,20 +200,33 @@ let g_CodeCharSet = getCodeCharSet();
 }
 
 extension SourceEditor.SourceEditorView {
-	@_silgen_name("Call_SourceEditor_SourceEditorView_deleteSourceRange") public func deleteSourceRange(range: Swift.Range<SourceEditor.SourceEditorPosition>, forward: Swift.Bool, useKillRing: Swift.Bool) -> ();
-	@_silgen_name("Call_SourceEditor_SourceEditorView_selectTextRange") public func selectTextRange(_: Range<SourceEditor.SourceEditorPosition>?, scrollPlacement: SourceEditor.ScrollPlacement?, alwaysScroll: Swift.Bool) -> ();
+	@_silgen_name("Call_SourceEditor_SourceEditorView_deleteSourceRange") public func deleteSourceRange(range: Swift.Range<SourceEditor.SourceEditorPosition>?, forward: Bool, useKillRing: Bool) -> ();
 	@_silgen_name("Call_SourceEditor_SourceEditorView_clearSelectionAnchors") public func clearSelectionAnchors() -> ();
 
-	@_silgen_name("SourceEditor_SourceEditorView_getDataSource") public func getDataSource() -> Unmanaged<SourceEditor.SourceEditorDataSource>;
-	@_silgen_name("SourceEditor_SourceEditorView_getLayoutManager") public func getLayoutManager() -> Unmanaged<SourceEditor.SourceEditorLayoutManager>;
+	@_silgen_name("Call_SourceEditor_SourceEditorView_selectTextRange") public func selectTextRange(_: Swift.Range<SourceEditor.SourceEditorPosition>?, scrollIfNeeded: Bool) -> ();
+
+
+
+	@_silgen_name("SourceEditor_SourceEditorView_getDataSource") public func getDataSource() -> UnsafeMutableRawPointer;
+	@_silgen_name("SourceEditor_SourceEditorView_getLayoutManager") public func getLayoutManager() -> UnsafeMutableRawPointer;
 	@_silgen_name("SourceEditor_SourceEditorView_getSelectionPointer") public func getSelectionPointer() -> UnsafeMutableRawPointer;
 }
 
 extension SourceEditor.SourceEditorLayoutManager {
-	@_silgen_name("Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded") public func expandRangeIfNeeded(_: Range<SourceEditor.SourceEditorPosition>) -> Range<SourceEditor.SourceEditorPosition>;
+	@_silgen_name("Call_SourceEditor_SourceEditorLayoutManager_expandRangeIfNeeded") public func expandRangeIfNeeded(range: Swift.Range<SourceEditor.SourceEditorPosition>?) -> Swift.Range<SourceEditor.SourceEditorPosition>?;
 }
 
 @objc public class XcodePluginNavigationFixes_MoveWord : NSObject {
+
+	class func getDataSource(_ sourceView: SourceEditor.SourceEditorView) -> SourceEditor.SourceEditorDataSource {
+		let dataSourceAddress = sourceView.getDataSource();
+		return dataSourceAddress.load(as: SourceEditor.SourceEditorDataSource.self);
+	}
+
+	class func getLayoutManager(_ sourceView: SourceEditor.SourceEditorView) -> SourceEditor.SourceEditorLayoutManager {
+		let layoutManagerAddress = sourceView.getLayoutManager();
+		return layoutManagerAddress.load(as: SourceEditor.SourceEditorLayoutManager.self);
+	}
 
 	class func moveWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
 		//XcodePluginDumpClass(SourceEditor.SourceEditorView.self);
@@ -225,7 +238,7 @@ extension SourceEditor.SourceEditorLayoutManager {
 		let size2 = MemoryLayout.size(ofValue: instance!)
 		print("size2 \(size2)");*/
 
-		let dataSource = sourceView.getDataSource();
+		let dataSource = getDataSource(sourceView);
 
 		let selectionAddress = sourceView.getSelectionPointer();
 		let selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
@@ -261,15 +274,15 @@ extension SourceEditor.SourceEditorLayoutManager {
 			newPosition = getPrevWordPosition(dataSource, fromPos: position);
 		}
 
-		let range : Range<SourceEditor.SourceEditorPosition> = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: newPosition));
-		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false)
+		let range : Range<SourceEditor.SourceEditorPosition>? = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: newPosition));
+		sourceView.selectTextRange(range, scrollIfNeeded: true);
 
 		return true;
 	}
 
 	class func deleteWord(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
 
-		let dataSource = sourceView.getDataSource();
+		let dataSource = getDataSource(sourceView);
 
 		let selectionAddress = sourceView.getSelectionPointer();
 		let selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
@@ -317,15 +330,15 @@ extension SourceEditor.SourceEditorLayoutManager {
 			range = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (lower: newPosition, upper: position));
 		}
 
-		let layoutManager = sourceView.getLayoutManager();
+		let layoutManager = getLayoutManager(sourceView);
 
-		let fixedRange = layoutManager.takeUnretainedValue().expandRangeIfNeeded(range);
+		let fixedRange = layoutManager.expandRangeIfNeeded(range: range);
 		sourceView.deleteSourceRange(range: fixedRange, forward: false, useKillRing: false);
 		return true;
 	}
 
 	class func moveWordAndModifySelection(_ sourceView: SourceEditor.SourceEditorView, forward: Bool) -> Bool {
-		let dataSource = sourceView.getDataSource();
+		let dataSource = getDataSource(sourceView);
 		let selectionAddress = sourceView.getSelectionPointer();
 		var selection = selectionAddress.load(as: Optional<SourceEditor.SourceEditorSelection>.self);
 
@@ -379,7 +392,7 @@ extension SourceEditor.SourceEditorLayoutManager {
 
 		selection!.primarySelection.range = range;
 
-		sourceView.selectTextRange(range, scrollPlacement: nil, alwaysScroll: false);
+		sourceView.selectTextRange(range, scrollIfNeeded: true);
 		selectionAddress.bindMemory(to: Optional<SourceEditor.SourceEditorSelection>.self, capacity: 1).pointee = selection;
 		return true;
 	}

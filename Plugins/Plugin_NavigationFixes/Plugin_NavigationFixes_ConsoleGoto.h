@@ -6,18 +6,78 @@ static void mouseDownInConsole(IDEConsoleTextView* self_, SEL _cmd, NSEvent* _pE
 {
 	if ([_pEvent clickCount] >= 2)
 	{
-		NSWindowTabGroup *pTabGroup = [[self_ window] tabGroup];
-		pTabGroup.lastConsoleTextView = self_;
-		if (navigateToLineInConsoleTextView(self_, false, false))
+		if (navigateToLineInConsoleTextView(self_))
 			return;
 	}
 	return ((void (*)(id, SEL, id))original_mouseDownInConsole)(self_, _cmd, _pEvent);
 }
 
-static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool _bNext, bool _bBackwards)
+static bool navigateToNextInLastConsoleText(NSWindow *_pWindow, bool _bBackwards)
 {
-	NSRange selectedRange = _pTextView.selectedRange;
-	NSString *text = _pTextView.string;
+	NSRange selectedRange = _pWindow.navigationFixesProperties.consoleLastSelectedRange;
+	NSString *text = _pWindow.navigationFixesProperties.consoleLastText;
+
+	NSRange lineRange = [text lineRangeForRange:selectedRange];
+
+	bool bWrapped = false;
+	while (true)
+	{
+		if (lineRange.location == 0xffffffffffffffffLL)
+			return false;
+		NSRange StartRange = lineRange;
+		if (_bBackwards)
+		{
+			if (lineRange.location > 0)
+				lineRange.location = lineRange.location - 1;
+		}
+		else
+			lineRange.location = lineRange.location + lineRange.length;
+		lineRange.length = 0;
+
+		lineRange = [text lineRangeForRange:lineRange];
+		if (NSEqualRanges(lineRange, StartRange))
+		{
+			if (bWrapped)
+				return false;
+			bWrapped = true;
+			if (_bBackwards)
+			{
+				lineRange.location = [text length] - 1;
+				lineRange.length = 0;
+			}
+			else
+			{
+				lineRange.location = 0;
+				lineRange.length = 0;
+			}
+			continue;
+		}
+		NSString *line = [text substringWithRange:lineRange];
+
+		NSArray *matches = [g_pSourceLocationColumnRegex matchesInString:line
+														   options:0
+															 range:NSMakeRange(0, [line length])];
+		if (matches.count > 0)
+		{
+			NSTextCheckingResult* pMatch = matches[0];
+			NSUInteger nRanges = [pMatch numberOfRanges];
+			if (nRanges == 4)
+			{
+				lineRange.length = 0;
+				_pWindow.navigationFixesProperties.consoleLastSelectedRange = lineRange;
+				break;
+			}
+		}
+	}
+
+	return navigateToLineInConsoleText(_pWindow);
+}
+
+static bool navigateToLineInConsoleText(NSWindow *_pWindow)
+{
+	NSRange selectedRange = _pWindow.navigationFixesProperties.consoleLastSelectedRange;
+	NSString *text = _pWindow.navigationFixesProperties.consoleLastText;
+
 	NSRange lineRange = [text lineRangeForRange:selectedRange];
 	NSString *line = [text substringWithRange:lineRange];
 
@@ -54,7 +114,7 @@ static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool
 //				XcodePluginLog(@"Source: %@\n", pSource);
 //				XcodePluginLog(@"Line: %@\n", pLine);
 
-			NSWindow *pWindow = [_pTextView window];
+			NSWindow *pWindow = _pWindow;
 			NSView *pView = getSourceCodeEditorView(pWindow);
 			if (!pView)
 			{
@@ -119,18 +179,11 @@ static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool
 							NewRange.length = (ColumnRange.location + ColumnRange.length) - SourceRange.location;
 						else
 							NewRange.length = (LineRange.location + LineRange.length) - SourceRange.location;
-						if (NSEqualRanges(selectedRange, NewRange) && _bNext)
-						{
-							// Goto next line if this line is already selected
-							goto End;
-						}
 
 						IDEEditorOpenSpecifier *pSpecifier = [IDEEditorOpenSpecifier structureEditorOpenSpecifierForDocumentLocation:documentLocation
 																															inWorkspace:[pDocument workspace]
 																																  error:nil];
-
-						[_pTextView setSelectedRange:NewRange];
-						[_pTextView scrollRangeToVisible:NewRange];
+						pWindow.navigationFixesProperties.consoleLastSelectedRange = NewRange;
 
 						pLastSelectedTabitem = NULL;
 						[IDEEditorCoordinator _openEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController target:0 takeFocus:1];
@@ -144,62 +197,24 @@ static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView, bool
 		}
 	}
 End:
-	if (pLastSelectedTabitem)
-		[pLastSelectedTabitem makeKeyAndOrderFront:_pTextView];
-	if (_bNext)
+
+	return false;
+}
+
+static bool navigateToLineInConsoleTextView(IDEConsoleTextView* _pTextView)
+{
+	NSWindow *pWindow = [_pTextView window];
+	NSRange selectedRange = _pTextView.selectedRange;
+	NSString *text = _pTextView.string;
+
+	pWindow.navigationFixesProperties.consoleLastText = text;
+	pWindow.navigationFixesProperties.consoleLastSelectedRange = selectedRange;
+
+	if (navigateToLineInConsoleText(pWindow))
 	{
-		bool bWrapped = false;
-		while (true)
-		{
-			if (lineRange.location == 0xffffffffffffffffLL)
-				return false;
-			NSRange StartRange = lineRange;
-			if (_bBackwards)
-			{
-				if (lineRange.location > 0)
-					lineRange.location = lineRange.location - 1;
-			}
-			else
-				lineRange.location = lineRange.location + lineRange.length;
-			lineRange.length = 0;
-
-			lineRange = [text lineRangeForRange:lineRange];
-			if (NSEqualRanges(lineRange, StartRange))
-			{
-				if (bWrapped)
-					return false;
-				bWrapped = true;
-				if (_bBackwards)
-				{
-					lineRange.location = [text length] - 1;
-					lineRange.length = 0;
-				}
-				else
-				{
-					lineRange.location = 0;
-					lineRange.length = 0;
-				}
-				continue;
-			}
-			NSString *line = [text substringWithRange:lineRange];
-
-			NSArray *matches = [g_pSourceLocationColumnRegex matchesInString:line
-															   options:0
-																 range:NSMakeRange(0, [line length])];
-			if (matches.count > 0)
-			{
-				NSTextCheckingResult* pMatch = matches[0];
-				NSUInteger nRanges = [pMatch numberOfRanges];
-				if (nRanges == 4)
-				{
-					lineRange.length = 0;
-					[_pTextView setSelectedRange:lineRange];
-					break;
-				}
-			}
-		}
-
-		return navigateToLineInConsoleTextView(_pTextView, false, false);
+		[_pTextView setSelectedRange: pWindow.navigationFixesProperties.consoleLastSelectedRange];
+		[_pTextView scrollRangeToVisible: pWindow.navigationFixesProperties.consoleLastSelectedRange];
 	}
+
 	return false;
 }

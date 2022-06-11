@@ -136,11 +136,11 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 	if (!window)
 		window = [NSApp keyWindow];
 
-	SourceEditor_SourceEditorTextFindPanel *pFindBar = getFindBar(window.respondingPatternFieldEditor);
+	SourceEditor_SourceEditorTextFindPanel *pFindBar = getFindBar(window.navigationFixesProperties.respondingPatternFieldEditor);
 	IDEFindNavigatorQueryParametersController *pBatchFindController = nil;
 
 	if (!pFindBar)
-		pBatchFindController = getBatchFindStrategiesController(window.respondingPatternFieldEditor);
+		pBatchFindController = getBatchFindStrategiesController(window.navigationFixesProperties.respondingPatternFieldEditor);
 
 	if (keyCode == kVK_Return)
 	{
@@ -181,7 +181,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 		{
 			if (pBatchFindController)
 			{
-				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.respondingPatternFieldEditor);
+				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.navigationFixesProperties.respondingPatternFieldEditor);
 				if (pNavigator && replaceEnabled(pNavigator))
 				{
 					if (!event)
@@ -203,7 +203,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 		{
 			if (pBatchFindController)
 			{
-				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.respondingPatternFieldEditor);
+				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.navigationFixesProperties.respondingPatternFieldEditor);
 				if (pNavigator && replaceEnabled(pNavigator))
 				{
 					if (!event)
@@ -436,7 +436,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 	if (!window)
 		return false;
 
-	if (!pFindBar && !window.findBarOptionsCtrl && !pBatchFindController)
+	if (!pFindBar && !window.navigationFixesProperties.findBarOptionsCtrl && !pBatchFindController)
 		return false;
 
 	if ((ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption | NSEventModifierFlagShift)) == 0)
@@ -446,7 +446,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 		{
 			if (pBatchFindController)
 			{
-				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.respondingPatternFieldEditor);
+				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.navigationFixesProperties.respondingPatternFieldEditor);
 				if (pNavigator)
 				{
 					if (findFieldHasFocusInBatchNavigator(pNavigator))
@@ -503,7 +503,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 		{
 			if (pBatchFindController)
 			{
-				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.respondingPatternFieldEditor);
+				IDEFindNavigator* pNavigator = getBatchFindNavigator(window.navigationFixesProperties.respondingPatternFieldEditor);
 				if (pNavigator)
 				{
 					if (replaceFieldHasFocusInBatchNavigator(pNavigator))
@@ -552,7 +552,7 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 
 + (void) sendKeyToOutlineView: (DVTOutlineView *)outlineView keyCode: (NSUInteger)keyCode characterCode: (unichar)characterCode window:(NSWindow *)window
 {
-	NSEvent* pEvent = [
+	NSEvent *pEvent = [
 		NSEvent keyEventWithType:NSEventTypeKeyDown
 		location:[window mouseLocationOutsideOfEventStream]
 		modifierFlags:0xa00100
@@ -566,6 +566,20 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 	];
 
 	[outlineView keyDown: pEvent];
+
+	NSEvent *pEventUp = [
+		NSEvent keyEventWithType:NSEventTypeKeyUp
+		location:[window mouseLocationOutsideOfEventStream]
+		modifierFlags:0xa00100
+		timestamp:0.0
+		windowNumber:[window windowNumber]
+		context:nil
+		characters:[NSString stringWithFormat: @"%C", characterCode]
+		charactersIgnoringModifiers:[NSString stringWithFormat: @"%C", characterCode]
+		isARepeat:false
+		keyCode:keyCode
+	];
+	[outlineView keyUp: pEventUp];
 }
 
 - (CNavigationHandler) registerNavigationHandler
@@ -590,36 +604,33 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 				)
 			{
 				NSWindow *window = [event window];
+				if (!window.navigationFixesProperties.initializedPotentialViews)
+					potentialView(window);
+
 				bool bExpandNext = (ModifierFlags & (NSEventModifierFlagCommand | NSEventModifierFlagControl | NSEventModifierFlagOption)) == (NSEventModifierFlagCommand | NSEventModifierFlagControl);
-				bool bIsValid = (window.activeDVTExplorerOutlineView && window.activeDVTExplorerOutlineView.hasContent) || window.activeFindNavigatorOutlineView;
+				bool bIsValid = (window.navigationFixesProperties.activeDVTExplorerOutlineView && window.navigationFixesProperties.activeDVTExplorerOutlineView.hasContent) || window.navigationFixesProperties.activeFindNavigatorOutlineView;
 				NSWindowTabGroup *pTabGroup = [[event window] tabGroup];
 
-				if (pTabGroup.lastConsoleTextView)
-					pTabGroup.lastConsoleTextView = getConsoleTextView([pTabGroup.lastConsoleTextView window]);
 				if (!bIsValid)
 				{
-					if (!pTabGroup.lastConsoleTextView)
-					{
-						pTabGroup.lastConsoleTextView = getConsoleTextView(nil);
+					if (window.navigationFixesProperties.consoleLastText)
 						pTabGroup.preferredNextLocation = EPreferredNextLocation_Console;
-						//NSLog(@"EPreferredNextLocation_Console -- !bIsValid");
-					}
 				}
 				if (pTabGroup.preferredNextLocation == EPreferredNextLocation_Console)
 				{
-					if (pTabGroup.lastConsoleTextView)
+					if (window.navigationFixesProperties.consoleLastText)
 					{
 						bHandled = true;
-						navigateToLineInConsoleTextView(pTabGroup.lastConsoleTextView, true, ModifierFlags & NSEventModifierFlagShift);
+						navigateToNextInLastConsoleText(window, ModifierFlags & NSEventModifierFlagShift);
 					}
 				}
 				else if (bIsValid)
 				{
 					bool bSetEditorFocus = false;
 
-					if (window.activeFindNavigator)
+					if (window.navigationFixesProperties.activeFindNavigator)
 					{
-						IDEFindNavigatorQueryResultsController *pResultsController = window.activeFindNavigator.resultsController;
+						IDEFindNavigatorQueryResultsController *pResultsController = window.navigationFixesProperties.activeFindNavigator.resultsController;
 
 						NSSet *pSelected = [pResultsController selectedResults];
 
@@ -674,165 +685,9 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 						bSetEditorFocus = true;
 						bHandled = true;
 					}
-					else if (window.activeIssueNavigator)
+					else if (window.navigationFixesProperties.activeDVTExplorerOutlineView)
 					{
-						unsigned short KeyCode = 0;
-						unichar Character = 0;
-						if (ModifierFlags & NSEventModifierFlagShift)
-						{
-							if (bExpandNext)
-								return nil; // Does not work
-							KeyCode = 126;
-							Character = NSUpArrowFunctionKey;
-						}
-						else
-						{
-							KeyCode = 125;
-							Character = NSDownArrowFunctionKey;
-						}
-
-						bool bDoNavigation = false;
-						bool bLooped = false;
-						IDEIssueNavigableItem* pLastSelected = nil;
-						while (true)
-						{
-							{
-								NSArray* pSelected = [window.activeNavigatorOutlineView selectedItems];
-								if ([pSelected count] > 0)
-								{
-									IDEIssueNavigableItem* pSelectedItem = (IDEIssueNavigableItem*)pSelected[0];
-									pLastSelected = pSelectedItem;
-									if (bExpandNext)
-									{
-										//NSString* pClassName = [pSelectedItem className];
-										//if ([pClassName compare:@"IDEIssueNavigableItem_AnyIDEIssue"] == NSOrderedSame)
-										{
-											if (![pSelectedItem isLeaf])
-												[window.activeNavigatorOutlineView expandItem:pSelectedItem];
-										}
-									}
-								}
-							}
-
-							[Plugin_NavigationFixes sendKeyToOutlineView: window.activeNavigatorOutlineView keyCode: KeyCode characterCode: Character window: window];
-
-							NSArray* pSelected = [window.activeNavigatorOutlineView selectedItems];
-
-							IDEIssueNavigableItem* pSelectedItem = nil;
-							if ([pSelected count] > 0)
-								pSelectedItem = (IDEIssueNavigableItem*)pSelected[0];
-							if (pLastSelected == pSelectedItem)
-							{
-								NSArray *pRootItems = [window.activeNavigatorOutlineView rootItems];
-
-								if (pRootItems)
-								{
-									if ([pRootItems count])
-									{
-										if (bLooped)
-											break;
-										if (ModifierFlags & NSEventModifierFlagShift)
-										{
-											IDEIssueNavigableItem *pObject = [pRootItems lastObject];
-											IDEIssueNavigableItem *pLastObject = pObject;
-
-											while (pObject)
-											{
-												NSArray *pItems = [pObject childItems];
-												if (pItems == nil)
-													break;
-												pObject = [pItems lastObject];
-												if (pObject)
-													pLastObject = pObject;
-											}
-
-											NSArray *pSelectedItems = [NSArray arrayWithObject: pLastObject];
-											[window.activeNavigatorOutlineView setSelectedItems:pSelectedItems];
-											pSelectedItem = pLastObject;
-											if (pSelectedItem == pLastSelected)
-												break;
-											bLooped = true;
-										}
-										else
-										{
-											NSArray *pSelectedItems = [NSArray arrayWithObject: pRootItems[0]];
-											[window.activeNavigatorOutlineView setSelectedItems:pSelectedItems];
-											pSelectedItem = pRootItems[0];
-											if (pSelectedItem == pLastSelected)
-												break;
-											bLooped = true;
-										}
-
-									}
-									else
-										break;
-								}
-								else
-									break;
-							}
-							pLastSelected = pSelectedItem;
-							NSString* pClassName = [pSelectedItem className];
-							//XcodePluginLog(@"%@ %d", pClassName, [pSelectedItem isLeaf]);
-							bDoNavigation = false;
-							if ([pClassName compare:@"IDEIssueGroupNavigableItem_IDEIssueGroup_Any"] == NSOrderedSame)
-								continue;
-							else if ([pClassName compare:@"IDEKeyDrivenNavigableItem_IDEIssueTypeGroup_Any"] == NSOrderedSame)
-								continue;
-							else if ([pClassName compare:@"IDEIssueNavigableItem_IDEIssue_Any"] == NSOrderedSame)
-							{
-								bDoNavigation = true;
-								if (bExpandNext)
-								{
-									if (![pSelectedItem isLeaf])
-										[window.activeNavigatorOutlineView expandItem:pSelectedItem];
-								}
-							}
-							else if ([pClassName compare:@"IDEFileReferenceNavigableItem_Xcode3FileReference_Any"] == NSOrderedSame)
-							{
-								bDoNavigation = true;
-							}
-							break;
-						}
-
-						IDEIssue *pIssue = (IDEIssue *)pLastSelected.representedObject;
-
-						if (window.activeIssueNavigator && bDoNavigation && pIssue.primaryDocumentLocation)
-						{
-							NSResponder *pFirst = [[window.activeNavigatorOutlineView window] firstResponder];
-
-							if (!pFirst || [[pFirst className] compare:@"_IDEDiagnosticFixItTableView"] != NSOrderedSame)
-								bSetEditorFocus = true;
-
-							IDEWorkspaceTabController *pTabController = getWorkspaceTabController([event window]);
-
-							if (!pTabController)
-								break;
-
-							IDEWorkspace* pWorkspace = [pTabController workspace];
-							if (!pWorkspace)
-								break;
-
-							IDEEditorOpenSpecifier *pSpecifier = [IDEEditorOpenSpecifier structureEditorOpenSpecifierForDocumentLocation: pIssue.primaryDocumentLocation
-																																inWorkspace: pWorkspace
-																																	  error:nil];
-							if (pSpecifier)
-							{
-								[IDEEditorCoordinator _openEditorOpenSpecifier:pSpecifier forWorkspaceTabController:pTabController target:0 takeFocus:1];
-
-								IDESourceEditor_SourceCodeEditor *pEditor = getEditor(window);
-								IDESourceEditor_SourceCodeEditorView *pEditorView = [pEditor sourceEditorView];
-
-								// Workaround bug in Xcode where line is incorrect
-								[pEditorView moveForward: nil];
-								[pEditorView moveBackward: nil];
-
-								bHandled = true;
-							}
-						}
-					}
-					else if (window.activeDVTExplorerOutlineView)
-					{
-						DVTOutlineView *outlineView = window.activeDVTExplorerOutlineView;
+						DVTOutlineView *outlineView = window.navigationFixesProperties.activeDVTExplorerOutlineView;
 
 						NSInteger row = outlineView.selectedRowIndexes.lastIndex;
 						NSInteger nRows = outlineView.numberOfRows;
@@ -847,30 +702,33 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 								[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: nRows - 1] byExtendingSelection: NO];
 								[outlineView scrollRowToVisible: nRows - 1];
 
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 126 characterCode: NSUpArrowFunctionKey window: window];
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 125 characterCode: NSDownArrowFunctionKey window: window];
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
 							}
 							else
 							{
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 126 characterCode: NSUpArrowFunctionKey window: window];
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
 							}
 						}
 						else
 						{
+							if (bExpandNext)
+							{
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_RightArrow characterCode: NSRightArrowFunctionKey window: window];
+								row = outlineView.selectedRowIndexes.lastIndex;
+								nRows = outlineView.numberOfRows;
+							}
+
 							if (row == nRows - 1)
 							{
 								[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: 0] byExtendingSelection: NO];
 								[outlineView scrollRowToVisible: 0];
 
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 125 characterCode: NSDownArrowFunctionKey window: window];
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 126 characterCode: NSUpArrowFunctionKey window: window];
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
 							}
 							else
-							{
-								if (bExpandNext)
-									[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 124 characterCode: NSRightArrowFunctionKey window: window];
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: 125 characterCode: NSDownArrowFunctionKey window: window];
-							}
+								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
 						}
 
 						bSetEditorFocus = true;
@@ -1012,7 +870,7 @@ static NSView* findParentViewWithController(NSView* _pView, Class ClassToFind)
 	DVTFindBarOptionsCtrl* pViewController = (DVTFindBarOptionsCtrl*)[pPopover contentViewController];
 	if ([pViewController isKindOfClass:[DVTFindBarOptionsCtrl class]])
 	{
-		window.findBarOptionsCtrl = pViewController;
+		window.navigationFixesProperties.findBarOptionsCtrl = pViewController;
 	}
 }
 
@@ -1023,8 +881,8 @@ static NSView* findParentViewWithController(NSView* _pView, Class ClassToFind)
 	DVTFindBarOptionsCtrl* pViewController = (DVTFindBarOptionsCtrl*)[pPopover contentViewController];
 	if ([pViewController isKindOfClass:[DVTFindBarOptionsCtrl class]])
 	{
-		if (window.findBarOptionsCtrl == pViewController)
-			window.findBarOptionsCtrl = nil;
+		if (window.navigationFixesProperties.findBarOptionsCtrl == pViewController)
+			window.navigationFixesProperties.findBarOptionsCtrl = nil;
 	}
 }
 
@@ -1039,11 +897,11 @@ static void potentialView(NSWindow* _pWindow)
 	IDEWorkspaceTabController *pTabController = getWorkspaceTabController(_pWindow);
 	if (!pTabController)
 	{
-		window.activeFindNavigatorOutlineView = nil;
-		window.activeNavigatorOutlineView = nil;
-		window.activeIssueNavigator = nil;
-		window.activeFindNavigator = nil;
-		window.activeDVTExplorerOutlineView = nil;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeIssueNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigator = nil;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = nil;
 		return;
 	}
 
@@ -1051,17 +909,20 @@ static void potentialView(NSWindow* _pWindow)
 
 	if (!pCurrentNavigator)
 	{
-		window.activeFindNavigatorOutlineView = nil;
-		window.activeNavigatorOutlineView = nil;
-		window.activeIssueNavigator = nil;
-		window.activeFindNavigator = nil;
-		window.activeDVTExplorerOutlineView = nil;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeIssueNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigator = nil;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = nil;
 		return;
 	}
 
 	IDEFindNavigatorOutlineView *pFindNavigatorOutlineView = (IDEFindNavigatorOutlineView *)findSubViewWithClass(pCurrentNavigator.view, IDEFindNavigatorOutlineView.class);
 	IDENavigatorOutlineView *pNavigatorOutlineView = (IDENavigatorOutlineView *)findSubViewWithClass(pCurrentNavigator.view, IDENavigatorOutlineView.class);
 	DVTOutlineView *pDVTExplorerOutlineView = (DVTOutlineView *)findSubViewWithClass(pCurrentNavigator.view, DVTOutlineView.class);
+
+	if (!window.navigationFixesProperties.initializedPotentialViews)
+		window.navigationFixesProperties.initializedPotentialViews = TRUE;
 
 	/*
 	 IDEWorkspaceNavigator
@@ -1075,37 +936,39 @@ static void potentialView(NSWindow* _pWindow)
 	 IDELogNavigator
 	 */
 
+	//XcodePluginDumpClass(pCurrentNavigator.class);
+
 	if ([pCurrentNavigator isKindOfClass:[IDEFindNavigator class]])
 	{
-		window.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
-		window.activeNavigatorOutlineView = pNavigatorOutlineView;
-		window.activeFindNavigator = (IDEFindNavigator*)pCurrentNavigator;
-		window.activeIssueNavigator = nil;
-		window.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
+		window.navigationFixesProperties.activeNavigatorOutlineView = pNavigatorOutlineView;
+		window.navigationFixesProperties.activeFindNavigator = (IDEFindNavigator*)pCurrentNavigator;
+		window.navigationFixesProperties.activeIssueNavigator = nil;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
 	}
-	else if ([pCurrentNavigator isKindOfClass:[IDEIssueNavigator class]])
+	else if ([pCurrentNavigator isKindOfClass:NSClassFromString(@"IDENoticeNavigator")])
 	{
-		window.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
-		window.activeNavigatorOutlineView = pNavigatorOutlineView;
-		window.activeIssueNavigator = (IDEIssueNavigator*)pCurrentNavigator;
-		window.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
-		window.activeFindNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
+		window.navigationFixesProperties.activeNavigatorOutlineView = pNavigatorOutlineView;
+		window.navigationFixesProperties.activeIssueNavigator = (IDENavigator*)pCurrentNavigator;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
+		window.navigationFixesProperties.activeFindNavigator = nil;
 	}
 	else if ([pCurrentNavigator isKindOfClass:NSClassFromString(@"IDEWorkspaceNavigator")])
 	{
-		window.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
-		window.activeNavigatorOutlineView = pNavigatorOutlineView;
-		window.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
-		window.activeIssueNavigator = nil;
-		window.activeFindNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = pFindNavigatorOutlineView;
+		window.navigationFixesProperties.activeNavigatorOutlineView = pNavigatorOutlineView;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = pDVTExplorerOutlineView;
+		window.navigationFixesProperties.activeIssueNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigator = nil;
 	}
 	else
 	{
-		window.activeFindNavigatorOutlineView = nil;
-		window.activeNavigatorOutlineView = nil;
-		window.activeIssueNavigator = nil;
-		window.activeFindNavigator = nil;
-		window.activeDVTExplorerOutlineView = nil;
+		window.navigationFixesProperties.activeFindNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeNavigatorOutlineView = nil;
+		window.navigationFixesProperties.activeIssueNavigator = nil;
+		window.navigationFixesProperties.activeFindNavigator = nil;
+		window.navigationFixesProperties.activeDVTExplorerOutlineView = nil;
 	}
 }
 
@@ -1208,16 +1071,6 @@ static IDEWorkspaceTabController* getWorkspaceTabController(NSWindow *_pWindow)
 	return nil;
 }
 
-static IDEConsoleTextView* getConsoleTextView(NSWindow *_pWindow)
-{
-	if (_pWindow == nil)
-		_pWindow = [NSApp keyWindow];
-	IDEConsoleTextView* pView = (IDEConsoleTextView*)findSubViewWithClassName([_pWindow contentView], "IDEConsoleTextView", -1);
-	return pView;
-}
-
-
-
 static BOOL becomeFirstResponder_Console(IDEConsoleTextView* self_, SEL _cmd)
 {
 	NSWindowTabGroup *pTabGroup = self_.window.tabGroup;
@@ -1246,17 +1099,17 @@ static BOOL becomeFirstResponder_DVTOutlineView(DVTOutlineView* self_, SEL _cmd)
 
 	potentialView(window);
 
-	if (window.activeFindNavigator)
+	if (window.navigationFixesProperties.activeFindNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Search;
 		//NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_DVTOutlineView");
 	}
-	else if (window.activeIssueNavigator)
+	else if (window.navigationFixesProperties.activeIssueNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Issue;
 		//NSLog(@"EPreferredNextLocation_Issue -- becomeFirstResponder_DVTOutlineView");
 	}
-	else if (window.activeDVTExplorerOutlineView)
+	else if (window.navigationFixesProperties.activeDVTExplorerOutlineView)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Workspace;
 		//NSLog(@"EPreferredNextLocation_Workspace -- becomeFirstResponder_DVTOutlineView");
@@ -1272,17 +1125,17 @@ static BOOL becomeFirstResponder_NavigatorOutlineView(IDENavigatorOutlineView* s
 
 	potentialView(window);
 
-	if (window.activeFindNavigator)
+	if (window.navigationFixesProperties.activeFindNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Search;
 		//NSLog(@"EPreferredNextLocation_Search -- becomeFirstResponder_NavigatorOutlineView");
 	}
-	else if (window.activeIssueNavigator)
+	else if (window.navigationFixesProperties.activeIssueNavigator)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Issue;
 		//NSLog(@"EPreferredNextLocation_Issue -- becomeFirstResponder_NavigatorOutlineView");
 	}
-	else if (window.activeDVTExplorerOutlineView)
+	else if (window.navigationFixesProperties.activeDVTExplorerOutlineView)
 	{
 		pTabGroup.preferredNextLocation = EPreferredNextLocation_Workspace;
 		//NSLog(@"EPreferredNextLocation_Workspace -- becomeFirstResponder_NavigatorOutlineView");
@@ -1293,7 +1146,7 @@ static BOOL becomeFirstResponder_NavigatorOutlineView(IDENavigatorOutlineView* s
 static BOOL becomeFirstResponder_DVTFindPatternFieldEditor(DVTFindPatternFieldEditor* self_, SEL _cmd)
 {
 	NSWindow *window = self_.window;
-	window.respondingPatternFieldEditor = self_;
+	window.navigationFixesProperties.respondingPatternFieldEditor = self_;
 	return ((BOOL (*)(id, SEL))original_becomeFirstResponder_DVTFindPatternFieldEditor)(self_, _cmd);
 }
 
@@ -1308,8 +1161,8 @@ static BOOL becomeFirstResponder_SourceEditor_SourceEditorView(DVTFindPatternFie
 static BOOL resignFirstResponder_DVTFindPatternFieldEditor(DVTFindPatternFieldEditor* self_, SEL _cmd)
 {
 	NSWindow *window = self_.window;
-	if (window.respondingPatternFieldEditor == self_)
-		window.respondingPatternFieldEditor = nil;
+	if (window.navigationFixesProperties.respondingPatternFieldEditor == self_)
+		window.navigationFixesProperties.respondingPatternFieldEditor = nil;
 	return ((BOOL (*)(id, SEL))original_resignFirstResponder_DVTFindPatternFieldEditor)(self_, _cmd);
 }
 

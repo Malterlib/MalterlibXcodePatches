@@ -48,25 +48,29 @@ __attribute((noinline)) static void SourceEditor_SourceEditorView_doCommandBySel
 	return ((void (*)(id, SEL, SEL))original_SourceEditor_SourceEditorView_doCommandBySelector)(_pSourceEditorView, _cmd, _Selector);
 }
 
-__attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorView_getDataSource(id __attribute__((swift_context)) _pSourceEditorView)
+__attribute((swiftcall)) __attribute((noinline)) void *SourceEditor_SourceEditorView_getDataSource(id __attribute__((swift_context)) _pSourceEditorView)
 {
 	static Ivar s_Ivar = nil;
 	if (!s_Ivar)
 		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "dataSource");
-	return object_getIvar(_pSourceEditorView, s_Ivar);
+
+	ptrdiff_t offset = ivar_getOffset(s_Ivar);
+	unsigned char* bytes = (unsigned char *)(__bridge void*)_pSourceEditorView;
+	return bytes+offset;
 }
 
-__attribute((swiftcall)) __attribute((noinline)) id SourceEditor_SourceEditorView_getLayoutManager(id __attribute__((swift_context)) _pSourceEditorView)
+__attribute((swiftcall)) __attribute((noinline)) void *SourceEditor_SourceEditorView_getLayoutManager(id __attribute__((swift_context)) _pSourceEditorView)
 {
 	static Ivar s_Ivar = nil;
 	if (!s_Ivar)
 		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "layoutManager");
-	return object_getIvar(_pSourceEditorView, s_Ivar);
+	ptrdiff_t offset = ivar_getOffset(s_Ivar);
+	unsigned char* bytes = (unsigned char *)(__bridge void*)_pSourceEditorView;
+	return bytes+offset;
 }
 
 __attribute((swiftcall)) __attribute((noinline)) void *SourceEditor_SourceEditorView_getSelectionPointer(id __attribute__((swift_context)) _pSourceEditorView)
 {
-	//XcodePluginDumpClass([_pSourceEditorView class]);
 	static Ivar s_Ivar = nil;
 	if (!s_Ivar)
 		s_Ivar = class_getInstanceVariable([_pSourceEditorView class], "primitiveSelection");

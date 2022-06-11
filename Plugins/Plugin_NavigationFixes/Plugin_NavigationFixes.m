@@ -43,82 +43,66 @@ static IMP original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = nil;
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface Plugin_NavigationFixesWindowProperties : NSObject
+{
+}
+
+@property BOOL initializedPotentialViews;
+
+@property IDEFindNavigatorOutlineView *activeFindNavigatorOutlineView;
+@property IDENavigatorOutlineView *activeNavigatorOutlineView;
+@property DVTOutlineView *activeDVTExplorerOutlineView;
+
+@property IDEFindNavigator *activeFindNavigator;
+@property IDENavigator *activeIssueNavigator;
+
+@property DVTFindPatternFieldEditor *respondingPatternFieldEditor;
+@property DVTFindBarOptionsCtrl *findBarOptionsCtrl;
+
+@property NSString *consoleLastText;
+@property NSRange consoleLastSelectedRange;
+
+@end
+
+@implementation Plugin_NavigationFixesWindowProperties
+	@synthesize initializedPotentialViews;
+	@synthesize activeFindNavigatorOutlineView;
+	@synthesize activeNavigatorOutlineView;
+	@synthesize activeDVTExplorerOutlineView;
+
+	@synthesize activeFindNavigator;
+	@synthesize activeIssueNavigator;
+
+	@synthesize respondingPatternFieldEditor;
+	@synthesize findBarOptionsCtrl;
+
+	@synthesize consoleLastText;
+	@synthesize consoleLastSelectedRange;
+@end
+
 
 @interface NSWindow (NavigationFixesNSWindow)
 
-@property (nonatomic, retain) IDEFindNavigatorOutlineView *activeFindNavigatorOutlineView;
-@property (nonatomic, retain) IDENavigatorOutlineView *activeNavigatorOutlineView;
-@property (nonatomic, retain) DVTOutlineView *activeDVTExplorerOutlineView;
-
-
-@property (nonatomic, retain) IDEFindNavigator *activeFindNavigator;
-@property (nonatomic, retain) IDEIssueNavigator *activeIssueNavigator;
-
-@property (nonatomic, retain) DVTFindPatternFieldEditor *respondingPatternFieldEditor;
-@property (nonatomic, retain) DVTFindBarOptionsCtrl *findBarOptionsCtrl;
-
-
+@property (nonatomic, retain) Plugin_NavigationFixesWindowProperties *navigationFixesProperties;
 
 
 @end
 
-static void * NavigationFixesNSWindow_activeFindNavigatorOutlineView = &NavigationFixesNSWindow_activeFindNavigatorOutlineView;
-static void * NavigationFixesNSWindow_activeNavigatorOutlineView = &NavigationFixesNSWindow_activeNavigatorOutlineView;
-static void * NavigationFixesNSWindow_activeDVTExplorerOutlineView = &NavigationFixesNSWindow_activeDVTExplorerOutlineView;
-static void * NavigationFixesNSWindow_activeFindNavigator = &NavigationFixesNSWindow_activeFindNavigator;
-static void * NavigationFixesNSWindow_activeIssueNavigator = &NavigationFixesNSWindow_activeIssueNavigator;
-static void * NavigationFixesNSWindow_respondingPatternFieldEditor = &NavigationFixesNSWindow_respondingPatternFieldEditor;
-static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWindow_findBarOptionsCtrl;
+static void * NavigationFixesNSWindow_navigationFixesProperties = &NavigationFixesNSWindow_navigationFixesProperties;
 
 @implementation NSWindow (NavigationFixesNSWindow)
 
-- (IDEFindNavigatorOutlineView *)activeFindNavigatorOutlineView {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeFindNavigatorOutlineView);
+- (Plugin_NavigationFixesWindowProperties *)navigationFixesProperties {
+	Plugin_NavigationFixesWindowProperties *pProperties = objc_getAssociatedObject(self, NavigationFixesNSWindow_navigationFixesProperties);
+	if (!pProperties)
+	{
+		pProperties = [[Plugin_NavigationFixesWindowProperties alloc] init];
+		objc_setAssociatedObject(self, NavigationFixesNSWindow_navigationFixesProperties, pProperties, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	}
+    return pProperties;
 }
-- (void)setActiveFindNavigatorOutlineView:(IDEFindNavigatorOutlineView *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_activeFindNavigatorOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDENavigatorOutlineView *)activeNavigatorOutlineView {
-	return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView);
-}
-- (void)setActiveNavigatorOutlineView:(IDENavigatorOutlineView *)value {
-	objc_setAssociatedObject(self, NavigationFixesNSWindow_activeNavigatorOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDENavigatorOutlineView *)activeDVTExplorerOutlineView {
-	return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeDVTExplorerOutlineView);
-}
-- (void)setActiveDVTExplorerOutlineView:(IDENavigatorOutlineView *)value {
-	objc_setAssociatedObject(self, NavigationFixesNSWindow_activeDVTExplorerOutlineView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDEFindNavigator *)activeFindNavigator {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeFindNavigator);
-}
-- (void)setActiveFindNavigator:(IDEFindNavigator *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_activeFindNavigator, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDEIssueNavigator *)activeIssueNavigator {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_activeIssueNavigator);
-}
-- (void)setActiveIssueNavigator:(IDEIssueNavigator *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_activeIssueNavigator, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (DVTFindPatternFieldEditor *)respondingPatternFieldEditor {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_respondingPatternFieldEditor);
-}
-- (void)setRespondingPatternFieldEditor:(DVTFindPatternFieldEditor *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_respondingPatternFieldEditor, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDEWorkspaceWindow *)findBarOptionsCtrl {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindow_findBarOptionsCtrl);
-}
-- (void)setFindBarOptionsCtrl:(IDEWorkspaceWindow *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindow_findBarOptionsCtrl, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setNavigationFixesProperties:(Plugin_NavigationFixesWindowProperties *)value {
+	objc_setAssociatedObject(self, NavigationFixesNSWindow_navigationFixesProperties, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -131,14 +115,12 @@ static void * NavigationFixesNSWindow_findBarOptionsCtrl = &NavigationFixesNSWin
 @interface NSWindowTabGroup (NavigationFixesNSWindowTabGroup)
 
 @property (nonatomic, retain) IDEWorkspaceWindow *lastValidEditorWindow;
-@property (nonatomic, retain) IDEConsoleTextView *lastConsoleTextView;
 
 @property (nonatomic, assign) enum EPreferredNextLocation preferredNextLocation;
 
 @end
 
 static void * NavigationFixesNSWindowTabGroup_lastValidEditorWindow = &NavigationFixesNSWindowTabGroup_lastValidEditorWindow;
-static void * NavigationFixesNSWindowTabGroup_lastConsoleTextView = &NavigationFixesNSWindowTabGroup_lastConsoleTextView;
 static void * NavigationFixesNSWindowTabGroup_preferredNextLocation = &NavigationFixesNSWindowTabGroup_preferredNextLocation;
 
 @implementation NSWindowTabGroup (NavigationFixesNSWindowTabGroup)
@@ -149,14 +131,6 @@ static void * NavigationFixesNSWindowTabGroup_preferredNextLocation = &Navigatio
 
 - (void)setLastValidEditorWindow:(IDEWorkspaceWindow *)value {
     objc_setAssociatedObject(self, NavigationFixesNSWindowTabGroup_lastValidEditorWindow, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (IDEConsoleTextView *)lastConsoleTextView {
-    return objc_getAssociatedObject(self, NavigationFixesNSWindowTabGroup_lastConsoleTextView);
-}
-
-- (void)setLastConsoleTextView:(IDEConsoleTextView *)value {
-    objc_setAssociatedObject(self, NavigationFixesNSWindowTabGroup_lastConsoleTextView, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (enum EPreferredNextLocation)preferredNextLocation {
@@ -414,7 +388,7 @@ static Plugin_NavigationFixes *singleton = nil;
 
 	original_becomeFirstResponder_SourceEditor_SourceEditorView = XcodePluginOverrideMethodString(@"SourceEditor.SourceEditorView", @selector(becomeFirstResponder), (IMP)&becomeFirstResponder_SourceEditor_SourceEditorView);
 
-	Call_InitFunctiontPointers();
+	Call_InitFunctionPointers();
 }
 
 - (id) init {

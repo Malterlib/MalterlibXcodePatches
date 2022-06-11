@@ -7,32 +7,32 @@ public class SourceEditor {
 	}
 
 	struct SourceEditorLayoutManagerIdentifier: Hashable {
-		var identifier: ObjectIdentifier;
+		let identifier: ObjectIdentifier;
 	}
 
 	struct LayoutContext<T> {
 		init() {
 		}
-		var values: Dictionary<SourceEditor.SourceEditorLayoutManagerIdentifier, T>! = nil;
+		let values: Dictionary<SourceEditor.SourceEditorLayoutManagerIdentifier, T>! = nil;
 	}
 
 	public class SourceEditorLineData {
-		var lineContentRange: _NSRange = _NSRange();
-		var lineTerminatorLength: Int = 0;
-		var placeholders: Array<(_NSRange, Any)> = Array<(_NSRange, Any)>();
-		var hidden: Bool = false;
-		var layer: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
-		var auxViews: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
-		var accessoryView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
-		var substitutionView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
-		var accessibilityElement: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		let lineContentRange: _NSRange = _NSRange();
+		let lineTerminatorLength: Int = 0;
+		let placeholders: Array<(_NSRange, Any)> = Array<(_NSRange, Any)>();
+		let hidden: Bool = false;
+		let layer: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		let auxViews: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		let accessoryView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		let substitutionView: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
+		let accessibilityElement: SourceEditor.LayoutContext<Any> = SourceEditor.LayoutContext<Any>();
 	}
 
 	public class SourceEditorDataSource {
-		var lineData: Array<SourceEditor.SourceEditorLineData> = Array<SourceEditor.SourceEditorLineData>();
-		var utf8RangeData: Array<_NSRange> = Array<_NSRange>();
-		var contents: NSString = NSString();
-	}
+		let lineData: ContiguousArray<SourceEditor.SourceEditorLineData> = ContiguousArray<SourceEditor.SourceEditorLineData>();
+		let utf8RangeData: Array<_NSRange> = Array<_NSRange>();
+		let contents: NSString = NSString();
+ 	}
 
 	public enum ScrollPlacement {
 		case Case_0
@@ -61,28 +61,36 @@ public class SourceEditor {
 	}
 
 	public struct SourceEditorPosition {
-		var line: Int = 0;
-		var col: Int = 0;
+		init(line: Int, col: Int) {
+			self.line = line;
+			self.col = col;
+		}
+		init() {
+			self.line = 0;
+			self.col = 0;
+		}
+		var line: Int;
+		var col: Int;
 	}
 
 	public struct SourceEditorVerticalAnchor {
-		var position: SourceEditor.SourceEditorPosition;
-		var offset: Int = 0;
-		var anchorPoint: CGPoint? = nil;
-		var currentPosition: SourceEditor.SourceEditorPosition? = nil;
+		let position: SourceEditor.SourceEditorPosition;
+		let offset: Int = 0;
+		let anchorPoint: CGPoint? = nil;
+		let currentPosition: SourceEditor.SourceEditorPosition? = nil;
 	}
 
 	public struct SourceEditorSingleSelection {
 		var range: Range<SourceEditor.SourceEditorPosition> = Range<SourceEditor.SourceEditorPosition>(uncheckedBounds: (SourceEditor.SourceEditorPosition(), SourceEditor.SourceEditorPosition()));
-		var markedRange: Range<SourceEditor.SourceEditorPosition>! = nil;
-		var selectionAnchor: Range<SourceEditor.SourceEditorPosition>! = nil;
-		var verticalAnchor: SourceEditor.SourceEditorVerticalAnchor! = nil;
+		let markedRange: Range<SourceEditor.SourceEditorPosition>! = nil;
+		let selectionAnchor: Range<SourceEditor.SourceEditorPosition>! = nil;
+		let verticalAnchor: SourceEditor.SourceEditorVerticalAnchor! = nil;
 	}
 
 	public struct SourceEditorSelection {
 		var primarySelection: SourceEditor.SourceEditorSingleSelection = SourceEditor.SourceEditorSingleSelection();
-		var secondarySelections: [SourceEditor.SourceEditorSingleSelection] = [SourceEditor.SourceEditorSingleSelection]();
-		var modifiers: SourceEditor.SourceEditorSelectionModifiers = SourceEditor.SourceEditorSelectionModifiers();
+		let secondarySelections: [SourceEditor.SourceEditorSingleSelection] = [SourceEditor.SourceEditorSingleSelection]();
+		let modifiers: SourceEditor.SourceEditorSelectionModifiers = SourceEditor.SourceEditorSelectionModifiers();
 	}
 
 	public class SourceEditorView: NSView {
@@ -107,4 +115,3 @@ extension SourceEditor.SourceEditorPosition: Comparable {
 		return lhs.col < rhs.col
 	}
 }
-

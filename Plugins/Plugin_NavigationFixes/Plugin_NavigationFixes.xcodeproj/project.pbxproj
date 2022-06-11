@@ -48,6 +48,7 @@
 		039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plugin_NavigationFixes_LocalSymbol.cpp; sourceTree = "<group>"; };
 		03A1896E1992C68500F87332 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
 		03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_PasteNoFormat.h; sourceTree = "<group>"; };
+		03AB677D28539AD90034DD84 /* SourceEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceEditor.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/SourceEditor.framework; sourceTree = "<group>"; };
 		03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_Xcode.swift; sourceTree = "<group>"; };
 		03C6C65D25F7CCFE00318197 /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = "../Shared Code/Xcode"; sourceTree = "<group>"; };
 		03DAA8841F7F0AB900617869 /* XcodePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XcodePlugin.swift; path = "../Shared Code/XcodePlugin.swift"; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				0344DDBF206E48A20048B87B /* SourceEditor.framework */,
+				03AB677D28539AD90034DD84 /* SourceEditor.framework */,
 				0344DDBD206E488C0048B87B /* SourceEditor */,
 				03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */,
 			);
@@ -284,15 +286,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-v";
-				OTHER_SWIFT_FLAGS = "-Ounchecked";
 				PRODUCT_NAME = Plugin_NavigationFixes;
 				SDKROOT = macosx;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = Plugin_NavigationFixes.h;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = (
 					"-Wno-incompatible-property-type",
@@ -344,7 +345,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-v";
-				OTHER_SWIFT_FLAGS = "-Ounchecked";
 				PRODUCT_NAME = Plugin_NavigationFixes;
 				SDKROOT = macosx;
 				STRIP_SWIFT_SYMBOLS = NO;
