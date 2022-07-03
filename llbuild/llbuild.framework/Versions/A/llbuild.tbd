@@ -3,9 +3,9 @@ tbd-version:     4
 targets:         [ x86_64-macos, arm64-macos ]
 uuids:
   - target:          x86_64-macos
-    value:           FAB71235-17BB-3F30-A1DD-12C4DFEC5004
+    value:           AFB6EEB5-A187-3381-ABF4-0C3EA501A02E
   - target:          arm64-macos
-    value:           91B860BC-D0E4-36A1-AB47-45B96563B5A4
+    value:           AEDA32A4-1EDF-3577-BFB9-A689B94F0A86
 install-name:    '@rpath/llbuild.framework/Versions/A/llbuild'
 current-version: 9999.99
 swift-abi-version: 7
