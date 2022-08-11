@@ -79,7 +79,7 @@
 // - (void).cxx_destruct;
 @property(nonatomic) BOOL pbxProjectEdited; // @synthesize pbxProjectEdited=_pbxProjectEdited;
 @property BOOL hasRunUpgradeCheck; // @synthesize hasRunUpgradeCheck=_hasRunUpgradeCheck;
-@property(retain) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
+@property(retain, nonatomic) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
 @property(retain) PBXProject *pbxProject; // @synthesize pbxProject=_project;
 @property(retain) IDEDirectoryBasedCustomDataStore *customDataStore; // @synthesize customDataStore=_customDataStore;
 @property int buildSystemType;
@@ -196,6 +196,7 @@
 @property(readonly) BOOL supportsSourceFolders;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 @property(readonly) IDEWorkspace *workspace;
+@property(readonly) BOOL workspaceIntegrityProviderShouldNotProcessIssueLog;
 
 @end
 

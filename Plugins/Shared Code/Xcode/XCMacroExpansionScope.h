@@ -30,8 +30,9 @@
 - (void)appendAdditionalContentToStringBuilder:(struct DVTStringBuilder *)arg1 indent:(unsigned long long)arg2;
 @property(readonly) XCSDKPackage *sdk;
 @property(readonly) __weak PBXTargetBuildContext *buildContext;
+- (id)initWithDataSource:(id)arg1 dependencyGraphCreationContext:(id)arg2;
 - (id)initWithParentScope:(id)arg1 dependencyGraphCreationContext:(id)arg2;
-- (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 conditionParameterFallbackValues:(id)arg6 expansionOptions:(unsigned long long)arg7;
+- (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 dataSource:(id)arg4 definitionLevelsToClear:(id)arg5 conditionParameterValues:(id)arg6 conditionParameterFallbackValues:(id)arg7 expansionOptions:(unsigned long long)arg8;
 
 @end
 

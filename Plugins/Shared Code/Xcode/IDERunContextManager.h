@@ -55,6 +55,7 @@
 @property(readonly) NSArray *nonTransientRunContexts; // @synthesize nonTransientRunContexts=_nonTransientRunContexts;
 @property(readonly) NSArray *runContexts; // @synthesize runContexts=_runContexts;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(readonly) NSArray *missingPlatformsForActiveBuildConfiguration;
 - (void)clearRecentRunDestinations;
 - (id)recentRunDestinationsForScheme:(id)arg1;
 - (void)clearRecentSchemes;

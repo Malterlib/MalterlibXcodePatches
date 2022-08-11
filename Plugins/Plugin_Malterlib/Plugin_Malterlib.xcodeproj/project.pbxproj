@@ -16,6 +16,7 @@
 		0339B7CC1F8A516900820150 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1896E1992C68500F87332 /* IDEKit.framework */; };
 		0372C85519378E9400364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85419378E9400364146 /* XcodePlugin.m */; };
 		0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382BA6C199516B500E48ED4 /* Carbon.framework */; };
+		03B5FA5428A563A4007582BD /* Plugin_Malterlib.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA5328A563A4007582BD /* Plugin_Malterlib.xcplugindata */; };
 		03FDB0CE1F7FFCC000B6CD73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */; };
 		435E248813A8E5A40052479A /* Plugin_Malterlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 435E248513A8E5A40052479A /* Plugin_Malterlib.m */; };
 		437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437DCBC314D41E700039CB49 /* InfoPlist.strings */; };
@@ -34,6 +35,7 @@
 		0382C7521994131400DEF003 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		039128061F8A244300994632 /* Xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
 		03A1896E1992C68500F87332 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
+		03B5FA5328A563A4007582BD /* Plugin_Malterlib.xcplugindata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Plugin_Malterlib.xcplugindata; sourceTree = "<group>"; };
 		03DAA8861F7F0D9000617869 /* Plugin_Malterlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib.h; sourceTree = "<group>"; };
 		03E69FF41F7A6C4200D0A690 /* Plugin_Malterlib_LLDBFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_LLDBFixes.h; sourceTree = "<group>"; };
 		03E69FF51F7A6DAB00D0A690 /* Plugin_Malterlib_Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_Navigation.h; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		03F332F61B891CA30014B200 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		03FCFF11276A1F2900DE0775 /* Plugin_Malterlib_SyntaxFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_Malterlib_SyntaxFixes.h; sourceTree = "<group>"; };
 		03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		435E247213A8E4A20052479A /* Plugin_Malterlib.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_Malterlib.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		435E247213A8E4A20052479A /* Plugin_Malterlib.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_Malterlib.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		435E248513A8E5A40052479A /* Plugin_Malterlib.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin_Malterlib.m; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03B5FA5228A5639C007582BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				03B5FA5328A563A4007582BD /* Plugin_Malterlib.xcplugindata */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		03DAA87B1F7EE6ED00617869 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		435E246513A8E4510052479A = {
 			isa = PBXGroup;
 			children = (
+				03B5FA5228A5639C007582BD /* Resources */,
 				435E248913A8E5B70052479A /* Sources */,
 				0306EE591F81848B00850443 /* XcodePlugin.mm */,
 				437DCBC314D41E700039CB49 /* InfoPlist.strings */,
@@ -98,7 +109,7 @@
 		435E247313A8E4A20052479A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				435E247213A8E4A20052479A /* Plugin_Malterlib.xcplugin */,
+				435E247213A8E4A20052479A /* Plugin_Malterlib.ideplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +151,7 @@
 			);
 			name = Plugin_Malterlib;
 			productName = XCode4_beginning_of_line;
-			productReference = 435E247213A8E4A20052479A /* Plugin_Malterlib.xcplugin */;
+			productReference = 435E247213A8E4A20052479A /* Plugin_Malterlib.ideplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -175,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */,
+				03B5FA5428A563A4007582BD /* Plugin_Malterlib.xcplugindata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,13 +343,13 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_Malterlib;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Debug;
 		};
@@ -359,13 +371,13 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_Malterlib;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Release;
 		};

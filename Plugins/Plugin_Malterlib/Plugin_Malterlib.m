@@ -158,6 +158,11 @@ Class g_SourceEditorViewClass = nil;
 								   name: NSViewFrameDidChangeNotification
 								 object: nil];
 
+		[notificationCenter addObserver: self
+							   selector: @selector( DVTPlugInDidLoad: )
+								   name: @"DVTPlugInDidLoad"
+								 object: nil];
+
 		eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler: [self registerNavigationHandler]];
 	}
 	return self;
@@ -168,18 +173,19 @@ Class g_SourceEditorViewClass = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (void) pluginDidLoad:(NSBundle *)plugin
++ (id)capability
 {
-	if (singleton)
+	return nil;
+}
+
+- (void) DVTPlugInDidLoad:(NSNotification *)notification
+{
+	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_Malterlib"])
 		return;
+
 	XcodePluginPreflight(true);
 
-	singleton = [[Plugin_Malterlib alloc] init];
-
-	if (!singleton)
-	{
-		XcodePluginLog(@"%s: Emulate visual studio init failed.\n",__FUNCTION__);
-	}
+	singleton = self;
 
 	original_changeMaximumOperationConcurrencyUsingThrottleFactor = XcodePluginOverrideMethodString(@"IDEBuildOperationQueueSet", @selector(changeMaximumOperationConcurrencyUsingThrottleFactor:), (IMP)&changeMaximumOperationConcurrencyUsingThrottleFactor);
 	XcodePluginAssertOrPerform(original_changeMaximumOperationConcurrencyUsingThrottleFactor, goto failed);

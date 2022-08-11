@@ -26,11 +26,7 @@
     BOOL _debugXPCServices;
     BOOL _enableMallocStackLoggingLiteForXPCServices;
     BOOL _hiddenMallocStackLoggingLiteForXPCServices;
-    BOOL _stopOnEveryThreadSanitizerIssue;
-    BOOL _stopOnEveryUBSanitizerIssue;
     BOOL _enableSanitizerCoverage;
-    BOOL _stopOnEveryMainThreadCheckerIssue;
-    BOOL _migratedStopOnEveryIssue;
     BOOL _useCustomWorkingDirectory;
     BOOL _allowLocationSimulation;
     BOOL _showNonLocalizedStrings;
@@ -98,11 +94,7 @@
 @property BOOL useCustomWorkingDirectory; // @synthesize useCustomWorkingDirectory=_useCustomWorkingDirectory;
 @property(nonatomic) unsigned long long launchAutomaticallySubstyle; // @synthesize launchAutomaticallySubstyle=_launchAutomaticallySubstyle;
 @property(nonatomic) int launchStyle; // @synthesize launchStyle=_launchStyle;
-@property BOOL migratedStopOnEveryIssue; // @synthesize migratedStopOnEveryIssue=_migratedStopOnEveryIssue;
-@property BOOL stopOnEveryMainThreadCheckerIssue; // @synthesize stopOnEveryMainThreadCheckerIssue=_stopOnEveryMainThreadCheckerIssue;
 @property BOOL enableSanitizerCoverage; // @synthesize enableSanitizerCoverage=_enableSanitizerCoverage;
-@property BOOL stopOnEveryUBSanitizerIssue; // @synthesize stopOnEveryUBSanitizerIssue=_stopOnEveryUBSanitizerIssue;
-@property BOOL stopOnEveryThreadSanitizerIssue; // @synthesize stopOnEveryThreadSanitizerIssue=_stopOnEveryThreadSanitizerIssue;
 @property BOOL hiddenMallocStackLoggingLiteForXPCServices; // @synthesize hiddenMallocStackLoggingLiteForXPCServices=_hiddenMallocStackLoggingLiteForXPCServices;
 @property BOOL enableMallocStackLoggingLiteForXPCServices; // @synthesize enableMallocStackLoggingLiteForXPCServices=_enableMallocStackLoggingLiteForXPCServices;
 @property BOOL debugXPCServices; // @synthesize debugXPCServices=_debugXPCServices;
@@ -144,9 +136,6 @@
 - (void)setDebugServiceExtensionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setCustomLaunchCommandPauseAfterCommandsFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setCustomLaunchCommandFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)setStopOnEveryMainThreadCheckerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)setStopOnEveryUBSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)setStopOnEveryThreadSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableMallocStackLoggingLiteForXPCServicesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugXPCServicesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugDocumentVersioningFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -171,6 +160,7 @@
 - (void)_checkForAnalysisToolServiceProvidedExecutableToSet;
 - (void)_tweakCommandLineArgumentsBasedOnAnalysisToolServiceProvidedExecutable:(id)arg1;
 - (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupExtraDebuggingSupport:(BOOL)arg6 extensionInfos:(id)arg7 outError:(id *)arg8;
+- (void)_preventProfileGenerationForEnvironmentVariables:(id)arg1;
 - (id)_preferredBuildableForSchemeCommand:(id)arg1 buildParameters:(id)arg2;
 - (void)_restoreLaunchStyleForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1;
 - (BOOL)_overrideParametersForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1 outError:(id *)arg2;
@@ -182,6 +172,7 @@
 - (BOOL)enableMallocStackLoggingLiteByDefaultIfNecessary:(id)arg1;
 - (BOOL)performanceAntipatternCheckerAllowedForRunnable;
 - (long long)internalIOSInstallStyleForBuildables:(id)arg1;
+- (long long)_internalIOSInstallStyle;
 @property BOOL customLaunchCommandPauseAfterCommands;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;

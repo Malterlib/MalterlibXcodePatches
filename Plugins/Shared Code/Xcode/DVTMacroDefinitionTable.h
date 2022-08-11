@@ -18,7 +18,7 @@
     struct DVTMacroValueAssignmentMapTable *_mapTable;
     CDUnknownBlockType _willSetValueBlock;
     CDUnknownBlockType _didSetValueBlock;
-    DVTStackBacktrace *_rootBacktrace;
+    DVTStackBacktrace *_creationBacktrace;
     DVTMacroDefinitionTable *_originalTable;
     NSString *_label;
     NSDictionary *_cachedDictRep;
@@ -77,7 +77,7 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithLabel:(id)arg1;
-- (id)initWithLabel:(id)arg1 rootBacktrace:(id)arg2;
+- (id)initWithLabel:(id)arg1 creationBacktrace:(id)arg2;
 
 @end
 

@@ -14,6 +14,7 @@
 @protocol IDEActiveRunContextStoring <NSObject>
 - (void)clearRecentRunDestinations;
 - (void)setCurrentRunDestination:(IDERunDestination *)arg1 activeScheme:(IDEScheme *)arg2;
+- (IDERunDestination *)lastUsedRunDestinationIfAvailableForScheme:(IDEScheme *)arg1;
 - (NSArray *)orderedRecentRunDestinationsForScheme:(IDEScheme *)arg1;
 - (void)clearSchemeHistory:(IDEScheme *)arg1;
 - (void)clearRecentSchemes;

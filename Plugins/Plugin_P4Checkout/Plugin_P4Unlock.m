@@ -196,9 +196,34 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 	return ((void (*)(id, SEL, id))original__unlockIfNeededCompletionBlock)(self_, _cmd, completion);
 }
 
+- (id) init {
+	self = [super init];
+	if (self)
+	{
+		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
 
-+ (void) pluginDidLoad:(NSBundle *)plugin
+		[notificationCenter addObserver: self
+								 selector: @selector( DVTPlugInDidLoad: )
+									 name: @"DVTPlugInDidLoad"
+								 object: nil];
+	}
+	return self;
+}
+
+- (void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (id)capability
 {
+	return nil;
+}
+
+- (void) DVTPlugInDidLoad:(NSNotification *)notification
+{
+	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_P4Checkout"])
+		return;
+
 	XcodePluginPreflight(false);
 
 	g_EditorDocumentClass = NSClassFromString(@"IDEEditorDocument");

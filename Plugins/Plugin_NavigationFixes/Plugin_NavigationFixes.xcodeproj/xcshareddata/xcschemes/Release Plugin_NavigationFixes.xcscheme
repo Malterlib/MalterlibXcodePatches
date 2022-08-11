@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "435E247113A8E4A20052479A"
-               BuildableName = "Plugin_NavigationFixes.xcplugin"
+               BuildableName = "Plugin_NavigationFixes.ideplugin"
                BlueprintName = "Plugin_NavigationFixes"
                ReferencedContainer = "container:Plugin_NavigationFixes.xcodeproj">
             </BuildableReference>
@@ -49,7 +49,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "435E247113A8E4A20052479A"
-            BuildableName = "Plugin_NavigationFixes.xcplugin"
+            BuildableName = "Plugin_NavigationFixes.ideplugin"
             BlueprintName = "Plugin_NavigationFixes"
             ReferencedContainer = "container:Plugin_NavigationFixes.xcodeproj">
          </BuildableReference>

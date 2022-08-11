@@ -14,7 +14,7 @@
 @protocol IDEBatchFindQueryDelegate <NSObject>
 - (void)findNavigatorQuery:(IDEBatchFindAbstractQuery *)arg1 didFinishGeneratingLazyChildrenOfResult:(IDEBatchFindAbstractResult *)arg2;
 - (void)findNavigatorQuery:(IDEBatchFindAbstractQuery *)arg1 didGenerateResults:(NSArray *)arg2;
-- (void)findNavigatorQueryDidComplete:(IDEBatchFindAbstractQuery *)arg1 totalWork:(struct CDStruct_912cb5d2)arg2 duration:(double)arg3;
+- (void)findNavigatorQueryDidComplete:(IDEBatchFindAbstractQuery *)arg1 totalWork:(CDStruct_912cb5d2)arg2 duration:(double)arg3;
 - (void)findNavigatorQuery:(IDEBatchFindAbstractQuery *)arg1 isStalledOnFilePaths:(NSSet *)arg2;
 - (void)findNavigatorQuery:(IDEBatchFindAbstractQuery *)arg1 progressUpdate:(long long)arg2;
 @end

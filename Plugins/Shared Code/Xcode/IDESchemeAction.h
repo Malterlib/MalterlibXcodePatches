@@ -79,7 +79,7 @@
 @property(readonly, nonatomic) IDEScheme *runContext; // @synthesize runContext=_runContext;
 @property(readonly, copy) NSString *description;
 - (id)llvmProfdataToolchainForSchemeCommand:(id)arg1;
-- (id)bestLLDBToolchainForSchemeCommand:(id)arg1 preferBuildProductToolchain:(BOOL)arg2;
+- (id)bestLLDBToolchainForSchemeCommand:(id)arg1;
 - (id)_buildProductToolchainForSchemeCommand:(id)arg1;
 @property(readonly, nonatomic) BOOL useInternalDebuggerToolchainSelectionLogic;
 - (BOOL)_resolvedBuildableUsesInternalSDK;

@@ -29,10 +29,12 @@
 @property(readonly) IDEAnnotationContext *context; // @synthesize context=_context;
 - (void)_revealInBreakpointNavigator:(id)arg1;
 - (void)_deleteBreakpoint:(id)arg1;
+- (void)_disableOtherBreakpoints:(id)arg1;
 - (void)_editBreakpoint:(id)arg1;
 - (void)_editBreakpointForAnnotation:(id)arg1 inTextSideBar:(id)arg2;
 - (id)_createRevealInBreakpointNavigatorMenuItem:(id)arg1;
 - (id)_createDeleteBreakpointMenuItem:(id)arg1;
+- (id)_createDisableOthersBreakpointMenuItem:(id)arg1;
 - (id)_createToggleBreakpointMenuItem:(id)arg1;
 - (id)_createEditBreakpointMenuItem:(id)arg1 inTextSidebar:(id)arg2;
 - (id)contextMenuItemsForAnnotation:(id)arg1 inTextSidebar:(id)arg2;

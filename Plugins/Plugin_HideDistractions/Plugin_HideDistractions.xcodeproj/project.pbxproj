@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03B5FA5128A5638B007582BD /* Plugin_HideDistractions.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA5028A56379007582BD /* Plugin_HideDistractions.xcplugindata */; };
 		03F1FCA61F73AE310039A765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F1FCA51F73AE310039A765 /* Cocoa.framework */; };
 		5514A4031506CB9E00A8AD77 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5514A4021506CB9E00A8AD77 /* XcodePlugin.m */; };
 		55C015D212B7BC2500354E5C /* Plugin_HideDistractions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C015D112B7BC2500354E5C /* Plugin_HideDistractions.m */; };
@@ -15,11 +16,12 @@
 
 /* Begin PBXFileReference section */
 		031D2850284EAD110069FB25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03B5FA5028A56379007582BD /* Plugin_HideDistractions.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plugin_HideDistractions.xcplugindata; sourceTree = "<group>"; };
 		03F1FCA51F73AE310039A765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5514A4021506CB9E00A8AD77 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		5595EEF1150067D400A30634 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		55C015D112B7BC2500354E5C /* Plugin_HideDistractions.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = Plugin_HideDistractions.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
-		8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_HideDistractions.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_HideDistractions.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +59,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03B5FA5028A56379007582BD /* Plugin_HideDistractions.xcplugindata */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 			);
@@ -76,7 +79,7 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.xcplugin */,
+				8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.ideplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,7 +102,7 @@
 			name = Plugin_HideDistractions;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = Plugin_HideDistractions;
-			productReference = 8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.xcplugin */;
+			productReference = 8D5B49B6048680CD000E48DA /* Plugin_HideDistractions.ideplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				03B5FA5128A5638B007582BD /* Plugin_HideDistractions.xcplugindata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,12 +177,12 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "$(HOME)";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_HideDistractions;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Debug;
 		};
@@ -194,12 +198,12 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "$(HOME)";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_HideDistractions;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Release;
 		};

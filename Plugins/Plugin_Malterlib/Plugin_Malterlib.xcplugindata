@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<dict>
+		<key>compiler-build</key>
+		<real>21294</real>
+		<key>file-format</key>
+		<integer>1</integer>
+	</dict>
+	<key>plug-in</key>
+	<dict>
+		<key>preload</key>
+		<integer>1</integer>
+		<key>extensions</key>
+		<dict>
+			<key>Plugin_Malterlib</key>
+			<dict>
+				<key>serviceClass</key>
+				<string>Plugin_Malterlib</string>
+				<key>id</key>
+				<string>info.olofsson.Plugin-Malterlib</string>
+				<key>device</key>
+				<string>Xcode.Device.LocalComputer</string>
+				<key>point</key>
+				<string>Xcode.DeviceService</string>
+			</dict>
+		</dict>
+		<key>extension-points</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>

@@ -21,6 +21,7 @@
 {
     NSMapTable *_editorDocumentByFilePath;
     BOOL _isClosingAllDocuments;
+    unsigned long long _pendingOpenRequestsCount;
 }
 
 + (void)_THREAD_verifyMenuItemsForDocumentExtensions:(id)arg1;
@@ -86,6 +87,7 @@
 + (id)sharedDocumentController;
 + (void)initialize;
 // - (void).cxx_destruct;
+@property unsigned long long pendingOpenRequestsCount; // @synthesize pendingOpenRequestsCount=_pendingOpenRequestsCount;
 @property BOOL isClosingAllDocuments; // @synthesize isClosingAllDocuments=_isClosingAllDocuments;
 - (void)_structureEditingWillRemoveContainerItems:(id)arg1;
 - (id)unsavedEditorDocumentFilePaths;
@@ -152,9 +154,11 @@
 - (void)_openDocumentsWithContentsOfURLs:(id)arg1 presentErrors:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2;
 - (void)asyncOpenDocumentsWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)openDocumentsAsynchronouslyWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
 - (id)openUntitledDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (void)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)openDocumentLocationAsynchronously:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)asyncOpenDocumentLocation:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_openDocumentsForDocumentLocations:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_openProjectsPlaygroundsAndWorkspaces:(id)arg1 display:(BOOL)arg2 openedDocuments:(id)arg3 simpleFileDocumentLocations:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
@@ -178,6 +182,7 @@
 - (id)typeForContentsOfURL:(id)arg1 error:(id *)arg2;
 - (id)_createNewDocumentForDebuggingOfExecutableURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)reopenDocumentForURL:(id)arg1 withContentsOfURL:(id)arg2 display:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)saveUntitledWorkspaceDocumentAsynchronously:(id)arg1 forProjectDocument:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)asyncSaveUntitledWorkspaceDocument:(id)arg1 forProjectDocument:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (id)_openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 simpleFilesFocused:(BOOL)arg2 forSingleFile:(BOOL)arg3 hostsOnlyPlayground:(BOOL)arg4 editorDocumentURLOrNil:(id)arg5 error:(id *)arg6;

@@ -18,7 +18,33 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 @synthesize  	 hideDistractionsMenuItem,
 					 isShowingDistractions;
 
-+ (void)pluginDidLoad:(NSBundle *)plugin	{
+- (id) init {
+	self = [super init];
+	if (self)
+	{
+		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
+
+		[notificationCenter addObserver: self
+								 selector: @selector( DVTPlugInDidLoad: )
+									 name: @"DVTPlugInDidLoad"
+								 object: nil];
+	}
+	return self;
+}
+
+- (void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (id)capability
+{
+	return nil;
+}
+
+- (void)DVTPlugInDidLoad:(NSNotification *)notification	{
+
+	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_HideDistractions"])
+		return;
 
 	XcodePluginPreflight(false);
 	if ([NSRunningApplication currentApplication].finishedLaunching) {
@@ -30,17 +56,8 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	}
 	XcodePluginPostflight();
 }
-+ (instancetype) sharedPlugin {	static Plugin_HideDistractions * sharedPlugin = nil;
-											static 			 dispatch_once_t   onceToken;
-
-	dispatch_once(&onceToken, ^{ sharedPlugin = self.new;
-										  sharedPlugin.isShowingDistractions = YES;
-	});	return sharedPlugin;
-}
-+ (void)applicationFinishedLaunching: (NSNotification *)notification
+- (void)applicationFinishedLaunching: (NSNotification *)notification
 {
-	[self sharedPlugin];
-
 	NSMenu *mainMenu 				= [NSApp mainMenu];
 	NSMenuItem *viewMenuItem  	= [mainMenu itemWithTitle: @"Edit"];
 	XcodePluginAssertOrPerform(mainMenu, return);
@@ -51,7 +68,7 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 
 	/* The 'Hide Distractions' menu item key combination can be set below. */
 	NSMenuItem *hideMenu;
-	[[self sharedPlugin] setHideDistractionsMenuItem: hideMenu = [NSMenuItem.alloc initWithTitle:@"Hide Distractions"
+	[self setHideDistractionsMenuItem: hideMenu = [NSMenuItem.alloc initWithTitle:@"Hide Distractions"
 																													  action:@selector(hideDistractions:)
 																											 keyEquivalent:kHideDistractionsKey]];
 	XcodePluginAssertOrPerform(hideMenu,return);
@@ -60,12 +77,12 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	[viewMenu addItem:hideMenu];
 }
 
-+ (void)clickMenuItem: (NSMenuItem *)menuItem	{
+- (void)clickMenuItem: (NSMenuItem *)menuItem	{
 
 	if (menuItem && menuItem.isEnabled) [NSApp sendAction:menuItem.action to:menuItem.target from:menuItem];
 }
 
-+ (NSMenuItem *)menuItemWithPath: (NSString *)menuItemPath
+- (NSMenuItem *)menuItemWithPath: (NSString *)menuItemPath
 {
 	NSArray *pathComponents 			= nil;
 	NSString *currentPathComponent 	= nil;
@@ -95,15 +112,15 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	return currentMenuItem;
 }
 
-+ (void)toggleMenu	{ BOOL newVal = ![[self sharedPlugin]isShowingDistractions];
+- (void)toggleMenu	{ BOOL newVal = ![self isShowingDistractions];
 
-	[[self sharedPlugin]setIsShowingDistractions:newVal];
-	[[[self sharedPlugin]hideDistractionsMenuItem]setTitle: newVal ? @"Hide Distractions" :@"Un-hide Distractions"];
+	[self setIsShowingDistractions:newVal];
+	[[self hideDistractionsMenuItem]setTitle: newVal ? @"Hide Distractions" :@"Un-hide Distractions"];
 }
 
-+ (void)hideDistractions: (id)sender
+- (void)hideDistractions: (id)sender
 {
-	if (! [[self sharedPlugin]isShowingDistractions])  { [self showDistractions:self];  return; }
+	if (! [self isShowingDistractions])  { [self showDistractions:self];  return; }
 
 	NSWindow *activeWindow = nil;				/* Get the front window */
 
@@ -138,7 +155,7 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	[self toggleMenu];
 }
 
-+ (void)showDistractions: (id)sender
+- (void)showDistractions: (id)sender
 {
 	NSWindow *activeWindow = [NSApp keyWindow];
 	XcodePluginConfirmOrPerform(activeWindow, return);

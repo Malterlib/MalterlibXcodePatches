@@ -112,7 +112,6 @@
 @property(nonatomic) double safeAreaBottomInset; // @synthesize safeAreaBottomInset=_safeAreaBottomInset;
 @property(nonatomic) double safeAreaTopInset; // @synthesize safeAreaTopInset=_safeAreaTopInset;
 @property(retain) IDEDebugArea *activeDebuggerArea; // @synthesize activeDebuggerArea=_activeDebuggerArea;
-@property(retain, nonatomic) IDEEditorContext *lastActiveEditorContext; // @synthesize lastActiveEditorContext=_lastActiveEditorContext;
 @property(readonly) DVTReplacementView *debuggerAreaReplacementView; // @synthesize debuggerAreaReplacementView=_debuggerAreaReplacementView;
 - (void)editorMultipleSplit:(id)arg1 didRemoveSplitItem:(id)arg2 fromIndex:(unsigned long long)arg3;
 - (void)editorMultipleSplit:(id)arg1 willRemoveSplitItem:(id)arg2 fromIndex:(unsigned long long)arg3;
@@ -217,9 +216,11 @@
 - (void)_installDefaultDebugAreaAndRevertDebugAreaState:(BOOL)arg1;
 - (void)installDefaultDebugArea;
 @property(readonly) NSSet *bottomBarContext;
+@property(retain, nonatomic) IDEEditorContext *lastActiveEditorContext; // @synthesize lastActiveEditorContext=_lastActiveEditorContext;
+- (void)_resetLastActiveEditorContext;
 - (void)editorContextWasRemoved:(id)arg1;
 - (void)_updateNavigationTargetedEditorContextIsValidObservingToken;
-- (void)editorContextDidBecomeLastActiveEditor:(id)arg1 focused:(BOOL)arg2;
+- (void)editorContextDidBecomeLastActiveEditor:(id)arg1;
 - (void)windowWillClose:(id)arg1;
 - (void)updateSafeAreaHierarchyWindow;
 - (void)showSafeAreaHierarchyPanel;

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-               BuildableName = "Plugin_CustomizeAnnotations.xcplugin"
+               BuildableName = "Plugin_CustomizeAnnotations.ideplugin"
                BlueprintName = "Plugin_CustomizeAnnotations"
                ReferencedContainer = "container:Plugin_CustomizeAnnotations/Plugin_CustomizeAnnotations.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-               BuildableName = "Plugin_HideDistractions.xcplugin"
+               BuildableName = "Plugin_HideDistractions.ideplugin"
                BlueprintName = "Plugin_HideDistractions"
                ReferencedContainer = "container:Plugin_HideDistractions/Plugin_HideDistractions.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "435E247113A8E4A20052479A"
-               BuildableName = "Plugin_NavigationFixes.xcplugin"
+               BuildableName = "Plugin_NavigationFixes.ideplugin"
                BlueprintName = "Plugin_NavigationFixes"
                ReferencedContainer = "container:Plugin_NavigationFixes/Plugin_NavigationFixes.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "435E247113A8E4A20052479A"
-               BuildableName = "Plugin_Malterlib.xcplugin"
+               BuildableName = "Plugin_Malterlib.ideplugin"
                BlueprintName = "Plugin_Malterlib"
                ReferencedContainer = "container:Plugin_Malterlib/Plugin_Malterlib.xcodeproj">
             </BuildableReference>
@@ -71,7 +71,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "435E247113A8E4A20052479A"
-               BuildableName = "Plugin_P4Checkout.xcplugin"
+               BuildableName = "Plugin_P4Checkout.ideplugin"
                BlueprintName = "Plugin_P4Checkout"
                ReferencedContainer = "container:Plugin_P4Checkout/Plugin_P4Checkout.xcodeproj">
             </BuildableReference>
@@ -104,7 +104,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-            BuildableName = "Plugin_CustomizeAnnotations.xcplugin"
+            BuildableName = "Plugin_CustomizeAnnotations.ideplugin"
             BlueprintName = "Plugin_CustomizeAnnotations"
             ReferencedContainer = "container:Plugin_CustomizeAnnotations/Plugin_CustomizeAnnotations.xcodeproj">
          </BuildableReference>
@@ -120,7 +120,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-            BuildableName = "Plugin_CustomizeAnnotations.xcplugin"
+            BuildableName = "Plugin_CustomizeAnnotations.ideplugin"
             BlueprintName = "Plugin_CustomizeAnnotations"
             ReferencedContainer = "container:Plugin_CustomizeAnnotations/Plugin_CustomizeAnnotations.xcodeproj">
          </BuildableReference>

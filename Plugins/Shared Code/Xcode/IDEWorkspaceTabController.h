@@ -194,6 +194,8 @@
 - (void)_showAppChooserForCurrentSchemeIfNecessaryForCommand:(id)arg1 launch:(CDUnknownBlockType)arg2;
 - (id)_generateErrorForScheme:(id)arg1;
 - (void)showModalAlertForScheme:(id)arg1;
+- (void)showPackagePluginActivationAlertForPluginNamed:(id)arg1 isUnknown:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)showBuildToolPluginFingerprintsAlertForScheme:(id)arg1 schemeTask:(long long)arg2 schemeCommand:(id)arg3 runDestination:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)runWithoutBuildingForSchemeIdentifier:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
 - (void)generateRemarksForFileAtPath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)compileFileAtPath:(id)arg1 forSchemeCommand:(id)arg2;

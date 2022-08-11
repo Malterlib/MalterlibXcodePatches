@@ -19,7 +19,7 @@
 #import "IDETestableDataSource_IndexProvider-Protocol.h"
 #import "_TtP13IDEFoundation32IDESchemeFileReference_Workspace_-Protocol.h"
 
-@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTOneShotBlock, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELaunchSessionLogReporter, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
+@class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTOneShotBlock, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEBuildParameters, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELaunchSessionLogReporter, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDEResultBundleURLRedirector, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
 @protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEPackageManagerWorkspace, IDEWorkspaceDelegate;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_, IDEClientTracking, IDEProvisionableProvider, IDEIssueLogDataSource>
@@ -91,6 +91,7 @@
     BOOL _indexCreationInFlight;
     BOOL _didFinishBuildingInitialBlueprintProviderOrderedSet;
     NSMapTable *_pendingExecutionNotificationTokens;
+    IDEResultBundleURLRedirector *_resultBundleURLRedirector;
     BOOL _isWaitingForSourcePackages;
     BOOL _wasLoadedForUIContext;
     BOOL _hostsOnlyWrappedContainer;
@@ -115,6 +116,8 @@
     id <IDEActiveRunContextStoring> _activeRunContextStore;
 }
 
++ (id)keyPathsForValuesAffectingActiveBuildParameters;
++ (id)keyPathsForValuesAffectingProvisionableDestinations;
 + (id)keyPathsForValuesAffectingProvisionableDevices;
 + (id)keyPathsForValuesAffectingProvisionables;
 + (BOOL)_shouldTrackReadOnlyStatus;
@@ -138,6 +141,7 @@
 + (void)initialize;
 + (id)globalScopeStore;
 + (id)createGlobalScopeStore;
++ (id)blueprintsByActivityLogSectionSignature:(id)arg1;
 // - (void).cxx_destruct;
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
@@ -178,8 +182,9 @@
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) NSDictionary *uniqueIdentifiersToReferencedBlueprints; // @synthesize uniqueIdentifiersToReferencedBlueprints=_uniqueIdentifiersToReferencedBlueprints;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
-@property(retain) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
+@property(readonly) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
 @property(readonly) DVTFilePath *containingDirectory;
+@property(readonly, nonatomic) IDEBuildParameters *activeBuildParameters;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
 - (void)notifyBuildSystemServiceThatBlueprintProviderDidChange:(id)arg1;
@@ -235,6 +240,7 @@
 - (void)_setupIssueManagerIfNeeded;
 @property(readonly) IDELogManager *logManager;
 - (void)_setupLogManagerIfNeeded;
+@property(readonly, nonatomic) IDEResultBundleURLRedirector *resultBundleURLRedirector;
 - (id)blueprintsContainingFilePaths:(id)arg1;
 @property(readonly) NSArray *notificationPayloadFileReferences;
 @property(readonly) NSSet *customDataStores;
@@ -294,6 +300,7 @@
 - (BOOL)_shouldLoadUISubsystems;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
 - (void)analyzeModelForIssues;
+- (void)setIssueLog:(IDEActivityLogSection *)issueLog;
 - (void)_setFileRefsWithContainerLoadingIssues:(id)arg1;
 - (void)_handleContainerResolutionFailureForFileReference:(id)arg1;
 - (void)_clearPendingFileReferencesAndContainerLoadingTokens;
@@ -333,11 +340,12 @@
 - (id)ideIndex_bestSchemeForBlueprint:(id)arg1;
 - (id)ideIndex_buildParametersForIndexingBlueprint:(id)arg1 synthesizedMacroOverrides:(id)arg2;
 - (void)_updateUniqueIdentifiersToReferencedBlueprints;
-- (void)issueLogDataSourceDidChangeForUntypedDataSource:(id)arg1;
-- (void)issueLogDataSourceDidChangeForBlueprintProvider:(id)arg1;
-- (void)issueLogDataSourceDidChangeForBlueprint:(id)arg1;
-- (void)issueLogDataSourceDidChangeForWorkspace:(id)arg1;
-- (void)issueLogDataSourceDidChange;
+- (void)issueLogDataSourceRequiresIntegrityAnalysisForUntypedDataSource:(id)arg1;
+- (void)issueLogDataSourceRequiresIntegrityAnalysisForBlueprintProvider:(id)arg1;
+- (void)issueLogDataSourceRequiresIntegrityAnalysisForBlueprint:(id)arg1;
+- (void)issueLogDataSourceRequiresIntegrityAnalysisForWorkspace:(id)arg1;
+- (void)issueLogDataSourceRequiresIntegrityAnalysis;
+- (void)issueLogDataSourceChangedIssueLog:(id)arg1 oldIssueLog:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
@@ -347,6 +355,7 @@
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 @property(readonly) IDEWorkspace *workspace;
+@property(readonly) BOOL workspaceIntegrityProviderShouldNotProcessIssueLog;
 
 @end
 

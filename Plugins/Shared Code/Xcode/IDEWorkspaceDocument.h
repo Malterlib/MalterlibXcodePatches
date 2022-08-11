@@ -113,6 +113,7 @@
 - (id)dvt_extraBindings;
 - (void)clearRecentRunDestinations;
 - (void)setCurrentRunDestination:(id)arg1 activeScheme:(id)arg2;
+- (id)lastUsedRunDestinationIfAvailableForScheme:(id)arg1;
 - (id)orderedRecentRunDestinationsForScheme:(id)arg1;
 - (void)clearRecentSchemes;
 - (void)clearSchemeHistory:(id)arg1;

@@ -371,8 +371,6 @@ static void setEditorFocus(NSWindow* _pWindow)
 	[editor takeFocus];
 }
 
-static Plugin_NavigationFixes *singleton = nil;
-
 #include "Plugin_NavigationFixes_SwiftCall.h"
 #include "Plugin_NavigationFixes_Navigation.h"
 #include "Plugin_NavigationFixes_InterceptShortcuts.h"
@@ -413,6 +411,11 @@ static Plugin_NavigationFixes *singleton = nil;
 								   name: NSWindowDidBecomeKeyNotification
 								 object: nil];
 
+		[notificationCenter addObserver: self
+							   selector: @selector( DVTPlugInDidLoad: )
+								   name: @"DVTPlugInDidLoad"
+								 object: nil];
+
 		eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler: [self registerNavigationHandler]];
 	}
 	return self;
@@ -423,18 +426,17 @@ static Plugin_NavigationFixes *singleton = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (void) pluginDidLoad:(NSBundle *)plugin
++ (id)capability
 {
-	if (singleton)
+	return nil;
+}
+
+- (void) DVTPlugInDidLoad:(NSNotification *)notification
+{
+	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_NavigationFixes"])
 		return;
-	XcodePluginPreflight(true);
 
-	singleton = [[Plugin_NavigationFixes alloc] init];
-
-	if (!singleton)
-	{
-		XcodePluginLog(@"%s: Emulate visual studio init failed.\n",__FUNCTION__);
-	}
+	XcodePluginPreflight(false);
 
 	NSError *error = NULL;
 	g_pSourceLocationColumnRegex = [NSRegularExpression regularExpressionWithPattern:@"^(.*?):([0-9]*):([0-9]*):?"

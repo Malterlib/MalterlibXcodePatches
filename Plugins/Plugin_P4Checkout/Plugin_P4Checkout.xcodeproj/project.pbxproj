@@ -12,6 +12,7 @@
 		03318ED91937BC2C00132304 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03318ED81937BC2C00132304 /* Cocoa.framework */; };
 		0372C85819378EA900364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85719378EA900364146 /* XcodePlugin.m */; };
 		038BCA3E17A7DF66006F86F1 /* Plugin_P4Unlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0301F88717A7DC9F0089B894 /* Plugin_P4Unlock.m */; };
+		03B5FA4F28A56354007582BD /* Plugin_P4Checkout.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */; };
 		437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437DCBC314D41E700039CB49 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +24,8 @@
 		03318ED81937BC2C00132304 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0372C85619378EA900364146 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		0372C85719378EA900364146 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
-		435E247213A8E4A20052479A /* Plugin_P4Checkout.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_P4Checkout.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Plugin_P4Checkout.xcplugindata; sourceTree = SOURCE_ROOT; };
+		435E247213A8E4A20052479A /* Plugin_P4Checkout.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_P4Checkout.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,9 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03B5FA4D28A5633C007582BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		435E246513A8E4510052479A = {
 			isa = PBXGroup;
 			children = (
+				03B5FA4D28A5633C007582BD /* Resources */,
 				03318ED81937BC2C00132304 /* Cocoa.framework */,
 				0311800617A7FE460077BF7A /* DVTFoundation.framework */,
 				435E247313A8E4A20052479A /* Products */,
@@ -53,7 +64,7 @@
 		435E247313A8E4A20052479A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				435E247213A8E4A20052479A /* Plugin_P4Checkout.xcplugin */,
+				435E247213A8E4A20052479A /* Plugin_P4Checkout.ideplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,7 +99,7 @@
 			);
 			name = Plugin_P4Checkout;
 			productName = XCode4_P4Unlock;
-			productReference = 435E247213A8E4A20052479A /* Plugin_P4Checkout.xcplugin */;
+			productReference = 435E247213A8E4A20052479A /* Plugin_P4Checkout.ideplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -122,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B5FA4F28A56354007582BD /* Plugin_P4Checkout.xcplugindata in Resources */,
 				03318ED71937B98000132304 /* README.md in Resources */,
 				437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */,
 			);
@@ -255,12 +267,12 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.malterlib.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_P4Checkout;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Debug;
 		};
@@ -281,12 +293,12 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.malterlib.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_P4Checkout;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Release;
 		};

@@ -89,7 +89,6 @@
 - (void)_handleWorkspaceContainerInserted:(id)arg1;
 - (void)_handleWorkspaceContainersChanges:(id)arg1;
 - (void)_handleCurrentDebugSessionStateChanged:(id)arg1;
-- (void)_dealWithSanitizerPauseOnIssuesMigration;
 - (id)initWithWorkspace:(id)arg1 error:(id *)arg2;
 
 // Remaining properties

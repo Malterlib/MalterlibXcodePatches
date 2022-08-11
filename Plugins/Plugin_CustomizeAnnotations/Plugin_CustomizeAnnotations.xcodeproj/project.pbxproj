@@ -10,6 +10,7 @@
 		035F8BE81750D17400D22849 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035F8BE71750D17400D22849 /* AppKit.framework */; };
 		035F8BEA1750D9D400D22849 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035F8BE91750D9D400D22849 /* QuartzCore.framework */; };
 		0368C2D0176C9F4E006AAFD8 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0368C2CF176C9F4E006AAFD8 /* DVTKit.framework */; };
+		03B5FA4928A54560007582BD /* Plugin_CustomizeAnnotations.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA4828A544B7007582BD /* Plugin_CustomizeAnnotations.xcplugindata */; };
 		5514A3FA1506CB8F00A8AD77 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5514A3F91506CB8F00A8AD77 /* XcodePlugin.m */; };
 		55C015D212B7BC2500354E5C /* Plugin_CustomizeAnnotations.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C015D112B7BC2500354E5C /* Plugin_CustomizeAnnotations.m */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
@@ -21,11 +22,12 @@
 		035F8BE71750D17400D22849 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		035F8BE91750D9D400D22849 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		0368C2CF176C9F4E006AAFD8 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
+		03B5FA4828A544B7007582BD /* Plugin_CustomizeAnnotations.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plugin_CustomizeAnnotations.xcplugindata; sourceTree = "<group>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		5514A3F91506CB8F00A8AD77 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		5595EEEB150067CB00A30634 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		55C015D112B7BC2500354E5C /* Plugin_CustomizeAnnotations.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = Plugin_CustomizeAnnotations.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
-		8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_CustomizeAnnotations.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_CustomizeAnnotations.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 			children = (
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				03B5FA4828A544B7007582BD /* Plugin_CustomizeAnnotations.xcplugindata */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -96,7 +99,7 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.xcplugin */,
+				8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.ideplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,7 +122,7 @@
 			name = Plugin_CustomizeAnnotations;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = Plugin_DisableAnimations;
-			productReference = 8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.xcplugin */;
+			productReference = 8D5B49B6048680CD000E48DA /* Plugin_CustomizeAnnotations.ideplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -152,6 +155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B5FA4928A54560007582BD /* Plugin_CustomizeAnnotations.xcplugindata in Resources */,
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,12 +203,12 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_CustomizeAnnotations;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Debug;
 		};
@@ -225,12 +229,12 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_CustomizeAnnotations;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Release;
 		};

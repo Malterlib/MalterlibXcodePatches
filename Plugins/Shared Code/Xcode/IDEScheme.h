@@ -54,7 +54,7 @@
     IDEArchiveSchemeAction *_archiveSchemeAction;
     IDEIntegrateSchemeAction *_integrateSchemeAction;
     IDEInstallSchemeAction *_installSchemeAction;
-    NSHashTable *_mutableReferencedContainerObservers;
+    NSHashTable *_mutableSchemeSubsystemNotificationObservers;
     IDEEntityIdentifier *_schemeIdentifier;
     NSError *_loadError;
     NSNumber *_schemeRunnableRequiresPairedProxyDeviceOverride;
@@ -90,7 +90,7 @@
 @property(retain) IDERunDestination *lastChosenRunDestination; // @synthesize lastChosenRunDestination=_lastChosenRunDestination;
 @property(nonatomic, getter=isPersisted) BOOL persisted; // @synthesize persisted=_persisted;
 @property(getter=isTransient) BOOL transient; // @synthesize transient=_transient;
-@property(readonly, nonatomic) NSHashTable *mutableReferencedContainerObservers; // @synthesize mutableReferencedContainerObservers=_mutableReferencedContainerObservers;
+@property(readonly, nonatomic) NSHashTable *mutableSchemeSubsystemNotificationObservers; // @synthesize mutableSchemeSubsystemNotificationObservers=_mutableSchemeSubsystemNotificationObservers;
 @property BOOL wasUpgraded; // @synthesize wasUpgraded=_wasUpgraded;
 @property BOOL hasRunUpgradeCheck; // @synthesize hasRunUpgradeCheck=_hasRunUpgradeCheck;
 @property(copy) NSString *lastUpgradeVersion; // @synthesize lastUpgradeVersion=_lastUpgradeVersion;
@@ -136,8 +136,10 @@
 - (void)_unionTestsToRunInOperationParameters:(id)arg1 withSharedTestBlueprintNames:(id)arg2;
 - (id)_writeTestProductsForCommand:(id)arg1 buildParameters:(id)arg2 testPlanRunSpecifications:(id)arg3 runDestination:(id)arg4 testProductsPath:(id)arg5;
 - (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 deviceAvailableChecker:(CDUnknownBlockType)arg9 error:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
+- (id)_errorForEmbeddedWatchContentMissingPlatformWithOperationParameters:(id)arg1;
 - (id)_variantSpecifiersForTestingWithSchemeOperationParameters:(id)arg1 schemeCommand:(id)arg2 runDestination:(id)arg3 buildParameters:(id)arg4;
 - (id)_variantBuildParametersFromBuildParameters:(id)arg1 directoryName:(id)arg2 overridingBuildSettings:(id)arg3;
+- (id)buildParametersForOperationParameters:(id)arg1 buildPurpose:(long long)arg2 overridingProperties:(id)arg3 overridingBuildConfiguration:(id)arg4;
 - (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 buildCommand:(long long)arg5 destination:(id)arg6 overridingProperties:(id)arg7 overridingBuildConfiguration:(id)arg8 overridingTestingSpecifiers:(id)arg9 collectBuildTimeStatistics:(BOOL)arg10 collectTimelineMetrics:(BOOL)arg11;
 - (id)buildParametersForTask:(long long)arg1 executionEnvironment:(id)arg2 buildPurpose:(long long)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8 collectBuildTimeStatistics:(BOOL)arg9 collectTimelineMetrics:(BOOL)arg10;
 - (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2 codeCoverageEnabled:(BOOL)arg3 sanitizerOptions:(unsigned long long)arg4;
@@ -164,6 +166,7 @@
 - (void)_invalidateAvailableRunDestinations;
 - (void)immediatelyInvalidateAvailableRunDestinations;
 @property(readonly) NSArray *nonFaultingAvailableRunDestinations;
+- (BOOL)schemeRunnableEmbedsWatchContentForRunDestination:(id)arg1;
 - (BOOL)_schemeRunnableEmbedsWatchContent;
 - (BOOL)schemeRunnableIsForIndependentWatch;
 @property(readonly) BOOL schemeRunnableIsForWatchApplication;
@@ -207,7 +210,6 @@
 - (id)initFromUnarchiver:(BOOL)arg1 runContextManager:(id)arg2 customDataStoreContainer:(id)arg3 customDataSpecifier:(id)arg4 isShown:(BOOL)arg5 orderHint:(unsigned long long)arg6;
 - (void)_createDefaultSchemeActions;
 - (BOOL)isRunDestinationAvailable:(id)arg1;
-@property(readonly) IDERunDestination *lastChosenDestinationIfAvailable;
 - (id)runnableForSchemeCommand:(id)arg1;
 - (BOOL)ideIndex_containsBlueprint:(id)arg1;
 @property(nonatomic, readonly) id _customDataStoreContainer;

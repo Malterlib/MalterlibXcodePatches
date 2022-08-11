@@ -94,16 +94,24 @@ IMP XcodePluginOverrideStaticMethod(Class class0, SEL selector, IMP newImplement
 {
   IMP result = nil;
     
-  XcodePluginAssertOrPerform(class0, goto cleanup);
-  XcodePluginAssertOrPerform(selector, goto cleanup);
-  XcodePluginAssertOrPerform(newImplementation, goto cleanup);
+  if (!class0)
+    goto cleanup;
+
+  if (!selector)
+    goto cleanup;
+
+  if (!newImplementation)
+      goto cleanup;
     
   Method originalMethod = class_getClassMethod(class0, selector);
-  XcodePluginAssertOrPerform(originalMethod, goto cleanup);
+  if (!originalMethod)
+    goto cleanup;
     
   IMP originalImplementation = method_getImplementation(originalMethod);
+  
   IMP setImplementationResult = method_setImplementation(originalMethod, newImplementation);
-  XcodePluginAssertOrPerform(setImplementationResult, goto cleanup);
+  if (!setImplementationResult)
+    goto cleanup;
     
   result = originalImplementation;
     

@@ -1,6 +1,8 @@
 #pragma once
 
 #import <Foundation/Foundation.h>
+#include <os/lock.h>
+#import "Xcode/DVTPlugIn.h"
 
 
 #ifdef _DEBUG
@@ -29,10 +31,10 @@
                                                                                                             \
         if (loadAttempt < XcodePluginMaxLoadAttempts)                                                           \
         {                                                                                                   \
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), \
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10.0 * NSEC_PER_SEC), dispatch_get_main_queue(), \
                 ^(void)                                                                                     \
                 {                                                                                           \
-                    [self pluginDidLoad: plugin];                                                           \
+                    [self DVTPlugInDidLoad: notification];                                                           \
                 });                                                                                         \
         }                                                                                                   \
                                                                                                             \

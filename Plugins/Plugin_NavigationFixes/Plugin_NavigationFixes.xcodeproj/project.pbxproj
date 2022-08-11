@@ -19,7 +19,7 @@
 		0382BA6D199516B500E48ED4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0382BA6C199516B500E48ED4 /* Carbon.framework */; };
 		03916CB71F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03916CB61F7EDF010033DF98 /* Plugin_NavigationFixes_MoveWord.swift */; };
 		0398642A1F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039864291F7F819B004C5D66 /* Plugin_NavigationFixes_LocalSymbol.cpp */; };
-		03C6C65E25F7CCFE00318197 /* Xcode in Resources */ = {isa = PBXBuildFile; fileRef = 03C6C65D25F7CCFE00318197 /* Xcode */; };
+		03B5FA4B28A56164007582BD /* Plugin_NavigationFixes.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA4A28A56164007582BD /* Plugin_NavigationFixes.xcplugindata */; };
 		03D3949B1F8A40A1007B9283 /* Plugin_NavigationFixes_Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */; };
 		03DAA8851F7F0AB900617869 /* XcodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAA8841F7F0AB900617869 /* XcodePlugin.swift */; };
 		03FDB0CE1F7FFCC000B6CD73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */; };
@@ -50,6 +50,7 @@
 		03AA39961F7E64C4004264BE /* Plugin_NavigationFixes_PasteNoFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_PasteNoFormat.h; sourceTree = "<group>"; };
 		03AB677D28539AD90034DD84 /* SourceEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceEditor.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/SourceEditor.framework; sourceTree = "<group>"; };
 		03AC25E41F8011A80064AADD /* Plugin_NavigationFixes_Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin_NavigationFixes_Xcode.swift; sourceTree = "<group>"; };
+		03B5FA4A28A56164007582BD /* Plugin_NavigationFixes.xcplugindata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Plugin_NavigationFixes.xcplugindata; sourceTree = "<group>"; };
 		03C6C65D25F7CCFE00318197 /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = "../Shared Code/Xcode"; sourceTree = "<group>"; };
 		03DAA8841F7F0AB900617869 /* XcodePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XcodePlugin.swift; path = "../Shared Code/XcodePlugin.swift"; sourceTree = "<group>"; };
 		03DAA8861F7F0D9000617869 /* Plugin_NavigationFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes.h; sourceTree = "<group>"; };
@@ -58,7 +59,7 @@
 		03E69FF51F7A6DAB00D0A690 /* Plugin_NavigationFixes_Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_NavigationFixes_Navigation.h; sourceTree = "<group>"; };
 		03F332F61B891CA30014B200 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		03FDB0CD1F7FFCC000B6CD73 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_NavigationFixes.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		435E247213A8E4A20052479A /* Plugin_NavigationFixes.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_NavigationFixes.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		435E248513A8E5A40052479A /* Plugin_NavigationFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin_NavigationFixes.m; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
@@ -82,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03B5FA4C28A5617B007582BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				03B5FA4A28A56164007582BD /* Plugin_NavigationFixes.xcplugindata */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		03DAA87B1F7EE6ED00617869 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +105,7 @@
 		435E246513A8E4510052479A = {
 			isa = PBXGroup;
 			children = (
+				03B5FA4C28A5617B007582BD /* Resources */,
 				03C6C65D25F7CCFE00318197 /* Xcode */,
 				435E248913A8E5B70052479A /* Sources */,
 				0306EE591F81848B00850443 /* XcodePlugin.mm */,
@@ -117,7 +127,7 @@
 		435E247313A8E4A20052479A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */,
+				435E247213A8E4A20052479A /* Plugin_NavigationFixes.ideplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,7 +172,7 @@
 			);
 			name = Plugin_NavigationFixes;
 			productName = XCode4_beginning_of_line;
-			productReference = 435E247213A8E4A20052479A /* Plugin_NavigationFixes.xcplugin */;
+			productReference = 435E247213A8E4A20052479A /* Plugin_NavigationFixes.ideplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -201,8 +211,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03C6C65E25F7CCFE00318197 /* Xcode in Resources */,
 				437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */,
+				03B5FA4B28A56164007582BD /* Plugin_NavigationFixes.xcplugindata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,12 +390,12 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_NavigationFixes;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Debug;
 		};
@@ -407,12 +417,12 @@
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/$(XCODE_DOTTED_VERSION)/Xcode/Plug-ins";
+				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_NavigationFixes;
 				STRIP_INSTALLED_PRODUCT = NO;
-				WRAPPER_EXTENSION = xcplugin;
+				WRAPPER_EXTENSION = ideplugin;
 			};
 			name = Release;
 		};

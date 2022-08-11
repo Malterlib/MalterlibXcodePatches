@@ -10,9 +10,10 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class NSSet;
+@class IDEBuildParameters, NSSet;
 
 @protocol IDEProvisionableProvider <DVTInvalidation>
+@property(readonly, nonatomic) IDEBuildParameters *activeBuildParameters;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
 @property(readonly, nonatomic) NSSet *provisionables;
 @property(readonly, nonatomic) BOOL finishedLoading;

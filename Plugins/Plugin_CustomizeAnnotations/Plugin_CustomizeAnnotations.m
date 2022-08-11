@@ -75,8 +75,34 @@ static void overridenewMessageAttributesForFont(id self, SEL _cmd, DVTTextAnnota
     ((void (*)(id, SEL, DVTTextAnnotationTheme*, id))gOriginalnewMessageAttributesForFont)(self, _cmd , newTheme, arg2);
 }
 
-+ (void)pluginDidLoad: (NSBundle *)plugin{
+- (id) init {
+	self = [super init];
+	if (self)
+	{
+		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
+
+		[notificationCenter addObserver: self
+								 selector: @selector( DVTPlugInDidLoad: )
+									 name: @"DVTPlugInDidLoad"
+								 object: nil];
+	}
+	return self;
+}
+
+- (void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (id)capability
+{
+	return nil;
+}
+
+- (void)DVTPlugInDidLoad:(NSNotification *)notification {
 	
+	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_CustomizeAnnotations"])
+		return;
+
 	XcodePluginPreflight(false);
 	float lineAlpha = 0.4;	//whole line
 	float topAlpha = 0.4;	//the right-hand label

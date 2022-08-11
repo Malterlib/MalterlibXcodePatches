@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "435E247113A8E4A20052479A"
-               BuildableName = "Plugin_P4Checkout.xcplugin"
+               BuildableName = "Plugin_P4Checkout.ideplugin"
                BlueprintName = "Plugin_P4Checkout"
                ReferencedContainer = "container:Plugin_P4Checkout.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "435E247113A8E4A20052479A"
-            BuildableName = "Plugin_P4Checkout.xcplugin"
+            BuildableName = "Plugin_P4Checkout.ideplugin"
             BlueprintName = "Plugin_P4Checkout"
             ReferencedContainer = "container:Plugin_P4Checkout.xcodeproj">
          </BuildableReference>

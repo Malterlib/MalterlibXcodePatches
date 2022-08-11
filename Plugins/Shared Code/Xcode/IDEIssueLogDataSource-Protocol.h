@@ -13,7 +13,10 @@
 @class IDEActivityLogSection;
 
 @protocol IDEIssueLogDataSource <NSObject, DVTInvalidation>
-@property(readonly) IDEActivityLogSection *issueLog;
+@property(retain, nonatomic) IDEActivityLogSection *issueLog;
 - (void)analyzeModelForIssues;
+
+@optional
+@property(readonly) BOOL workspaceIntegrityProviderShouldNotProcessIssueLog;
 @end
 

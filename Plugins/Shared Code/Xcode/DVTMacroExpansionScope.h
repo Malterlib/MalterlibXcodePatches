@@ -12,9 +12,11 @@
 
 
 @class DVTMacroDefinitionTable, NSDictionary;
+@protocol DVTMacroExpansionScopeDataSource;
 
 @interface DVTMacroExpansionScope : NSObject <NSCopying>
 {
+    id <DVTMacroExpansionScopeDataSource> _dataSource;
     DVTMacroExpansionScope *_parentScope;
     DVTMacroDefinitionTable *_macroDefnTable;
     NSDictionary *_condParamValues;
@@ -36,6 +38,7 @@
 + (id)newWithParentScope:(id)arg1 macros:(id)arg2 definitionLevel:(long long)arg3 conditionParameterValues:(id)arg4;
 + (id)newWithParentScope:(id)arg1 macros:(id)arg2 definitionLevel:(long long)arg3 conditionParameterValues:(id)arg4 preserveUnresolvedReferences:(BOOL)arg5;
 + (id)stringForDefinitionLevel:(long long)arg1;
++ (id)newWithDataSource:(id)arg1;
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3;
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5;
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 expansionOptions:(unsigned long long)arg6;
@@ -44,6 +47,7 @@
 - (void)appendDebugDescriptionToStringBuilder:(struct DVTStringBuilder *)arg1 indent:(unsigned long long)arg2;
 - (id)nextScopeForOwnDefinitionLevel;
 - (id)scopeByRemovingAllTablesAtDefinitionLevel:(long long)arg1;
+- (void)allExportedMacroNamesAndValuesWithCompletion:(CDUnknownBlockType)arg1;
 - (id)sortedLongDescription;
 - (id)longDescriptionInSortedMacroNameOrder;
 - (id)longDescriptionInScopeAncestryOrder;
@@ -51,6 +55,7 @@
 - (id)description;
 - (id)descriptionWithLocale:(id)arg1 indent:(unsigned long long)arg2;
 - (void)appendAdditionalContentToStringBuilder:(struct DVTStringBuilder *)arg1 indent:(unsigned long long)arg2;
+- (id)dataSource;
 - (id)allMacroNames;
 - (id)allConditionParameterValues;
 - (id)valueForConditionParameter:(id)arg1;
@@ -66,6 +71,7 @@
 - (void)dealloc;
 - (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 expansionOptions:(unsigned long long)arg6;
 - (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 conditionParameterFallbackValues:(id)arg6 expansionOptions:(unsigned long long)arg7;
+- (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 dataSource:(id)arg4 definitionLevelsToClear:(id)arg5 conditionParameterValues:(id)arg6 conditionParameterFallbackValues:(id)arg7 expansionOptions:(unsigned long long)arg8;
 - (id)evaluateMacroExpression:(id)arg1 asStringListForLiteralStringValue:(id)arg2;
 - (id)evaluateMacroExpression:(id)arg1 asStringForLiteralStringValue:(id)arg2;
 - (BOOL)evaluatedBooleanValueForMacroExpression:(id)arg1;
