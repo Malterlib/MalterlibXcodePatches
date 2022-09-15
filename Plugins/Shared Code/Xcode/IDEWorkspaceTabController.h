@@ -148,6 +148,7 @@
 - (void)showSharedLibrariesPopUp:(id)arg1;
 - (void)attachByPIDOrName:(id)arg1;
 - (void)attachToProcess:(id)arg1;
+- (void)simulateVehicularCrash:(id)arg1;
 - (void)uiSnapshotRefresh:(id)arg1;
 - (void)simulateMetricPayloads:(id)arg1;
 - (void)backgroundFetchEvent:(id)arg1;
