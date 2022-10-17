@@ -28,6 +28,7 @@
 // - (void).cxx_destruct;
 @property(readonly) NSNumber *timestamp; // @synthesize timestamp=_timestamp;
 @property(readonly) NSURL *documentURL; // @synthesize documentURL=_documentURL;
+@property(readonly, nonatomic) NSString *pasteboardRepresentation;
 - (id)locationParameters;
 - (id)documentParameters;
 - (id)documentPath;

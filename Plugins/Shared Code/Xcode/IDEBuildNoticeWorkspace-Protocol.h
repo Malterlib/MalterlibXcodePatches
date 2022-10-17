@@ -9,14 +9,14 @@
 //
 
 @class IDEWorkspaceNoticeSubsystem, NSArray;
-@protocol DVTCancellable, DVTInvalidation, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildNoticeLogStore;
+@protocol DVTCancellable, DVTInvalidation, IDEBlueprintProvider, IDEBuildNoticeLogRecord, IDEBuildNoticeLogStore;
 
 @protocol IDEBuildNoticeWorkspace
 - (id <IDEBuildNoticeLogStore>)makeLogStoreForNoticeLogs;
 - (id <DVTInvalidation>)observeActiveNoticeDomains:(void (^)(void))arg1;
 - (id <DVTCancellable>)observeLatestBuildLogIdentityDidChange:(void (^)(void))arg1;
 - (NSArray *)activeNoticeDomains;
-@property(nonatomic, readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
+@property(nonatomic, readonly) id <IDEBuildNoticeLogRecord> latestBuildLogRecordForBuildNoticeProvider;
 @property(nonatomic, readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
 @property(nonatomic, readonly) IDEWorkspaceNoticeSubsystem *noticeSubsystem;
 @end

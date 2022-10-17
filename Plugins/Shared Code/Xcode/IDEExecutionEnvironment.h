@@ -12,7 +12,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
+@class DVTObservingToken, DVTStackBacktrace, IDEActivityLogRecord, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
 @protocol IDEClientTracking, IDEPreBuildSavingDelegate;
 
 @interface IDEExecutionEnvironment : NSObject <DVTInvalidation>
@@ -55,7 +55,7 @@
 }
 
 + (BOOL)automaticallyNotifiesObserversOfCurrentLaunchSession;
-+ (id)keyPathsForValuesAffectingLatestBuildLog;
++ (id)keyPathsForValuesAffectingLatestBuildLogRecord;
 + (id)keyPathsForValuesAffectingLogRecords;
 + (id)keyPathsForValuesAffectingBreakpointManager;
 + (BOOL)automaticallyNotifiesObserversForCurrentExecutionTracker;
@@ -95,7 +95,7 @@
 - (void)promoteXPCExecutionTrackerForDisplay:(id)arg1;
 @property(readonly) NSArray *interfaceBuilderLogs;
 @property(readonly) IDEActivityLogSection *latestCompleteBuildLog;
-@property(readonly) IDEActivityLogSection *latestBuildLog;
+@property(readonly) IDEActivityLogRecord *latestBuildLogRecord;
 @property(readonly, copy) NSArray *logRecords;
 - (void)_storeLogForOperation:(id)arg1;
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 terminationSignpost:(CDUnknownBlockType)arg5 suppressingErrorPresentation:(BOOL)arg6 error:(id *)arg7;

@@ -29,14 +29,14 @@
 
 + (id)defaultOverlayTintedGlassGradient;
 + (id)defaultOverlayGlassGradient;
-+ (id)_themeForVariant:(int)arg1 normal:(id)arg2 faded:(id)arg3 dimmed:(id)arg4;
++ (id)_themeForVariant:(long long)arg1 normal:(id)arg2 faded:(id)arg3 dimmed:(id)arg4;
 + (void)_createThemeVariants:(id *)arg1 faded:(id *)arg2 dimmed:(id *)arg3 highlightColor:(id)arg4 bubbleColor:(id)arg5 darkBubbleColor:(id)arg6;
-+ (id)grayGlassTextAnnotationThemeForVariant:(int)arg1;
-+ (id)purpleGlassTextAnnotationThemeForVariant:(int)arg1;
-+ (id)blueGlassTextAnnotationThemeForVariant:(int)arg1;
-+ (id)greenGlassTextAnnotationThemeForVariant:(int)arg1;
-+ (id)redGlassTextAnnotationThemeForVariant:(int)arg1;
-+ (id)yellowGlassTextAnnotationThemeForVariant:(int)arg1;
++ (id)grayGlassTextAnnotationThemeForVariant:(long long)arg1;
++ (id)purpleGlassTextAnnotationThemeForVariant:(long long)arg1;
++ (id)blueGlassTextAnnotationThemeForVariant:(long long)arg1;
++ (id)greenGlassTextAnnotationThemeForVariant:(long long)arg1;
++ (id)redGlassTextAnnotationThemeForVariant:(long long)arg1;
++ (id)yellowGlassTextAnnotationThemeForVariant:(long long)arg1;
 + (id)defaultTheme;
 + (id)_caretColor;
 + (id)greenTextAnnotationBaseHighlightColor;

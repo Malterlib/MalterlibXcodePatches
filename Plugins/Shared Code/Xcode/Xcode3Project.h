@@ -30,7 +30,7 @@
 {
     PBXProject *_project;
     PBXReference *_projectReference;
-    int _saveErrorCode;
+    long long _saveErrorCode;
     NSArray *_targets;
     NSMapTable *_pbxTargetsToXc3Targets;
     NSArray *_testables;
@@ -120,10 +120,6 @@
 - (id)_deferredCustomUpgradeTaskForUUID:(id)arg1;
 - (id)_registerDeferredCustomUpgradeTask:(id)arg1 handler:(id)arg2;
 - (void)enumerateUpgradeTasksWithBlock:(CDUnknownBlockType)arg1;
-- (void)updateLastSwiftMigrationToCurrent;
-@property(readonly) BOOL lastSwiftMigrationIsCurrent;
-- (void)updateLastSwiftUpdateVersionToCurrent;
-@property(readonly) NSString *lastSwiftUpdateVersion;
 @property(readonly) BOOL shouldLogUpgradeCheck;
 - (void)_runUpgradeChecksIfNecessary;
 - (BOOL)setBuildSettingsFromDictionary:(id)arg1 forConfigurationsNamed:(id)arg2 error:(id *)arg3;

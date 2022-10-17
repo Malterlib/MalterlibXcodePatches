@@ -37,11 +37,13 @@
 + (id)_defaultsKeyForEventBehavior:(unsigned long long)arg1;
 + (unsigned long long)_eventBehaviorForEventType:(unsigned long long)arg1 event:(id)arg2;
 + (BOOL)useOptionShiftBehaviorForCurrentEvent;
++ (unsigned long long)eventBehaviorForEventType:(unsigned long long)arg1 event:(id)arg2;
 + (unsigned long long)_eventBehaviorForEventType:(unsigned long long)arg1;
 + (void)_openNavigationOverlayTargetSelection:(id)arg1 inEditorArea:(id)arg2 defaultNavigationOptions:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
 + (void)_openEditorContext:(id)arg1 workspaceTabController:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 + (id)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 eventBehavior:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (id)_openRequestForEditorHistoryItem:(id)arg1 editorContext:(id)arg2 eventBehavior:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
++ (id)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (id)openEditorHistoryItem:(id)arg1 forEditor:(id)arg2 takeFocus:(unsigned long long)arg3;
 + (id)openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3;
 + (void)_openEditorOpenSpecifierInNavigationHUD:(id)arg1 forWorkspaceTabController:(id)arg2;
@@ -52,6 +54,7 @@
 + (id)_openEditorOpenSpecifier:(id)arg1 forWorkspaceTabController:(id)arg2 target:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (id)_openEditorOpenSpecifier:(id)arg1 forWorkspaceTabController:(id)arg2 eventType:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (id)_openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
++ (id)openEditorOpenSpecifier:(id)arg1 forEditor:(id)arg2 eventType:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;
 + (BOOL)_shouldAlwaysOpenInRequestingEditorContext:(id)arg1;
 + (id)_openEditorOpenSpecifier:(id)arg1 forWorkspaceTabController:(id)arg2 eventBehavior:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4 completionBlock:(CDUnknownBlockType)arg5;
 + (id)_openRequestForEditorOpenSpecifier:(id)arg1 editorContext:(id)arg2 eventBehavior:(unsigned long long)arg3 takeFocus:(unsigned long long)arg4;

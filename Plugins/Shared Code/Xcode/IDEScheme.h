@@ -77,6 +77,7 @@
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
++ (id)archivePromptContentWithWorkspace:(id)arg1;
 // - (void).cxx_destruct;
 @property(copy) NSNumber *schemeRunnableRequiresPairedProxyDeviceOverride; // @synthesize schemeRunnableRequiresPairedProxyDeviceOverride=_schemeRunnableRequiresPairedProxyDeviceOverride;
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;

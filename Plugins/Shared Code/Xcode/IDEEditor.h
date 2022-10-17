@@ -109,7 +109,7 @@
 @property(nonatomic) BOOL canToggleCodeReview;
 @property(nonatomic) unsigned long long codeReviewPreference;
 @property(readonly, nonatomic) BOOL codeReviewEnabled;
-- (int)editorMode;
+- (long long)editorMode;
 @property(readonly, nonatomic) IDENavigableItem *greatestDocumentAncestor;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (id)_initWithNibName:(id)arg1 bundle:(id)arg2;

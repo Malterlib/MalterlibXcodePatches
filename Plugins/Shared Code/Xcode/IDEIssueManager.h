@@ -46,7 +46,7 @@
     NSHashTable *_cachedBlueprintsForShowingIssuesForActiveScheme;
     NSHashTable *_cachedBlueprintsForActiveScheme;
     NSHashTable *_cachedContainersForActiveScheme;
-    int _currentIssueFilterStyle;
+    long long _currentIssueFilterStyle;
     id _issueFilterStyleObserver;
     id _schemeBuildablesObserver;
     DVTObservingToken *_activeSchemeObserver;

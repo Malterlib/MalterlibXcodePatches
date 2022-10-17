@@ -120,7 +120,7 @@
     NSMutableDictionary *_markdownNodeToFontDeriverBlock;
     NSColor *_ghostComplementTextColor;
     double _lineSpacing;
-    int _cursor;
+    long long _cursor;
     BOOL _builtIn;
     BOOL _loadedData;
     BOOL _contentNeedsSaving;
@@ -171,8 +171,8 @@
 @property(readonly) long long scrollerKnobStyle;
 - (BOOL)hasLightBackground;
 - (double)additionalLineHeightForBaseLineHeight:(double)arg1;
-- (void)setCursor:(int)arg1;
-@property(readonly) int cursor;
+- (void)setCursor:(long long)arg1;
+@property(readonly) long long cursor;
 - (void)setLineSpacing:(double)arg1;
 @property(readonly) double lineSpacing;
 - (void)setFont:(id)arg1 forNodeTypes:(id)arg2;

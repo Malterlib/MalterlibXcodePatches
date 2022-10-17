@@ -20,7 +20,7 @@
 #import "_TtP13IDEFoundation32IDESchemeFileReference_Workspace_-Protocol.h"
 
 @class DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTOneShotBlock, DVTStackBacktrace, IDEActivityLogMessage, IDEActivityLogSection, IDEBreakpointManager, IDEBuildParameters, IDEConcreteClientTracker, IDEContainer, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEDynamicContentRootGroup, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELaunchSessionLogReporter, IDELocalizationManager, IDELocalizationWorkspaceMonitor, IDELogManager, IDEProvisioningManager, IDEProvisioningWorkspaceMonitor, IDERefactoring, IDEResultBundleURLRedirector, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextFragmentIndex, IDEWorkspaceArena, IDEWorkspaceNoticeSubsystem, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDate, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSet, NSString, _TtC13IDEFoundation30IDEStructureEditingCoordinator, _TtC16DVTDocumentation23DVTDocumentationManager;
-@protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogSection, IDEBuildSystemService, IDECustomDataStoring, IDEPackageManagerWorkspace, IDEWorkspaceDelegate;
+@protocol IDEActiveRunContextStoring, IDEBlueprintProvider, IDEBuildNoticeLogRecord, IDEBuildSystemService, IDECustomDataStoring, IDEPackageManagerWorkspace, IDEWorkspaceDelegate;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDETestableDataSource_IndexProvider, IDEBuildNoticeWorkspace, _TtP13IDEFoundation32IDESchemeFileReference_Workspace_, IDEClientTracking, IDEProvisionableProvider, IDEIssueLogDataSource>
 {
@@ -94,6 +94,7 @@
     IDEResultBundleURLRedirector *_resultBundleURLRedirector;
     BOOL _isWaitingForSourcePackages;
     BOOL _wasLoadedForUIContext;
+    BOOL _finishedInitialPackageResolution;
     BOOL _hostsOnlyWrappedContainer;
     BOOL _hostsOnlyXcode3Project;
     BOOL _hostsOnlyPackages;
@@ -162,6 +163,7 @@
 @property BOOL hostsOnlyWrappedContainer; // @synthesize hostsOnlyWrappedContainer=_hostsOnlyWrappedContainer;
 @property(readonly) DVTFilePath *wrappedContainerPath; // @synthesize wrappedContainerPath=_wrappedContainerPath;
 @property(readonly, nonatomic) BOOL postLoadingPerformanceMetricsAllowed; // @synthesize postLoadingPerformanceMetricsAllowed=_postLoadingPerformanceMetricsAllowed;
+@property(nonatomic) BOOL finishedInitialPackageResolution; // @synthesize finishedInitialPackageResolution=_finishedInitialPackageResolution;
 @property(nonatomic) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
 @property(retain, nonatomic) NSString *xcbuildSandboxProfile; // @synthesize xcbuildSandboxProfile=_xcbuildSandboxProfile;
 @property(nonatomic) BOOL wasLoadedForUIContext; // @synthesize wasLoadedForUIContext=_wasLoadedForUIContext;
@@ -182,7 +184,7 @@
 @property BOOL isWaitingForSourcePackages; // @synthesize isWaitingForSourcePackages=_isWaitingForSourcePackages;
 @property(retain) NSDictionary *uniqueIdentifiersToReferencedBlueprints; // @synthesize uniqueIdentifiersToReferencedBlueprints=_uniqueIdentifiersToReferencedBlueprints;
 @property(retain) IDEDynamicContentRootGroup *dynamicContentRootGroup; // @synthesize dynamicContentRootGroup=_dynamicContentRootGroup;
-@property(readonly) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
+@property(retain, nonatomic) IDEActivityLogSection *issueLog; // @synthesize issueLog=_issueLog;
 @property(readonly) DVTFilePath *containingDirectory;
 @property(readonly, nonatomic) IDEBuildParameters *activeBuildParameters;
 @property(readonly, nonatomic) NSSet *provisionableDestinations;
@@ -300,7 +302,6 @@
 - (BOOL)_shouldLoadUISubsystems;
 - (void)holdOnDiskFilesForICloudDriveIfNecessary;
 - (void)analyzeModelForIssues;
-- (void)setIssueLog:(IDEActivityLogSection *)issueLog;
 - (void)_setFileRefsWithContainerLoadingIssues:(id)arg1;
 - (void)_handleContainerResolutionFailureForFileReference:(id)arg1;
 - (void)_clearPendingFileReferencesAndContainerLoadingTokens;
@@ -333,7 +334,7 @@
 - (id)activeNoticeDomains;
 @property(readonly) id <IDEBlueprintProvider> noticeWorkspaceWrappedContainer;
 - (id)observeLatestBuildLogIdentityDidChange:(CDUnknownBlockType)arg1;
-@property(readonly) id <IDEBuildNoticeLogSection> latestBuildLogForBuildNoticeProvider;
+@property(readonly) id <IDEBuildNoticeLogRecord> latestBuildLogRecordForBuildNoticeProvider;
 - (id)ideModelObjectTypeIdentifier;
 - (id)ideIndex_configurationNameForIndexingBlueprint:(id)arg1 scheme:(id)arg2;
 - (id)ideIndex_runDestinationForIndexingWithScheme:(id)arg1;

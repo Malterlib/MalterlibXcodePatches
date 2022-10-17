@@ -32,7 +32,6 @@
     BOOL _recreateIsRequired;
     BOOL _debuggerIdentifierChanged;
     BOOL _isRuntimeIssue;
-    int _breakpointStackSelectionBehavior;
     NSString *_uuid;
     NSString *_displayName;
     IDEBreakpointBucket *_bucket;
@@ -42,6 +41,7 @@
     NSString *_condition;
     unsigned long long _ignoreCount;
     unsigned long long _hitCount;
+    long long _breakpointStackSelectionBehavior;
     NSString *_customStopReasonString;
     NSSet *_actionClassesToIgnoreAsModified;
     NSArray *_customUnresolvedTooltipParts;
@@ -60,7 +60,7 @@
 @property(readonly) NSSet *actionClassesToIgnoreAsModified; // @synthesize actionClassesToIgnoreAsModified=_actionClassesToIgnoreAsModified;
 @property(copy) NSString *customStopReasonString; // @synthesize customStopReasonString=_customStopReasonString;
 @property BOOL debuggerIdentifierChanged; // @synthesize debuggerIdentifierChanged=_debuggerIdentifierChanged;
-@property int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
+@property long long breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
 @property(nonatomic) BOOL recreateIsRequired; // @synthesize recreateIsRequired=_recreateIsRequired;
 @property BOOL isBeingModified; // @synthesize isBeingModified=_isBeingModified;
 @property(nonatomic) BOOL shouldBeModifiedAfterCreation; // @synthesize shouldBeModifiedAfterCreation=_shouldBeModifiedAfterCreation;

@@ -352,6 +352,8 @@
 - (BOOL)_isCurrentEventARepeatKeyDownEvent;
 - (void)_updateSubDocumentNavigableItems;
 - (void)_selectNavigableItem:(id)arg1 updateOutputSelection:(id)arg2;
+- (void)_disableGeniusResultUpdatesDuringSwipeAnimation:(BOOL)arg1;
+- (void)_updateGeniusResults;
 @property(retain, nonatomic) IDEEditorAreaSplit *editorAreaSplit;
 @property(retain) IDEEditorModeViewController *editorModeViewController;
 - (void)setEmptyContentString:(id)arg1;

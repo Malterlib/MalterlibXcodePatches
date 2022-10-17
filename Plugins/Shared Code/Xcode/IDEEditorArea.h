@@ -23,7 +23,7 @@
 @interface IDEEditorArea : IDEViewController <NSTouchBarProvider, NSTouchBarDelegate, IDEBottomBarContextProvider, IDEEditorMultipleSplitDelegate, NSWindowDelegate, DVTSplitViewDelegate, IDESafeAreaAwareContainer>
 {
     NSView *_editorAreaSplitHostView;
-    int _editorMode;
+    long long _editorMode;
     DVTObservingToken *_workspaceActivityObserver;
     DVTObservingToken *_navigationTargetedEditorContextIsValidObservingToken;
     DVTObservingToken *_finishedLoadingObservingToken;
@@ -57,7 +57,7 @@
     DVTNotificationToken *_safeAreaHierarchyUpdateToken;
     NSArray *_beforeMaximizeEditorAreaSplitStates;
     NSIndexPath *_indexPathOfMaximizedEditorAreaSplit;
-    int _beforeComparisonMode_UserVisibleEditorMode;
+    long long _beforeComparisonMode_UserVisibleEditorMode;
     NSDictionary *_unrestoredStateDictionary;
     BOOL _alwaysShowTabBar;
     BOOL _isRestoringState;
@@ -77,7 +77,7 @@
 }
 
 + (id)_copyEditorAreaSplitToParentEditorMultipleSplit:(id)arg1 client:(unsigned long long)arg2;
-+ (int)defaultEditorMode;
++ (long long)defaultEditorMode;
 + (void)_performConfigurationTransaction:(CDUnknownBlockType)arg1;
 + (BOOL)_isRunningConfigurationTransaction;
 + (id)_configurationTransactionScope;
@@ -92,7 +92,7 @@
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
 + (id)keyPathsForValuesAffectingBottomBarContext;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
-+ (id)stringForEditorMode:(int)arg1;
++ (id)stringForEditorMode:(long long)arg1;
 + (id)keyPathsForValuesAffectingLastActiveEditorAreaSplit;
 + (BOOL)_newEditorsHaveEmptyContent;
 // - (void).cxx_destruct;
@@ -142,7 +142,7 @@
 - (void)_cancelPendingStateRestoration;
 @property(readonly) unsigned long long editorAreaSplitsLayout;
 @property(readonly) IDEEditorModeViewController *editorModeViewController;
-@property(nonatomic) int editorMode; // @synthesize editorMode=_editorMode;
+@property(nonatomic) long long editorMode; // @synthesize editorMode=_editorMode;
 - (void)_resetEditorSizes;
 - (BOOL)_canResetEditorSizes;
 - (void)_closeEditorContext:(id)arg1 client:(unsigned long long)arg2;

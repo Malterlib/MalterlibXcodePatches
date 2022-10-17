@@ -69,7 +69,7 @@
 + (BOOL)automaticallyNotifiesObserversOfActivity;
 + (id)containerDataFilePathsForFilePath:(id)arg1;
 + (BOOL)supportsFilePersistence;
-+ (id)_errorSavingContainer:(id)arg1 code:(int)arg2;
++ (id)_errorSavingContainer:(id)arg1 code:(long long)arg2;
 + (double)_defaltSlowAutosaveDelay;
 + (double)_defaltAutosaveDelay;
 + (BOOL)automaticallyNotifiesObserversOfContainerEdited;
