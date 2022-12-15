@@ -3,14 +3,14 @@ tbd-version:     4
 targets:         [ x86_64-macos, arm64-macos ]
 uuids:
   - target:          x86_64-macos
-    value:           AFB6EEB5-A187-3381-ABF4-0C3EA501A02E
+    value:           8D7160FA-E4DA-3DB7-8DFE-C70C2E5DF564
   - target:          arm64-macos
-    value:           AEDA32A4-1EDF-3577-BFB9-A689B94F0A86
+    value:           FB28AAEA-FC54-3AA2-9AA0-D309292EF885
 install-name:    '@rpath/llbuild.framework/Versions/A/llbuild'
 current-version: 9999.99
 swift-abi-version: 7
 exports:
-  - targets:         [ arm64-macos, x86_64-macos ]
+  - targets:         [ x86_64-macos, arm64-macos ]
     symbols:         [ '_$s10Foundation4DateV7llbuildEyACSo33llb_build_value_file_timestamp_t_VcfC', 
                        '_$s7llbuild10BuildValueC04hashC0Sivg', '_$s7llbuild10BuildValueC04hashC0SivgTq', 
                        '_$s7llbuild10BuildValueC04hashC0SivpMV', '_$s7llbuild10BuildValueC11FailedInputCAEycfC', 
@@ -253,6 +253,7 @@ exports:
                        '_$s7llbuild17BuildDBKeysResultCyAA0B3KeyCSicig', '_$s7llbuild17BuildDBKeysResultCyAA0B3KeyCSicipMV', 
                        '_$s7llbuild19BuildEngineDelegateMp', '_$s7llbuild19BuildEngineDelegatePAAE5erroryySSF', 
                        '_$s7llbuild19BuildEngineDelegateTL', '_$s7llbuild19BuildSystemDelegateMp', 
+                       '_$s7llbuild19BuildSystemDelegatePAAE24determinedRuleNeedsToRun_6reason05inputF0yAA0B3KeyC_So013llb_rule_run_J2_taAHSgtF', 
                        '_$s7llbuild19BuildSystemDelegatePAAE32commandFoundDiscoveredDependency_4path4kindyAA7CommandV_SSSo038llb_buildsystem_discovered_dependency_J2_tatF', 
                        '_$s7llbuild19BuildSystemDelegatePAAE34chooseCommandFromMultipleProducers6output8commandsAA0F0VSgAA0B3KeyC_SayAHGtF', 
                        '_$s7llbuild19BuildSystemDelegateTL', '_$s7llbuild19NinjaBuildStatementV11descriptionSSvg', 
@@ -521,4 +522,5 @@ exports:
                        _llb_enable_tracing, _llb_free, _llb_get_api_version, _llb_get_full_version_string, 
                        _llb_get_quality_of_service, _llb_manifest_destroy, _llb_manifest_fs_load, 
                        _llb_set_quality_of_service, _llb_task_create ]
+    weak-symbols:    [ ___llvm_profile_filename, ___llvm_profile_raw_version, _lprofDirMode ]
 ...
