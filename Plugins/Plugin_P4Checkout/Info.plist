@@ -24,7 +24,11 @@
 	<string>1</string>
 	<key>DVTPlugInCompatibilityUUIDs</key>
 	<array>
-		<string>C91F3560-00E7-4749-8E3F-4D83B1496051</string>
+		<string>5A3C3028-2E4A-4051-B093-7CA5FD4CD8D4</string>
+	</array>
+	<key>DVTPlugInHostRequirements</key>
+	<array>
+		<string>foundation</string>
 	</array>
 	<key>NSPrincipalClass</key>
 	<string>Plugin_P4Checkout</string>

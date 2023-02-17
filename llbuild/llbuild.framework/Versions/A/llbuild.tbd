@@ -1,11 +1,6 @@
 --- !tapi-tbd
 tbd-version:     4
 targets:         [ x86_64-macos, arm64-macos ]
-uuids:
-  - target:          x86_64-macos
-    value:           8D7160FA-E4DA-3DB7-8DFE-C70C2E5DF564
-  - target:          arm64-macos
-    value:           FB28AAEA-FC54-3AA2-9AA0-D309292EF885
 install-name:    '@rpath/llbuild.framework/Versions/A/llbuild'
 current-version: 9999.99
 swift-abi-version: 7
@@ -229,6 +224,8 @@ exports:
                        '_$s7llbuild15ExternalCommandPAAE12provideValueyyAA0C0V_AA011BuildSystemC9InterfaceVAA0fE0CSutF', 
                        '_$s7llbuild15ExternalCommandPAAE15dependencyPathsSaySSGvg', 
                        '_$s7llbuild15ExternalCommandPAAE15dependencyPathsSaySSGvpMV', 
+                       '_$s7llbuild15ExternalCommandPAAE16workingDirectorySSSgvg', 
+                       '_$s7llbuild15ExternalCommandPAAE16workingDirectorySSSgvpMV', 
                        '_$s7llbuild15ExternalCommandPAAE19depedencyDataFormatSo40llb_buildsystem_dependency_data_format_tavg', 
                        '_$s7llbuild15ExternalCommandPAAE19depedencyDataFormatSo40llb_buildsystem_dependency_data_format_tavpMV', 
                        '_$s7llbuild15ExternalCommandPAAE5startyyAA0C0V_AA011BuildSystemC9InterfaceVtF', 
@@ -325,7 +322,6 @@ exports:
                        '_$s7llbuild4RulePAAE12updateStatusyySo22llb_rule_status_kind_taF', 
                        '_$s7llbuild4RulePAAE13isResultValidySbAA5ValueVF', '_$s7llbuild4RuleTL', 
                        '_$s7llbuild4TaskMp', '_$s7llbuild4TaskTL', '_$s7llbuild4ToolMp', 
-                       '_$s7llbuild4ToolPAAE13createCommandyAA08ExternalD0_pSgSSF', 
                        '_$s7llbuild4ToolPAAE19createCustomCommandyAA08ExternalE0_pSgAA8BuildKeyC0D4TaskCF', 
                        '_$s7llbuild4ToolTL', '_$s7llbuild5ValueV04hashB0Sivg', '_$s7llbuild5ValueV04hashB0SivpMV', 
                        '_$s7llbuild5ValueV11descriptionSSvg', '_$s7llbuild5ValueV11descriptionSSvpMV', 
