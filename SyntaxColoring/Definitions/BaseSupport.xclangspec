@@ -459,6 +459,10 @@
                 "assure_used",
                 "align_cacheline",
                 "intrinsic",
+                "carries_dependency",
+                "fallthrough",
+                "nodiscard",
+                "optimize_for_synchronized",
              );
             Type = "xcode.syntax.keyword";
         };
@@ -1032,6 +1036,7 @@
                 "uncaught_exceptions",
                 "current_exception",
                 "make_exception_ptr",
+                "main",
              );
             Type = "xcode.syntax.identifier.function.system";
         };
