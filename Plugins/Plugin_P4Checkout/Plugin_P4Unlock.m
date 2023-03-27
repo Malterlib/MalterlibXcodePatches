@@ -11,6 +11,7 @@ static Class g_EditorDocumentClass;
 @end
 
 @implementation Plugin_P4Checkout
+static Plugin_P4Checkout *singleton = nil;
 
 #define DYNAMIC_CAST(x, cls)	\
 	({	\
@@ -198,15 +199,6 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 
 - (id) init {
 	self = [super init];
-	if (self)
-	{
-		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
-
-		[notificationCenter addObserver: self
-								 selector: @selector( DVTPlugInDidLoad: )
-									 name: @"DVTPlugInDidLoad"
-								 object: nil];
-	}
 	return self;
 }
 
@@ -219,11 +211,8 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 	return nil;
 }
 
-- (void) DVTPlugInDidLoad:(NSNotification *)notification
+- (void) onLoad
 {
-	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_P4Checkout"])
-		return;
-
 	XcodePluginPreflight(false);
 
 	g_EditorDocumentClass = NSClassFromString(@"IDEEditorDocument");
@@ -234,4 +223,11 @@ static void _unlockIfNeededCompletionBlock(id self_, SEL _cmd, void (^completion
 
 	XcodePluginPostflight();
 }
+
+void InitPlugin(void)
+{
+	singleton = [[Plugin_P4Checkout alloc] init];
+	[singleton onLoad];
+}
+
 @end

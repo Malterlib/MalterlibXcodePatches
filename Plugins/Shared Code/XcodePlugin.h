@@ -34,7 +34,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10.0 * NSEC_PER_SEC), dispatch_get_main_queue(), \
                 ^(void)                                                                                     \
                 {                                                                                           \
-                    [self DVTPlugInDidLoad: notification];                                                           \
+                    [self onLoad];                                                           \
                 });                                                                                         \
         }                                                                                                   \
                                                                                                             \

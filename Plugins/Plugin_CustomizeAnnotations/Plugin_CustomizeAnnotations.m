@@ -27,6 +27,8 @@ static DVTTextAnnotationTheme * debuggerTheme;
 static DVTTextAnnotationTheme * grayTheme;
 
 @implementation Plugin_CustomizeAnnotations
+static Plugin_CustomizeAnnotations *singleton = nil;
+
 
 static double override_defaultMessageFontSize(SEL _cmd)
 {	
@@ -77,15 +79,6 @@ static void overridenewMessageAttributesForFont(id self, SEL _cmd, DVTTextAnnota
 
 - (id) init {
 	self = [super init];
-	if (self)
-	{
-		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
-
-		[notificationCenter addObserver: self
-								 selector: @selector( DVTPlugInDidLoad: )
-									 name: @"DVTPlugInDidLoad"
-								 object: nil];
-	}
 	return self;
 }
 
@@ -98,11 +91,7 @@ static void overridenewMessageAttributesForFont(id self, SEL _cmd, DVTTextAnnota
 	return nil;
 }
 
-- (void)DVTPlugInDidLoad:(NSNotification *)notification {
-	
-	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_CustomizeAnnotations"])
-		return;
-
+- (void)onLoad {
 	XcodePluginPreflight(false);
 	float lineAlpha = 0.4;	//whole line
 	float topAlpha = 0.4;	//the right-hand label
@@ -203,6 +192,12 @@ static void overridenewMessageAttributesForFont(id self, SEL _cmd, DVTTextAnnota
 
 
 	XcodePluginPostflight();
+}
+
+void InitPlugin(void)
+{
+	singleton = [[Plugin_CustomizeAnnotations alloc] init];
+	[singleton onLoad];
 }
 
 @end

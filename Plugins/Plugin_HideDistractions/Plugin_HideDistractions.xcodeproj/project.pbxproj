@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03B5FA5128A5638B007582BD /* Plugin_HideDistractions.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA5028A56379007582BD /* Plugin_HideDistractions.xcplugindata */; };
+		03E867F729D212AB0095ECDC /* XcodePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E867F629D212AB0095ECDC /* XcodePlugin.mm */; };
 		03F1FCA61F73AE310039A765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F1FCA51F73AE310039A765 /* Cocoa.framework */; };
 		5514A4031506CB9E00A8AD77 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5514A4021506CB9E00A8AD77 /* XcodePlugin.m */; };
 		55C015D212B7BC2500354E5C /* Plugin_HideDistractions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C015D112B7BC2500354E5C /* Plugin_HideDistractions.m */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		031D2850284EAD110069FB25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		03B5FA5028A56379007582BD /* Plugin_HideDistractions.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plugin_HideDistractions.xcplugindata; sourceTree = "<group>"; };
+		03E867F629D212AB0095ECDC /* XcodePlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XcodePlugin.mm; path = "/opt/Source/MalterlibXcodePatches/Plugins/Plugin_Malterlib/../Shared Code/XcodePlugin.mm"; sourceTree = "<absolute>"; };
 		03F1FCA51F73AE310039A765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5514A4021506CB9E00A8AD77 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		5595EEF1150067D400A30634 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
@@ -71,6 +73,7 @@
 			children = (
 				5595EEF1150067D400A30634 /* XcodePlugin.h */,
 				5514A4021506CB9E00A8AD77 /* XcodePlugin.m */,
+				03E867F629D212AB0095ECDC /* XcodePlugin.mm */,
 				55C015D112B7BC2500354E5C /* Plugin_HideDistractions.m */,
 			);
 			name = Classes;
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C015D212B7BC2500354E5C /* Plugin_HideDistractions.m in Sources */,
+				03E867F729D212AB0095ECDC /* XcodePlugin.mm in Sources */,
 				5514A4031506CB9E00A8AD77 /* XcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,7 +183,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_HideDistractions;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = ideplugin;
@@ -200,7 +204,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.themha.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_HideDistractions;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = ideplugin;
@@ -211,6 +215,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -255,6 +260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;

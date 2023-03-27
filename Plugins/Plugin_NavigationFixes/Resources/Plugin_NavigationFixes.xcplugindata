@@ -17,14 +17,12 @@
 		<dict>
 			<key>Plugin_NavigationFixes</key>
 			<dict>
-				<key>serviceClass</key>
+				<key>initializationClass</key>
 				<string>Plugin_NavigationFixes</string>
 				<key>id</key>
-				<string>info.olofsson.Plugin-NavigationFixes</string>
-				<key>device</key>
-				<string>Xcode.Device.LocalComputer</string>
+				<string>com.apple.custom.Plugin-NavigationFixes</string>
 				<key>point</key>
-				<string>Xcode.DeviceService</string>
+				<string>Xcode.IDEFoundation.IDEInitialization</string>
 			</dict>
 		</dict>
 		<key>extension-points</key>

@@ -15,20 +15,13 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 @end
 
 @implementation Plugin_HideDistractions
+static Plugin_HideDistractions *singleton = nil;
+
 @synthesize  	 hideDistractionsMenuItem,
 					 isShowingDistractions;
 
 - (id) init {
 	self = [super init];
-	if (self)
-	{
-		NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
-
-		[notificationCenter addObserver: self
-								 selector: @selector( DVTPlugInDidLoad: )
-									 name: @"DVTPlugInDidLoad"
-								 object: nil];
-	}
 	return self;
 }
 
@@ -41,11 +34,7 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	return nil;
 }
 
-- (void)DVTPlugInDidLoad:(NSNotification *)notification	{
-
-	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_HideDistractions"])
-		return;
-
+- (void) onLoad	{
 	XcodePluginPreflight(false);
 	if ([NSRunningApplication currentApplication].finishedLaunching) {
 		[self applicationFinishedLaunching:nil];
@@ -56,6 +45,13 @@ static NSUInteger kHideDistractionsKeyModifiers 	= (NSEventModifierFlagCommand |
 	}
 	XcodePluginPostflight();
 }
+
+void InitPlugin(void)
+{
+	singleton = [[Plugin_HideDistractions alloc] init];
+	[singleton onLoad];
+}
+
 - (void)applicationFinishedLaunching: (NSNotification *)notification
 {
 	NSMenu *mainMenu 				= [NSApp mainMenu];

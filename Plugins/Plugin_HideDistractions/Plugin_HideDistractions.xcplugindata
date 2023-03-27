@@ -17,14 +17,12 @@
 		<dict>
 			<key>Plugin_HideDistractions</key>
 			<dict>
-				<key>serviceClass</key>
+				<key>initializationClass</key>
 				<string>Plugin_HideDistractions</string>
 				<key>id</key>
-				<string>com.themha.Plugin-HideDistractions</string>
-				<key>device</key>
-				<string>Xcode.Device.LocalComputer</string>
+				<string>com.apple.custom.Plugin-HideDistractions</string>
 				<key>point</key>
-				<string>Xcode.DeviceService</string>
+				<string>Xcode.IDEFoundation.IDEInitialization</string>
 			</dict>
 		</dict>
 		<key>extension-points</key>

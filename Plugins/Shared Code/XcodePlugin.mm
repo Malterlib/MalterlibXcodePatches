@@ -1,6 +1,18 @@
 extern "C" {
 	#import "XcodePlugin.h"
+
+	void InitPlugin();
 }
+
+struct CInit
+{
+	CInit()
+	{
+		InitPlugin();
+	}
+};
+
+CInit g_Init;
 
 #import <objc/runtime.h>
 #import <Cocoa/Cocoa.h>

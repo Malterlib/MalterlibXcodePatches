@@ -341,6 +341,7 @@ static void * NavigationFixesNSObjectKey_displayCycleObserver_sequence = &Naviga
 @end
 
 @implementation Plugin_NavigationFixes
+static Plugin_NavigationFixes *singleton = nil;
 
 static IDESourceEditor_SourceCodeEditor *getEditor(NSWindow* _pWindow)
 {
@@ -411,11 +412,6 @@ static void setEditorFocus(NSWindow* _pWindow)
 								   name: NSWindowDidBecomeKeyNotification
 								 object: nil];
 
-		[notificationCenter addObserver: self
-							   selector: @selector( DVTPlugInDidLoad: )
-								   name: @"DVTPlugInDidLoad"
-								 object: nil];
-
 		eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler: [self registerNavigationHandler]];
 	}
 	return self;
@@ -431,11 +427,8 @@ static void setEditorFocus(NSWindow* _pWindow)
 	return nil;
 }
 
-- (void) DVTPlugInDidLoad:(NSNotification *)notification
+- (void) onLoad
 {
-	if (![((DVTPlugIn *)notification.object).name isEqualToString:@"Plugin_NavigationFixes"])
-		return;
-
 	XcodePluginPreflight(false);
 
 	NSError *error = NULL;
@@ -482,6 +475,12 @@ static void setEditorFocus(NSWindow* _pWindow)
 	XcodePluginAssertOrPerform(original_menuItemWithKeyEquivalentMatchingEventRef || original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012, goto failed);
 
 	XcodePluginPostflight();
+}
+
+void InitPlugin(void)
+{
+	singleton = [[Plugin_NavigationFixes alloc] init];
+	[singleton onLoad];
 }
 
 @end

@@ -13,6 +13,7 @@
 		0372C85819378EA900364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85719378EA900364146 /* XcodePlugin.m */; };
 		038BCA3E17A7DF66006F86F1 /* Plugin_P4Unlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0301F88717A7DC9F0089B894 /* Plugin_P4Unlock.m */; };
 		03B5FA4F28A56354007582BD /* Plugin_P4Checkout.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */; };
+		03E867FB29D212B40095ECDC /* XcodePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E867FA29D212B40095ECDC /* XcodePlugin.mm */; };
 		437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437DCBC314D41E700039CB49 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +25,8 @@
 		03318ED81937BC2C00132304 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0372C85619378EA900364146 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		0372C85719378EA900364146 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
-		03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Plugin_P4Checkout.xcplugindata; sourceTree = SOURCE_ROOT; };
+		03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plugin_P4Checkout.xcplugindata; sourceTree = SOURCE_ROOT; };
+		03E867FA29D212B40095ECDC /* XcodePlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XcodePlugin.mm; path = "/opt/Source/MalterlibXcodePatches/Plugins/Plugin_Malterlib/../Shared Code/XcodePlugin.mm"; sourceTree = "<absolute>"; };
 		435E247213A8E4A20052479A /* Plugin_P4Checkout.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_P4Checkout.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				0301F88717A7DC9F0089B894 /* Plugin_P4Unlock.m */,
 				0372C85619378EA900364146 /* XcodePlugin.h */,
 				0372C85719378EA900364146 /* XcodePlugin.m */,
+				03E867FA29D212B40095ECDC /* XcodePlugin.mm */,
 				437DCBC314D41E700039CB49 /* InfoPlist.strings */,
 				435E248413A8E5A40052479A /* Info.plist */,
 			);
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				038BCA3E17A7DF66006F86F1 /* Plugin_P4Unlock.m in Sources */,
+				03E867FB29D212B40095ECDC /* XcodePlugin.mm in Sources */,
 				0372C85819378EA900364146 /* XcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +173,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -213,6 +218,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -269,7 +275,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.malterlib.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_P4Checkout;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = ideplugin;
@@ -295,7 +301,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.malterlib.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_P4Checkout;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = ideplugin;

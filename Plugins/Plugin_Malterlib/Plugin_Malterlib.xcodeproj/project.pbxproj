@@ -346,7 +346,7 @@
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_Malterlib;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = ideplugin;
@@ -374,7 +374,7 @@
 				INSTALL_PATH = /Library/Developer/Xcode/PrivatePlugIns;
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "info.olofsson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.custom.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Plugin_Malterlib;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = ideplugin;

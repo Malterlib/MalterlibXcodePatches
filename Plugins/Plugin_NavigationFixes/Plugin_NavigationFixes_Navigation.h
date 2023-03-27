@@ -689,6 +689,8 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 					{
 						DVTOutlineView *outlineView = window.navigationFixesProperties.activeDVTExplorerOutlineView;
 
+						bool bIsIssuesNavigator = !!window.navigationFixesProperties.activeIssueNavigator;
+
 						NSInteger row = outlineView.selectedRowIndexes.lastIndex;
 						NSInteger nRows = outlineView.numberOfRows;
 
@@ -697,17 +699,31 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 							if (bExpandNext)
 								return nil; // Does not work
 
-							if (row == 0)
+							while (true)
 							{
-								[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: nRows - 1] byExtendingSelection: NO];
-								[outlineView scrollRowToVisible: nRows - 1];
+								if (row == 0)
+								{
+									[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: nRows - 1] byExtendingSelection: NO];
+									[outlineView scrollRowToVisible: nRows - 1];
 
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
-							}
-							else
-							{
-								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+									[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+									[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
+								}
+								else
+								{
+									[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+								}
+
+								row = outlineView.selectedRowIndexes.lastIndex;
+
+								NSString *pFromatted = @"";
+								if (outlineView.selectedItems.count == 1)
+									pFromatted = [NSString stringWithFormat:@"%@", outlineView.selectedItems[0]];
+
+								if ([pFromatted hasPrefix: @"MirrorID(Domain"] || [pFromatted hasPrefix: @"MirrorID(File"])
+									;
+								else
+									break;
 							}
 						}
 						else
@@ -728,7 +744,31 @@ static bool handleFieldEditorEvent(unsigned short keyCode, NSUInteger ModifierFl
 								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
 							}
 							else
+							{
 								[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
+							}
+
+							while (outlineView.selectedItems.count == 1)
+							{
+								NSString *pFromatted = [NSString stringWithFormat:@"%@", outlineView.selectedItems[0]];
+								if ([pFromatted hasPrefix: @"MirrorID(Domain"] || [pFromatted hasPrefix: @"MirrorID(File"])
+									[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
+								else
+									break;
+							}
+						}
+
+						// Workaround bug in Xcode
+						if (bIsIssuesNavigator)
+						{
+							NSIndexSet *pOldSeleted = outlineView.selectedRowIndexes;
+							[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: 0] byExtendingSelection: NO];
+							[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
+							[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+
+							[outlineView selectRowIndexes: pOldSeleted byExtendingSelection: NO];
+							[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_UpArrow characterCode: NSUpArrowFunctionKey window: window];
+							[Plugin_NavigationFixes sendKeyToOutlineView: outlineView keyCode: kVK_DownArrow characterCode: NSDownArrowFunctionKey window: window];
 						}
 
 						bSetEditorFocus = true;
