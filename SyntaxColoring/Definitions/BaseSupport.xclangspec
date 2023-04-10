@@ -884,6 +884,7 @@
                 "noop_coroutine_promise",
                 "noop_coroutine_handle",
                 "exception_ptr",
+                "initializer_list",
              );
             Type = "xcode.syntax.identifier.class";
         };
