@@ -95,7 +95,7 @@
 	<key>DVTSourceTextInvisiblesColor</key>
 	<string>0.5 0.5 0.5 1</string>
 	<key>DVTSourceTextSelectionColor</key>
-	<string>0.238923 0.238923 0.238923 1</string>
+	<string>0.0 0.329 0.325 1</string>
 	<key>DVTSourceTextSyntaxColors</key>
 	<dict>
 		<key>xcode.syntax.markup.aside.kind</key>
