@@ -13,8 +13,8 @@
 		0372C85819378EA900364146 /* XcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372C85719378EA900364146 /* XcodePlugin.m */; };
 		038BCA3E17A7DF66006F86F1 /* Plugin_P4Unlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0301F88717A7DC9F0089B894 /* Plugin_P4Unlock.m */; };
 		03B5FA4F28A56354007582BD /* Plugin_P4Checkout.xcplugindata in Resources */ = {isa = PBXBuildFile; fileRef = 03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */; };
-		03E867FB29D212B40095ECDC /* XcodePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E867FA29D212B40095ECDC /* XcodePlugin.mm */; };
 		437DCBC514D41E700039CB49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437DCBC314D41E700039CB49 /* InfoPlist.strings */; };
+		6328AD7C2A1D46EF00156DF1 /* XcodePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6328AD7B2A1D46EF00156DF1 /* XcodePlugin.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,9 +26,9 @@
 		0372C85619378EA900364146 /* XcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = XcodePlugin.h; path = "../Shared Code/XcodePlugin.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		0372C85719378EA900364146 /* XcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = XcodePlugin.m; path = "../Shared Code/XcodePlugin.m"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		03B5FA4E28A56354007582BD /* Plugin_P4Checkout.xcplugindata */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plugin_P4Checkout.xcplugindata; sourceTree = SOURCE_ROOT; };
-		03E867FA29D212B40095ECDC /* XcodePlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XcodePlugin.mm; path = "/opt/Source/MalterlibXcodePatches/Plugins/Plugin_Malterlib/../Shared Code/XcodePlugin.mm"; sourceTree = "<absolute>"; };
 		435E247213A8E4A20052479A /* Plugin_P4Checkout.ideplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Plugin_P4Checkout.ideplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		435E248413A8E5A40052479A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6328AD7B2A1D46EF00156DF1 /* XcodePlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XcodePlugin.mm; path = "../Shared Code/XcodePlugin.mm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 				0301F88717A7DC9F0089B894 /* Plugin_P4Unlock.m */,
 				0372C85619378EA900364146 /* XcodePlugin.h */,
 				0372C85719378EA900364146 /* XcodePlugin.m */,
-				03E867FA29D212B40095ECDC /* XcodePlugin.mm */,
+				6328AD7B2A1D46EF00156DF1 /* XcodePlugin.mm */,
 				437DCBC314D41E700039CB49 /* InfoPlist.strings */,
 				435E248413A8E5A40052479A /* Info.plist */,
 			);
@@ -149,8 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6328AD7C2A1D46EF00156DF1 /* XcodePlugin.mm in Sources */,
 				038BCA3E17A7DF66006F86F1 /* Plugin_P4Unlock.m in Sources */,
-				03E867FB29D212B40095ECDC /* XcodePlugin.mm in Sources */,
 				0372C85819378EA900364146 /* XcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
