@@ -37,15 +37,19 @@ struct _DVTFindBarFlags {
 };
 
 struct SBDebugger {
+	char dummy;
 };
 
 struct SBProcess {
+	char dummy;
 };
 
 struct SBError {
+	char dummy;
 };
 
 struct SBTarget {
+	char dummy;
 };
 
 struct _DVTLayoutManagerFlags {
