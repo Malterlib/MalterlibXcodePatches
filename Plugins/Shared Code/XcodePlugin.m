@@ -21,7 +21,7 @@ BOOL XcodePluginShouldLoad(BOOL _LoadInXcodeBuild)
 
     // Limit to this Xcode versions
     XcodePluginConfirmOrPerform(xcodeMajorVersion == 15, return NO);
-    XcodePluginConfirmOrPerform(xcodeMinorVersion == 0, return NO);
+    XcodePluginConfirmOrPerform(xcodeMinorVersion == 1, return NO);
 
     result = YES;
     
