@@ -120,7 +120,7 @@
             Rules = (
                 "xcode.lang.opencl.preprocessor.identifier",
             );
-            Type = "xcode.syntax.definition.macro";
+            Type = "xcode.syntax.preprocessor.define";
         };
     },
     {
