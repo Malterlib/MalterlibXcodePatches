@@ -50,7 +50,7 @@
 					break; // Magic enable for multil launch
 
 
-				for (_TtC13IDEFoundation27IDECommandLineArgumentEntry* pCommandLineArg in [pLaunchAction commandLineArgumentEntries])
+				for (IDEFoundation_IDECommandLineArgumentEntry* pCommandLineArg in [pLaunchAction commandLineArgumentEntries])
 				{
 					if (!pCommandLineArg.isEnabled)
 						continue;

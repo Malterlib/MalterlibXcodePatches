@@ -30,24 +30,25 @@ if [ -e "$CurrentPath/XcodeDump/CDStructures.h" ]; then
 fi
 
 for Executable in $XcodeExecutables; do
-	[[ "$Executable" == "/Applications/$XcodeVersion/Contents/OtherFrameworks/DevToolsCore.framework/Versions/A/DevToolsCore" ]] && continue
 	[[ "$Executable" == "/Applications/$XcodeVersion/Contents/Plugins/IDEInterfaceBuilderKit.framework/Versions/A/Resources/nibextractor" ]] && continue
 	[[ $Executable =~ ^/Applications/Xcode\.app/Contents/OtherFrameworks/DevToolsInterface\.framework/Versions/A/Resources/UtilityScripts/.*$ ]] && continue
 	[[ $Executable =~ ^.*\.pl$ ]] && continue
 	[[ $Executable =~ ^.*\.py$ ]] && continue
-	[[ "$Executable" == "/Applications/$XcodeVersion/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/sync_ddi" ]] && continue
-	[[ "$Executable" == "/Applications/$XcodeVersion/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash" ]] && continue
-	[[ "$Executable" == "" ]] && continue
-	[[ "$Executable" == "" ]] && continue
-	[[ "$Executable" == "" ]] && continue
-	[[ "$Executable" == "" ]] && continue
+	[[ $Executable =~ ^.*\.cube$ ]] && continue
+	[[ $Executable =~ ^.*\.msgpack$ ]] && continue
 
 #	echo $Executable 1>&2
 	#class-dump --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk "$Executable"
-	echo -e "\033[32m/opt/Source/class-dump/build/Release/class-dump --arch x86_64 -H -F --sdk-mac "" -o $CurrentPath/XcodeDump $Executable \033[0m" 1>&2
-	/opt/Source/class-dump/build/Release/class-dump --arch x86_64 -H -F --sdk-mac "" -o $CurrentPath/XcodeDump "$Executable" || true
+	#echo -e "\033[32m/opt/Source/class-dump/build/Release/class-dump --arch x86_64 -H -F --sdk-mac "" -o $CurrentPath/XcodeDump $Executable \033[0m" 1>&2
+	#/opt/Source/class-dump/build/Release/class-dump --arch x86_64 -H -F --sdk-mac "" -o $CurrentPath/XcodeDump "$Executable" || true
 	#class-dump -H -I --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -o $CurrentPath/XcodeDump "$Executable"
 	#class-dump -H -I -r --sdk-mac /Applications/$XcodeVersion/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -o $CurrentPath/XcodeDump "$Executable"
+
+	#echo -e "\033[32mktool -v -1 dump --headers --fdec --out \"$CurrentPath/XcodeDump\" \"$Executable\" \033[0m" 1>&2
+	#ktool -v -1 dump --headers --fdec --out "$CurrentPath/XcodeDump" "$Executable"
+
+	echo -e "\033[32mipsw class-dump --arch arm64 --headers --output \"$CurrentPath/XcodeDump\" \"$Executable\" \033[0m" 1>&2
+	ipsw class-dump --arch arm64 --headers --refs --output "$CurrentPath/XcodeDump" "$Executable" || true
 done
 
 

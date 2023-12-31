@@ -4,8 +4,6 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "Shared.h"
-
 struct OpaqueEventRef;
 struct OpaqueMenuRef;
 struct OpaqueEventHandlerCallRef;
@@ -61,7 +59,7 @@ struct _NSCarbonMenuSearchReturn {
 + (void)prepareForCarbonMenuBar;
 - (BOOL)_popUpMenuPositioningItem:(id)arg1 atCocoaIndex:(unsigned long long)arg2 atLocation:(struct CGPoint)arg3 inView:(id)arg4;
 - (void)_removeCarbonEventHandlerForToken:(id)arg1;
-- (id)_handleCarbonEvents:(const struct EventTypeSpec *)arg1 count:(unsigned long long)arg2 handler:(CDUnknownBlockType)arg3;
+- (id)_handleCarbonEvents:(const struct EventTypeSpec *)arg1 count:(unsigned long long)arg2 handler:(struct CDUnknownBlockType)arg3;
 - (void)_setCurrentMenuUpdateFlags:(unsigned long long)arg1;
 - (unsigned long long)_currentMenuUpdateFlags;
 - (id)_trackingInfo;
