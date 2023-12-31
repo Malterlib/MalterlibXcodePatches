@@ -98,8 +98,6 @@
 	<string>0.0 0.329 0.325 1</string>
 	<key>DVTSourceTextSyntaxColors</key>
 	<dict>
-		<key>xcode.syntax.markup.aside.kind</key>
-		<string>0.824272 0.77926 0.999417 1</string>
 		<key>xcode.syntax.attribute</key>
 		<string>0.75841 0.701938 0.999233 1</string>
 		<key>xcode.syntax.character</key>
@@ -142,6 +140,8 @@
 		<string>0.700656 0.700635 0.700647 1</string>
 		<key>xcode.syntax.mark</key>
 		<string>0.43046 0.293723 0.998521 1</string>
+		<key>xcode.syntax.markup.aside.kind</key>
+		<string>0.824272 0.77926 0.999417 1</string>
 		<key>xcode.syntax.markup.code</key>
 		<string>0.992342 0.645613 0.825757 1</string>
 		<key>xcode.syntax.number</key>
