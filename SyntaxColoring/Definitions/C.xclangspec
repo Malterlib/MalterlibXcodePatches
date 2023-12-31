@@ -202,7 +202,7 @@
             Rules = (
                 "xcode.lang.c.preprocessor.identifier",
             );
-            Type = "xcode.syntax.identifier.macro";
+            Type = "xcode.syntax.preprocessor.define";
         };
     },
     {

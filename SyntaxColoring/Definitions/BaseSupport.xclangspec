@@ -1562,6 +1562,12 @@
             Type = "xcode.syntax.plain";
         };
     },
+    {
+        Identifier = "xcode.lang.generated.eof";
+        Syntax = {
+            Type = "xcode.syntax.plain";
+        };
+    },
 
     // Mark: - Preprocessor macros we want to ignore
     {
