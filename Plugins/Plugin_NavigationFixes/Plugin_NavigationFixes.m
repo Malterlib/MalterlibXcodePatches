@@ -37,8 +37,7 @@ static IMP original_becomeFirstResponder_DVTOutlineView = nil;
 static IMP original_becomeFirstResponder_DVTFindPatternFieldEditor = nil;
 static IMP original_becomeFirstResponder_SourceEditor_SourceEditorView = nil;
 static IMP original_resignFirstResponder_DVTFindPatternFieldEditor = nil;
-static IMP original_menuItemWithKeyEquivalentMatchingEventRef = nil;
-static IMP original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = nil;
+static IMP original_sendEvent_IDEApplication = nil;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -469,10 +468,8 @@ static void setEditorFocus(NSWindow* _pWindow)
 	original_resignFirstResponder_DVTFindPatternFieldEditor = XcodePluginOverrideMethodString(@"DVTFindPatternFieldEditor", @selector(resignFirstResponder), (IMP)&resignFirstResponder_DVTFindPatternFieldEditor);
 	XcodePluginAssertOrPerform(original_resignFirstResponder_DVTFindPatternFieldEditor, goto failed);
 
-	original_menuItemWithKeyEquivalentMatchingEventRef = XcodePluginOverrideStaticMethodString(@"NSCarbonMenuImpl", @selector(_menuItemWithKeyEquivalentMatchingEventRef:inMenu:), (IMP)&menuItemWithKeyEquivalentMatchingEventRef);
-	original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012 = XcodePluginOverrideStaticMethodString(@"NSCarbonMenuImpl", @selector(_menuItemWithKeyEquivalentMatchingEventRef:inMenu:includingDisabledItems:), (IMP)&menuItemWithKeyEquivalentMatchingEventRef_macOS1012);
-
-	XcodePluginAssertOrPerform(original_menuItemWithKeyEquivalentMatchingEventRef || original_menuItemWithKeyEquivalentMatchingEventRef_macOS1012, goto failed);
+	original_sendEvent_IDEApplication = XcodePluginOverrideMethodString(@"IDEApplication", @selector(sendEvent:), (IMP)&sendEvent_IDEApplication);
+	XcodePluginAssertOrPerform(original_sendEvent_IDEApplication, goto failed);
 
 	XcodePluginPostflight();
 }

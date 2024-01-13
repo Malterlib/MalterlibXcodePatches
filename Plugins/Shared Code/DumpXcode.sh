@@ -51,5 +51,5 @@ for Executable in $XcodeExecutables; do
 	ipsw class-dump --arch arm64 --headers --refs --output "$CurrentPath/XcodeDump" "$Executable" || true
 done
 
-
+#export ToFind=`pbpaste` && sed 's/@import Foundation;/#import <Foundation\/Foundation.h>/g' `find XcodeDump -name "$ToFind" | tail -n 1`  > Xcode/$ToFind
 

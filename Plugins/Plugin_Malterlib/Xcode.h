@@ -105,6 +105,4 @@
 
 #import "../Shared Code/Xcode/PBXFileType.h"
 
-#import "../Shared Code/Xcode/NSCarbonMenuImpl.h"
-
 #endif /* Xcode_h */

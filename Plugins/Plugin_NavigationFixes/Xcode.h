@@ -5,6 +5,8 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 
+#import "../Shared Code/Xcode/IDEApplication.h"
+
 #import "../Shared Code/Xcode/DVTTextCompletionController.h"
 #import "../Shared Code/Xcode/DVTTextCompletionDataSource.h"
 #import "../Shared Code/Xcode/DVTMarkedScroller.h"
@@ -104,7 +106,5 @@
 #import "../Shared Code/Xcode/DBGLLDBLauncher.h"
 
 #import "../Shared Code/Xcode/PBXFileType.h"
-
-#import "../Shared Code/Xcode/NSCarbonMenuImpl.h"
 
 #endif /* Xcode_h */
