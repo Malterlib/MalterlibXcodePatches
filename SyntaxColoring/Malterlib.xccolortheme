@@ -23,7 +23,7 @@
 	<key>DVTConsoleExectuableOutputTextFont</key>
 	<string>Unbroken-Retina-Regular - 10.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
-	<string>0.024 0.024 0.024 1</string>
+	<string>0.0 0.0 0.0 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
 	<string>0.988636 1 1 1</string>
 	<key>DVTConsoleTextSelectionColor</key>
@@ -85,7 +85,7 @@
 	<key>DVTScrollbarMarkerWarningColor</key>
 	<string>0.937255 0.717647 0.34902 1</string>
 	<key>DVTSourceTextBackground</key>
-	<string>0.024 0.024 0.024 1</string>
+	<string>0.0 0.0 0.0 1</string>
 	<key>DVTSourceTextBlockDimBackgroundColor</key>
 	<string>0.5 0.5 0.5 1</string>
 	<key>DVTSourceTextCurrentLineHighlightColor</key>
